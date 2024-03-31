@@ -341,42 +341,13 @@ export const OpenMenu = styled.div`
   align-items: center;
 `;
 
-export const div = styled.div`
-  width: 232px;
-  height: 44px;
-  border: none;
-  border-radius: 22px;
-  background-color: #F6F6F6;
-
-  left: 55px;
-
-  position: absolute;
-`;
 
 export const CommentInput = styled.input`
   width: 232px;
   height: 44px;
   border: none;
   border-radius: 22px;
-  background-color: transparent;
-  padding-left: 15px;
-
-  :focus{
-    outline: none;
-  }
-
-  ::placeholder{
-    color: #888888;
-    font-size: 14px;
-  }
-`;
-
-export const ReplyInput = styled.input`
-  width: 232px;
-  height: 44px;
-  border: none;
-  background-color: transparent;
-  border-radius: 22px;
+  background-color: #F6F6F6;
   padding-left: 15px;
 
   :focus{
@@ -395,9 +366,7 @@ export const AddComment = styled.div`
   border-radius: 50%;
   background-color: #240D05;
   cursor: pointer;
-  position: absolute;
-  left: 297px;
-
+  
   display: flex;
   flex-direction: row;
   justify-content: center;
