@@ -293,6 +293,9 @@ export default function Announcement() {
     setName(userName);
   };
 
+  //input 창에 foucs주기
+  const nameFocus = useRef();
+
   return (
     <>
       <VolunteerDetailHeader
@@ -344,6 +347,8 @@ export default function Announcement() {
         handleChangeReplyEdit={handleChangeReplyEdit} //답글의 수정내용 전달 기능
         activeReplyEdit={activeReplyEdit}
         handleEditSubmit={handleEditSubmit}
+
+        nameFocus={nameFocus} //input태그에 focus주기
       />
     </>
   );
