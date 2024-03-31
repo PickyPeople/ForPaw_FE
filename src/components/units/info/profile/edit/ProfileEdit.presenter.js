@@ -49,7 +49,7 @@ export default function ProfileEditUI(props) {
           <S.NickNameEditBlock>
             <S.NickNameInput
               type="text"
-              placeholder={props.currentNickName}
+              placeholder={props.userInfo.nickName}
               value={props.nickName} // 입력 필드에 상태 값을 연결
               onChange={props.handleNickNameChange} // 입력 변경 시 핸들러 호출
             />
@@ -164,7 +164,11 @@ export default function ProfileEditUI(props) {
             </S.DistrictSelectBlock>
           </S.AreaSelectContainer>
         </S.ProfileEditContainer>
-        <S.ProfileEditButton>프로필 수정</S.ProfileEditButton>
+        <S.ProfileEditButton
+          onClick={() => props.handleUpdateUserInfo(props.updatedUserInfo)}
+        >
+          프로필 수정
+        </S.ProfileEditButton>
       </S.WrapperProfileEdit>
     </>
   );

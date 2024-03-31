@@ -41,3 +41,24 @@ export const checkNickNameAvailability = async (nickName) => {
     throw error; // 에러 처리를 호출한 곳으로 전파
   }
 };
+
+export const updateUserInfo = async (userInfo) => {
+  try {
+    const response = await fetch("https://your-api-endpoint.com/user/info", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer your-auth-token", // 필요한 인증 토큰
+      },
+      body: JSON.stringify(userInfo),
+    });
+    if (!response.ok) {
+      throw new Error("Failed to update user info");
+    }
+    const data = await response.json();
+    return data; // 성공적인 응답 데이터 반환
+  } catch (error) {
+    console.error("Error updating user info:", error);
+    throw error;
+  }
+};

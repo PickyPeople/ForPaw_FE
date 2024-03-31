@@ -407,4 +407,5 @@ export const ProfileEditButton = styled.button`
   background-color: #ff6636;
   color: white;
   margin-top: 120px;
+  cursor: pointer;
 `;

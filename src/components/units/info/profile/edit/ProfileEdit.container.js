@@ -4,32 +4,14 @@ import ProfileUI from "./ProfileEdit.presenter";
 import { districtName } from "../../../../../../src/components/commons/district/districtName";
 import { useRegionSelection } from "../../../../../../src/components/commons/hooks/useRegionSelection";
 import { useNickNameCheck } from "./hooks/useNickNameCheck";
-import { fetchUserInfo } from "./ProfileEdit.queries";
+import { useUserInfoUpdate } from "./hooks/useUserInfoUpdate";
+import { useFetchUserInfo } from "./hooks/useFetchUserInfo";
 
 export default function ProfileEdit() {
-  const [currentNickName, setCurrentNickName] = useState("기존 닉네임");
-  const [currentProvince, setCurrentProvince] = useState("시/도 선택");
-  const [currentDistrict, setCurrentDistrict] = useState("구/군/시");
-  const [currentSubdistrict, setCurrentSubdistrict] = useState("동/읍/면");
   const router = useRouter();
   const regions = districtName;
 
-  // 컴포넌트 마운트 시 사용자 정보를 가져옵니다.
-  useEffect(() => {
-    const loadUserInfo = async () => {
-      try {
-        const userInfo = await fetchUserInfo();
-        setCurrentNickName(userInfo.nickName);
-        setCurrentProvince(userInfo.province);
-        setCurrentDistrict(userInfo.district);
-        setCurrentSubdistrict(userInfo.subdistrict);
-      } catch (error) {
-        console.error("Error fetching user info:", error);
-      }
-    };
-
-    // loadUserInfo();
-  }, []);
+  const { userInfo } = useFetchUserInfo();
 
   const {
     nickName,
@@ -54,7 +36,21 @@ export default function ProfileEdit() {
     handleDistrictSelect,
     handleSubdistrictSelect,
     toggleDropdown,
-  } = useRegionSelection(currentProvince, currentDistrict, currentSubdistrict);
+  } = useRegionSelection(
+    userInfo.province,
+    userInfo.district,
+    userInfo.subdistrict
+  );
+
+  const updatedUserInfo = {
+    nickName: nickName, // useNickNameCheck 훅에서 관리하는 상태
+    isPossibleNickName: isPossibleNickName, // 닉네임의 유효성 검사 결과
+    selectedProvince: selectedProvince, // useRegionSelection 훅에서 관리하는 상태
+    selectedDistrict: selectedDistrict, // useRegionSelection 훅에서 관리하는 상태
+    selectedSubdistrict: selectedSubdistrict, // useRegionSelection 훅에서 관리하는 상태
+  };
+
+  const { handleUpdateUserInfo } = useUserInfoUpdate();
 
   const navigateBack = () => {
     router.back();
@@ -63,7 +59,7 @@ export default function ProfileEdit() {
   return (
     <ProfileUI
       navigateBack={navigateBack}
-      currentNickName={currentNickName}
+      userInfo={userInfo}
       nickName={nickName}
       isPossibleNickName={isPossibleNickName}
       nickNameMsg={nickNameMsg}
@@ -86,6 +82,8 @@ export default function ProfileEdit() {
       isSubdistrictDropdownOpen={isSubdistrictDropdownOpen}
       toggleSubdistrictDropdown={() => toggleDropdown("subdistrict")}
       handleSubdistrictSelect={handleSubdistrictSelect}
+      updatedUserInfo={updatedUserInfo}
+      handleUpdateUserInfo={handleUpdateUserInfo}
     />
   );
 }
