@@ -1,15 +1,29 @@
-import { useRouter } from "next/router";
-import LogInUI from "./login.presenter";
+import LoginUI from "./Login.presenter";
+import { useLoginCheck } from "./hooks/useLoginCheck";
 
-export default function LogIn() {
-  const router = useRouter();
-
-  const navigateTo = (path) => () => router.push(path);
+export default function Login() {
+  const {
+    navigateTo,
+    email,
+    password,
+    isPossibleLogin,
+    loginMsg,
+    handleEmailChange,
+    handlePasswordChange,
+    verifyLogin
+  } = useLoginCheck();
 
   return (
     <>
-      <LogInUI
+      <LoginUI
         navigateTo={navigateTo}
+        email={email}
+        password={password}
+        isPossibleLogin={isPossibleLogin}
+        loginMsg={loginMsg}
+        handleEmailChange={handleEmailChange}
+        handlePasswordChange={handlePasswordChange}
+        verifyLogin={verifyLogin}
       />
     </>
   );
