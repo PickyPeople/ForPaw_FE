@@ -72,6 +72,7 @@ export const ProfileEditPhotoContainer = styled.div`
   align-items: center;
   margin-top: 10px;
   position: relative;
+  flex-shrink: 0;
 `;
 
 export const ProfileEditPhoto = styled.div`

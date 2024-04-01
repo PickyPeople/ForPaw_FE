@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchUserInfo as fetchUserInfoAPI } from "../ProfileEdit.queries";
+import { fetchUserInfo } from "../ProfileEdit.queries";
 
 export const useFetchUserInfo = () => {
   const [userInfo, setUserInfo] = useState({
@@ -11,7 +11,7 @@ export const useFetchUserInfo = () => {
 
   useEffect(() => {
     const loadUserInfo = async () => {
-      const data = await fetchUserInfoAPI();
+      const data = await fetchUserInfo();
       setUserInfo({
         nickName: data.nickName,
         province: data.province,

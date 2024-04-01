@@ -1,4 +1,4 @@
-export async function fetchPets() {
+export async function fetchFavPetsData() {
   try {
     const response = await fetch("https://example.com/api/pets", {
       method: "GET",

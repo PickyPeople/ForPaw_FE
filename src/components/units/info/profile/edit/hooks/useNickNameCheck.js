@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { checkNickNameAvailability } from "../ProfileEdit.queries"; // 가정: checkNickNameAvailability 함수는 이미 queries.js에 정의되어 있음
+import { checkNickNameDuplication } from "../ProfileEdit.queries"; // 가정: checkNickNameAvailability 함수는 이미 queries.js에 정의되어 있음
 
 export const useNickNameCheck = () => {
   const [nickName, setNickName] = useState("");
@@ -33,7 +33,7 @@ export const useNickNameCheck = () => {
     if (!validateNickName(nickName)) return;
 
     try {
-      const data = await checkNickNameAvailability(nickName);
+      const data = await checkNickNameDuplication(nickName);
       if (data.isAvailable) {
         setIsPossibleNickName(true);
         setNickNameMsg("사용 가능한 닉네임입니다.");

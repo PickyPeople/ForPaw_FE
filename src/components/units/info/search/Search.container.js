@@ -1,12 +1,8 @@
-import { useRouter } from "next/router";
+import { useNavigate } from "../../../../../src/components/commons/hooks/useNavigate";
 import SearchUI from "./Search.presenter";
 
 export default function Search() {
-  const router = useRouter();
-
-  const navigateBack = () => {
-    router.back();
-  };
+  const { navigateBack } = useNavigate();
 
   return <SearchUI navigateBack={navigateBack} />;
 }

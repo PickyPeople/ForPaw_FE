@@ -1,16 +1,12 @@
-import { useRouter } from "next/router";
 import IntroUI from "./Intro.presenter";
+import { useNavigate } from "../../commons/hooks/useNavigate";
 
 export default function Intro() {
-  const router = useRouter();
+  const { navigateTo } = useNavigate();
 
-  const navigateTo = (path) => () => router.push(path);
-
-  return(
+  return (
     <>
-      <IntroUI
-        navigateTo={navigateTo} 
-      />
+      <IntroUI navigateTo={navigateTo} />
     </>
-  )
+  );
 }

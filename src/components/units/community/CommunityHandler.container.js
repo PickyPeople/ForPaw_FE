@@ -1,14 +1,8 @@
-import { useRouter } from "next/router";
 import CommunityHandlerUI from "./CommunityHandler.presenter";
+import { useNavigate } from "../../commons/hooks/useNavigate";
 
 export default function CommunityHandler() {
-  const router = useRouter();
-
-  const isActive = (path) => {
-    return router.pathname === path;
-  };
-
-  const navigateTo = (path) => () => router.push(path);
+  const { navigateTo, isActive } = useNavigate();
 
   const paths = {
     adoption: "/community/adoption",

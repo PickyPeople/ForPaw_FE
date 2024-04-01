@@ -1,14 +1,8 @@
-import { useRouter } from "next/router";
 import AdoptHandlerUI from "./AdoptHandler.presenter";
+import { useNavigate } from "../../commons/hooks/useNavigate";
 
 export default function AdoptHandler() {
-  const router = useRouter();
-
-  const isActive = (path) => {
-    return router.pathname === path;
-  };
-
-  const navigateTo = (path) => () => router.push(path);
+  const { navigateTo, isActive } = useNavigate();
 
   const paths = {
     pets: "/adopt/pets",

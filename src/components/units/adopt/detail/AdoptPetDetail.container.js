@@ -1,14 +1,8 @@
-import { useRouter } from "next/router";
 import AdoptPetDetailUI from "./AdoptPetDetail.presenter";
+import { useNavigate } from "../../../../../src/components/commons/hooks/useNavigate";
 
 export default function AdoptPetDetail() {
-  const router = useRouter();
-
-  const navigateTo = (path) => () => router.push(path);
-
-  const navigateBack = () => {
-    router.back();
-  };
+  const { navigateTo, navigateBack } = useNavigate();
 
   return (
     <AdoptPetDetailUI navigateTo={navigateTo} navigateBack={navigateBack} />

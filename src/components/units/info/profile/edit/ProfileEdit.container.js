@@ -1,14 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/router";
+import React from "react";
 import ProfileUI from "./ProfileEdit.presenter";
 import { districtName } from "../../../../../../src/components/commons/district/districtName";
 import { useRegionSelection } from "../../../../../../src/components/commons/hooks/useRegionSelection";
 import { useNickNameCheck } from "./hooks/useNickNameCheck";
 import { useUserInfoUpdate } from "./hooks/useUserInfoUpdate";
 import { useFetchUserInfo } from "./hooks/useFetchUserInfo";
+import { useNavigate } from "../../../../../../src/components/commons/hooks/useNavigate";
 
 export default function ProfileEdit() {
-  const router = useRouter();
   const regions = districtName;
 
   const { userInfo } = useFetchUserInfo();
@@ -52,9 +51,7 @@ export default function ProfileEdit() {
 
   const { handleUpdateUserInfo } = useUserInfoUpdate();
 
-  const navigateBack = () => {
-    router.back();
-  };
+  const { navigateBack } = useNavigate();
 
   return (
     <ProfileUI

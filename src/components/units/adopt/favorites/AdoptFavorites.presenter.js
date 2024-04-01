@@ -10,7 +10,7 @@ export default function AdpotFavoritesUI(props) {
           <S.AdoptPetMenuDogs>개</S.AdoptPetMenuDogs>
           <S.AdoptPetMenuCats>고양이</S.AdoptPetMenuCats>
         </S.AdoptPetMenuBlock>
-        {props.pets.map((pet) => (
+        {props.favPets.map((pet) => (
           <S.AdoptPet key={pet.id} onClick={props.navigateTo(`/adopt/detail`)}>
             <Image
               src={pet.profileURL}

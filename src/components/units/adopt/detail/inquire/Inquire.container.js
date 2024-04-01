@@ -1,12 +1,8 @@
-import { useRouter } from "next/router";
 import InquireUI from "./Inquire.presenter";
+import { useNavigate } from "../../../../../../src/components/commons/hooks/useNavigate";
 
 export default function Inquire() {
-  const router = useRouter();
-
-  const navigateBack = () => {
-    router.back();
-  };
+  const { navigateBack } = useNavigate();
 
   return <InquireUI navigateBack={navigateBack} />;
 }

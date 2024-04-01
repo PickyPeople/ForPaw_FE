@@ -1,14 +1,8 @@
-import { useRouter } from "next/router";
+import { useNavigate } from "../../../../../src/components/commons/hooks/useNavigate";
 import ProfileUI from "./Profile.presenter";
 
 export default function Profile() {
-  const router = useRouter();
-
-  const navigateTo = (path) => () => router.push(path);
-
-  const navigateBack = () => {
-    router.back();
-  };
+  const { navigateTo, navigateBack } = useNavigate();
 
   const paths = {
     edit: "/info/profile/edit",

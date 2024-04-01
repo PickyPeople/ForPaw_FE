@@ -1,12 +1,8 @@
-import { useRouter } from "next/router";
+import { useNavigate } from "../../../../../src/components/commons/hooks/useNavigate";
 import AlarmUI from "./Alarm.presenter";
 
 export default function Alarm() {
-  const router = useRouter();
-
-  const navigateBack = () => {
-    router.back();
-  };
+  const { navigateBack } = useNavigate();
 
   return <AlarmUI navigateBack={navigateBack} />;
 }

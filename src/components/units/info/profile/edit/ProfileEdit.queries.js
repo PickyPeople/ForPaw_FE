@@ -17,7 +17,7 @@ export const fetchUserInfo = async () => {
   }
 };
 
-export const checkNickNameAvailability = async (nickName) => {
+export const checkNickNameDuplication = async (nickName) => {
   try {
     const response = await fetch(
       "https://your-api-endpoint.com/nickname/check",
