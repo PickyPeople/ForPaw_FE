@@ -1,9 +1,12 @@
 import LoginUI from "./Login.presenter";
 import { useLoginCheck } from "./hooks/useLoginCheck";
+import { useNavigate } from "../../../../src/components/commons/hooks/useNavigate";
 
 export default function Login() {
+
+  const {navigateTo} = useNavigate();
+
   const {
-    navigateTo,
     email,
     password,
     isPossibleLogin,

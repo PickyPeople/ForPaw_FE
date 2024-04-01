@@ -1,18 +1,11 @@
 import { useState } from "react"
 import { checkLoginAvailability } from "../Login.queries";
-import { useRouter } from "next/router";
 
 export const useLoginCheck = () => {
-  const router = useRouter();
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isPossibleLogin, setIspossibleLogin] = useState(true);
-  const [loginMsg, setLoginMsg] = useState('');
-
-  const navigateTo = (path) => () => {
-    router.push(path);
-  }
+  const [email, setEmail] = useState(''); //아이디 입력을 받아오는 변수
+  const [password, setPassword] = useState(''); //비밀번호 입력을 받아오는 변수
+  const [isPossibleLogin, setIspossibleLogin] = useState(true); //로그인이 가능한지에 대한 변수
+  const [loginMsg, setLoginMsg] = useState(''); //로그인 정보가 일치하지 않을 때의 변수
 
   const handleEmailChange = (e) => {
     const inputEmail = e.target.value;
@@ -42,7 +35,6 @@ export const useLoginCheck = () => {
   }
 
   return {
-    navigateTo,
     email,
     password,
     isPossibleLogin,
