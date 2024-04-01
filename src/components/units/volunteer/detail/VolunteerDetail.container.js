@@ -65,7 +65,7 @@ export default function VolunteerDetail() {
     } 
   };
 
-  const Announcements = [
+  const notices = [
     {
       id: 1,
       text: "이번주 봉사활동은 업체의 개인사정으로 인해 한 주 쉬어가니 착오 없으시길 바랍니다."
@@ -80,7 +80,7 @@ export default function VolunteerDetail() {
     }
   ];
 
-  const MeetingInfos = [
+  const Meetings = [
     {
       id: 1,
       detailDate: "2/12 (월)",
@@ -132,27 +132,27 @@ export default function VolunteerDetail() {
     {
       id: 1,
       name: "김포포",
-      status: "관리자"
+      role: "관리자"
     },
     {
       id: 2,
       name: "가나다라마바사",
-      status: "매니저"
+      role: "매니저"
     },
     {
       id: 3,
       name: "프로봉사러",
-      status: "회원"
+      role: "회원"
     },
     {
       id: 4,
       name: "김포포",
-      status: "회원"
+      role: "회원"
     },
     {
       id: 5,
       name: "김포포",
-      status: "회원"
+      role: "회원"
     },
   ];
 
@@ -166,8 +166,8 @@ export default function VolunteerDetail() {
       />
       <VolunteerDetailUI
         navigateTo={navigateTo}
-        Announcements={Announcements}
-        MeetingInfos={MeetingInfos}
+        notices={notices}
+        Meetings={Meetings}
         clickedIndex={clickedIndex}
         handleAnnouncementClick={handleAnnouncementClick}
         isJoinedClikced={isJoinedClikced}

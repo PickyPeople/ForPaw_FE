@@ -41,10 +41,10 @@ export default function VolunteerDetailUI(props) {
             </S.RightArrowImgBlock>
           </S.AnnouncementTitleBlock>
           <S.AnnouncementDetailContainer>
-            {props.Announcements.map((announcement, index) => (
+            {props.notices.map((notice, index) => (
               <S.AnnouncementDetailBlock
                 onClick={props.navigateTo('/volunteer/detail/announcements/announcement')}
-                key={announcement.id}
+                key={notice.id}
                 style={{ backgroundColor: props.clickedIndex === index ? "#FEF8F2" : "#F6F6F6" }}
                 onMouseDown={() => props.handleAnnouncementClick(index)} // 마우스를 눌렀을 때만 처리
               >
@@ -63,7 +63,7 @@ export default function VolunteerDetailUI(props) {
                     </S.CheckImg>
                   </S.CheckBox>
                   <S.AnnouncementText>
-                    {announcement.text.length > 55 ? `${announcement.text.slice(0, 55)}...` : announcement.text}
+                    {notice.text.length > 55 ? `${announcement.text.slice(0, 55)}...` : notice.text}
                   </S.AnnouncementText>
                 </S.AnnouncementItems>
               </S.AnnouncementDetailBlock>
@@ -85,7 +85,7 @@ export default function VolunteerDetailUI(props) {
             </S.RightArrowImgBlock>
           </S.MeetingTitleBlock>
           <S.WrapperMeetingDetail>
-            {props.MeetingInfos.map((infos, index) => (
+            {props.Meetings.map((infos, index) => (
               <S.MeetingDetailContainer
                 key={infos.id}
               >
@@ -177,7 +177,7 @@ export default function VolunteerDetailUI(props) {
               key={infos.id}
             >
               <S.MemberBox
-                onClick={props.navigateTo('/volunteer/detail/regular_meetings/regular_meeting')}
+                // onClick={props.navigateTo('/volunteer/detail/regular_meetings/regular_meeting')}
               >
                 <S.MemberIcon>
                   <Image

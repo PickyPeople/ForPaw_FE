@@ -1,7 +1,7 @@
-import * as S from "./login.styles";
+import * as S from "./Login.styles";
 import Image from "next/image";
 
-export default function LogInUI(props) {
+export default function LoginUI(props) {
   return (
     <>
       <S.WrapperContainer>
@@ -29,8 +29,18 @@ export default function LogInUI(props) {
           <S.WrapperLoginContents>
             <S.LoginContentsBlock>
               <S.IdAndPassWordContainer>
-                <S.IdInput placeholder="아이디" type="text" />
-                <S.PassWordInput placeholder="비밀번호" type="password" />
+                <S.IdInput
+                  placeholder="아이디"
+                  type="text"
+                  value={props.email}
+                  onChange={props.handleEmailChange}
+                />
+                <S.PassWordInput
+                  placeholder="비밀번호"
+                  type="password"
+                  value={props.password}
+                  onChange={props.handlePasswordChange}
+                />
               </S.IdAndPassWordContainer>
               <S.LoginContainer>
                 <S.LoginButton type="submit"
