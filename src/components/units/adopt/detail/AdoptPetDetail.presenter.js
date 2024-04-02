@@ -45,7 +45,7 @@ export default function AdoptPetDetailUI(props) {
             <S.PetGenderIcon>
               <Image
                 src={
-                  props.petDetail.gender == "M"
+                  props.petDetail.gender === "M"
                     ? "/images/pets/male_icon_detail.svg"
                     : "/images/pets/female_icon_detail.svg"
                 }
@@ -67,7 +67,7 @@ export default function AdoptPetDetailUI(props) {
             {props.petDetail.specialMark}
           </S.PetPersonalityIcon>
           <S.PetNeuterIcon netuer={props.petDetail.neuter}>
-            중성화{props.petDetail.neuter == "Y" ? "" : " X"}
+            중성화{props.petDetail.neuter === "Y" ? "" : " X"}
           </S.PetNeuterIcon>
           <S.PetBreedIcon>
             {props.petDetail.kind.split("]")[1].trim()}

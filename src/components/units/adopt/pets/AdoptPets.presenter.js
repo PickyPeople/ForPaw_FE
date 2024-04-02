@@ -12,15 +12,16 @@ export default function AdpotPetsUI(props) {
           <S.AdoptPetMenuCats>고양이</S.AdoptPetMenuCats>
         </S.AdoptPetMenuBlock>
         {props.pets.map((pet) => (
-          <S.AdoptPet key={pet.id} onClick={props.navigateTo(`/adopt/detail`)}>
+          <S.AdoptPet key={pet.id}>
             <Image
               src={pet.profileURL}
               alt={pet.name}
               width={344}
               height={344}
               priority
+              onClick={props.navigateTo(`/adopt/detail`)}
             />
-            <S.AdoptLikeToggle>
+            <S.AdoptLikeToggle onClick={() => props.handleToggleLike(pet.id)}>
               <Image
                 src={
                   pet.isLike === true
@@ -32,7 +33,7 @@ export default function AdpotPetsUI(props) {
                 height={32}
               />
             </S.AdoptLikeToggle>
-            <S.AdoptInfoBlock>
+            <S.AdoptInfoBlock onClick={props.navigateTo(`/adopt/detail`)}>
               <S.AdoptNameGender>
                 {pet.name}
                 <Image
@@ -46,8 +47,12 @@ export default function AdpotPetsUI(props) {
                   height={24}
                 />
               </S.AdoptNameGender>
-              <S.AdoptText>{`${pet.specialMark} ${pet.name}`}</S.AdoptText>
-              <S.AdoptBirthAddress>{`${pet.age} ${pet.region}`}</S.AdoptBirthAddress>
+              <S.AdoptText>
+                {pet.specialMark} {pet.name}
+              </S.AdoptText>
+              <S.AdoptBirthAddress>
+                {pet.age.substr(0, 4)}년생&nbsp;&nbsp;{pet.region}
+              </S.AdoptBirthAddress>
               <S.AdoptLikeBlock>
                 <S.AdoptLike>
                   <Image

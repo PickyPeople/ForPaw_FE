@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchFavPetsData } from "../AdoptFavorites.queries";
+import { useToggleLike } from "../../../../commons/hooks/useToggleLike";
 
 const example = {
   success: true,
@@ -37,6 +38,7 @@ const example = {
 
 export default function useFetchFavPetsData() {
   const [favPets, setFavPets] = useState(example.result.animals);
+  const { toggle } = useToggleLike();
 
   useEffect(() => {
     async function loadFavPetsData() {
@@ -47,5 +49,13 @@ export default function useFetchFavPetsData() {
     // loadFavPetsData();
   }, []);
 
-  return { favPets };
+  const handleToggleLike = async (animalId) => {
+    const isSuccess = await toggle(animalId);
+    if (isSuccess) {
+      // API 호출 성공 시, 해당 동물을 favPets 상태에서 제거합니다.
+      setFavPets(favPets.filter((pet) => pet.id !== animalId));
+    }
+  };
+
+  return { favPets, handleToggleLike };
 }
