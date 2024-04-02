@@ -1,22 +1,22 @@
-import { useRouter } from "next/router";
 import SignUpUI01 from "./Signup01.presenter";
-import { useState } from "react";
+import { useUserName } from "./hooks/useUserName";
+import { useNavigate } from "../../../commons/hooks/useNavigate";
 
 export default function SignUp01() {
-  const router = useRouter();
 
-  const navigateTo = (path) => () => router.push(path);
-  const [nameValue, setNameValue] = useState("");
+  const { navigateTo } = useNavigate();
 
-  const handleNameValueChange = (e) => {
-    setNameValue(e.target.value);
-  }
+  const {
+    name,
+    handleNameValueChange,
+    userName //queries에 있는 sendUserName으로 보내기 위한 함수
+  } = useUserName();
 
   return (
     <>
       <SignUpUI01
         navigateTo={navigateTo}
-        nameValue={nameValue}
+        name={name}
         handleNameValueChange={handleNameValueChange}
       />
     </>

@@ -17,13 +17,13 @@ export const useLoginCheck = () => {
     setPassword(inputPassword);
   }
 
-  const verifyLogin = async () => {
+  const verifyLogin = async () => { //로그인 가능 판단 함수
     try {
       const data = await checkLoginAvailability(email, password);
-      if (data.isAvailable) {
-        setIspossibleLogin(true);
+      if (data.success) { //checkLoginAvailability기능 함수에 email이랑 password를 보낸 뒤, data변수에 저장을 해준다. 그 data변수의 success가 true라면 로그인 가능
+        setIspossibleLogin(true); //이것으로 다음 /home으로 이동할 수 있도록 만들자
       } else {
-        setIspossibleLogin(false);
+        setIspossibleLogin(false); //false라면 로그인이 불가능 하고 아이디 혹은 비밀번호를 확인해달라는 문구를 뛰운다,
         setLoginMsg('가입된 아이디 혹은 비밀번호를 확인해 주십시오');
       }
     } catch (error) {
