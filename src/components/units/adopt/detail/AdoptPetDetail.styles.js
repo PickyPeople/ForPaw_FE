@@ -150,7 +150,7 @@ export const PetPersonalityIcon = styled.div`
 export const PetNeuterIcon = styled.div`
   /* width: 63px; */
   height: 30px;
-  background-color: #ffda93;
+  background-color: ${(props) => (props.neuter == "Y" ? "#ffda93" : "#eeeeee")};
   border-radius: 15px;
   padding: 0 16px;
   margin-right: 5px;

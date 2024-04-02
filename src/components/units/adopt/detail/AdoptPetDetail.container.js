@@ -1,10 +1,16 @@
 import AdoptPetDetailUI from "./AdoptPetDetail.presenter";
-import { useNavigate } from "../../../../../src/components/commons/hooks/useNavigate";
+import { useNavigate } from "../../../commons/hooks/useNavigate";
+import useFetchPetDetail from "./hooks/useFetchPetDetail";
 
 export default function AdoptPetDetail() {
+  const { petDetail } = useFetchPetDetail();
   const { navigateTo, navigateBack } = useNavigate();
 
   return (
-    <AdoptPetDetailUI navigateTo={navigateTo} navigateBack={navigateBack} />
+    <AdoptPetDetailUI
+      petDetail={petDetail}
+      navigateTo={navigateTo}
+      navigateBack={navigateBack}
+    />
   );
 }
