@@ -65,12 +65,12 @@ export default function SignUpUI02(props) {
                   중복확인
                 </S.CheckEmailBtn>
               </S.CheckEmailBlock>
-              <S.InputVerificationCodeContainer style={{ visibility: props.isVisible ? 'visible' : 'hidden' }}>
+              <S.InputVerificationCodeContainer style={{ visibility: props.isEmailAvailable ? 'visible' : 'hidden' }}>
                 <S.VerificationCodeTitle>
                   인증번호를 입력해주세요
                 </S.VerificationCodeTitle>
                 <S.VerificationCodeBlock>
-                  <S.VerificationCodeItem placeholder="1234" type="number" />
+                  <S.VerificationCodeItem placeholder={props.code} type="number" />
                   <S.TimerItem style={{ visibility: props.isEmailAvailable ? 'visible' : 'hidden' }}>{Math.floor(props.timer / 60)}:{(props.timer % 60).toString().padStart(2, '0')}</S.TimerItem>
                 </S.VerificationCodeBlock>
                 <S.RetryVerification>

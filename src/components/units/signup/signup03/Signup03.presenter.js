@@ -31,13 +31,17 @@ export default function SignUpUI03(props) {
                 />
               </S.InfoContentsBlock>
               <S.InfoFormPassWord>
-                특수문자를 포함한 10자리를 입력해주세요
+                {props.isPasswordAvailable ? (
+                  <span style={{ color: "#9AC8FF"}}>사용가능한 비밀버호입니다.</span>
+                ) : (
+                  <span style={{ color: "#FF9A9A"}}>특수문자를 포함한 10자리를 입력해주세요.</span>
+                )}
               </S.InfoFormPassWord>
               <S.InfoContentsBlock>
                 <S.CheckPassWordTitle>비밀번호 확인</S.CheckPassWordTitle>
                 <S.CheckPassWord
                   type="password"
-                  value={props.confirmPassword}
+                  value={props.setPasswordConfirm}
                   onChange={props.handleConfirmPasswordChange}
                   placeholder="비밀번호 확인"
                 />

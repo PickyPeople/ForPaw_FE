@@ -1,15 +1,15 @@
-export const CheckEmailDuplication = async (email, code) => {
+export const CheckPasswordDuplication = async (password, passwordConfirm) => {
   try {
     const response = await fetch(
-      "https://your-api-endpoint.com/Signup02EmailAndCode/check",
+      "https://your-api-endpoint.com/Signup03Password/check",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email: email,
-          code : code
+          password: password,
+          passwordConfirm: passwordConfirm
         })
       }
     );
@@ -21,7 +21,6 @@ export const CheckEmailDuplication = async (email, code) => {
     return data;
     
   } catch (error) {
-    console.log("사용불가능한 이메일입니다.");
+    console.log("사용할 수 없는 비밀번호입니다.");
   }
-};
-
+}; 
