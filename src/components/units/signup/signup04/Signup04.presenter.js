@@ -33,7 +33,7 @@ export default function SignUpUI04(props) {
                 <S.SetNickName
                   placeholder="닉네임"
                   type="text"
-                  value={props.nickNameValue}
+                  value={props.nickName}
                   onChange={props.handleNicknameValueChange}
                 />
               </S.InfoNickNameContainer>
@@ -42,7 +42,10 @@ export default function SignUpUI04(props) {
                   active={props.isVisible}>
                   사용가능한 닉네임입니다.
                 </S.AvailableNickName>
-                <S.CheckNickNameBtn onClick={props.handleCheckNickname}>중복확인</S.CheckNickNameBtn>
+                <S.CheckNickNameBtn
+                  onClick={props.verifyNickname}
+                >중복확인
+                </S.CheckNickNameBtn>
               </S.CheckNickNameBlock>
               <S.InfoActiveLocationContainer>
                 <S.InfoTitleActiveLocation>활동 지역 선택</S.InfoTitleActiveLocation>
