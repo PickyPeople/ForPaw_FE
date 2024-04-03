@@ -1,7 +1,7 @@
 import SignUpUI04 from "./Signup04.presenter"
 import { useRouter } from "next/router";
 import { useState } from 'react';
-import { useNickNameCheck } from "./hooks/useNickNameCheck";
+import { useNickNameCheck } from "./hooks/useNicknameCheck";
 
 export default function SignUp04() {
 
@@ -10,7 +10,6 @@ export default function SignUp04() {
   const navigateTo = (path) => () => router.push(path);
 
   const {
-    isVisible,
     nickName,
     isPossibleNickName,
     checkNickname,
@@ -22,7 +21,6 @@ export default function SignUp04() {
     <>
       <SignUpUI04 
         navigateTo={navigateTo}
-        isVisible={isVisible}
         nickName={nickName}
         isPossibleNickName={isPossibleNickName}
         checkNickname={checkNickname}

@@ -2,13 +2,12 @@ import { useState } from 'react';
 import { CheckNickNameDuplication } from '../Signup04.queries';
 
 export const useNickNameCheck = () => {
-  const [isVisible, setIsvisible] = useState(false);
-  const [nickName, setNickName] = useState("");
-  const [isPossibleNickName, setIsPossibleNickName] = useState(undefined);
+  const [nickName, setNickName] = useState(""); //닉네임을 넣어줄 변수
+  const [isPossibleNickName, setIsPossibleNickName] = useState(undefined); //사용가능한 닉네임인지 판단하는 값을 넣어주는 변수
 
   //중복확인을 눌렀을 때를 위한 임시용
   const checkNickname = () => { 
-    setIsvisible(true);
+    setIsPossibleNickName(true);
   }
 
   const handleNicknameValueChange = (e) => { //닉네임 값을 받아온다
@@ -45,12 +44,11 @@ export const useNickNameCheck = () => {
   }
   
   return {
-    isVisible,
     nickName,
     isPossibleNickName,
-    checkNickname,
+    checkNickname, //verifyNickname으로 통신하기 전까지 사용
     handleNicknameValueChange,
-    verifyNickname
+    verifyNickname //중복확인 버튼에 들어가는 값이다.
   }
 }
 
