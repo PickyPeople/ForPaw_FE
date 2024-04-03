@@ -1,18 +1,11 @@
 import { useState } from "react"
 import { checkLoginAvailability } from "../Login.queries";
-import { useRouter } from "next/router";
 
 export const useLoginCheck = () => {
-  const router = useRouter();
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isPossibleLogin, setIspossibleLogin] = useState(true);
-  const [loginMsg, setLoginMsg] = useState('');
-
-  const navigateTo = (path) => () => {
-    router.push(path);
-  }
+  const [email, setEmail] = useState(''); //아이디 입력을 받아오는 변수
+  const [password, setPassword] = useState(''); //비밀번호 입력을 받아오는 변수
+  const [isPossibleLogin, setIspossibleLogin] = useState(true); //로그인이 가능한지에 대한 변수
+  const [loginMsg, setLoginMsg] = useState(''); //로그인 정보가 일치하지 않을 때의 변수
 
   const handleEmailChange = (e) => {
     const inputEmail = e.target.value;
@@ -24,13 +17,13 @@ export const useLoginCheck = () => {
     setPassword(inputPassword);
   }
 
-  const verifyLogin = async () => {
+  const verifyLogin = async () => { //로그인 가능 판단 함수
     try {
       const data = await checkLoginAvailability(email, password);
-      if (data.isAvailable) {
-        setIspossibleLogin(true);
+      if (data.success) { //checkLoginAvailability기능 함수에 email이랑 password를 보낸 뒤, data변수에 저장을 해준다. 그 data변수의 success가 true라면 로그인 가능
+        setIspossibleLogin(true); //이것으로 다음 /home으로 이동할 수 있도록 만들자
       } else {
-        setIspossibleLogin(false);
+        setIspossibleLogin(false); //false라면 로그인이 불가능 하고 아이디 혹은 비밀번호를 확인해달라는 문구를 뛰운다,
         setLoginMsg('가입된 아이디 혹은 비밀번호를 확인해 주십시오');
       }
     } catch (error) {
@@ -42,7 +35,6 @@ export const useLoginCheck = () => {
   }
 
   return {
-    navigateTo,
     email,
     password,
     isPossibleLogin,

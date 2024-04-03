@@ -33,16 +33,23 @@ export default function SignUpUI04(props) {
                 <S.SetNickName
                   placeholder="닉네임"
                   type="text"
-                  value={props.nickNameValue}
+                  value={props.nickName}
                   onChange={props.handleNicknameValueChange}
                 />
               </S.InfoNickNameContainer>
               <S.CheckNickNameBlock>
-                <S.AvailableNickName
-                  active={props.isVisible}>
-                  사용가능한 닉네임입니다.
+                <S.AvailableNickName>
+                  {
+                    props.isPossibleNickName == undefined ?
+                      "2자이상 12자 이하로 입력해주세요" :
+                      (props.isPossibleNickName ? <span style={{color: "#9AC8FF"}}>사용가능한 닉네임입니다.</span> :
+                        <span style={{color: "#FF9A9A"}}>중복된 닉네임입니다.</span>)
+                  }
                 </S.AvailableNickName>
-                <S.CheckNickNameBtn onClick={props.handleCheckNickname}>중복확인</S.CheckNickNameBtn>
+                <S.CheckNickNameBtn
+                  onClick={props.checkNickname}
+                >중복확인
+                </S.CheckNickNameBtn>
               </S.CheckNickNameBlock>
               <S.InfoActiveLocationContainer>
                 <S.InfoTitleActiveLocation>활동 지역 선택</S.InfoTitleActiveLocation>

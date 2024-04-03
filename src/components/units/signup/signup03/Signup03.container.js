@@ -1,31 +1,25 @@
 import { useRouter } from "next/router";
 import SignUpUI03 from "./Signup03.presenter";
 import { useState } from 'react';
+import { usePasswordCheck } from "./hooks/usePasswordCheck";
 
 export default function SignUp03() {
   const router = useRouter();
 
   const navigateTo = (path) => () => router.push(path);
 
-  const [password, setPassword] = useState(""); // 비밀번호 상태 추가
-  const [confirmPassword, setConfirmPassword] = useState(""); // 비밀번호 확인 상태 추가
-  const [isPasswordMatch, setIsPasswordMatch] = useState(false); // 비밀번호 일치 여부 상태 추가
-  const [isVisible, setIsvisible] = useState(false); //비밀번호 input 여부 상태
   const email = router.query.email;
 
-  // 비밀번호 입력 시 상태 업데이트
-  const handlePasswordChange = (e) => {
-    const newPassword = e.target.value;
-    setPassword(newPassword);
-    setIsPasswordMatch(newPassword === confirmPassword); // 비밀번호와 비밀번호 확인 값 비교하여 일치 여부 업데이트
-  };
-
-  const handleConfirmPasswordChange = (e) => {
-    const newConfirmPassword = e.target.value;
-    setConfirmPassword(newConfirmPassword);
-    setIsvisible(true);
-    setIsPasswordMatch(newConfirmPassword === password); // 비밀번호 확인 값과 비밀번호 값 비교하여 일치 여부 업데이트
-  };
+  const {
+    password,
+    passwordConfirm,
+    isPasswordMatch,
+    isVisible,
+    isPasswordAvailable,
+    handlePasswordChange,
+    handleConfirmPasswordChange,
+    verifyPassword
+  } = usePasswordCheck();
 
 
   return (
@@ -34,11 +28,12 @@ export default function SignUp03() {
         navigateTo={navigateTo}
         email={email}
         password={password}
-        confirmPassword={confirmPassword}
+        passwordConfirm={passwordConfirm}
         isPasswordMatch={isPasswordMatch}
         handlePasswordChange={handlePasswordChange}
         handleConfirmPasswordChange={handleConfirmPasswordChange}
         isVisible={isVisible}
+        isPasswordAvailable={isPasswordAvailable} //사용가능한 비밀번호인지 확인
       />
     </>
   )

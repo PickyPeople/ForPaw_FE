@@ -24,12 +24,15 @@ export default function SignUpUI02(props) {
                 <S.EmailItem
                   placeholder="이메일"
                   type="email"
-                  value={props.emailIdValue}
+                  value={props.email}
                   onChange={props.handleEmailIdValueChange}
                 />
                 <S.AddressIcon>@</S.AddressIcon>
                 <S.SelectAddressBlock>
-                  <S.SelectAddress value={props.selectedOption} onChange={props.handleSelectOptionChange}>
+                  <S.SelectAddress
+                    value={props.emailOption}
+                    onChange={props.handleSelectOptionChange}
+                  >
                     <option value="">직접입력</option>
                     <option value="gmail.com">gmail.com</option>
                     <option value="naver.com">naver.com</option>
@@ -46,20 +49,28 @@ export default function SignUpUI02(props) {
               </S.EmailBlock>
               <S.CheckEmailBlock>
                 {props.isEmailAvailable ? (
-                  <S.AvailableEmail style={{ visibility: props.isVisible ? 'visible' : 'hidden' }}>사용가능한 이메일입니다.</S.AvailableEmail>
+                  <S.AvailableEmail
+                    style={{ visibility: props.isVisible ? 'visible' : 'hidden' }}
+                  >
+                    사용가능한 이메일입니다.
+                  </S.AvailableEmail>
                 ) : (
-                  <S.AvailableEmail style={{ color: '#FF9A9A', visibility: props.isVisible ? 'visible' : 'hidden' }}>사용 불가능한 이메일입니다.</S.AvailableEmail>
+                  <S.AvailableEmail
+                    style={{ color: '#FF9A9A', visibility: props.isVisible ? 'visible' : 'hidden' }}
+                  >
+                    사용 불가능한 이메일입니다.
+                  </S.AvailableEmail>
                 )}
                 <S.CheckEmailBtn type="button" onClick={props.handleCheckEmailAndStartTimer}>
                   중복확인
                 </S.CheckEmailBtn>
               </S.CheckEmailBlock>
-              <S.InputVerificationCodeContainer style={{ visibility: props.isVisible ? 'visible' : 'hidden' }}>
+              <S.InputVerificationCodeContainer style={{ visibility: props.isEmailAvailable ? 'visible' : 'hidden' }}>
                 <S.VerificationCodeTitle>
                   인증번호를 입력해주세요
                 </S.VerificationCodeTitle>
                 <S.VerificationCodeBlock>
-                  <S.VerificationCodeItem placeholder="1234" type="number" />
+                  <S.VerificationCodeItem placeholder={props.code} type="number" />
                   <S.TimerItem style={{ visibility: props.isEmailAvailable ? 'visible' : 'hidden' }}>{Math.floor(props.timer / 60)}:{(props.timer % 60).toString().padStart(2, '0')}</S.TimerItem>
                 </S.VerificationCodeBlock>
                 <S.RetryVerification>

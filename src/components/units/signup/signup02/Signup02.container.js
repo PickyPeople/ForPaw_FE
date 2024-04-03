@@ -1,61 +1,34 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from 'react';
 import SignUpUI02 from "./Signup02.presenter";
+import { useEmailCheck } from "./hooks/useEmailCheck";
 
 export default function SignUp02() {
   const router = useRouter();
 
-  const [emailIdValue, setEmailIdValue] = useState(""); //이메일 id입력을 받을 값
-  const [selectedOption, setSelectedOption] = useState(""); // select의 값을 찾아내는 함수
-  const [isEmailAvailable, setIsEmailAvailable] = useState(false);  //이메일 사용가능 여부
-  const [isVisible, setIsvisible] = useState(false);
-  const [timer, setTimer] = useState(80); // 타이머 초 초기값
-  const [timerId, setTimerId] = useState(null); // 타이머 인터벌 ID
-  const fullId = `${emailIdValue}@${selectedOption}`;
-
-  const handleEmailIdValueChange = (e) => {
-    setEmailIdValue(e.target.value);
-  }
-
-  const handleSelectOptionChange = (e) => {
-    setSelectedOption(e.target.value);
-  };
-
-  const handleCheckEmailAndStartTimer = () => {
-    setIsEmailAvailable(true);
-    setIsvisible(true);
-    setTimer(80);
-
-    clearInterval(timerId);
-  };
-
-  const StartTimer = () => {
-    if (isEmailAvailable) {
-      const id = setInterval(() => {
-        setTimer(prevTimer => {
-          if (prevTimer === 0) {
-            clearInterval(id);
-            return 0;
-          }
-          return prevTimer - 1;
-        });
-      }, 1000);
-      setTimerId(id); // 타이머 인터벌 ID 저장
-    }
-  };
-
-  useEffect(() => {
-    StartTimer();
-  }, [isEmailAvailable]);
+  const {
+    email,
+    emailOption,
+    isEmailAvailable,
+    isVisible,
+    timer,
+    fullId,
+    code,
+    handleEmailIdValueChange,
+    handleSelectOptionChange,
+    handleCheckEmailAndStartTimer, //이 기능은 나중에 없어질 예정
+    verifyEmail, //중복확인을 누르면 백에서 판단을 하여 사용가능한 이메일인지 알려준다.
+    verifyCode //다음을 누르면 인증번호가 맞는지 확인하고 다음으로 넘어가게끔 할 수 있게끔
+  } = useEmailCheck();
 
   const navigateTo = (path) => () => {
     router.push({
       pathname: path,
       query: {
-        email: `${fullId}` 
+        email: `${fullId}` //이메일 값을 다음 페이지에 넘김
       },
     },
-      `${path}`
+      `${path}` //url값에 path를 숨기기 위하여 넣는 값
     );
   };
 
@@ -63,14 +36,17 @@ export default function SignUp02() {
     <>
       <SignUpUI02
         navigateTo={navigateTo}
-        emailIdValue={emailIdValue}
+        email={email}
         handleEmailIdValueChange={handleEmailIdValueChange}
-        selectedOption={selectedOption}
+        emailOption={emailOption}
         handleSelectOptionChange={handleSelectOptionChange}
         isEmailAvailable={isEmailAvailable}
         isVisible={isVisible}
+        code={code}
         timer={timer}
         handleCheckEmailAndStartTimer={handleCheckEmailAndStartTimer}
+        verifyEmail={verifyEmail}
+        verifyCode={verifyCode} //다음버튼에 들어가는 함수
       />
     </>
   )

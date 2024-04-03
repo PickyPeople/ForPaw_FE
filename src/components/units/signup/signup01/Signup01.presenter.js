@@ -19,11 +19,13 @@ export default function SignUpUI01(props) {
               <S.InfoNameItem
                 type="text"
                 placeholder="홍길동"
-                value={props.nameValue}
+                value={props.name}
                 onChange={props.handleNameValueChange}
               />
               <S.NextButtonBlock>
-                <S.NextButtonItem onClick={props.navigateTo("/login/signup/02")}>
+                <S.NextButtonItem
+                  type="submit"
+                  onClick={props.navigateTo("/login/signup/02")}>
                   다음
                 </S.NextButtonItem>
               </S.NextButtonBlock>

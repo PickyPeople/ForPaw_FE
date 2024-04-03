@@ -86,7 +86,7 @@ export const SetProfileItem = styled.div`
   background-color: #FEF8F2;
   border-radius: 10px;
   display: flex;
-  fiex-direction: column;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
@@ -138,7 +138,6 @@ export const AvailableNickName = styled.p`
   height: 17px;
   font-size: 12px;
   color: #C6C6C6;
-  visibility: ${(props) => (props.active ? "visible" : "hidden")}
 `;
 
 export const CheckNickNameBtn = styled.button`
