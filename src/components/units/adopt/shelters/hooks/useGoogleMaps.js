@@ -1,7 +1,6 @@
-// hooks/useGoogleMaps.js
 import { useEffect } from "react";
 
-export const useGoogleMaps = (ref, options) => {
+export const useGoogleMaps = (ref, options, markersData) => {
   useEffect(() => {
     const loadGoogleMapsScript = (callback) => {
       if (typeof window !== "undefined" && !window.google) {
@@ -19,8 +18,31 @@ export const useGoogleMaps = (ref, options) => {
 
     loadGoogleMapsScript(() => {
       if (window.google && ref.current) {
-        new window.google.maps.Map(ref.current, options);
+        const map = new window.google.maps.Map(ref.current, options);
+
+        markersData.forEach((markerData) => {
+          const marker = new window.google.maps.Marker({
+            position: {
+              lat: markerData.lat,
+              lng: markerData.lng,
+            },
+            map: map,
+            title: markerData.name,
+          });
+
+          const infoWindow = new window.google.maps.InfoWindow({
+            content: `<div>${markerData.name}</div>`, // HTML 형식의 내용
+          });
+
+          marker.addListener("click", () => {
+            infoWindow.open({
+              anchor: marker,
+              map,
+              shouldFocus: false,
+            });
+          });
+        });
       }
     });
-  }, [ref, options]);
+  }, [ref, options, markersData]);
 };

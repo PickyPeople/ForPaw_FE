@@ -15,7 +15,7 @@ export default function AdpotShelters() {
     center: { lat: shelters[0].lat, lng: shelters[0].lng },
     zoom: 15,
   };
-  useGoogleMaps(mapRef, mapOptions);
+  useGoogleMaps(mapRef, mapOptions, shelters);
   useDragHandler(); // 드래그 이벤트를 처리하는 훅, 이제 상태를 직접 업데이트하지 않음
   const { navigateTo } = useNavigate();
 
