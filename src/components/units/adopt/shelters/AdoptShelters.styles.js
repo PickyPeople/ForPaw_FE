@@ -96,7 +96,7 @@ export const ShelterCategory = styled.div`
 
 export const MapDisplay = styled.div`
   width: 390px;
-  height: 563px;
+  height: calc(100% - 40px);
   z-index: 0;
 `;
 
@@ -112,6 +112,7 @@ export const MapInfoContainer = styled.div`
   align-items: center;
   overflow-y: auto;
   position: fixed;
+  top: calc(100% - 223px);
   z-index: 1;
 
   /* 스크롤 바 숨기기 */
@@ -144,7 +145,8 @@ export const MapCurrentPositionIcon = styled.div`
   width: 60px;
   height: 60px;
   position: fixed;
-  left: calc(50% + 125px);
+  top: calc(100% - 290px);
+  left: calc(50% - 190px);
   z-index: 10;
 `;
 

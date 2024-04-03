@@ -11,7 +11,7 @@ export default function AdpotSheltersUI(props) {
           <S.ShelterOpen>영업중</S.ShelterOpen>
           <S.ShelterCategory>카테고리명</S.ShelterCategory>
         </S.AdoptShelterMenuBlock>
-        <S.MapDisplay>
+        <S.MapDisplay ref={props.mapRef}>
           <Image
             src="/images/shelter/map_1.svg"
             alt="map_1"
@@ -19,7 +19,7 @@ export default function AdpotSheltersUI(props) {
             height={563}
           />
         </S.MapDisplay>
-        <S.MapCurrentPositionIcon style={{ top: props.topIconPosition }}>
+        <S.MapCurrentPositionIcon id="map-current-icon">
           <Image
             src="/images/shelter/position_icon.svg"
             alt="position_icon"
@@ -27,13 +27,13 @@ export default function AdpotSheltersUI(props) {
             height={60}
           />
         </S.MapCurrentPositionIcon>
-        <S.MapInfoContainer style={{ top: props.topPosition }}>
+        <S.MapInfoContainer id="map-info-container">
           <S.MapInfoDragBlock id="map-info-drag-block">
             <S.MapInfoDragIcon></S.MapInfoDragIcon>
           </S.MapInfoDragBlock>
           {props.shelters?.map((shelter) => (
             <S.MapInfoItem
-              key={shelter.key}
+              key={shelter.id}
               onClick={props.navigateTo("/adopt/shelters/detail")}
             >
               <S.MapInfoImg>
