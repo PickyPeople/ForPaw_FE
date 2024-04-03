@@ -5,6 +5,13 @@ export const WrapperContainer = styled.div`
   height: 100vh;
   margin: 0 auto;
   background-color: white;
+  overflow-y: auto;
+
+  /* 스크롤 바 숨기기 */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none; /* Firefox */
 `;
 
 export const Container = styled.div`
@@ -22,7 +29,7 @@ export const HeaderContainer = styled.div`
 export const HeadrtBlank = styled.div`
   width: 390px;
   height: 45px;
-`
+`;
 export const HeaderTitleBlock = styled.div`
   width: 390px;
   height: 48px;
@@ -31,7 +38,7 @@ export const HeaderTitleBlock = styled.div`
 export const HeaderTitle = styled.p`
   width: 344px;
   height: 29px;
-  color: #FF6636;
+  color: #ff6636;
   font-weight: bold;
   font-size: 24px;
   margin-left: 23px;
@@ -71,7 +78,7 @@ export const IntroMainTitleBlock = styled.div`
   position: absolute;
   margin-top: 180px;
   margin-left: 20px;
-`; 
+`;
 
 export const IntroMainTitle = styled.p`
   width: 355px;
@@ -97,7 +104,7 @@ export const IntroduceBrandBlock = styled.div`
   height: 325px;
   margin-top: 20px;
   margin-left: 23px;
-`;  
+`;
 
 export const IntroduceBrand = styled.p`
   width: 344px;
@@ -123,7 +130,7 @@ export const ConcludingWords = styled.div`
   font-weight: bold;
   margin-top: 80px;
   margin-left: 23px;
-`
+`;
 
 /*버튼 css*/
 export const NextButtonBlock = styled.div`
@@ -139,7 +146,7 @@ export const NextButtonBlock = styled.div`
 `;
 
 export const NextButtonItem = styled.button`
-  background-color: #FF6636;
+  background-color: #ff6636;
   border-radius: 30px;
   font-size: 24px;
   color: white;
