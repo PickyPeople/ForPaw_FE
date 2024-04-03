@@ -11,7 +11,7 @@ export default function AdpotPetsUI(props) {
           <S.AdoptPetMenuDogs>개</S.AdoptPetMenuDogs>
           <S.AdoptPetMenuCats>고양이</S.AdoptPetMenuCats>
         </S.AdoptPetMenuBlock>
-        {props.pets.map((pet) => (
+        {props.pets?.map((pet) => (
           <S.AdoptPet key={pet.id}>
             <Image
               src={pet.profileURL}

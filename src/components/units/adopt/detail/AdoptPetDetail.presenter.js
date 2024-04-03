@@ -29,7 +29,7 @@ export default function AdoptPetDetailUI(props) {
           <S.AdoptLikeToggle>
             <Image
               src={
-                props.petDetail.isLike
+                props.petDetail?.isLike
                   ? "/images/pets/like_icon_big_active.svg"
                   : "/images/pets/like_icon_big.svg"
               }
@@ -41,11 +41,11 @@ export default function AdoptPetDetailUI(props) {
         </S.PetImgBlock>
         <S.PetInfoBlock>
           <S.PetNameGender>
-            {props.petDetail.name}
+            {props.petDetail?.name}
             <S.PetGenderIcon>
               <Image
                 src={
-                  props.petDetail.gender === "M"
+                  props.petDetail?.gender === "M"
                     ? "/images/pets/male_icon_detail.svg"
                     : "/images/pets/female_icon_detail.svg"
                 }
@@ -56,24 +56,24 @@ export default function AdoptPetDetailUI(props) {
             </S.PetGenderIcon>
           </S.PetNameGender>
           <S.PetRegionAge>
-            {props.petDetail.region.split(" ")[0]}
+            {props.petDetail?.region.split(" ")[0]}
             {", "}
-            {props.petDetail.region.split(" ")[1]} •{" "}
-            {props.petDetail.age.substring(0, 4)}년생
+            {props.petDetail?.region.split(" ")[1]} •{" "}
+            {props.petDetail?.age.substring(0, 4)}년생
           </S.PetRegionAge>
         </S.PetInfoBlock>
         <S.PetInfoIconBlock>
           <S.PetPersonalityIcon>
-            {props.petDetail.specialMark}
+            {props.petDetail?.specialMark}
           </S.PetPersonalityIcon>
-          <S.PetNeuterIcon netuer={props.petDetail.neuter}>
-            중성화{props.petDetail.neuter === "Y" ? "" : " X"}
+          <S.PetNeuterIcon netuer={props.petDetail?.neuter}>
+            중성화{props.petDetail?.neuter === "Y" ? "" : " X"}
           </S.PetNeuterIcon>
           <S.PetBreedIcon>
-            {props.petDetail.kind.split("]")[1].trim()}
+            {props.petDetail?.kind.split("]")[1].trim()}
           </S.PetBreedIcon>
           <S.PetWeightIcon>
-            {props.petDetail.weight.substring(0, 2)}kg
+            {props.petDetail?.weight.substring(0, 2)}kg
           </S.PetWeightIcon>
         </S.PetInfoIconBlock>
         <S.PetContentTitle>
@@ -93,12 +93,12 @@ export default function AdoptPetDetailUI(props) {
           포리를 직접 만나보세요.
         </S.PetContentText>
         <S.PetAdoptionPeriod>
-          {props.petDetail.noticeSdt.substring(0, 4)}.
-          {props.petDetail.noticeSdt.substring(4, 6)}.
-          {props.petDetail.noticeSdt.substring(6)}-
-          {props.petDetail.noticeEdt.substring(0, 4)}.
-          {props.petDetail.noticeEdt.substring(4, 6)}.
-          {props.petDetail.noticeEdt.substring(6)}
+          {props.petDetail?.noticeSdt.substring(0, 4)}.
+          {props.petDetail?.noticeSdt.substring(4, 6)}.
+          {props.petDetail?.noticeSdt.substring(6)}-
+          {props.petDetail?.noticeEdt.substring(0, 4)}.
+          {props.petDetail?.noticeEdt.substring(4, 6)}.
+          {props.petDetail?.noticeEdt.substring(6)}
         </S.PetAdoptionPeriod>
         <S.PetAdoptionButton
           onClick={props.navigateTo("/adopt/detail/inquire")}

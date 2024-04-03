@@ -31,66 +31,26 @@ export default function AdpotSheltersUI(props) {
           <S.MapInfoDragBlock id="map-info-drag-block">
             <S.MapInfoDragIcon></S.MapInfoDragIcon>
           </S.MapInfoDragBlock>
-          <S.MapInfoItem onClick={props.navigateTo("/adopt/shelters/detail")}>
-            <S.MapInfoImg>
-              <Image
-                src="/images/shelter/shelter_1.svg"
-                alt="shelter_1"
-                width={74}
-                height={74}
-              />
-            </S.MapInfoImg>
-            <S.MapInfoDetailBlock>
-              <S.ShelterName>보호소 이름</S.ShelterName>
-              <S.ShelterPlace>위치, 상세특징 서술해주세요</S.ShelterPlace>
-              <S.ShelterStatus>영업중</S.ShelterStatus>
-            </S.MapInfoDetailBlock>
-          </S.MapInfoItem>
-          <S.MapInfoItem onClick={props.navigateTo("/adopt/shelters/detail")}>
-            <S.MapInfoImg>
-              <Image
-                src="/images/shelter/shelter_1.svg"
-                alt="shelter_1"
-                width={74}
-                height={74}
-              />
-            </S.MapInfoImg>
-            <S.MapInfoDetailBlock>
-              <S.ShelterName>보호소 이름</S.ShelterName>
-              <S.ShelterPlace>위치, 상세특징 서술해주세요</S.ShelterPlace>
-              <S.ShelterStatus>영업중</S.ShelterStatus>
-            </S.MapInfoDetailBlock>
-          </S.MapInfoItem>
-          <S.MapInfoItem onClick={props.navigateTo("/adopt/shelters/detail")}>
-            <S.MapInfoImg>
-              <Image
-                src="/images/shelter/shelter_1.svg"
-                alt="shelter_1"
-                width={74}
-                height={74}
-              />
-            </S.MapInfoImg>
-            <S.MapInfoDetailBlock>
-              <S.ShelterName>보호소 이름</S.ShelterName>
-              <S.ShelterPlace>위치, 상세특징 서술해주세요</S.ShelterPlace>
-              <S.ShelterStatus>영업중</S.ShelterStatus>
-            </S.MapInfoDetailBlock>
-          </S.MapInfoItem>
-          <S.MapInfoItem onClick={props.navigateTo("/adopt/shelters/detail")}>
-            <S.MapInfoImg>
-              <Image
-                src="/images/shelter/shelter_1.svg"
-                alt="shelter_1"
-                width={74}
-                height={74}
-              />
-            </S.MapInfoImg>
-            <S.MapInfoDetailBlock>
-              <S.ShelterName>보호소 이름</S.ShelterName>
-              <S.ShelterPlace>위치, 상세특징 서술해주세요</S.ShelterPlace>
-              <S.ShelterStatus>영업중</S.ShelterStatus>
-            </S.MapInfoDetailBlock>
-          </S.MapInfoItem>
+          {props.shelters?.map((shelter) => (
+            <S.MapInfoItem
+              key={shelter.key}
+              onClick={props.navigateTo("/adopt/shelters/detail")}
+            >
+              <S.MapInfoImg>
+                <Image
+                  src="/images/shelter/shelter_1.svg"
+                  alt="shelter_1"
+                  width={74}
+                  height={74}
+                />
+              </S.MapInfoImg>
+              <S.MapInfoDetailBlock>
+                <S.ShelterName>{shelter.name}</S.ShelterName>
+                <S.ShelterPlace>위치, 상세특징 서술해주세요</S.ShelterPlace>
+                <S.ShelterStatus>영업중</S.ShelterStatus>
+              </S.MapInfoDetailBlock>
+            </S.MapInfoItem>
+          ))}
         </S.MapInfoContainer>
       </S.WrapperContents>
     </>
