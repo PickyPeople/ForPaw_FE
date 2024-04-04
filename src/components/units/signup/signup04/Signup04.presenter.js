@@ -42,8 +42,8 @@ export default function SignUpUI04(props) {
                   {
                     props.isPossibleNickName == undefined ?
                       "2자이상 12자 이하로 입력해주세요" :
-                      (props.isPossibleNickName ? <span style={{color: "#9AC8FF"}}>사용가능한 닉네임입니다.</span> :
-                        <span style={{color: "#FF9A9A"}}>중복된 닉네임입니다.</span>)
+                      (props.isPossibleNickName ? <span style={{ color: "#9AC8FF" }}>사용가능한 닉네임입니다.</span> :
+                        <span style={{ color: "#FF9A9A" }}>중복된 닉네임입니다.</span>)
                   }
                 </S.AvailableNickName>
                 <S.CheckNickNameBtn
@@ -51,52 +51,116 @@ export default function SignUpUI04(props) {
                 >중복확인
                 </S.CheckNickNameBtn>
               </S.CheckNickNameBlock>
-              <S.InfoActiveLocationContainer>
-                <S.InfoTitleActiveLocation>활동 지역 선택</S.InfoTitleActiveLocation>
-                <S.BigSelectWrap>
-                  <S.Select title="town" defaultValue="">
-                    <option value="">시/도 선택</option>
-                  </S.Select>
-                  <S.SelectArrow>
+              <S.AreaSelectContainer>
+                <S.EditTextBlock>
+                  <S.ProfileInfoLabel>활동 지역</S.ProfileInfoLabel>
+                </S.EditTextBlock>
+                <S.ProvinceSelect
+                  isProvinceFocused={props.isProvinceFocused}
+                  onClick={props.toggleProvinceDropdown}
+                >
+                  {props.selectedProvince}
+                </S.ProvinceSelect>
+                <S.ProvinceArrowBlock
+                  isProvinceFocused={props.isProvinceFocused}
+                  onClick={props.toggleProvinceDropdown}
+                >
+                  <Image
+                    src="/images/info/select_arrow_icon.svg"
+                    alt="select_arrow_icon"
+                    width={22}
+                    height={12}
+                  />
+                </S.ProvinceArrowBlock>
+                {props.isProvinceDropdownOpen && (
+                  <S.ProvinceDropdown ref={props.wrapperRef}>
+                    {Object.keys(props.regions).map((province, index) => (
+                      <S.ProvinceOption
+                        key={index}
+                        onClick={() => props.handleProvinceSelect(province)}
+                      >
+                        {province}
+                      </S.ProvinceOption>
+                    ))}
+                  </S.ProvinceDropdown>
+                )}
+                <S.DistrictSelectBlock>
+                  <S.DistrictSelect
+                    isDistrictFocused={props.isDistrictFocused}
+                    onClick={props.toggleDistrictDropdown}
+                  >
+                    {props.selectedDistrict}
+                  </S.DistrictSelect>
+                  <S.DistrictArrowBlock
+                    isDistrictFocused={props.isDistrictFocused}
+                    onClick={props.toggleDistrictDropdown}
+                  >
                     <Image
                       src="/images/info/select_arrow_icon.svg"
                       alt="select_arrow_icon"
                       width={22}
                       height={12}
                     />
-                  </S.SelectArrow>
-                </S.BigSelectWrap>
-                <S.SelectRegionBlock>
-                  <S.SmallSelectBlock>
-                    <S.Select title="town" defaultValue="">
-                      <option value="">구/군/시</option>
-                    </S.Select>
-                    <S.Arrow2Img>
-                      <Image
-                        src="/images/info/select_arrow_icon.svg"
-                        alt="select_arrow_icon"
-                        width={22}
-                        height={12}
-                      />
-                    </S.Arrow2Img>
-                  </S.SmallSelectBlock>
-                  <S.SmallSelectBlock>
-                    <S.Select title="bilud" defaultValue="">
-                      <option value="">동/읍/면</option>
-                    </S.Select>
-                    <S.Arrow2Img>
-                      <Image
-                        src="/images/info/select_arrow_icon.svg"
-                        alt="select_arrow_icon"
-                        width={22}
-                        height={12}
-                      />
-                    </S.Arrow2Img>
-                  </S.SmallSelectBlock>
-                </S.SelectRegionBlock>
-              </S.InfoActiveLocationContainer>
+                  </S.DistrictArrowBlock>
+                  {props.selectedProvince !== "시/도 선택" &&
+                    props.isDistrictDropdownOpen && (
+                      <S.DistrictDropdown ref={props.wrapperRef}>
+                        {Object.keys(props.regions[props.selectedProvince]).map(
+                          (district, index) => (
+                            <S.DistrictOption
+                              key={index}
+                              onClick={() => props.handleDistrictSelect(district)}
+                            >
+                              {district}
+                            </S.DistrictOption>
+                          )
+                        )}
+                      </S.DistrictDropdown>
+                    )}
+                  <S.SubdistrictSelect
+                    isSubdistrictFocused={props.isSubdistrictFocused}
+                    onClick={props.toggleSubdistrictDropdown}
+                  >
+                    {props.selectedSubdistrict}
+                  </S.SubdistrictSelect>
+                  <S.SubdistrictArrowBlock
+                    isSubdistrictFocused={props.isSubdistrictFocused}
+                    onClick={props.toggleSubdistrictDropdown}
+                  >
+                    <Image
+                      src="/images/info/select_arrow_icon.svg"
+                      alt="select_arrow_icon"
+                      width={22}
+                      height={12}
+                    />
+                  </S.SubdistrictArrowBlock>
+                  {props.selectedProvince !== "시/도 선택" &&
+                    props.selectedDistrict !== "구/군/시" &&
+                    props.isSubdistrictDropdownOpen && (
+                      <S.SubdistrictDropdown ref={props.wrapperRef}>
+                        {props.regions[props.selectedProvince][
+                          props.selectedDistrict
+                        ].map((subdistrict, index) => (
+                          <S.SubdistrictOption
+                            key={index}
+                            onClick={() =>
+                              props.handleSubdistrictSelect(subdistrict)
+                            }
+                          >
+                            {subdistrict}
+                          </S.SubdistrictOption>
+                        ))}
+                      </S.SubdistrictDropdown>
+                    )}
+                </S.DistrictSelectBlock>
+              </S.AreaSelectContainer>
               <S.NextButtonBlock>
-                <S.NextButtonItem onClick={props.navigateTo('/login/signup/complete')}>
+                <S.NextButtonItem
+                  onClick={() => {
+                    props.navigateTo('/login/signup/complete')
+                    props.handleSendUserInfo(props.sendUserInfo)
+                  }}
+                >
                   완료
                 </S.NextButtonItem>
               </S.NextButtonBlock>
