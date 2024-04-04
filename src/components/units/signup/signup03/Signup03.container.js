@@ -6,11 +6,9 @@ import { usePasswordCheck } from "./hooks/usePasswordCheck";
 export default function SignUp03() {
   const router = useRouter();
 
-  const navigateTo = (path) => () => router.push(path);
-
-  const email = router.query.email;
-
   const {
+    email,
+    name,
     password,
     passwordConfirm,
     isPasswordMatch,
@@ -20,6 +18,20 @@ export default function SignUp03() {
     handleConfirmPasswordChange,
     verifyPassword
   } = usePasswordCheck();
+
+  const navigateTo = (path) => () => {
+    router.push({
+      pathname: path,
+      query: {
+        email: email, //이메일 값을 다음 페이지에 넘김
+        name: name, //이름값을 넘겨주기 위해서
+        password: password,
+        passwordConfirm: passwordConfirm
+      },
+    },
+      `${path}` //url값에 path를 숨기기 위하여 넣는 값
+    );
+  };
 
 
   return (
@@ -34,6 +46,7 @@ export default function SignUp03() {
         handleConfirmPasswordChange={handleConfirmPasswordChange}
         isVisible={isVisible}
         isPasswordAvailable={isPasswordAvailable} //사용가능한 비밀번호인지 확인
+        verifyPassword={verifyPassword} //다음 버튼에 들어갈 기능
       />
     </>
   )

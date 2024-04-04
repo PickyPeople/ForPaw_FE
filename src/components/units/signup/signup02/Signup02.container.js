@@ -7,12 +7,13 @@ export default function SignUp02() {
   const router = useRouter();
 
   const {
+    name, //다음페이지에 이름을 넘겨주기 위한 변수
     email,
     emailOption,
     isEmailAvailable,
     isVisible,
     timer,
-    fullId,
+    fullId, //다음 페이지에 이메일값을 넘겨주기 위한 변수
     code,
     handleEmailIdValueChange,
     handleSelectOptionChange,
@@ -21,11 +22,14 @@ export default function SignUp02() {
     verifyCode //다음을 누르면 인증번호가 맞는지 확인하고 다음으로 넘어가게끔 할 수 있게끔
   } = useEmailCheck();
 
+ 
+ 
   const navigateTo = (path) => () => {
     router.push({
       pathname: path,
       query: {
-        email: `${fullId}` //이메일 값을 다음 페이지에 넘김
+        email: fullId, //이메일 값을 다음 페이지에 넘김
+        name: name
       },
     },
       `${path}` //url값에 path를 숨기기 위하여 넣는 값

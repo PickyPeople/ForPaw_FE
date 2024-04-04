@@ -14,8 +14,6 @@ export default function SignUp04() {
 
   const router = useRouter();
 
-  const navigateTo = (path) => router.push(path);
-
   //닉네임을 정해주기 위한 기능
   const {
     nickName,
@@ -48,14 +46,38 @@ export default function SignUp04() {
   );
 
   const sendUserInfo = {
-    nickName: nickName, 
-    isPossibleNickName: isPossibleNickName, 
-    selectedProvince: selectedProvince, 
-    selectedDistrict: selectedDistrict, 
+    nickName: nickName,
+    isPossibleNickName: isPossibleNickName,
+    selectedProvince: selectedProvince,
+    selectedDistrict: selectedDistrict,
     selectedSubdistrict: selectedSubdistrict,
   }
 
-  const {handleSendUserInfo} = useUserInfoUpSend();
+  const { 
+    handleSendUserInfo,
+    email, //이메일 값을 다음 페이지에 넘김
+    name, //이름값을 넘겨주기 위해서
+    password,
+    passwordConfirm,
+   } = useUserInfoUpSend(); //다음버튼값에 들어가는 값
+
+  const navigateTo = (path)  => {
+    router.push({
+      pathname: path,
+      query: {
+        email: email, //이메일 값을 다음 페이지에 넘김
+        name: name, //이름값을 넘겨주기 위해서
+        password: password,
+        passwordConfirm: passwordConfirm,
+        nickName: nickName,
+        region: selectedProvince,
+        subRegion: selectedDistrict,
+        subdistrict: selectedSubdistrict
+      },
+    },
+      `${path}` //url값에 path를 숨기기 위하여 넣는 값
+    );
+  };
 
 
   return (
