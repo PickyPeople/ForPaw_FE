@@ -154,62 +154,192 @@ export const CheckNickNameBtn = styled.button`
   cursor: pointer;
 `;
 
-export const InfoActiveLocationContainer = styled.div`
-  width: 344px;
-  height: 160px;
+export const EditTextBlock = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+`;
+
+export const ProfileInfoLabel = styled.div`
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 5px;
+  margin-top: 30px;
+`;
+
+
+export const AreaSelectContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
   margin-top: 24px;
-  position: relative;
-`; 
-
-export const InfoTitleActiveLocation = styled.div`
-  width: 100%;
-  height: 24px;
-  font-size: 18px;
-  font-weight: 600; 
 `;
 
-export const BigSelectWrap = styled.div`
-  width: 344px;
+export const ProvinceSelect = styled.div`
+  width: 342px;
   height: 60px;
-  background-color: #FEF8F2;
+  line-height: 60px;
+  background-color: #fef8f2;
+  border: ${(props) =>
+    props.isProvinceFocused ? "2px solid #bea597" : "2px solid transparent"};
+  color: ${(props) => (props.isProvinceFocused ? "#bea597" : "#bea597")};
+  outline: none;
   border-radius: 10px;
+  font-size: 16px;
+  padding-left: 12px;
+  margin-top: 10px;
   position: relative;
-  margin-top: 8px;
 `;
 
-export const Select = styled.select`
-  width: 100%;
-  height: 100%;
-  font-size: 16px;
-  background-color: transparent;
-  border: 2px solid transparent;
-  border-radius: 10px;
-  padding-left: 15px;
-  color: #BEA597;
-  cursor: pointer;
+export const ProvinceArrowBlock = styled.div`
+  width: 25px;
+  height: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   position: absolute;
+  top: 83px;
+  left: 305px;
+`;
 
-  z-index: 1;
-  
+export const ProvinceDropdown = styled.div`
+  position: absolute;
+  height: 120px;
+  top: 130px;
+  left: 4px;
+  width: 342px;
+  background-color: #fef8f2;
+  border: 2px solid #bea597;
+  border-radius: 10px;
+  padding-bottom: 15px;
+  z-index: 10;
+  overflow-y: auto;
 
-  :focus{
-    border: 2px solid #BEA597;
-    outline: none;
+  /* 스크롤 바 숨기기 */
+  ::-webkit-scrollbar {
+    display: none;
   }
+  scrollbar-width: none; /* Firefox */
+`;
 
-  option {
-    background-color: #FEF8F2;
-    color: black;
+export const ProvinceOption = styled.div`
+  width: 100%;
+  padding-top: 15px;
+  padding-left: 12px;
+  font-size: 16px;
+  color: #bea597;
+  border-radius: 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  :hover {
+    opacity: 0.5;
   }
+`;
+
+export const DistrictSelectBlock = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  position: relative;
+`;
+
+export const DistrictSelect = styled.div`
+  width: 164px;
+  height: 60px;
+  line-height: 60px;
+  background-color: #fef8f2;
+  border: ${(props) =>
+    props.isDistrictFocused ? "2px solid #bea597" : "2px solid transparent"};
+  color: ${(props) => (props.isDistrictFocused ? "#bea597" : "#bea597")};
+  outline: none;
+  border-radius: 10px;
+  font-size: 16px;
+  padding-left: 12px;
+  margin-top: 10px;
+  margin-right: 4px;
+`;
+
+export const DistrictArrowBlock = styled.div`
+  width: 25px;
+  height: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 28px;
+  left: 128px;
+`;
+
+export const DistrictDropdown = styled.div`
+  position: absolute;
+  height: 86px;
+  top: 76px;
+  left: 5px;
+  width: 164px;
+  background-color: #fef8f2;
+  border: 2px solid #bea597;
+  border-radius: 10px;
+  padding-bottom: 15px;
+  z-index: 10;
+  overflow-y: auto;
+
+  /* 스크롤 바 숨기기 */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none; /* Firefox */
+`;
+
+export const DistrictOption = styled.div`
+  width: 100%;
+  padding-top: 15px;
+  padding-left: 12px;
+  font-size: 16px;
+  color: #bea597;
+  border-radius: 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  :hover {
+    opacity: 0.5;
+  }
+`;
+
+export const SubdistrictSelect = styled.div`
+  width: 164px;
+  height: 60px;
+  line-height: 60px;
+  background-color: #fef8f2;
+  border: ${(props) =>
+    props.isSubdistrictFocused ? "2px solid #bea597" : "2px solid transparent"};
+  color: ${(props) => (props.isSubdistrictFocused ? "#bea597" : "#bea597")};
+  outline: none;
+  border-radius: 10px;
+  font-size: 16px;
+  padding-left: 12px;
+  margin-top: 10px;
+  margin-left: 4px;
 
   -webkit-appearance: none; /* 크롬, 사파리 */
   -moz-appearance: none; /* 파이어폭스 */
   appearance: none; /* 표준 */
+
+  :focus {
+    border: 2px solid #bea597;
+    color: #bea597;
+  }
 `;
 
-export const SelectArrow = styled.div`
+export const SubdistrictArrowBlock = styled.div`
   width: 25px;
   height: 25px;
   display: flex;
@@ -217,46 +347,43 @@ export const SelectArrow = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
+  top: 28px;
   left: 305px;
-  top: 18px;
+`;
 
+export const SubdistrictDropdown = styled.div`
   position: absolute;
-  z-index: 0;
-`;
-
-export const SelectRegionBlock = styled.div`
-  margin-top: 8px;
-  width: 344px;
-  height: 60px;
-  
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
-`;
-
-export const SmallSelectBlock = styled.div`
+  height: 86px;
+  top: 76px;
+  left: 181px;
   width: 164px;
-  height: 60px;
-
-  background-color: #FEF8F2;
+  background-color: #fef8f2;
+  border: 2px solid #bea597;
   border-radius: 10px;
-  position: relative;
+  padding-bottom: 15px;
+  z-index: 10;
+  overflow-y: auto;
 
-  z-index: 1;
+  /* 스크롤 바 숨기기 */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none; /* Firefox */
 `;
 
-export const Arrow2Img = styled.div`
-  width: 25px;
-  height: 25px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  left: 125px;
-  top: 19px;
-  
-  z-index: 0;
+export const SubdistrictOption = styled.div`
+  width: 100%;
+  padding-top: 15px;
+  padding-left: 12px;
+  font-size: 16px;
+  color: #bea597;
+  border-radius: 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  :hover {
+    opacity: 0.5;
+  }
 `;
 /*버튼 css */
 export const NextButtonBlock = styled.div`
