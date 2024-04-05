@@ -168,7 +168,7 @@ export default function Announcement() {
     setEditCommentText(e.target.value);
   };
 
-  const handleChangeReplyEdit = (e) => {
+  const handleChangeReplyEdit = (e) => { //답글 수정값을 받아오는 기능
     setEditReplyText(e.target.value);
   };
 
