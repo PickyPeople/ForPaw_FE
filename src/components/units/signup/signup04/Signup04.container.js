@@ -14,9 +14,8 @@ export default function SignUp04() {
 
   const router = useRouter();
 
-  const navigateTo = (path) => router.push(path);
+  const navigateTo = (path) => () => router.push(path);
 
-  //닉네임을 정해주기 위한 기능
   const {
     nickName,
     isPossibleNickName,
@@ -24,39 +23,6 @@ export default function SignUp04() {
     handleNicknameValueChange,
     verifyNickname
   } = useNickNameCheck();
-
-  //초기 위치 설정들을 위한 기능
-  const {
-    selectedProvince,
-    isProvinceDropdownOpen,
-    isProvinceFocused,
-    selectedDistrict,
-    isDistrictDropdownOpen,
-    isDistrictFocused,
-    selectedSubdistrict,
-    isSubdistrictDropdownOpen,
-    isSubdistrictFocused,
-    wrapperRef,
-    handleProvinceSelect,
-    handleDistrictSelect,
-    handleSubdistrictSelect,
-    toggleDropdown,
-  } = useRegionSelection(
-    userInfo.province,
-    userInfo.district,
-    userInfo.subdistrict
-  );
-
-  const sendUserInfo = {
-    nickName: nickName, 
-    isPossibleNickName: isPossibleNickName, 
-    selectedProvince: selectedProvince, 
-    selectedDistrict: selectedDistrict, 
-    selectedSubdistrict: selectedSubdistrict,
-  }
-
-  const {handleSendUserInfo} = useUserInfoUpSend();
-
 
   return (
     <>
