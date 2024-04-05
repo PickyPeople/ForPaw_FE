@@ -1,25 +1,16 @@
 import LikeImage from './component/LikeImage';
 import AnnouncementUI from './Announcement.presenter';
 import VolunteerDetailHeader from '../../detail/volunteerDetailHeader/VolunteerDetailHeader.container';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 export default function Announcement() {
-
-  const [isMenuClicked, setIsMenuClicked] = useState(false);
   const [isCommentMenuClicked, setIsCommentMenuClicked] = useState(false);
   const [clickedCommentID, setClickedCommentID] = useState(null); // 클릭된 댓글의 ID를 관리합니다.
   const [isReplyMenuClicked, setIsReplyMenuClicked] = useState(false);
   const [selectedCommentID, setSelectedCommentID] = useState(null); // 클릭된 댓글의 ID를 관리합니다.
   const [clickedReplyID, setClickedReplyID] = useState(null); // 클릭된 답글의 ID를 관리한다. 메뉴보이게끔 하는 용도
 
-  //매뉴를 눌렀을 때 메뉴창이 나오도록 하는 기능
-  const handleMenuClick = () => {
-    setIsMenuClicked(true);
-  };
-  //메뉴 이외에 곳을 눌렀을 때 메뉴창이 꺼지게 하는 용도
-  const handleOutsideMenuClick = () => {
-    setIsMenuClicked(false);
-  };
+  const wrapperRef = useRef(null);
 
   // 코멘트 메뉴 클릭 시 보이게끔 true로 설정
   const handleCommentMenuClick = (commentID) => {
@@ -36,10 +27,24 @@ export default function Announcement() {
     setSelectedCommentID(commentID);
   }
 
-  const handleOutCommentMenuClick = () => {
-    setIsCommentMenuClicked(false);
-    setIsReplyMenuClicked(false);
-  }
+  useEffect(() => {
+    // 외부 클릭을 감지하는 함수
+    function handleClickOutside(event) {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        // 메뉴창 닫기
+        setIsCommentMenuClicked(false);
+        setIsReplyMenuClicked(false);
+      }
+    }
+
+    // 이벤트 리스너 등록
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // 컴포넌트 언마운트 시 이벤트 리스너 제거
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []); 
 
 
   /////////////////////////////////////////////////////////////////
@@ -50,11 +55,11 @@ export default function Announcement() {
   //input안의 내용을 onChange로 받아줄 함수이다.
   const [newComment, setNewComment] = useState('');
   const [newReply, setNewReply] = useState('');
-  const [targetCommentID, setTargetCommentID] = useState(null); // 추가된 부분
+  const [targetCommentID, setTargetCommentID] = useState(null); // 내가 클릭한 답글의 id번호를 취득하는  변수
   //답글달기를 클릭한 유저닉네임을 판단하는 방법
   const [name, setName] = useState('');
 
-  //답글달기를 누르면 Input의 z-index를 변경하는 변수
+  //답글달기를 눌렀는가 판단하는 변수
   const [isClickedReply, setIsClickedReply] = useState(false);
 
   //Comment input값을 받아오는 기능
@@ -67,7 +72,19 @@ export default function Announcement() {
     setNewReply(e.target.value);
   };
 
-  //input에 들어가 메세지를 댓글로 달게 하는 함수
+  //답글달기모드 활성화
+  const activeReply = (commentID, userName) => {
+    setIsCommentMenuClicked(false);
+    setIsClickedReply(true);
+    setIsClickedEidt(false);
+    setIsClickedReplyEdit(false);
+    setNewComment('');
+    setNewReply('');
+    setTargetCommentID(commentID);
+    setName(userName);
+  };
+
+  //댓글 기능
   const handleCommentSubmit = (e) => {
     if (e.key === 'Enter' && newComment.trim() !== "") {
       const newCommentObject = { //배열에 추가되는 정보들
@@ -112,10 +129,10 @@ export default function Announcement() {
     }
   };
 
+  // 댓글 삭제기능
   const handleDelete = (commentID, replyID) => {
     setIsClickedReply(false);
     if (replyID === null) {
-      // 댓글 삭제기능
       const updatedComments = comments.filter(comment => comment.id !== commentID);
       setComments(updatedComments);
     } else {
@@ -151,10 +168,11 @@ export default function Announcement() {
     setEditCommentText(e.target.value);
   };
 
-  const handleChangeReplyEdit = (e) => {
+  const handleChangeReplyEdit = (e) => { //답글 수정값을 받아오는 기능
     setEditReplyText(e.target.value);
   };
 
+  //댓글 혹은 답글을 수정하는 기능
   const handleEditSubmit = (e) => {
     if (e.key === 'Enter' && editCommentText.trim() !== "") {
       const updatedComments = comments.map(comment => {
@@ -184,7 +202,7 @@ export default function Announcement() {
       setEditReplyText('');
     }
   };
-  //댓글 수정모드를 활성화
+  //댓글 수정모드를 활성화 밑의 text는 수정하기를 눌렀을 때 댓글의 텍스트를 받아오기 위해서
   const activeCommentEdit = (text) => {
     setIsClickedEidt(true);
     setIsClickedReply(false);
@@ -262,7 +280,7 @@ export default function Announcement() {
       setComments(updatedComments);
       setIsClickedEidt(false);
       setEditCommentText('');
-    } else if (isClickedReply && editReplyText.trim() !== "") {
+    } else if (isClickedReplyEdit && editReplyText.trim() !== "") {
       const updatedComments = comments.map(comment => {
         if (comment.id === selectedCommentID) {
           const updatedReplies = comment.replies.map(reply => {
@@ -281,45 +299,26 @@ export default function Announcement() {
     }
   };
 
-  //답글달기를 눌렀는지 판단하는 기능 
-  const handleJudegeReplyBtn = (commentID, userName) => {
-    setIsCommentMenuClicked(false);
-    setIsClickedReply(true);
-    setIsClickedEidt(false);
-    setIsClickedReplyEdit(false);
-    setNewComment('');
-    setNewReply('');
-    setTargetCommentID(commentID);
-    setName(userName);
-  };
-
-  //input 창에 foucs주기
-  const nameFocus = useRef();
-
   return (
     <>
-      <VolunteerDetailHeader
-        isMenuClicked={isMenuClicked}
-        handleMenuClick={handleMenuClick}
-        handleOutsideMenuClick={handleOutsideMenuClick}
-      />
+      <VolunteerDetailHeader />
       <AnnouncementUI
-        LikeImage={LikeImage}
-        handleOutsideMenuClick={handleOutsideMenuClick}
-        
+        LikeImage={LikeImage} //좋아요 버튼을 위한 컴포넌트
+        wrapperRef={wrapperRef} //메뉴창 내/외부 판단
+
         comments={comments}
         newComment={newComment}
         newReply={newReply}
-        
-        handleCommentValue={handleCommentValue}
-        handleReplyValue={handleReplyValue}
-        handleCommentSubmit={handleCommentSubmit}
-        
-        handleReplySubmit={handleReplySubmit}
-        isClickedReply={isClickedReply}
-        handleJudegeReplyBtn={handleJudegeReplyBtn}
 
-        activeBtn={activeBtn} //댓글이나 답글을 보내는용도
+        handleCommentValue={handleCommentValue} //댓글 텍스트를 받아오는 값
+        handleReplyValue={handleReplyValue} //답글 텍스트를 받아오는 값
+        handleCommentSubmit={handleCommentSubmit} //댓글을 등록하기 위한 기능
+
+        handleReplySubmit={handleReplySubmit}// 답글 등록을 위한 기능
+        isClickedReply={isClickedReply} //답글 달기를 눌렀는지를 판단하는 변수
+        activeReply={activeReply} // 
+
+        activeBtn={activeBtn} //댓글이나 답글을 보내는 버튼
 
         isCommentMenuClicked={isCommentMenuClicked}
         handleCommentMenuClick={handleCommentMenuClick}
@@ -333,7 +332,6 @@ export default function Announcement() {
 
         name={name} //답글달기를 클릭하였을 때 유저 닉네임을 가져오기 위한 변수
         handleJudegeXClick={handleJudegeXClick}
-        handleOutCommentMenuClick={handleOutCommentMenuClick}
 
         handleDelete={handleDelete} //댓글 삭제 기능
 
@@ -341,14 +339,13 @@ export default function Announcement() {
         editCommentText={editCommentText}
         handleChangeCommentEdit={handleChangeCommentEdit}//onChange함수에 넣어줄 기능
         activeCommentEdit={activeCommentEdit}
+        handleEditSubmit={handleEditSubmit}
 
         isClickedReplyEdit={isClickedReplyEdit} //답글 수정하기를 눌렀는가 판단
         editReplyText={editReplyText}
+
         handleChangeReplyEdit={handleChangeReplyEdit} //답글의 수정내용 전달 기능
         activeReplyEdit={activeReplyEdit}
-        handleEditSubmit={handleEditSubmit}
-
-        nameFocus={nameFocus} //input태그에 focus주기
       />
     </>
   );

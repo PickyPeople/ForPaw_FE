@@ -13,6 +13,7 @@ export const useEmailCheck = () => {
   const [code, setCode] = useState(1234); //랜덤된 인증번호 4자리
   const router = useRouter();
 
+  const name = router.query.name;
 
   const handleEmailIdValueChange = (e) => { //이메일 입력을 받는 함수
     setEmail(e.target.value);
@@ -74,27 +75,31 @@ export const useEmailCheck = () => {
     }
   }
 
-  const verifyCode = async() => { //코드 일치 확인여부 그리고 다음버튼에 들어가는 값
-    try{
+  const navigateTo = (path) => () => {
+    router.push({
+      pathname: path,
+      query: {
+        email: fullId, //이메일 값을 다음 페이지에 넘김
+        name: name
+      },
+    },
+      `${path}` //url값에 path를 숨기기 위하여 넣는 값
+    );
+  };
+
+  const verifyCode = async (path) => { //코드 일치 확인여부 그리고 다음버튼에 들어가는 값
+    try {
       const data = await CheckEmailDuplication(email, code);
-      if(data.success) {
-        const navigateTo = (path) => () => {
-          router.push({
-            pathname: path,
-            query: {
-              email: `${fullId}` //이메일 값을 다음 페이지에 넘김
-            },
-          },
-            `${path}` //url값에 path를 숨기기 위하여 넣는 값
-          );
-        };
+      if (data.success) {
+        navigateTo(path)
       }
-    } catch(error){
+    } catch (error) {
       console.log("인증번호가 일치하지 않습니다.")
     }
   }
 
   return {
+    name,
     email,
     emailOption,
     isEmailAvailable,

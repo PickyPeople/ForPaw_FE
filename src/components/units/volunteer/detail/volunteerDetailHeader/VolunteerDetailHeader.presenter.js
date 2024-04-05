@@ -7,9 +7,9 @@ export default function VolunteerDetailHeaderUI(props) {
       <S.WrapperHeader
         active={props.isJoinedClikced}
       >
-        <S.Blank onClick={props.handleOutsideMenuClick}/>
+        <S.Blank/>
         <S.Header>
-          <S.LeftArrowTitleContainer onClick={props.handleOutsideMenuClick}>
+          <S.LeftArrowTitleContainer>
             <S.LeftArrowImg onClick={props.PrevPage}>
               <Image
                 src="/images/header/arrow_left_icon.svg"
@@ -32,7 +32,7 @@ export default function VolunteerDetailHeaderUI(props) {
           </S.MenuContainer>
         </S.Header>
         <S.MenuBlock
-          onClick={props.handleMenuClick}
+          ref={props.wrapperRef}
           active={props.isMenuClicked}
         >
           <S.Menu>URL 공유하기</S.Menu>
