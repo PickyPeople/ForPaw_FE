@@ -102,7 +102,7 @@ export default function NoticeUI(props) {
                   </S.UserInfoItems>
                   <S.CommentText>
                     <S.Reply>{reply.text}</S.Reply>
-                    <S.ReplyMenuImg onClick={() => props.handleReplyMenuClick(comment.id, reply.id)}>
+                    <S.ReplyMenuImg onClick={() => props.handleCommentMenuClick(comment.id, reply.id)}>
                       <Image
                         src="/images/header/menu_icon.svg"
                         alt="menu_icon"
@@ -185,9 +185,9 @@ export default function NoticeUI(props) {
               {
                 props.isClickedEdit == false && props.isClickedReply == false && props.isClickedReplyEdit == false ?
                   props.handleCommentSubmit(e) :
-                  (props.isClickedReply ? props.handleReplySubmit(e) :
-                    (props.isClickedEdit ? props.handleEditSubmit(e) :
-                      (props.isClickedReplyEdit ? props.handleEditSubmit(e) : '')))
+                  (props.isClickedReply ? props.handleCommentSubmit(e) :
+                    (props.isClickedEdit ? props.handleCommentSubmit(e) :
+                      (props.isClickedReplyEdit ? props.handleCommentSubmit(e) : '')))
               }
             }}
             onChange={(e) => {
