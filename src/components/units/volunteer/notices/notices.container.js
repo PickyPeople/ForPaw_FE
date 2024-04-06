@@ -24,7 +24,7 @@ export default function Announcements() {
     }, 2000);
   };
 
-  const Announcements = [
+  const notices = [
     {
       id: 1,
       text: "이번주 봉사활동은 업체의 개인사정으로 인해 한 주 쉬어가니 착오 없으시길 바랍니다.",
@@ -86,7 +86,7 @@ export default function Announcements() {
       <Headers />
       <NoticesUI
         navigateTo={navigateTo}
-        Announcements={Announcements}
+        notices={notices}
         clickedIndex={clickedIndex}
         handleAnnouncementClick={handleAnnouncementClick}
         status={status}

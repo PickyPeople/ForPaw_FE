@@ -6,10 +6,10 @@ export default function NoticesUI(props) {
     <>
       <S.WrapperContents>
         <S.Container>
-          {props.Announcements.map((announcement, index) => (
+          {props.notices.map((notice, index) => (
             <S.AnnouncementBlock
-              onClick={props.navigateTo('/volunteer/detail/announcements/announcement')}
-              key={announcement.id}
+              onClick={props.navigateTo('/volunteer/detail/notices/notice')}
+              key={notice.id}
               style={{ backgroundColor: props.clickedIndex === index ? "#FFF0EB" : "#F6F6F6" }}
               onMouseDown={() => props.handleAnnouncementClick(index)}
             >
@@ -28,11 +28,11 @@ export default function NoticesUI(props) {
                   </S.CheckImg>
                 </S.CheckBox>
                 <S.AnnouncementText>
-                  {announcement.text.length > 39 ? `${announcement.text.slice(0, 39)}...` : announcement.text}
+                  {notice.text.length > 39 ? `${notice.text.slice(0, 39)}...` : notice.text}
                 </S.AnnouncementText>
                 <S.WritersBlock>
-                  <S.Writer>{announcement.writer}</S.Writer>
-                  <S.Time>{announcement.time}</S.Time>
+                  <S.Writer>{notice.writer}</S.Writer>
+                  <S.Time>{notice.time}</S.Time>
                 </S.WritersBlock>
               </S.AnnouncementItem>
             </S.AnnouncementBlock>

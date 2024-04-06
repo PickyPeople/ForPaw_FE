@@ -50,7 +50,8 @@ export default function NoticeUI(props) {
                 </S.UserInfoItems>
                 <S.CommentText>
                   <S.Comment>{comment.text}</S.Comment>
-                  <S.CommentMenuImg onClick={() => props.handleCommentMenuClick(comment.id)}>
+                  <S.CommentMenuImg 
+                    onClick={() => props.handleCommentMenuClick(comment.id)}>
                     <Image
                       src="/images/header/menu_icon.svg"
                       alt="menu_icon"
@@ -107,7 +108,6 @@ export default function NoticeUI(props) {
                         alt="menu_icon"
                         width={30}
                         height={30}
-                        priority={true}
                       />
                       {props.isReplyMenuClicked && props.clickedReplyID === reply.id && props.selectedCommentID === comment.id && (
                         <S.MenuBlock
@@ -131,36 +131,28 @@ export default function NoticeUI(props) {
           ))}
         </S.CommentContainer>
       </S.WrapperContents>
-      {props.isClickedReply && (
+      {props.isClickedReply || props.isClickedEdit || props.isClickedReplyEdit ? (
         <S.ToReplyBlock>
-          <S.ToReply>
-            댓글 다는중..
-          </S.ToReply>
+          {props.isClickedReply && (
+            <S.ToReply>
+              댓글 다는중..
+            </S.ToReply>
+          )}
+          {props.isClickedEdit && (
+            <S.ToReply>
+              댓글 수정중..
+            </S.ToReply>
+          )}
+          {props.isClickedReplyEdit && (
+            <S.ToReply>
+              답글 수정중..
+            </S.ToReply>
+          )}
           <S.ToReplyClose onClick={props.handleJudegeXClick}>
             X
           </S.ToReplyClose>
         </S.ToReplyBlock>
-      )}
-      {props.isClickedEdit && (
-        <S.ToReplyBlock>
-          <S.ToReply>
-            댓글 수정중..
-          </S.ToReply>
-          <S.ToReplyClose onClick={props.handleJudegeXClick}>
-            X
-          </S.ToReplyClose>
-        </S.ToReplyBlock>
-      )}
-      {props.isClickedReplyEdit && (
-        <S.ToReplyBlock>
-          <S.ToReply>
-            답글 수정중..
-          </S.ToReply>
-          <S.ToReplyClose onClick={props.handleJudegeXClick}>
-            X
-          </S.ToReplyClose>
-        </S.ToReplyBlock>
-      )}
+      ) : null}
       <S.AddCommentContainer>
         <S.AddCommentBlock>
           <S.OpenMenu>
