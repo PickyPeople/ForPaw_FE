@@ -1,9 +1,9 @@
 import LikeImage from './component/LikeImage';
-import AnnouncementUI from './Announcement.presenter';
+import NoticeUI from './notice.presenter';
 import VolunteerDetailHeader from '../../detail/volunteerDetailHeader/VolunteerDetailHeader.container';
 import { useRef, useState, useEffect } from 'react';
 
-export default function Announcement() {
+export default function Notice() {
   const [isCommentMenuClicked, setIsCommentMenuClicked] = useState(false);
   const [clickedCommentID, setClickedCommentID] = useState(null); // 클릭된 댓글의 ID를 관리합니다.
   const [isReplyMenuClicked, setIsReplyMenuClicked] = useState(false);
@@ -302,7 +302,7 @@ export default function Announcement() {
   return (
     <>
       <VolunteerDetailHeader />
-      <AnnouncementUI
+      <NoticeUI
         LikeImage={LikeImage} //좋아요 버튼을 위한 컴포넌트
         wrapperRef={wrapperRef} //메뉴창 내/외부 판단
 

@@ -207,7 +207,7 @@ export const DetailContentsDateBox = styled.div`
 export const DetailDate = styled.p`
   width: 79px;
   height: 24px;
-  font-wize: 20px;
+  font-size: 20px;
   font-weight: bold;
   line-height: 24px;
 `;

@@ -1,7 +1,7 @@
-import * as S from "./Announcements.styles";
+import * as S from "./notices.styles";
 import Image from "next/image";
 
-export default function AnnouncementsUI(props) {
+export default function NoticesUI(props) {
   return (
     <>
       <S.WrapperContents>

@@ -123,7 +123,7 @@ export const CommentUser = styled.div`
 `;
 
 export const UserName = styled.div`
-  width: 304px
+  width: 304px;
   height: 20px;
   font-size: 14px;
   font-weight: bold;

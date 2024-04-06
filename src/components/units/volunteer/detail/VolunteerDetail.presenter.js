@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function VolunteerDetailUI(props) {
   return (
-    <div style={{zIndex: "1", position: "relative"}}>
+    <>
       <S.Judge
         style={{ visibility: props.isJoinedClikced ? "visible" : "hidden" }}
       >
@@ -11,7 +11,6 @@ export default function VolunteerDetailUI(props) {
       </S.Judge>
       <S.WrapperContents
         active={props.isJoinedClikced}
-        onClick={props.handleOutsideMenuClick}
       >
         <S.VolunteerIntroContainer>
           <S.IntroMainImgBlock>
@@ -31,7 +30,7 @@ export default function VolunteerDetailUI(props) {
             <S.AnnouncementTitle>공지사항</S.AnnouncementTitle>
             <S.RightArrowImgBlock>
               <Image
-                onClick={props.navigateTo('/volunteer/detail/announcements')}
+                onClick={props.navigateTo('/volunteer/detail/notices')}
                 src="/images/volunteer/volunteerDetail/right_arrow.svg"
                 alt="right_arrow"
                 width={44}
@@ -43,7 +42,7 @@ export default function VolunteerDetailUI(props) {
           <S.AnnouncementDetailContainer>
             {props.notices.map((notice, index) => (
               <S.AnnouncementDetailBlock
-                onClick={props.navigateTo('/volunteer/detail/announcements/announcement')}
+                onClick={props.navigateTo('/volunteer/detail/notices/notice')}
                 key={notice.id}
                 style={{ backgroundColor: props.clickedIndex === index ? "#FEF8F2" : "#F6F6F6" }}
                 onMouseDown={() => props.handleAnnouncementClick(index)} // 마우스를 눌렀을 때만 처리
@@ -189,8 +188,8 @@ export default function VolunteerDetailUI(props) {
                   />
                 </S.MemberIcon>
                 <S.MemberName>{infos.name}</S.MemberName>
-                <S.StatusBlock style={{visibility: infos.status == "회원" ? "hidden" : "visible"}}>
-                  <S.Status style={{backgroundColor: infos.status == "관리자" ? "#FF6636" : "#240D05"}}>{infos.status}</S.Status>
+                <S.StatusBlock style={{visibility: infos.role == "회원" ? "hidden" : "visible"}}>
+                  <S.Status style={{backgroundColor: infos.role == "관리자" ? "#FF6636" : "#240D05"}}>{infos.role}</S.Status>
                 </S.StatusBlock>
               </S.MemberBox>
             </S.MemberListContainer>
@@ -203,6 +202,6 @@ export default function VolunteerDetailUI(props) {
       >
         <S.NextButtonItem onClick={props.ChangeStatus('/volunteer/detail')}>{props.status === "member" ? "채팅방 입장하기" : "가입하기"}</S.NextButtonItem>
       </S.NextButtonBlock>
-    </div>
+    </>
   )
 }

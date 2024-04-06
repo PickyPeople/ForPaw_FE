@@ -1,4 +1,4 @@
-import AnnouncementsUI from "./Announcements.presenter";
+import NoticesUI from "./notices.presenter";
 import Headers from "../../../commons/headers/Headers.container";
 import Navigation from "../../../commons/navigation/Navigation.container";
 import { useRouter } from "next/router";
@@ -84,7 +84,7 @@ export default function Announcements() {
   return (
     <>
       <Headers />
-      <AnnouncementsUI
+      <NoticesUI
         navigateTo={navigateTo}
         Announcements={Announcements}
         clickedIndex={clickedIndex}
