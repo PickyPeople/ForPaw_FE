@@ -75,6 +75,7 @@ export default function Notice() {
   //답글달기모드 활성화
   const activeReply = (commentID, userName) => {
     setIsCommentMenuClicked(false);
+    setIsReplyMenuClicked(false);
     setIsClickedReply(true);
     setIsClickedEidt(false);
     setIsClickedReplyEdit(false);
@@ -98,6 +99,7 @@ export default function Notice() {
 
       setComments([...comments, newCommentObject]);
       setNewComment('');
+      setIsCommentMenuClicked(false);
     }
   };
 
@@ -151,8 +153,6 @@ export default function Notice() {
       setComments(updatedComments);
     }
     setIsClickedReply(false);
-    setIsCommentMenuClicked(false);
-    setIsReplyMenuClicked(false);
     setIsClickedEidt(false);
     setIsClickedReplyEdit(false);
     setEditCommentText('');
