@@ -50,8 +50,8 @@ export default function NoticeUI(props) {
                 </S.UserInfoItems>
                 <S.CommentText>
                   <S.Comment>{comment.text}</S.Comment>
-                  <S.CommentMenuImg 
-                    onClick={() => props.handleCommentMenuClick(comment.id)}>
+                  <S.CommentMenuImg
+                    onClick={() => props.handleCommentMenuClick(comment.id, null)}>
                     <Image
                       src="/images/header/menu_icon.svg"
                       alt="menu_icon"
@@ -102,14 +102,16 @@ export default function NoticeUI(props) {
                   </S.UserInfoItems>
                   <S.CommentText>
                     <S.Reply>{reply.text}</S.Reply>
-                    <S.ReplyMenuImg onClick={() => props.handleCommentMenuClick(comment.id, reply.id)}>
+                    <S.ReplyMenuImg
+                      onClick={() => props.handleCommentMenuClick(comment.id, reply.id)}
+                    >
                       <Image
                         src="/images/header/menu_icon.svg"
                         alt="menu_icon"
                         width={30}
                         height={30}
                       />
-                      {props.isReplyMenuClicked && props.clickedReplyID === reply.id && props.selectedCommentID === comment.id && (
+                      {props.isReplyMenuClicked && props.clickedReplyID === reply.id && props.clickedCommentID === comment.id && (
                         <S.MenuBlock
                           ref={props.wrapperRef}
                         >

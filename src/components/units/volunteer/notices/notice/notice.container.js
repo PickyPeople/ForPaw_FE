@@ -7,7 +7,6 @@ export default function Notice() {
   const [isCommentMenuClicked, setIsCommentMenuClicked] = useState(false);
   const [clickedCommentID, setClickedCommentID] = useState(null); // 클릭된 댓글의 ID를 관리합니다.
   const [isReplyMenuClicked, setIsReplyMenuClicked] = useState(false);
-  const [selectedCommentID, setSelectedCommentID] = useState(null); // 클릭된 댓글의 ID를 관리합니다.
   const [clickedReplyID, setClickedReplyID] = useState(null); // 클릭된 답글의 ID를 관리한다. 메뉴보이게끔 하는 용도
 
   const wrapperRef = useRef(null);
@@ -18,12 +17,11 @@ export default function Notice() {
       setIsCommentMenuClicked(true);
       setIsReplyMenuClicked(false);
       setClickedCommentID(commentID); // 클릭된 댓글의 ID를 설정합니다.
-      setSelectedCommentID(commentID);
     } else {
       setIsCommentMenuClicked(false);
       setIsReplyMenuClicked(true);
+      setClickedCommentID(commentID);
       setClickedReplyID(replyID);
-      setSelectedCommentID(commentID);
     }
   };
 
@@ -52,22 +50,21 @@ export default function Notice() {
   const [comments, setComments] = useState([]); //input에서 입력한 값을 배열로서 받을 것이고 presenter에서 map 함수를 이용하여 사용할 것이다.
   const [newComment, setNewComment] = useState(''); //input안의 내용을 onChange로 받아줄 함수이다.
   const [newReply, setNewReply] = useState('');
-  const [targetCommentID, setTargetCommentID] = useState(null); // 내가 클릭한 답글의 id번호를 취득하는  변수
-  const [name, setName] = useState(''); //답글달기를 클릭한 유저닉네임을 가져오는 변수
+  const [editCommentText, setEditCommentText] = useState(''); //댓글 수정내용을 받아오는 change함수에 들어가는 값
+  const [editReplyText, setEditReplyText] = useState(''); //답글 수정내용을 받아오는 cchange함수에 들어가는 값
 
   const [isClickedReply, setIsClickedReply] = useState(false); //답글달기를 눌렀는가 판단하는 변수
   const [isClickedEdit, setIsClickedEidt] = useState(false); //댓글의 수정하기 메뉴를 눌렀을 경우
-  const [editCommentText, setEditCommentText] = useState(''); //댓글 수정내용을 받아오는 change함수에 들어가는 값
   const [isClickedReplyEdit, setIsClickedReplyEdit] = useState(false); //답글의 수정하기 메뉴를 눌렀을 경우
-  const [editReplyText, setEditReplyText] = useState(''); //답글 수정내용을 받아오는 cchange함수에 들어가는 값
 
-  //Comment input값을 받아오는 기능
-  const handleCommentValue = (e) => {
+  const [name, setName] = useState(''); //답글달기를 클릭한 유저닉네임을 가져오는 변수
+
+  const handleCommentValue = (e) => { //Comment input값을 받아오는 기능
     setNewComment(e.target.value)
   };
 
-  //Reply Input을 받아오는 기능
-  const handleReplyValue = (e) => {
+   
+  const handleReplyValue = (e) => { //Reply Input을 받아오는 기능
     setNewReply(e.target.value);
   };
 
@@ -87,7 +84,7 @@ export default function Notice() {
     setIsClickedReplyEdit(false);
     setNewComment('');
     setNewReply('');
-    setTargetCommentID(commentID);
+    setClickedCommentID(commentID);
     setName(userName);
   };
 
@@ -128,7 +125,7 @@ export default function Notice() {
       setIsCommentMenuClicked(false);
     } else if (e.key === 'Enter' && newReply.trim() !== "") {
       const updatedComments = comments.map(comment => {
-        if (comment.id === targetCommentID) { // 이부분을 확실히 해줘야함
+        if (comment.id === clickedCommentID) { // 이부분을 확실히 해줘야함
           return {
             ...comment,
             replies: [
@@ -149,9 +146,7 @@ export default function Notice() {
       setComments(updatedComments);
       setNewReply('');
       setIsClickedReply(false); // 답글이 제출되면 isClickedReply를 false로 설정
-    }
-    //댓글 혹은 답글을 수정하는 기능
-    if (e.key === 'Enter' && editCommentText.trim() !== "") {
+    } else if (e.key === 'Enter' && editCommentText.trim() !== "") {
       const updatedComments = comments.map(comment => {
         if (comment.id === clickedCommentID) {
           return { ...comment, text: editCommentText };
@@ -163,7 +158,7 @@ export default function Notice() {
       setEditCommentText('');
     } else if (e.key === 'Enter' && editReplyText.trim() !== "") {
       const updatedComments = comments.map(comment => {
-        if (comment.id === selectedCommentID) {
+        if (comment.id === clickedCommentID) {
           const updatedReplies = comment.replies.map(reply => {
             if (reply.id === clickedReplyID) {
               return { ...reply, text: editReplyText };
@@ -177,23 +172,34 @@ export default function Notice() {
       setComments(updatedComments);
       setIsClickedReplyEdit(false);
       setEditReplyText('');
-    } else if (e.key === 'Enter' && editReplyText.trim() !== "") {
+    } 
+  };
+
+  // 댓글 삭제기능
+  const handleDelete = (commentID, replyID) => {
+    if (replyID === null) {
+      const updatedComments = comments.filter(comment => comment.id !== commentID);
+      setComments(updatedComments);
+    } else {
+      // 답글 삭제
       const updatedComments = comments.map(comment => {
-        if (comment.id === selectedCommentID) {
-          const updatedReplies = comment.replies.map(reply => {
-            if (reply.id === clickedReplyID) {
-              return { ...reply, text: editReplyText };
-            }
-            return reply;
-          });
-          return { ...comment, replies: updatedReplies };
+        if (comment.id === commentID) {
+          // 현재 댓글의 replies 배열에서 해당 답글 제외
+          const updatedReplies = comment.replies.filter(reply => reply.id !== replyID);
+          return {
+            ...comment,
+            replies: updatedReplies
+          };
         }
         return comment;
       });
       setComments(updatedComments);
-      setIsClickedReplyEdit(false);
-      setEditReplyText('');
     }
+    setIsClickedReply(false);
+    setIsClickedEidt(false);
+    setIsClickedReplyEdit(false);
+    setEditCommentText('');
+    setEditReplyText('');
   };
 
   //답글달기 혹은 수정하기를 누르고 나오는 X div의 영역을 누르는지 판단
@@ -203,8 +209,6 @@ export default function Notice() {
     setIsReplyMenuClicked(false);
     setIsClickedEidt(false);
     setIsClickedReplyEdit(false);
-    setEditCommentText('');
-    setEditReplyText('');
   };
 
   //버튼을 눌렸을 때 댓글을 달수 있도록 해주는 함수
@@ -223,7 +227,7 @@ export default function Notice() {
       setNewComment('');
     } else if (isClickedReply && newReply.trim() !== "") {
       const updatedComments = comments.map(comment => {
-        if (comment.id === targetCommentID) { // 이부분을 확실히 해줘야함
+        if (comment.id === clickedCommentID) { // 이부분을 확실히 해줘야함
           return {
             ...comment,
             replies: [
@@ -256,7 +260,7 @@ export default function Notice() {
       setEditCommentText('');
     } else if (isClickedReplyEdit && editReplyText.trim() !== "") {
       const updatedComments = comments.map(comment => {
-        if (comment.id === selectedCommentID) {
+        if (comment.id === clickedCommentID) {
           const updatedReplies = comment.replies.map(reply => {
             if (reply.id === clickedReplyID) {
               return { ...reply, text: editReplyText };
@@ -280,32 +284,24 @@ export default function Notice() {
         LikeImage={LikeImage} //좋아요 버튼을 위한 컴포넌트
         wrapperRef={wrapperRef} //메뉴창 내/외부 판단
 
-        comments={comments}
-        newComment={newComment}
-        newReply={newReply}
+        comments={comments} 
+
+        newComment={newComment} //input에 있는 댓글
+        newReply={newReply} //input에 있는 답글
 
         handleCommentValue={handleCommentValue} //댓글 텍스트를 받아오는 값
         handleReplyValue={handleReplyValue} //답글 텍스트를 받아오는 값
         handleCommentSubmit={handleCommentSubmit} //댓글을 등록하기 위한 기능
 
         isClickedReply={isClickedReply} //답글 달기를 눌렀는지를 판단하는 변수
-        activeReply={activeReply} // 
+        activeReply={activeReply} //답글 모드 활성화
 
-        activeBtn={activeBtn} //댓글이나 답글을 보내는 버튼
+        isCommentMenuClicked={isCommentMenuClicked} //댓글 메뉴 true
+        clickedCommentID={clickedCommentID} //클릭한 된 댓들 id취득
+        handleCommentMenuClick={handleCommentMenuClick} //댓글 or 답글 메뉴 판단
 
-        isCommentMenuClicked={isCommentMenuClicked}
-        handleCommentMenuClick={handleCommentMenuClick}
-        clickedCommentID={clickedCommentID}
-
-        isReplyMenuClicked={isReplyMenuClicked}
-        clickedReplyID={clickedReplyID}
-
-        selectedCommentID={selectedCommentID}
-
-        name={name} //답글달기를 클릭하였을 때 유저 닉네임을 가져오기 위한 변수
-        handleJudegeXClick={handleJudegeXClick}
-
-        handleDelete={handleDelete} //댓글 삭제 기능
+        isReplyMenuClicked={isReplyMenuClicked} //답글 메뉴 true
+        clickedReplyID={clickedReplyID} //클릭한 닷글 id취득
 
         isClickedEdit={isClickedEdit} //수정하기를 클릭하였는지 판단
         editCommentText={editCommentText}
@@ -314,9 +310,14 @@ export default function Notice() {
 
         isClickedReplyEdit={isClickedReplyEdit} //답글 수정하기를 눌렀는가 판단
         editReplyText={editReplyText}
-
         handleChangeReplyEdit={handleChangeReplyEdit} //답글의 수정내용 전달 기능
         activeReplyEdit={activeReplyEdit}
+
+        activeBtn={activeBtn} //댓글이나 답글을 보내는 버튼
+        handleJudegeXClick={handleJudegeXClick}
+
+        //name={name} //답글달기를 클릭하였을 때 유저 닉네임을 가져오기 위한 변수
+        handleDelete={handleDelete} //댓글 삭제 기능
       />
     </>
   );
