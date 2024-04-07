@@ -197,6 +197,14 @@ export const AreaSelectContainer = styled.div`
   margin-top: 20px;
 `;
 
+export const ProvinceContainer = styled.div`
+  width: 342px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const ProvinceSelect = styled.div`
   width: 342px;
   height: 60px;
@@ -269,6 +277,14 @@ export const DistrictSelectBlock = styled.div`
   position: relative;
 `;
 
+export const DistrictContainer = styled.div`
+  width: 164px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const DistrictSelect = styled.div`
   width: 164px;
   height: 60px;
@@ -330,6 +346,14 @@ export const DistrictOption = styled.div`
   :hover {
     opacity: 0.5;
   }
+`;
+
+export const SubdistrictContainer = styled.div`
+  width: 164px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const SubdistrictSelect = styled.div`

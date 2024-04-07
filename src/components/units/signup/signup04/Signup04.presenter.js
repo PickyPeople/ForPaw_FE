@@ -10,7 +10,10 @@ export default function SignUpUI04(props) {
         <S.Container>
           <SignupHeader />
           <S.ProgressBarBlock>
-            <S.ProgressBar value={Progress({ startValue: 75, max: 100, interval: 10 })} max={100} />
+            <S.ProgressBar
+              value={Progress({ startValue: 75, max: 100, interval: 10 })}
+              max={100}
+            />
           </S.ProgressBarBlock>
           <S.InfoContainer>
             <S.InfoBlock>
@@ -39,19 +42,23 @@ export default function SignUpUI04(props) {
               </S.InfoNickNameContainer>
               <S.CheckNickNameBlock>
                 <S.AvailableNickName>
-                  {
-                    props.isPossibleNickName == undefined ?
-                      "2자이상 12자 이하로 입력해주세요" :
-                      (props.isPossibleNickName ? <span style={{ color: "#9AC8FF" }}>사용가능한 닉네임입니다.</span> :
-                        <span style={{ color: "#FF9A9A" }}>중복된 닉네임입니다.</span>)
-                  }
+                  {props.isPossibleNickName == undefined ? (
+                    "2자이상 12자 이하로 입력해주세요"
+                  ) : props.isPossibleNickName ? (
+                    <span style={{ color: "#9AC8FF" }}>
+                      사용가능한 닉네임입니다.
+                    </span>
+                  ) : (
+                    <span style={{ color: "#FF9A9A" }}>
+                      중복된 닉네임입니다.
+                    </span>
+                  )}
                 </S.AvailableNickName>
-                <S.CheckNickNameBtn
-                  onClick={props.checkNickname}
-                >중복확인
+                <S.CheckNickNameBtn onClick={props.checkNickname}>
+                  중복확인
                 </S.CheckNickNameBtn>
               </S.CheckNickNameBlock>
-              <S.AreaSelectContainer>
+              <S.AreaSelectContainer ref={props.wrapperRef}>
                 <S.EditTextBlock>
                   <S.ProfileInfoLabel>활동 지역</S.ProfileInfoLabel>
                 </S.EditTextBlock>
@@ -73,7 +80,7 @@ export default function SignUpUI04(props) {
                   />
                 </S.ProvinceArrowBlock>
                 {props.isProvinceDropdownOpen && (
-                  <S.ProvinceDropdown ref={props.wrapperRef}>
+                  <S.ProvinceDropdown>
                     {Object.keys(props.regions).map((province, index) => (
                       <S.ProvinceOption
                         key={index}
@@ -104,12 +111,14 @@ export default function SignUpUI04(props) {
                   </S.DistrictArrowBlock>
                   {props.selectedProvince !== "시/도 선택" &&
                     props.isDistrictDropdownOpen && (
-                      <S.DistrictDropdown ref={props.wrapperRef}>
+                      <S.DistrictDropdown>
                         {Object.keys(props.regions[props.selectedProvince]).map(
                           (district, index) => (
                             <S.DistrictOption
                               key={index}
-                              onClick={() => props.handleDistrictSelect(district)}
+                              onClick={() =>
+                                props.handleDistrictSelect(district)
+                              }
                             >
                               {district}
                             </S.DistrictOption>
@@ -137,7 +146,7 @@ export default function SignUpUI04(props) {
                   {props.selectedProvince !== "시/도 선택" &&
                     props.selectedDistrict !== "구/군/시" &&
                     props.isSubdistrictDropdownOpen && (
-                      <S.SubdistrictDropdown ref={props.wrapperRef}>
+                      <S.SubdistrictDropdown>
                         {props.regions[props.selectedProvince][
                           props.selectedDistrict
                         ].map((subdistrict, index) => (
@@ -157,8 +166,8 @@ export default function SignUpUI04(props) {
               <S.NextButtonBlock>
                 <S.NextButtonItem
                   onClick={() => {
-                    props.navigateTo('/login/signup/complete')
-                    props.handleSendUserInfo(props.sendUserInfo)
+                    props.navigateTo("/login/signup/complete");
+                    props.handleSendUserInfo(props.sendUserInfo);
                   }}
                 >
                   완료
@@ -169,5 +178,5 @@ export default function SignUpUI04(props) {
         </S.Container>
       </S.WrapperContainer>
     </>
-  )
+  );
 }

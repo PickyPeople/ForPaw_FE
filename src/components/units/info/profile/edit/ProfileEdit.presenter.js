@@ -60,39 +60,41 @@ export default function ProfileEditUI(props) {
               {props.nickNameMsg}
             </S.NickNameMsg>
           </S.NickNameEditBlock>
-          <S.AreaSelectContainer>
+          <S.AreaSelectContainer ref={props.wrapperRef}>
             <S.EditTextBlock>
               <S.ProfileInfoLabel>활동 지역</S.ProfileInfoLabel>
             </S.EditTextBlock>
-            <S.ProvinceSelect
-              isProvinceFocused={props.isProvinceFocused}
-              onClick={props.toggleProvinceDropdown}
-            >
-              {props.selectedProvince}
-            </S.ProvinceSelect>
-            <S.ProvinceArrowBlock
-              isProvinceFocused={props.isProvinceFocused}
-              onClick={props.toggleProvinceDropdown}
-            >
-              <Image
-                src="/images/info/select_arrow_icon.svg"
-                alt="select_arrow_icon"
-                width={22}
-                height={12}
-              />
-            </S.ProvinceArrowBlock>
-            {props.isProvinceDropdownOpen && (
-              <S.ProvinceDropdown ref={props.wrapperRef}>
-                {Object.keys(props.regions).map((province, index) => (
-                  <S.ProvinceOption
-                    key={index}
-                    onClick={() => props.handleProvinceSelect(province)}
-                  >
-                    {province}
-                  </S.ProvinceOption>
-                ))}
-              </S.ProvinceDropdown>
-            )}
+            <S.ProvinceContainer>
+              <S.ProvinceSelect
+                isProvinceFocused={props.isProvinceFocused}
+                onClick={props.toggleProvinceDropdown}
+              >
+                {props.selectedProvince}
+              </S.ProvinceSelect>
+              <S.ProvinceArrowBlock
+                isProvinceFocused={props.isProvinceFocused}
+                onClick={props.toggleProvinceDropdown}
+              >
+                <Image
+                  src="/images/info/select_arrow_icon.svg"
+                  alt="select_arrow_icon"
+                  width={22}
+                  height={12}
+                />
+              </S.ProvinceArrowBlock>
+              {props.isProvinceDropdownOpen && (
+                <S.ProvinceDropdown>
+                  {Object.keys(props.regions).map((province, index) => (
+                    <S.ProvinceOption
+                      key={index}
+                      onClick={() => props.handleProvinceSelect(province)}
+                    >
+                      {province}
+                    </S.ProvinceOption>
+                  ))}
+                </S.ProvinceDropdown>
+              )}
+            </S.ProvinceContainer>
             <S.DistrictSelectBlock>
               <S.DistrictSelect
                 isDistrictFocused={props.isDistrictFocused}
@@ -113,7 +115,7 @@ export default function ProfileEditUI(props) {
               </S.DistrictArrowBlock>
               {props.selectedProvince !== "시/도 선택" &&
                 props.isDistrictDropdownOpen && (
-                  <S.DistrictDropdown ref={props.wrapperRef}>
+                  <S.DistrictDropdown>
                     {Object.keys(props.regions[props.selectedProvince]).map(
                       (district, index) => (
                         <S.DistrictOption
@@ -146,7 +148,7 @@ export default function ProfileEditUI(props) {
               {props.selectedProvince !== "시/도 선택" &&
                 props.selectedDistrict !== "구/군/시" &&
                 props.isSubdistrictDropdownOpen && (
-                  <S.SubdistrictDropdown ref={props.wrapperRef}>
+                  <S.SubdistrictDropdown>
                     {props.regions[props.selectedProvince][
                       props.selectedDistrict
                     ].map((subdistrict, index) => (

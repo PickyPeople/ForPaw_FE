@@ -1,7 +1,7 @@
 import * as S from "./CommunityFostering.styles";
 import Image from "next/image";
 
-export default function CommunityFosteringUI() {
+export default function CommunityFosteringUI(props) {
   return (
     <>
       <S.WrapperContents>
@@ -9,7 +9,7 @@ export default function CommunityFosteringUI() {
           <S.CommunityMenuPopularity>인기순</S.CommunityMenuPopularity>
           <S.CommunityMenuNewest>최신순</S.CommunityMenuNewest>
         </S.CommunityMenuBlock>
-        <S.CommunityBlock>
+        <S.CommunityBlock onClick={props.navigateTo("/community/detail")}>
           <S.CommunityImg>
             <Image
               src="/images/community/community_1.svg"
@@ -48,7 +48,7 @@ export default function CommunityFosteringUI() {
             </S.CommunityViewBlock>
           </S.CommunityInfoBlock>
         </S.CommunityBlock>
-        <S.CommunityBlock>
+        <S.CommunityBlock onClick={props.navigateTo("/community/detail")}>
           <S.CommunityImg>
             <Image
               src="/images/community/community_1.svg"
@@ -87,7 +87,7 @@ export default function CommunityFosteringUI() {
             </S.CommunityViewBlock>
           </S.CommunityInfoBlock>
         </S.CommunityBlock>
-        <S.CommunityBlock>
+        <S.CommunityBlock onClick={props.navigateTo("/community/detail")}>
           <S.CommunityImg>
             <Image
               src="/images/community/community_1.svg"
@@ -126,7 +126,7 @@ export default function CommunityFosteringUI() {
             </S.CommunityViewBlock>
           </S.CommunityInfoBlock>
         </S.CommunityBlock>
-        <S.CommunityBlock>
+        <S.CommunityBlock onClick={props.navigateTo("/community/detail")}>
           <S.CommunityImg>
             <Image
               src="/images/community/community_1.svg"
@@ -165,7 +165,7 @@ export default function CommunityFosteringUI() {
             </S.CommunityViewBlock>
           </S.CommunityInfoBlock>
         </S.CommunityBlock>
-        <S.CommunityBlock>
+        <S.CommunityBlock onClick={props.navigateTo("/community/detail")}>
           <S.CommunityImg>
             <Image
               src="/images/community/community_1.svg"

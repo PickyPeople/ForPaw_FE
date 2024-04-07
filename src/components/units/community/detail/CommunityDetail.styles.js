@@ -3,35 +3,35 @@ import styled from "@emotion/styled";
 export const WrapperHeader = styled.div`
   width: 390px;
   height: 95px;
-  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   margin: 0 auto;
-  filter: ${(props) => (props.active ? "brightness(0.8)" : "brightness(1.0)")};
-`;
-
-export const Blank = styled.div`
-  width: 390px;
-  height: 45px;
+  z-index: 1;
+  background-color: white;
+  /* opacity: 0; */
 `;
 
 export const Header = styled.div`
-  width: 344px;
-  height: 50px;
-  margin: 0 auto;
-
+  width: 100%;
+  height: 95px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
+  padding: 0 23px;
+  padding-bottom: 1px;
 `;
 
 export const LeftArrowTitleContainer = styled.div`
-  width: 298px;
-  height: 44px;
+  width: 250px;
+  height: 40px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 3px;
+  margin-bottom: 5px;
 
   img {
     &:hover {
@@ -40,42 +40,31 @@ export const LeftArrowTitleContainer = styled.div`
   }
 `;
 
-export const LeftArrowImg = styled.div`
-  width: 23px;
-  height: 29px;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const Title = styled.h1`
-  width: 126px;
-  height: 29px;
   font-size: 24px;
-  margin-left: 3px;
-  letter-spacing: -1.3px;
+  margin-left: 10px;
 `;
 
 export const MenuContainer = styled.div`
   width: 44px;
   height: 44px;
-  cursor: pointer;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 6px;
+  position: relative;
+  cursor: pointer;
 `;
 
 export const MenuBlock = styled.ul`
-  width: 164px;
-  height: 112px;
+  width: 127px;
+  height: 87px;
   border-radius: 10px;
   background-color: white;
-  position: relative;
-  left: 204px;
+  position: absolute;
+  top: 42px;
+  right: 0;
 
   visibility: ${(props) => (props.active ? "visible" : "hidden")};
 
@@ -87,11 +76,12 @@ export const MenuBlock = styled.ul`
   align-items: center;
 `;
 
-export const Menu = styled.li`
+export const FirstSubMenu = styled.li`
   width: 100%;
   height: 56px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
+  border-bottom: 1px solid #dbdbdb;
   color: black;
 
   display: flex;
@@ -100,10 +90,10 @@ export const Menu = styled.li`
   align-items: center;
 `;
 
-export const Report = styled.li`
+export const SecondSubMenu = styled.li`
   width: 100%;
   height: 56px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
   color: #ff6636;
 
@@ -111,4 +101,23 @@ export const Report = styled.li`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+export const WrapperContents = styled.div`
+  width: 390px;
+  height: calc(100vh - 179px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 auto;
+  overflow-y: auto;
+  background-color: white;
+  padding-bottom: 10px;
+
+  /* 스크롤 바 숨기기 */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none; /* Firefox */
 `;

@@ -64,6 +64,7 @@ export const CommunityBlock = styled.div`
   align-items: center;
   margin-top: 12px;
   flex-shrink: 0;
+  cursor: pointer;
 `;
 
 export const CommunityImg = styled.div`
