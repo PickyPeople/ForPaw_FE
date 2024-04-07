@@ -12,7 +12,7 @@ export default function Notice() {
   const wrapperRef = useRef(null);
 
   // 코멘트 메뉴 클릭 시 보이게끔 true로 설정
-  const handleCommentMenuClick = (commentID ,replyID) => {
+  const handleCommentMenuClick = (commentID, replyID) => {
     if (replyID == null) {
       setIsCommentMenuClicked(true);
       setIsReplyMenuClicked(false);
@@ -56,23 +56,24 @@ export default function Notice() {
   const [isClickedReply, setIsClickedReply] = useState(false); //답글달기를 눌렀는가 판단하는 변수
   const [isClickedEdit, setIsClickedEidt] = useState(false); //댓글의 수정하기 메뉴를 눌렀을 경우
   const [isClickedReplyEdit, setIsClickedReplyEdit] = useState(false); //답글의 수정하기 메뉴를 눌렀을 경우
-  
-  const [commentNum, setCommentNum] = useState(0);
-  const [replyNum, setReplyNum] = useState(0);
+
+  const [commentNum, setCommentNum] = useState(0); // 삭제하기를 누르고 난 뒤 댓글id 값을 올려주기 위한 변수
 
   const focus = useRef(null); //input태그에 포커스를 주기 위해
 
+  console.log(comments);
+
   //input태그에 focus주기
   const nameFoucs = () => {
-    if(focus.current !== null) {
+    if (focus.current !== null) {
       focus.current.focus();
-    }
+    };
   };
 
   const handleCommentValue = (e) => { //Comment input값을 받아오는 기능
     setNewComment(e.target.value)
   };
-  
+
   const handleReplyValue = (e) => { //Reply Input을 받아오는 기능
     setNewReply(e.target.value);
   };
@@ -109,6 +110,7 @@ export default function Notice() {
     setEditCommentText(text);
     nameFoucs();
   };
+
   //답글 수정모드 활성화
   const activeReplyEdit = (text) => {
     setIsClickedReplyEdit(true);
@@ -119,7 +121,7 @@ export default function Notice() {
     setEditCommentText('');
     setEditReplyText(text);
     nameFoucs();
-  }
+  };
 
   //댓글 or 답글을 다는 기능
   const handleCommentSubmit = (e) => {
@@ -130,7 +132,8 @@ export default function Notice() {
         region: '지역',
         hours: '몇 시간전',
         text: newComment,
-        replies: []
+        replies: [],
+        num: []
       };
       setComments([...comments, newCommentObject]);
       setNewComment('');
@@ -143,19 +146,25 @@ export default function Notice() {
             replies: [
               ...comment.replies,
               {
-                id: comment.replies.length + 1 + replyNum,
-                name: `답글 닉네임${comment.replies.length + 1 + replyNum}`,
+                id: comment.replies.length + 1 + comment.num,
+                name: `답글 닉네임${comment.replies.length + 1}`,
                 region: '지역',
                 hours: '몇 시간전',
                 text: newReply
               }
-            ]
+            ],
           };
         } else {
           return comment;
-        }
+        };
       });
-      setComments(updatedComments);
+      const updatedCommentsWithNum = updatedComments.map(comment => {
+        if (comment.id === clickedCommentID) {
+          return { ...comment, num: [...comment.num, 0] };
+        }
+        return comment;
+      });
+      setComments(updatedCommentsWithNum);
       setNewReply('');
       setIsClickedReply(false); // 답글이 제출되면 isClickedReply를 false로 설정
     } else if (e.key === 'Enter' && editCommentText.trim() !== "") {
@@ -186,7 +195,7 @@ export default function Notice() {
       setIsReplyMenuClicked(false);
       setIsClickedReplyEdit(false);
       setEditReplyText('');
-    } 
+    }
   };
 
   // 댓글 삭제기능
@@ -200,13 +209,14 @@ export default function Notice() {
       const updatedComments = comments.map(comment => {
         if (comment.id === commentID) {
           // 현재 댓글의 replies 배열에서 해당 답글 제외
-          const updatedReplies = comment.replies.filter(reply => reply.id !== replyID);
-          return {...comment, replies: updatedReplies};
+          const updatedReplies = comment.replies.filter(
+            reply => reply.id !== replyID
+          );
+          return { ...comment, replies: updatedReplies };
         }
         return comment;
       });
       setComments(updatedComments);
-      setReplyNum(replyNum + 1);
     };
 
     setIsClickedReply(false);
@@ -236,7 +246,6 @@ export default function Notice() {
         text: newComment,
         replies: []
       };
-
       setComments([...comments, newCommentObject]);
       setNewComment('');
     } else if (isClickedReply && newReply.trim() !== "") {
@@ -299,7 +308,7 @@ export default function Notice() {
         wrapperRef={wrapperRef} //메뉴창 내/외부 판단
         focus={focus} //input태그에 항상 focus를 유지
 
-        comments={comments} 
+        comments={comments} //댓글이나 답글을 담아둘 배열
 
         newComment={newComment} //input에 있는 댓글
         newReply={newReply} //input에 있는 답글
