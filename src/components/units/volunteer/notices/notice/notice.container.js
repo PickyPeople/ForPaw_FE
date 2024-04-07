@@ -1,4 +1,4 @@
-import LikeImage from './component/LikeImage';
+import LikeImage from './hooks/LikeImage';
 import NoticeUI from './notice.presenter';
 import VolunteerDetailHeader from '../../detail/volunteerDetailHeader/VolunteerDetailHeader.container';
 import { useRef, useState, useEffect } from 'react';
@@ -56,14 +56,23 @@ export default function Notice() {
   const [isClickedReply, setIsClickedReply] = useState(false); //답글달기를 눌렀는가 판단하는 변수
   const [isClickedEdit, setIsClickedEidt] = useState(false); //댓글의 수정하기 메뉴를 눌렀을 경우
   const [isClickedReplyEdit, setIsClickedReplyEdit] = useState(false); //답글의 수정하기 메뉴를 눌렀을 경우
+  
+  const [commentNum, setCommentNum] = useState(0);
+  const [replyNum, setReplyNum] = useState(0);
 
-  const [name, setName] = useState(''); //답글달기를 클릭한 유저닉네임을 가져오는 변수
+  const focus = useRef(null); //input태그에 포커스를 주기 위해
+
+  //input태그에 focus주기
+  const nameFoucs = () => {
+    if(focus.current !== null) {
+      focus.current.focus();
+    }
+  };
 
   const handleCommentValue = (e) => { //Comment input값을 받아오는 기능
     setNewComment(e.target.value)
   };
-
-   
+  
   const handleReplyValue = (e) => { //Reply Input을 받아오는 기능
     setNewReply(e.target.value);
   };
@@ -85,7 +94,8 @@ export default function Notice() {
     setNewComment('');
     setNewReply('');
     setClickedCommentID(commentID);
-    setName(userName);
+    // setName(userName);
+    nameFoucs();
   };
 
   //댓글 수정모드를 활성화 밑의 text는 수정하기를 눌렀을 때 댓글의 텍스트를 받아오기 위해서
@@ -97,6 +107,7 @@ export default function Notice() {
     setNewReply('');
     setEditReplyText('');
     setEditCommentText(text);
+    nameFoucs();
   };
   //답글 수정모드 활성화
   const activeReplyEdit = (text) => {
@@ -107,14 +118,15 @@ export default function Notice() {
     setNewReply('');
     setEditCommentText('');
     setEditReplyText(text);
+    nameFoucs();
   }
 
   //댓글 or 답글을 다는 기능
   const handleCommentSubmit = (e) => {
     if (e.key === 'Enter' && newComment.trim() !== "") {
       const newCommentObject = { //배열에 추가되는 정보들
-        id: comments.length + 1,
-        name: `닉네임${comments.length + 1}`,
+        id: comments.length + 1 + commentNum,
+        name: `닉네임${comments.length + 1 + commentNum}`,
         region: '지역',
         hours: '몇 시간전',
         text: newComment,
@@ -131,8 +143,8 @@ export default function Notice() {
             replies: [
               ...comment.replies,
               {
-                id: comment.replies.length + 1,
-                name: `답글 닉네임${comment.replies.length + 1}`,
+                id: comment.replies.length + 1 + replyNum,
+                name: `답글 닉네임${comment.replies.length + 1 + replyNum}`,
                 region: '지역',
                 hours: '몇 시간전',
                 text: newReply
@@ -154,6 +166,7 @@ export default function Notice() {
         return comment;
       });
       setComments(updatedComments);
+      setIsCommentMenuClicked(false);
       setIsClickedEidt(false);
       setEditCommentText('');
     } else if (e.key === 'Enter' && editReplyText.trim() !== "") {
@@ -170,6 +183,7 @@ export default function Notice() {
         return comment;
       });
       setComments(updatedComments);
+      setIsReplyMenuClicked(false);
       setIsClickedReplyEdit(false);
       setEditReplyText('');
     } 
@@ -180,21 +194,21 @@ export default function Notice() {
     if (replyID === null) {
       const updatedComments = comments.filter(comment => comment.id !== commentID);
       setComments(updatedComments);
+      setCommentNum(commentNum + 1);
     } else {
       // 답글 삭제
       const updatedComments = comments.map(comment => {
         if (comment.id === commentID) {
           // 현재 댓글의 replies 배열에서 해당 답글 제외
           const updatedReplies = comment.replies.filter(reply => reply.id !== replyID);
-          return {
-            ...comment,
-            replies: updatedReplies
-          };
+          return {...comment, replies: updatedReplies};
         }
         return comment;
       });
       setComments(updatedComments);
-    }
+      setReplyNum(replyNum + 1);
+    };
+
     setIsClickedReply(false);
     setIsClickedEidt(false);
     setIsClickedReplyEdit(false);
@@ -283,6 +297,7 @@ export default function Notice() {
       <NoticeUI
         LikeImage={LikeImage} //좋아요 버튼을 위한 컴포넌트
         wrapperRef={wrapperRef} //메뉴창 내/외부 판단
+        focus={focus} //input태그에 항상 focus를 유지
 
         comments={comments} 
 
@@ -316,7 +331,6 @@ export default function Notice() {
         activeBtn={activeBtn} //댓글이나 답글을 보내는 버튼
         handleJudegeXClick={handleJudegeXClick}
 
-        //name={name} //답글달기를 클릭하였을 때 유저 닉네임을 가져오기 위한 변수
         handleDelete={handleDelete} //댓글 삭제 기능
       />
     </>

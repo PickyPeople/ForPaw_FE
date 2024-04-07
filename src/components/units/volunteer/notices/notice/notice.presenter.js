@@ -166,8 +166,9 @@ export default function NoticeUI(props) {
               priority={true}
             />
           </S.OpenMenu>
-
           <S.CommentInput
+            autoFocus
+            ref={props.focus}
             placeholder={
               props.isClickedEdit == false && props.isClickedReply == false && props.isClickedReplyEdit == false ?
                 "댓글을 입력해주세요" :
@@ -202,7 +203,6 @@ export default function NoticeUI(props) {
               }
             }}
           />
-
           <S.AddComment onClick={props.activeBtn}>
             <S.ArrowLine />
             <S.ArrowBlock />
