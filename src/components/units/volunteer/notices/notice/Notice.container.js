@@ -8,7 +8,6 @@ export default function Notice() {
   const [clickedCommentID, setClickedCommentID] = useState(null); // 클릭된 댓글의 ID를 관리합니다.
   const [isReplyMenuClicked, setIsReplyMenuClicked] = useState(false);
   const [clickedReplyID, setClickedReplyID] = useState(null); // 클릭된 답글의 ID를 관리한다. 메뉴보이게끔 하는 용도
-
   const wrapperRef = useRef(null);
 
   // 코멘트 메뉴 클릭 시 보이게끔 true로 설정
@@ -44,11 +43,12 @@ export default function Notice() {
     };
   }, []);
 
-  /////////////////////////////////////////////////////////////////
+  /////////////////////////여기서부터는 댓글관련 기능들
 
   const [comments, setComments] = useState([]); //input에서 입력한 값을 배열로서 받을 것이고 presenter에서 map 함수를 이용하여 사용할 것이다.
-  const [newComment, setNewComment] = useState(""); //input안의 내용을 onChange로 받아줄 함수이다.
-  const [newReply, setNewReply] = useState("");
+
+  const [newComment, setNewComment] = useState(""); //input안의 내용을 onChange로 받아줄 변수이다.
+  const [newReply, setNewReply] = useState(""); //답글의 텍스트를 onChange로 받아줄 변수
   const [editCommentText, setEditCommentText] = useState(""); //댓글 수정내용을 받아오는 change함수에 들어가는 값
   const [editReplyText, setEditReplyText] = useState(""); //답글 수정내용을 받아오는 cchange함수에 들어가는 값
 
@@ -59,8 +59,6 @@ export default function Notice() {
   const [commentIdNum, setCommentIdNum] = useState(0); // 삭제하기를 누르고 난 뒤 댓글id 값을 올려주기 위한 변수
 
   const focus = useRef(null); //input태그에 포커스를 주기 위해
-
-  console.log(comments);
 
   //input태그에 focus주기
   const nameFoucs = () => {
@@ -126,7 +124,7 @@ export default function Notice() {
     nameFoucs();
   };
 
-  //댓글 or 답글을 다는 기능
+  //댓글, 답글 댓글 수정, 답글 수정 순으로 if문마다 조건을 부여해줌으로써 작동하도록
   const handleCommentSubmit = (e) => {
     if (e.key === "Enter" && newComment.trim() !== "") {
       const newCommentObject = {
@@ -163,12 +161,6 @@ export default function Notice() {
           return comment;
         }
       });
-      // const updatedCommentsWithNum = updatedComments.map(comment => { //답글을 달때
-      //   if (comment.id === clickedCommentID) {
-      //     return { ...comment, num: [...comment.num, 0] };
-      //   }
-      //   return comment;
-      // });
       setComments(updatedComments);
       setNewReply("");
       setIsClickedReply(false); // 답글이 제출되면 isClickedReply를 false로 설정
@@ -232,7 +224,7 @@ export default function Notice() {
     setEditReplyText("");
   };
 
-  //답글달기 혹은 수정하기를 누르고 나오는 X div의 영역을 누르는지 판단
+  //답글달기 혹은 수정하기를 누르고 나오는 div의 영역의 X버튼을 누르는지 판단
   const handleJudegeXClick = () => {
     setIsClickedReply(false);
     setIsCommentMenuClicked(false);
@@ -241,7 +233,7 @@ export default function Notice() {
     setIsClickedReplyEdit(false);
   };
 
-  //버튼을 눌렸을 때 댓글을 달수 있도록 해주는 함수
+  //enter를 눌렀을 때가 아닌 input옆의 보내기 버튼을 클릭하였을 때 댓글,답글,댓글수정,답글수정 기능
   const activeBtn = () => {
     if (isClickedReply == false && newComment.trim() !== "") {
       const newCommentObject = {
