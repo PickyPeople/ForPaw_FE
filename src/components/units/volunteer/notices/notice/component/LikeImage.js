@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import Image from 'next/image';
-import * as S from '../Announcement.styles'; // LikeImage 컴포넌트의 스타일 파일 경로에 따라 수정해야 할 수도 있습니다.
+import { useState } from "react";
+import Image from "next/image";
+import * as S from "../Notice.styles"; // LikeImage 컴포넌트의 스타일 파일 경로에 따라 수정해야 할 수도 있습니다.
 
 const LikeImage = ({ initialSrc, alt }) => {
   const [imgSrc, setImgSrc] = useState(initialSrc);
@@ -8,8 +8,8 @@ const LikeImage = ({ initialSrc, alt }) => {
 
   const handleImgClick = () => {
     const newSrc = isSecondClick
-      ? '/images/volunteer/announcement/comment_like_icon.svg'
-      : '/images/volunteer/announcement/comment_active_like_icon.svg';
+      ? "/images/volunteer/announcement/comment_like_icon.svg"
+      : "/images/volunteer/announcement/comment_active_like_icon.svg";
     setImgSrc(newSrc);
     setIsSecondClick(!isSecondClick);
   };

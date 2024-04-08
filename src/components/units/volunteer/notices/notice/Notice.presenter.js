@@ -1,4 +1,4 @@
-import * as S from "./Announcement.styles";
+import * as S from "./Notice.styles";
 import Image from "next/image";
 
 export default function AnnouncementUI(props) {

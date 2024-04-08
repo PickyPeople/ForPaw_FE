@@ -1,10 +1,10 @@
-import AnnouncementsUI from "./Announcements.presenter";
 import Headers from "../../../commons/headers/Headers.container";
 import Navigation from "../../../commons/navigation/Navigation.container";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import NoticesUI from "./Notices.presenter";
 
-export default function Announcements() {
+export default function Notices() {
   //라우팅 설정
   const router = useRouter();
   const navigateTo = (path) => () => router.push(path);
@@ -29,62 +29,62 @@ export default function Announcements() {
       id: 1,
       text: "이번주 봉사활동은 업체의 개인사정으로 인해 한 주 쉬어가니 착오 없으시길 바랍니다.",
       writer: "박영빈",
-      time: "3시간 전"
+      time: "3시간 전",
     },
     {
       id: 2,
       text: "이번주 봉사활동은 업체의 개인사정으로 인해 한 주 쉬어가니 착오 없으시길 바랍니다.",
       writer: "이름이 길면..",
-      time: "23시간 전"
+      time: "23시간 전",
     },
     {
       id: 3,
       text: "이번주 봉사활동은 업체의 개인사정으로 인해 한 주 쉬어가니 착오 없으시길 바랍니다.",
       writer: "5글자 정도..",
-      time: "24.02.24"
+      time: "24.02.24",
     },
     {
       id: 4,
       text: "이번주 봉사활동은 업체의 개인사정으로 인해 한 주 쉬어가니 착오 없으시길 바랍니다.",
       writer: "5글자 정도..",
-      time: "24.02.24"
+      time: "24.02.24",
     },
     {
       id: 5,
       text: "이번주 봉사활동은 업체의 개인사정으로 인해 한 주 쉬어가니 착오 없으시길 바랍니다.",
       writer: "5글자 정도..",
-      time: "24.02.24"
+      time: "24.02.24",
     },
     {
       id: 6,
       text: "이번주 봉사활동은 업체의 개인사정으로 인해 한 주 쉬어가니 착오 없으시길 바랍니다.",
       writer: "5글자 정도..",
-      time: "24.02.24"
+      time: "24.02.24",
     },
     {
       id: 7,
       text: "이번주 봉사활동은 업체의 개인사정으로 인해 한 주 쉬어가니 착오 없으시길 바랍니다.",
       writer: "5글자 정도..",
-      time: "24.02.24"
+      time: "24.02.24",
     },
     {
       id: 8,
       text: "이번주 봉사활동은 업체의 개인사정으로 인해 한 주 쉬어가니 착오 없으시길 바랍니다.",
       writer: "5글자 정도..",
-      time: "24.02.24"
+      time: "24.02.24",
     },
     {
       id: 9,
       text: "이번주 봉사활동은 업체의 개인사정으로 인해 한 주 쉬어가니 착오 없으시길 바랍니다.",
       writer: "5글자 정도..",
-      time: "24.02.24"
+      time: "24.02.24",
     },
   ];
 
   return (
     <>
       <Headers />
-      <AnnouncementsUI
+      <NoticesUI
         navigateTo={navigateTo}
         Announcements={Announcements}
         clickedIndex={clickedIndex}
@@ -93,5 +93,5 @@ export default function Announcements() {
       />
       <Navigation />
     </>
-  )
-};
+  );
+}
