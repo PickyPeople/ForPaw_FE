@@ -207,7 +207,7 @@ export const DetailContentsDateBox = styled.div`
 export const DetailDate = styled.p`
   width: 79px;
   height: 24px;
-  font-wize: 20px;
+  font-size: 20px;
   font-weight: bold;
   line-height: 24px;
 `;
@@ -318,13 +318,19 @@ export const UsersItems = styled.div`
 
   display: flex;
   flex-direction: row;
-  gap: -5px;
 `;
 
 export const UserImg = styled.div`
-  width: 30px;
+  width: 28px;
   height: 30px;
   position: relative;
+  border-radius: 50%;
+  background-color: #FEF8F2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const ParticipateBtn = styled.button`

@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function VolunteerDetailUI(props) {
   return (
-    <div style={{zIndex: "1", position: "relative"}}>
+    <>
       <S.Judge
         style={{ visibility: props.isJoinedClikced ? "visible" : "hidden" }}
       >
@@ -11,7 +11,6 @@ export default function VolunteerDetailUI(props) {
       </S.Judge>
       <S.WrapperContents
         active={props.isJoinedClikced}
-        onClick={props.handleOutsideMenuClick}
       >
         <S.VolunteerIntroContainer>
           <S.IntroMainImgBlock>
@@ -31,7 +30,7 @@ export default function VolunteerDetailUI(props) {
             <S.AnnouncementTitle>공지사항</S.AnnouncementTitle>
             <S.RightArrowImgBlock>
               <Image
-                onClick={props.navigateTo('/volunteer/detail/announcements')}
+                onClick={props.navigateTo('/volunteer/detail/notices')}
                 src="/images/volunteer/volunteerDetail/right_arrow.svg"
                 alt="right_arrow"
                 width={44}
@@ -43,7 +42,7 @@ export default function VolunteerDetailUI(props) {
           <S.AnnouncementDetailContainer>
             {props.notices.map((notice, index) => (
               <S.AnnouncementDetailBlock
-                onClick={props.navigateTo('/volunteer/detail/announcements/announcement')}
+                onClick={props.navigateTo('/volunteer/detail/notices/notice')}
                 key={notice.id}
                 style={{ backgroundColor: props.clickedIndex === index ? "#FEF8F2" : "#F6F6F6" }}
                 onMouseDown={() => props.handleAnnouncementClick(index)} // 마우스를 눌렀을 때만 처리
@@ -63,7 +62,7 @@ export default function VolunteerDetailUI(props) {
                     </S.CheckImg>
                   </S.CheckBox>
                   <S.AnnouncementText>
-                    {notice.text.length > 55 ? `${announcement.text.slice(0, 55)}...` : notice.text}
+                    {notice.title.length > 55 ? `${announcement.text.slice(0, 55)}...` : notice.title}
                   </S.AnnouncementText>
                 </S.AnnouncementItems>
               </S.AnnouncementDetailBlock>
@@ -85,7 +84,7 @@ export default function VolunteerDetailUI(props) {
             </S.RightArrowImgBlock>
           </S.MeetingTitleBlock>
           <S.WrapperMeetingDetail>
-            {props.Meetings.map((infos, index) => (
+            {props.meetings.map((infos, index) => (
               <S.MeetingDetailContainer
                 key={infos.id}
               >
@@ -130,33 +129,20 @@ export default function VolunteerDetailUI(props) {
                   </S.MeetingDetailInfoBox>
                   <S.UsersAndParticipateBox>
                     <S.UsersItems>
-                      <S.UserImg>
-                        <Image
-                          src="/images/volunteer/volunteerDetail/user_1.svg"
-                          alt="user"
-                          width={25}
-                          height={30}
-                          priority={true}
-                        />
-                      </S.UserImg>
-                      <S.UserImg style={{ right: "8px" }}>
-                        <Image
-                          src="/images/volunteer/volunteerDetail/user_2.svg"
-                          alt="user"
-                          width={25}
-                          height={30}
-                          priority={true}
-                        />
-                      </S.UserImg>
-                      <S.UserImg style={{ right: "16px" }}>
-                        <Image
-                          src="/images/volunteer/volunteerDetail/user_3.svg"
-                          alt="user"
-                          width={30}
-                          height={30}
-                          priority={true}
-                        />
-                      </S.UserImg>
+                      {infos.participants.map((participant, index) => (
+                        <S.UserImg
+                          style={{right: index > 0 ? index * 8 + "px" : ""}}
+                          key={index}
+                        >
+                          <Image
+                            src={participant.profileURL}
+                            alt="user"
+                            width={25}
+                            height={30}
+                            priority={true}
+                          />
+                        </S.UserImg>
+                      ))}
                     </S.UsersItems>
                     <S.ParticipateBtn
                       onClick={props.navigateTo("/volunteer/detail/regular_meetings/regular_meeting")}>
@@ -177,7 +163,7 @@ export default function VolunteerDetailUI(props) {
               key={infos.id}
             >
               <S.MemberBox
-                // onClick={props.navigateTo('/volunteer/detail/regular_meetings/regular_meeting')}
+              // onClick={props.navigateTo('/volunteer/detail/regular_meetings/regular_meeting')}
               >
                 <S.MemberIcon>
                   <Image
@@ -189,8 +175,8 @@ export default function VolunteerDetailUI(props) {
                   />
                 </S.MemberIcon>
                 <S.MemberName>{infos.name}</S.MemberName>
-                <S.StatusBlock style={{visibility: infos.status == "회원" ? "hidden" : "visible"}}>
-                  <S.Status style={{backgroundColor: infos.status == "관리자" ? "#FF6636" : "#240D05"}}>{infos.status}</S.Status>
+                <S.StatusBlock style={{ visibility: infos.role == "회원" ? "hidden" : "visible" }}>
+                  <S.Status style={{ backgroundColor: infos.role == "관리자" ? "#FF6636" : "#240D05" }}>{infos.role}</S.Status>
                 </S.StatusBlock>
               </S.MemberBox>
             </S.MemberListContainer>
@@ -203,6 +189,6 @@ export default function VolunteerDetailUI(props) {
       >
         <S.NextButtonItem onClick={props.ChangeStatus('/volunteer/detail')}>{props.status === "member" ? "채팅방 입장하기" : "가입하기"}</S.NextButtonItem>
       </S.NextButtonBlock>
-    </div>
+    </>
   )
 }
