@@ -121,3 +121,134 @@ export const WrapperContents = styled.div`
   }
   scrollbar-width: none; /* Firefox */
 `;
+
+export const UserContainer = styled.div`
+  width: 87%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 5px;
+`;
+
+export const UserPhoto = styled.div`
+  width: 40px;
+  height: 40px;
+`;
+
+export const UserInfoBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 7px;
+`;
+
+export const UserNickname = styled.div`
+  font-size: 14px;
+  font-weight: 700;
+`;
+
+export const UpdatedTime = styled.div`
+  font-size: 12px;
+  font-weight: 400;
+  color: #808080;
+  margin-top: 3px;
+`;
+
+export const BoardContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+`;
+
+export const BoardTitle = styled.div`
+  width: 90%;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 22px;
+  margin-left: 25px;
+`;
+
+export const BoardText = styled.div`
+  width: 80%;
+  margin-top: 12px;
+  margin-left: 25px;
+  font-size: 16px;
+  font-weight: 400;
+`;
+
+export const BoardImgBlock = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-x: auto;
+  margin-top: 20px;
+  margin-left: 25px;
+
+  /* 스크롤 바 숨기기 */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none; /* Firefox */
+`;
+
+export const BoardImg = styled.div`
+  width: 224px;
+  height: 197px;
+  border-radius: 20px;
+  margin-right: 20px;
+  flex-shrink: 0;
+`;
+
+export const BoardInfoBlock = styled.div`
+  width: 200px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 25px;
+  gap: 12px;
+`;
+
+export const BoardLikes = styled.div`
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+`;
+
+export const BoardComments = styled.div`
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+`;
+
+export const BoardShare = styled.div`
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+`;
+
+export const BoardAdBanner = styled.div`
+  width: 390px;
+  height: 60px;
+  margin-top: 40px;
+`;
