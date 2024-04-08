@@ -57,7 +57,7 @@ export default function Notice() {
   const [isClickedEdit, setIsClickedEidt] = useState(false); //댓글의 수정하기 메뉴를 눌렀을 경우
   const [isClickedReplyEdit, setIsClickedReplyEdit] = useState(false); //답글의 수정하기 메뉴를 눌렀을 경우
 
-  const [commentNum, setCommentNum] = useState(0); // 삭제하기를 누르고 난 뒤 댓글id 값을 올려주기 위한 변수
+  const [commentIdNum, setCommentIdNum] = useState(0); // 삭제하기를 누르고 난 뒤 댓글id 값을 올려주기 위한 변수
 
   const focus = useRef(null); //input태그에 포커스를 주기 위해
 
@@ -127,13 +127,13 @@ export default function Notice() {
   const handleCommentSubmit = (e) => {
     if (e.key === 'Enter' && newComment.trim() !== "") {
       const newCommentObject = { //배열에 추가되는 정보들
-        id: comments.length + 1 + commentNum,
-        name: `닉네임${comments.length + 1 + commentNum}`,
+        id: comments.length + 1 + commentIdNum,
+        name: `닉네임${comments.length + 1 + commentIdNum}`,
         region: '지역',
         hours: '몇 시간전',
         text: newComment,
         replies: [],
-        num: []
+        num: 0
       };
       setComments([...comments, newCommentObject]);
       setNewComment('');
@@ -147,7 +147,7 @@ export default function Notice() {
               ...comment.replies,
               {
                 id: comment.replies.length + 1 + comment.num,
-                name: `답글 닉네임${comment.replies.length + 1}`,
+                name: `답글 닉네임${comment.replies.length + 1 + comment.num}`,
                 region: '지역',
                 hours: '몇 시간전',
                 text: newReply
@@ -158,13 +158,13 @@ export default function Notice() {
           return comment;
         };
       });
-      const updatedCommentsWithNum = updatedComments.map(comment => {
-        if (comment.id === clickedCommentID) {
-          return { ...comment, num: [...comment.num, 0] };
-        }
-        return comment;
-      });
-      setComments(updatedCommentsWithNum);
+      // const updatedCommentsWithNum = updatedComments.map(comment => { //답글을 달때 
+      //   if (comment.id === clickedCommentID) {
+      //     return { ...comment, num: [...comment.num, 0] };
+      //   }
+      //   return comment;
+      // });
+      setComments(updatedComments);
       setNewReply('');
       setIsClickedReply(false); // 답글이 제출되면 isClickedReply를 false로 설정
     } else if (e.key === 'Enter' && editCommentText.trim() !== "") {
@@ -203,7 +203,7 @@ export default function Notice() {
     if (replyID === null) {
       const updatedComments = comments.filter(comment => comment.id !== commentID);
       setComments(updatedComments);
-      setCommentNum(commentNum + 1);
+      setCommentIdNum(commentIdNum + 1); //삭제하기를 클릭하여 id값을 눌려주기 위해
     } else {
       // 답글 삭제
       const updatedComments = comments.map(comment => {
@@ -212,13 +212,12 @@ export default function Notice() {
           const updatedReplies = comment.replies.filter(
             reply => reply.id !== replyID
           );
-          return { ...comment, replies: updatedReplies };
+          return { ...comment, replies: updatedReplies, num: comment.num + 1};
         }
         return comment;
       });
       setComments(updatedComments);
     };
-
     setIsClickedReply(false);
     setIsClickedEidt(false);
     setIsClickedReplyEdit(false);
