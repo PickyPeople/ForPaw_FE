@@ -33,10 +33,10 @@ export const Container = styled.div`
 export const AnnouncementBlock = styled.div`
   width: 344px;
   height: 57px;
-  border: 1px solid #F6F2EE;
+  border: 1px solid #f6f2ee;
   border-radius: 16px;
   cursor: pointer;
-  background-color: #F6F6F6;
+  background-color: #f6f6f6;
 
   display: flex;
   flex-direction: row;
@@ -52,22 +52,20 @@ export const AnnouncementItem = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  
 `;
 
 export const CheckBox = styled.div`
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   margin-right: 5px;
-  
+
   /*display 영역*/
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 `;
 
 export const CheckImg = styled.div`
@@ -80,10 +78,10 @@ export const AnnouncementText = styled.p`
   height: 34px;
   font-size: 14px;
   letter-spacing: -0.7px;
-  margin-left:10px;
+  margin-left: 10px;
   margin-right: 12px;
 
-  overflow:hidden;
+  overflow: hidden;
 `;
 
 export const WritersBlock = styled.div`
@@ -93,7 +91,7 @@ export const WritersBlock = styled.div`
   font-weight: 590;
   color: #7b7b7b;
   letter-spacing: -0.4px;
-  
+
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
