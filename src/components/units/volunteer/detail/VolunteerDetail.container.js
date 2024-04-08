@@ -58,19 +58,19 @@ export default function VolunteerDetail() {
   const notices = [
     {
       id: 1,
-      text: "이번주 봉사활동은 업체의 개인사정으로 인해 한 주 쉬어가니 착오 없으시길 바랍니다."
+      title: "이번주 봉사활동은 업체의 개인사정으로 인해 한 주 쉬어가니 착오 없으시길 바랍니다."
     },
     {
       id: 2,
-      text: "이번주 봉사활동은 업체의 개인사정으로 인해 한 주 쉬어가니 착오 없으시길 바랍니다."
+      title: "이번주 봉사활동은 업체의 개인사정으로 인해 한 주 쉬어가니 착오 없으시길 바랍니다."
     },
     {
       id: 3,
-      text: "이번주 봉사활동은 업체의 개인사정으로 인해 한 주 쉬어가니 착오 없으시길 바랍니다."
+      title: "이번주 봉사활동은 업체의 개인사정으로 인해 한 주 쉬어가니 착오 없으시길 바랍니다."
     }
   ];
 
-  const Meetings = [
+  const meetings = [
     {
       id: 1,
       detailDate: "2/12 (월)",
@@ -84,7 +84,12 @@ export default function VolunteerDetail() {
       detail_cost: "2천원(신규 인원제외)",
       infoName_Participated: "인원",
       detail_participated: "12",
-      maximun_people: "12"
+      maximun_people: "12",
+      participants: [
+        { profileURL: "/images/volunteer/volunteerDetail/user_3.svg" },
+        { profileURL: "/images/volunteer/volunteerDetail/user_3.svg" },
+        { profileURL: "/images/volunteer/volunteerDetail/user_3.svg" }
+      ]
     },
     {
       id: 2,
@@ -99,7 +104,12 @@ export default function VolunteerDetail() {
       detail_cost: "2천원(신규 인원제외)",
       infoName_Participated: "인원",
       detail_participated: "12",
-      maximun_people: "12"
+      maximun_people: "12",
+      participants: [
+        { profileURL: "/images/volunteer/volunteerDetail/user_3.svg" },
+        { profileURL: "/images/volunteer/volunteerDetail/user_3.svg" },
+        { profileURL: "/images/volunteer/volunteerDetail/user_3.svg" }
+      ]
     },
     {
       id: 3,
@@ -114,7 +124,12 @@ export default function VolunteerDetail() {
       detail_cost: "2천원(신규 인원제외)",
       infoName_Participated: "인원",
       detail_participated: "12",
-      maximun_people: "12"
+      maximun_people: "12",
+      participants: [
+        { profileURL: "/images/volunteer/volunteerDetail/user_3.svg" },
+        { profileURL: "/images/volunteer/volunteerDetail/user_3.svg" },
+        { profileURL: "/images/volunteer/volunteerDetail/user_3.svg" }
+      ]
     },
   ];
 
@@ -154,7 +169,7 @@ export default function VolunteerDetail() {
       <VolunteerDetailUI
         navigateTo={navigateTo}
         notices={notices}
-        Meetings={Meetings}
+        meetings={meetings}
         clickedIndex={clickedIndex}
         handleAnnouncementClick={handleAnnouncementClick}
         isJoinedClikced={isJoinedClikced}
