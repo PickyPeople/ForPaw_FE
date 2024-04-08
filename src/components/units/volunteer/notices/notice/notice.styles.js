@@ -60,7 +60,7 @@ export const AnnouncementText = styled.div`
 export const Boundary = styled.div`
   width: 390px;
   height: 20px;
-  background-color: #FDFAF7;
+  background-color: #fdfaf7;
   flex-shrink: 0;
 `;
 
@@ -114,7 +114,7 @@ export const CommentUser = styled.div`
   width: 296px;
   height: 40px;
   margin-left: 8px;
-  
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -218,10 +218,9 @@ export const AddReplyText = styled.p`
   padding-top: 3px;
 `;
 
-
 export const ReplyBlock = styled.div`
   margin-top: 24px;
-  
+
   width: 296px;
   height: 103px;
 `;
@@ -247,7 +246,7 @@ export const Reply = styled.p`
 export const ReplyMenuImg = styled.div`
   width: 30px;
   height: 30px;
- 
+
   cursor: pointer;
 `;
 
@@ -270,7 +269,7 @@ export const ToReplyBlock = styled.div`
 export const ToReply = styled.p`
   width: 95%;
   height: 100%;
-  background-color: #F6F6F6;
+  background-color: #f6f6f6;
   flex-shrink: 0;
   padding-left: 15px;
   font-weight: 500;
@@ -284,7 +283,7 @@ export const ToReply = styled.p`
 export const ToReplyClose = styled.p`
   width: 5%;
   height: 100%;
-  background-color: #F6F6F6;
+  background-color: #f6f6f6;
   cursor: pointer;
 
   display: flex;
@@ -308,7 +307,7 @@ export const AddCommentContainer = styled.div`
   height: 84px;
   margin: 0 auto;
   background-color: white;
-  border-top: 1px solid #DBDBDB;
+  border-top: 1px solid #dbdbdb;
 
   display: flex;
   flex-direction: column;
@@ -332,7 +331,7 @@ export const OpenMenu = styled.div`
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background-color: #FF6636;
+  background-color: #ff6636;
   cursor: pointer;
 
   display: flex;
@@ -341,20 +340,19 @@ export const OpenMenu = styled.div`
   align-items: center;
 `;
 
-
 export const CommentInput = styled.input`
   width: 232px;
   height: 44px;
   border: none;
   border-radius: 22px;
-  background-color: #F6F6F6;
+  background-color: #f6f6f6;
   padding-left: 15px;
 
-  :focus{
+  :focus {
     outline: none;
   }
 
-  ::placeholder{
+  ::placeholder {
     color: #888888;
     font-size: 14px;
   }
@@ -364,9 +362,9 @@ export const AddComment = styled.div`
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background-color: #240D05;
+  background-color: #240d05;
   cursor: pointer;
-  
+
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -406,9 +404,8 @@ export const MenuBlock = styled.div`
   position: relative;
   font-size: 17px;
   right: 80px;
-  
 
-  box-shadow: 0 3px 6px rgba(0,0,0,0.12), 0 3px 6px rgba(0,0,0,0.10);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.1);
 
   display: flex;
   flex-direction: column;
@@ -432,7 +429,7 @@ export const Delete = styled.p`
   width: 100%;
   height: 56px;
   font-weight: 500;
-  color: #FF6636;
+  color: #ff6636;
 
   display: flex;
   flex-direction: column;

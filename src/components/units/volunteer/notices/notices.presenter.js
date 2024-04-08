@@ -8,14 +8,20 @@ export default function NoticesUI(props) {
         <S.Container>
           {props.notices.map((notice, index) => (
             <S.AnnouncementBlock
-              onClick={props.navigateTo('/volunteer/detail/notices/notice')}
+              onClick={props.navigateTo("/volunteer/detail/notices/notice")}
               key={notice.id}
-              style={{ backgroundColor: props.clickedIndex === index ? "#FFF0EB" : "#F6F6F6" }}
+              style={{
+                backgroundColor:
+                  props.clickedIndex === index ? "#FFF0EB" : "#F6F6F6",
+              }}
               onMouseDown={() => props.handleAnnouncementClick(index)}
             >
               <S.AnnouncementItem>
                 <S.CheckBox
-                  style={{ backgroundColor: props.clickedIndex === index ? "#FF6636" : "#D9D9D9" }}
+                  style={{
+                    backgroundColor:
+                      props.clickedIndex === index ? "#FF6636" : "#D9D9D9",
+                  }}
                 >
                   <S.CheckImg>
                     <Image
@@ -28,7 +34,9 @@ export default function NoticesUI(props) {
                   </S.CheckImg>
                 </S.CheckBox>
                 <S.AnnouncementText>
-                  {notice.text.length > 39 ? `${notice.text.slice(0, 39)}...` : notice.text}
+                  {notice.text.length > 39
+                    ? `${notice.text.slice(0, 39)}...`
+                    : notice.text}
                 </S.AnnouncementText>
                 <S.WritersBlock>
                   <S.Writer>{notice.writer}</S.Writer>
@@ -37,7 +45,11 @@ export default function NoticesUI(props) {
               </S.AnnouncementItem>
             </S.AnnouncementBlock>
           ))}
-          <S.AddAnnouncement style={{visibility: props.status == 'member' ? "hidden" : "visible"}}>
+          <S.AddAnnouncement
+            style={{
+              visibility: props.status == "member" ? "hidden" : "visible",
+            }}
+          >
             <Image
               src="/images/volunteer/volunteer_add_icon.svg"
               alt="volunteer_add_icon"
@@ -49,5 +61,5 @@ export default function NoticesUI(props) {
         </S.Container>
       </S.WrapperContents>
     </>
-  )
-};
+  );
+}
