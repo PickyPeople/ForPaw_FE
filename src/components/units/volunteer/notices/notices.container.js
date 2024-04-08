@@ -1,4 +1,4 @@
-import NoticesUI from "./notices.presenter";
+import NoticesUI from "./Notices.presenter";
 import Headers from "../../../commons/headers/Headers.container";
 import Navigation from "../../../commons/navigation/Navigation.container";
 import { useRouter } from "next/router";

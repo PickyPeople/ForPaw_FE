@@ -1,4 +1,4 @@
-import * as S from "./notices.styles";
+import * as S from "./Notices.styles";
 import Image from "next/image";
 
 export default function NoticesUI(props) {

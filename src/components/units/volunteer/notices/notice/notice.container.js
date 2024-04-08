@@ -1,5 +1,5 @@
 import LikeImage from "./hooks/LikeImage";
-import NoticeUI from "./notice.presenter";
+import NoticeUI from "./Notice.presenter";
 import VolunteerDetailHeader from "../../detail/volunteerDetailHeader/VolunteerDetailHeader.container";
 import { useRef, useState, useEffect } from "react";
 
