@@ -1,10 +1,10 @@
+import NoticesUI from "./Notices.presenter";
 import Headers from "../../../commons/headers/Headers.container";
 import Navigation from "../../../commons/navigation/Navigation.container";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import NoticesUI from "./Notices.presenter";
 
-export default function Notices() {
+export default function Announcements() {
   //라우팅 설정
   const router = useRouter();
   const navigateTo = (path) => () => router.push(path);
@@ -24,7 +24,7 @@ export default function Notices() {
     }, 2000);
   };
 
-  const Announcements = [
+  const notices = [
     {
       id: 1,
       text: "이번주 봉사활동은 업체의 개인사정으로 인해 한 주 쉬어가니 착오 없으시길 바랍니다.",
@@ -86,7 +86,7 @@ export default function Notices() {
       <Headers />
       <NoticesUI
         navigateTo={navigateTo}
-        Announcements={Announcements}
+        notices={notices}
         clickedIndex={clickedIndex}
         handleAnnouncementClick={handleAnnouncementClick}
         status={status}

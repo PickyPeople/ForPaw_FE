@@ -1,21 +1,27 @@
-import * as S from "./Announcements.styles";
+import * as S from "./Notices.styles";
 import Image from "next/image";
 
-export default function AnnouncementsUI(props) {
+export default function NoticesUI(props) {
   return (
     <>
       <S.WrapperContents>
         <S.Container>
-          {props.Announcements.map((announcement, index) => (
+          {props.notices.map((notice, index) => (
             <S.AnnouncementBlock
-              onClick={props.navigateTo('/volunteer/detail/announcements/announcement')}
-              key={announcement.id}
-              style={{ backgroundColor: props.clickedIndex === index ? "#FFF0EB" : "#F6F6F6" }}
+              onClick={props.navigateTo("/volunteer/detail/notices/notice")}
+              key={notice.id}
+              style={{
+                backgroundColor:
+                  props.clickedIndex === index ? "#FFF0EB" : "#F6F6F6",
+              }}
               onMouseDown={() => props.handleAnnouncementClick(index)}
             >
               <S.AnnouncementItem>
                 <S.CheckBox
-                  style={{ backgroundColor: props.clickedIndex === index ? "#FF6636" : "#D9D9D9" }}
+                  style={{
+                    backgroundColor:
+                      props.clickedIndex === index ? "#FF6636" : "#D9D9D9",
+                  }}
                 >
                   <S.CheckImg>
                     <Image
@@ -28,16 +34,22 @@ export default function AnnouncementsUI(props) {
                   </S.CheckImg>
                 </S.CheckBox>
                 <S.AnnouncementText>
-                  {announcement.text.length > 39 ? `${announcement.text.slice(0, 39)}...` : announcement.text}
+                  {notice.text.length > 39
+                    ? `${notice.text.slice(0, 39)}...`
+                    : notice.text}
                 </S.AnnouncementText>
                 <S.WritersBlock>
-                  <S.Writer>{announcement.writer}</S.Writer>
-                  <S.Time>{announcement.time}</S.Time>
+                  <S.Writer>{notice.writer}</S.Writer>
+                  <S.Time>{notice.time}</S.Time>
                 </S.WritersBlock>
               </S.AnnouncementItem>
             </S.AnnouncementBlock>
           ))}
-          <S.AddAnnouncement style={{visibility: props.status == 'member' ? "hidden" : "visible"}}>
+          <S.AddAnnouncement
+            style={{
+              visibility: props.status == "member" ? "hidden" : "visible",
+            }}
+          >
             <Image
               src="/images/volunteer/volunteer_add_icon.svg"
               alt="volunteer_add_icon"
@@ -49,5 +61,5 @@ export default function AnnouncementsUI(props) {
         </S.Container>
       </S.WrapperContents>
     </>
-  )
-};
+  );
+}

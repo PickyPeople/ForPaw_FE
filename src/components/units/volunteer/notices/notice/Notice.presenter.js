@@ -1,7 +1,7 @@
 import * as S from "./Notice.styles";
 import Image from "next/image";
 
-export default function AnnouncementUI(props) {
+export default function NoticeUI(props) {
   return (
     <>
       <S.WrapperContents
@@ -60,7 +60,9 @@ export default function AnnouncementUI(props) {
                 <S.CommentText>
                   <S.Comment>{comment.text}</S.Comment>
                   <S.CommentMenuImg
-                    onClick={() => props.handleCommentMenuClick(comment.id)}
+                    onClick={() =>
+                      props.handleCommentMenuClick(comment.id, null)
+                    }
                   >
                     <Image
                       src="/images/header/menu_icon.svg"
@@ -127,7 +129,7 @@ export default function AnnouncementUI(props) {
                     <S.Reply>{reply.text}</S.Reply>
                     <S.ReplyMenuImg
                       onClick={() =>
-                        props.handleReplyMenuClick(comment.id, reply.id)
+                        props.handleCommentMenuClick(comment.id, reply.id)
                       }
                     >
                       <Image
@@ -135,11 +137,10 @@ export default function AnnouncementUI(props) {
                         alt="menu_icon"
                         width={30}
                         height={30}
-                        priority={true}
                       />
                       {props.isReplyMenuClicked &&
                         props.clickedReplyID === reply.id &&
-                        props.selectedCommentID === comment.id && (
+                        props.clickedCommentID === comment.id && (
                           <S.MenuBlock ref={props.wrapperRef}>
                             <S.Edit
                               onClick={() => props.activeReplyEdit(reply.text)}
@@ -170,24 +171,16 @@ export default function AnnouncementUI(props) {
           ))}
         </S.CommentContainer>
       </S.WrapperContents>
-      {props.isClickedReply && (
+      {props.isClickedReply ||
+      props.isClickedEdit ||
+      props.isClickedReplyEdit ? (
         <S.ToReplyBlock>
-          <S.ToReply>댓글 다는중..</S.ToReply>
+          {props.isClickedReply && <S.ToReply>댓글 다는중..</S.ToReply>}
+          {props.isClickedEdit && <S.ToReply>댓글 수정중..</S.ToReply>}
+          {props.isClickedReplyEdit && <S.ToReply>답글 수정중..</S.ToReply>}
           <S.ToReplyClose onClick={props.handleJudegeXClick}>X</S.ToReplyClose>
         </S.ToReplyBlock>
-      )}
-      {props.isClickedEdit && (
-        <S.ToReplyBlock>
-          <S.ToReply>댓글 수정중..</S.ToReply>
-          <S.ToReplyClose onClick={props.handleJudegeXClick}>X</S.ToReplyClose>
-        </S.ToReplyBlock>
-      )}
-      {props.isClickedReplyEdit && (
-        <S.ToReplyBlock>
-          <S.ToReply>답글 수정중..</S.ToReply>
-          <S.ToReplyClose onClick={props.handleJudegeXClick}>X</S.ToReplyClose>
-        </S.ToReplyBlock>
-      )}
+      ) : null}
       <S.AddCommentContainer>
         <S.AddCommentBlock>
           <S.OpenMenu>
@@ -199,8 +192,9 @@ export default function AnnouncementUI(props) {
               priority={true}
             />
           </S.OpenMenu>
-
           <S.CommentInput
+            autoFocus
+            ref={props.focus}
             placeholder={
               props.isClickedEdit == false &&
               props.isClickedReply == false &&
@@ -235,11 +229,11 @@ export default function AnnouncementUI(props) {
                 props.isClickedReplyEdit == false
                   ? props.handleCommentSubmit(e)
                   : props.isClickedReply
-                  ? props.handleReplySubmit(e)
+                  ? props.handleCommentSubmit(e)
                   : props.isClickedEdit
-                  ? props.handleEditSubmit(e)
+                  ? props.handleCommentSubmit(e)
                   : props.isClickedReplyEdit
-                  ? props.handleEditSubmit(e)
+                  ? props.handleCommentSubmit(e)
                   : "";
               }
             }}
@@ -259,7 +253,6 @@ export default function AnnouncementUI(props) {
               }
             }}
           />
-
           <S.AddComment onClick={props.activeBtn}>
             <S.ArrowLine />
             <S.ArrowBlock />
