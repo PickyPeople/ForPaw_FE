@@ -7,7 +7,7 @@ export default function RegularMeetingsUI(props) {
       <S.WrapperContents>
         <S.Container>
           <S.WrapperMeetingDetail>
-            {props.volunteerDetailInfos.meetings.map((infos, index) => (
+            {props.RegularMeetingsInfos.meetings.map((infos, index) => (
               <S.MeetingDetailContainer key={infos.id}>
                 <S.MeetingDetailContentsBlock>
                   <S.DetailContentsDateBox>
@@ -40,10 +40,10 @@ export default function RegularMeetingsUI(props) {
                       </S.MeetingDetailItems>
                       <S.MeetingDetailItems>
                         <S.DetailInfoName>
-                          {infos.participantCnt}
+                          인원
                         </S.DetailInfoName>
                         <S.DetailInfo>
-                          <S.ParticipatedPeople>인원</S.ParticipatedPeople>/
+                          <S.ParticipatedPeople>{infos.participantCnt}</S.ParticipatedPeople>/
                           <S.MaximunPeople>{infos.maxNum}</S.MaximunPeople>
                         </S.DetailInfo>
                       </S.MeetingDetailItems>

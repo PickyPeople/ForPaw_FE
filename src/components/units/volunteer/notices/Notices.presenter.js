@@ -6,7 +6,7 @@ export default function NoticesUI(props) {
     <>
       <S.WrapperContents>
         <S.Container>
-          {props.volunteerDetailInfos.notices.map((notice, index) => (
+          {props.noticesInfos.notice.map((notice, index) => (
             <S.AnnouncementBlock
               onClick={props.navigateTo("/volunteer/detail/notices/notice")}
               key={notice.id}
@@ -39,8 +39,8 @@ export default function NoticesUI(props) {
                     : notice.title}
                 </S.AnnouncementText>
                 <S.WritersBlock>
-                  <S.Writer>{notice.writer}</S.Writer>
-                  <S.Time>{notice.time}</S.Time>
+                  <S.Writer>{notice.name}</S.Writer>
+                  <S.Time>{notice.date}</S.Time>
                 </S.WritersBlock>
               </S.AnnouncementItem>
             </S.AnnouncementBlock>

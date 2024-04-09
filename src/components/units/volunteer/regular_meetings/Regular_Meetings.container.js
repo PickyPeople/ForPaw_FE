@@ -2,22 +2,23 @@ import RegularMeetingsUI from "./Regular_Meetings.presenter";
 import Headers from "../../../commons/headers/Headers.container";
 import Navigation from "../../../commons/navigation/Navigation.container";
 import { useRouter } from "next/router";
-import useFetchVolunteerDetail from "../detail/hooks/useFetchVolunteerDetail";
+import useFetchRegularMeetings from "./hooks/useFetchRegularMeetings";
 
 export default function RegularMeetings() {
   const router = useRouter();
-  const navigateTo = (path) => () => router.push(path);
 
-  const status = router.query.name;
+  const navigateTo = (path) => () => router.push(path); //정규모임 상세페이지 넘어가기
 
-  const { volunteerDetailInfos } = useFetchVolunteerDetail();
+  const status = router.query.name; //멤버인 것을 해주기 위해서
+
+  const { RegularMeetingsInfos } = useFetchRegularMeetings();
 
   return (
     <>
       <Headers />
       <RegularMeetingsUI
         navigateTo={navigateTo}
-        volunteerDetailInfos={volunteerDetailInfos}
+        RegularMeetingsInfos={RegularMeetingsInfos}
         status={status}
       />
       <Navigation />

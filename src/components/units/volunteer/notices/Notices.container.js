@@ -2,7 +2,7 @@ import NoticesUI from "./Notices.presenter";
 import Headers from "../../../commons/headers/Headers.container";
 import Navigation from "../../../commons/navigation/Navigation.container";
 import { useNoticeClick } from "../detail/hooks/useNoticeClick";
-import useFetchVolunteerDetail from "../detail/hooks/useFetchVolunteerDetail";
+import useFetchNotices from "./hooks/useFetchNotices";
 
 export default function Announcements() {
   //라우팅설정 및 클릭기능
@@ -10,14 +10,14 @@ export default function Announcements() {
     useNoticeClick();
 
   //공지사항, 정규모임, 멤버 등의 정보를 fetch해 오는 기능
-  const { volunteerDetailInfos } = useFetchVolunteerDetail();
+  const { noticesInfos } = useFetchNotices();
 
   return (
     <>
       <Headers />
       <NoticesUI
         navigateTo={navigateTo}
-        volunteerDetailInfos={volunteerDetailInfos}
+        noticesInfos={noticesInfos}
         clickedIndex={clickedIndex}
         handleAnnouncementClick={handleAnnouncementClick}
         status={status}
