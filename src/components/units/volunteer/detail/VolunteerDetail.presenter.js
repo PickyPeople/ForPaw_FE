@@ -15,7 +15,7 @@ export default function VolunteerDetailUI(props) {
         <S.VolunteerIntroContainer>
           <S.IntroMainImgBlock>
             <Image
-              src="/images/volunteer/volunteerDetail/volunteer_main_image.svg"
+              src={props.volunteerDetailInfos.profileURL}
               alt="volunteer_main_image"
               width={344}
               height={160}
@@ -40,7 +40,7 @@ export default function VolunteerDetailUI(props) {
             </S.RightArrowImgBlock>
           </S.AnnouncementTitleBlock>
           <S.AnnouncementDetailContainer>
-            {props.notices.map((notice, index) => (
+            {props.volunteerDetailInfos.notices.map((notice, index) => (
               <S.AnnouncementDetailBlock
                 onClick={props.navigateTo('/volunteer/detail/notices/notice')}
                 key={notice.id}
@@ -84,18 +84,18 @@ export default function VolunteerDetailUI(props) {
             </S.RightArrowImgBlock>
           </S.MeetingTitleBlock>
           <S.WrapperMeetingDetail>
-            {props.meetings.map((infos, index) => (
+            {props.volunteerDetailInfos.meetings.map((infos, index) => (
               <S.MeetingDetailContainer
                 key={infos.id}
               >
                 <S.MeetingDetailContentsBlock>
                   <S.DetailContentsDateBox>
-                    <S.DetailDate>{infos.detailDate}</S.DetailDate>
+                    <S.DetailDate>{infos.date}</S.DetailDate>
                     <S.LeftDdayBox>
-                      D-<S.Day>{infos.leftDay}</S.Day>
+                      D-<S.Day>{infos.lefetDay}</S.Day>
                     </S.LeftDdayBox>
                   </S.DetailContentsDateBox>
-                  <S.MeetingName>{infos.meetingName}</S.MeetingName>
+                  <S.MeetingName>{infos.name}</S.MeetingName>
                   <S.MeetingDetailInfoBox>
                     <Image
                       src="/images/volunteer/volunteerDetail/meeting_detail_main.svg"
@@ -106,23 +106,23 @@ export default function VolunteerDetailUI(props) {
                     />
                     <S.MeetingDetailInfo>
                       <S.MeetingDetailItems>
-                        <S.DetailInfoName>{infos.infoName_date}</S.DetailInfoName>
-                        <S.DetailInfo>{infos.detail_date}</S.DetailInfo>
+                        <S.DetailInfoName>일시</S.DetailInfoName>
+                        <S.DetailInfo>{infos.detailDate}</S.DetailInfo>
                       </S.MeetingDetailItems>
                       <S.MeetingDetailItems>
-                        <S.DetailInfoName>{infos.infoName_location}</S.DetailInfoName>
-                        <S.DetailInfo>{infos.detail_location}</S.DetailInfo>
+                        <S.DetailInfoName>위치</S.DetailInfoName>
+                        <S.DetailInfo>{infos.location}</S.DetailInfo>
                       </S.MeetingDetailItems>
                       <S.MeetingDetailItems>
-                        <S.DetailInfoName>{infos.infoName_cost}</S.DetailInfoName>
-                        <S.DetailInfo>{infos.detail_cost}</S.DetailInfo>
+                        <S.DetailInfoName>비용</S.DetailInfoName>
+                        <S.DetailInfo>{infos.cost}</S.DetailInfo>
                       </S.MeetingDetailItems>
                       <S.MeetingDetailItems>
-                        <S.DetailInfoName>{infos.infoName_Participated}</S.DetailInfoName>
+                        <S.DetailInfoName>인원</S.DetailInfoName>
                         <S.DetailInfo>
-                          <S.ParticipatedPeople>{infos.detail_participated}</S.ParticipatedPeople>
+                          <S.ParticipatedPeople>{infos.participantCnt}</S.ParticipatedPeople>
                           /
-                          <S.MaximunPeople>{infos.maximun_people}</S.MaximunPeople>
+                          <S.MaximunPeople>{infos.maxNum}</S.MaximunPeople>
                         </S.DetailInfo>
                       </S.MeetingDetailItems>
                     </S.MeetingDetailInfo>
@@ -158,7 +158,7 @@ export default function VolunteerDetailUI(props) {
           <S.MemberTitleBlock>
             <S.MemberTitle>회원목록</S.MemberTitle>
           </S.MemberTitleBlock>
-          {props.members.map((infos, index) => (
+          {props.volunteerDetailInfos.members.map((infos, index) => (
             <S.MemberListContainer
               key={infos.id}
             >
@@ -175,8 +175,8 @@ export default function VolunteerDetailUI(props) {
                   />
                 </S.MemberIcon>
                 <S.MemberName>{infos.name}</S.MemberName>
-                <S.StatusBlock style={{ visibility: infos.role == "회원" ? "hidden" : "visible" }}>
-                  <S.Status style={{ backgroundColor: infos.role == "관리자" ? "#FF6636" : "#240D05" }}>{infos.role}</S.Status>
+                <S.StatusBlock style={{ visibility: infos.role == "USER" ? "hidden" : "visible" }}>
+                  <S.Status style={{ backgroundColor: infos.role == "ADMIN" ? "#FF6636" : "#240D05" }}>{infos.role == "ADMIN" ? "관리자" : "매니저"}</S.Status>
                 </S.StatusBlock>
               </S.MemberBox>
             </S.MemberListContainer>
