@@ -40,7 +40,7 @@ export default function SignUpCompleteUI(props) {
             />
             <S.BlurrBlock>
               <S.NextButtonBlock>
-                <S.NextButtonItem onClick={props.navigateTo("/home")}>시작하기</S.NextButtonItem>
+                <S.NextButtonItem onClick={props.navigateTo("/login")}>시작하기</S.NextButtonItem>
               </S.NextButtonBlock>
             </S.BlurrBlock>
           </S.ComplateImageContainer>
