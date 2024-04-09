@@ -67,7 +67,7 @@ export const LoginContentsBlock = styled.div`
   align-items: flex-start;
 `;
 
-export const IdAndPassWordContainer = styled.div`
+export const IdAndPassWordContainer = styled.form`
   width: 342px;
   height: 128px;
 `;
@@ -75,17 +75,17 @@ export const IdAndPassWordContainer = styled.div`
 export const IdInput = styled.input`
   width: 344px;
   height: 60px;
-  background-color: #FEF8F2;
+  background-color: #fef8f2;
   border: 2px solid transparent;
   border-radius: 10px;
   padding-left: 15px;
 
-  :focus{
-    border: 2px solid #BEA597;
+  :focus {
+    border: 2px solid #bea597;
     outline: none;
   }
-  ::placeholder{
-    color: #BEA597;
+  ::placeholder {
+    color: #bea597;
     font-size: 16px;
   }
 `;
@@ -93,18 +93,18 @@ export const IdInput = styled.input`
 export const PassWordInput = styled.input`
   width: 344px;
   height: 60px;
-  background-color: #FEF8F2;
+  background-color: #fef8f2;
   border: 2px solid transparent;
   border-radius: 10px;
   padding-left: 15px;
   margin-top: 8px;
 
-  :focus{
-    border: 2px solid #BEA597;
+  :focus {
+    border: 2px solid #bea597;
     outline: none;
   }
-  ::placeholder{
-    color: #BEA597;
+  ::placeholder {
+    color: #bea597;
     font-size: 16px;
   }
 `;
@@ -116,7 +116,7 @@ export const LoginContainer = styled.div`
 `;
 
 export const LoginButton = styled.button`
-  background-color: #FF6636;
+  background-color: #ff6636;
   border-radius: 30px;
   font-size: 20px;
   color: white;
@@ -125,7 +125,7 @@ export const LoginButton = styled.button`
 
 export const SignUpBtn = styled.button`
   background-color: white;
-  border: 2px solid #FF6636;
+  border: 2px solid #ff6636;
   border-radius: 30px;
   font-size: 20px;
   color: black;
@@ -135,7 +135,7 @@ export const SignUpBtn = styled.button`
 
 export const OrContainer = styled.div`
   width: 100%;
-  height:19px;
+  height: 19px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -150,7 +150,7 @@ export const KakaoAndNaverBlock = styled.div`
 `;
 
 export const KakaoButton = styled.button`
-  background-color: #FFEB04;
+  background-color: #ffeb04;
   border-radius: 30px;
   display: flex;
   flex-direction: row;
@@ -159,9 +159,9 @@ export const KakaoButton = styled.button`
   gap: 12px;
   font-size: 20px;
   cursor: pointer;
-`
+`;
 export const NaverButton = styled.button`
-  background-color: #00B63B;
+  background-color: #00b63b;
   border-radius: 30px;
   display: flex;
   flex-direction: row;
@@ -172,7 +172,7 @@ export const NaverButton = styled.button`
   color: white;
   cursor: pointer;
   margin-top: 8px;
-`
+`;
 
 export const AccoutAndInfoContainer = styled.div`
   width: 100%;
@@ -187,8 +187,8 @@ export const AccoutAndInfoContainer = styled.div`
 export const AccoutFind = styled.div`
   width: 138px;
   height: 20px;
-  color: #A1A1A1;
-  border-bottom: 1px solid #A1A1A1; 
+  color: #a1a1a1;
+  border-bottom: 1px solid #a1a1a1;
   font-size: 14px;
   font-weight: bold;
   display: flex;
@@ -198,10 +198,10 @@ export const AccoutFind = styled.div`
   cursor: pointer;
 `;
 
-export const InfoPaw= styled.div`
+export const InfoPaw = styled.div`
   width: 158px;
   height: 17px;
-  color: #A1A1A1;
+  color: #a1a1a1;
   font-size: 14px;
   font-weight: bold;
   display: flex;

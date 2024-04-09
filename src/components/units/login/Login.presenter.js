@@ -43,20 +43,18 @@ export default function LoginUI(props) {
                 />
               </S.IdAndPassWordContainer>
               <S.LoginContainer>
-                <S.LoginButton type="submit"
-                  onClick={props.navigateTo("/home")}
+                <S.LoginButton
+                  type="submit"
+                  // onClick={props.navigateTo("/home")}
+                  onClick={props.verifyLogin}
                 >
                   로그인
                 </S.LoginButton>
-                <S.SignUpBtn
-                  onClick={props.navigateTo("/login/signup/01")}
-                >
+                <S.SignUpBtn onClick={props.navigateTo("/login/signup/01")}>
                   회원가입
                 </S.SignUpBtn>
               </S.LoginContainer>
-              <S.OrContainer>
-                or
-              </S.OrContainer>
+              <S.OrContainer>or</S.OrContainer>
               <S.KakaoAndNaverBlock>
                 <S.KakaoButton>
                   <Image
@@ -78,17 +76,17 @@ export default function LoginUI(props) {
                 </S.NaverButton>
               </S.KakaoAndNaverBlock>
               <S.AccoutAndInfoContainer>
-                <S.AccoutFind onClick={props.navigateTo(`/login/find_account/01`)}>
+                <S.AccoutFind
+                  onClick={props.navigateTo(`/login/find_account/01`)}
+                >
                   계정을 잃어버리셨나요?
                 </S.AccoutFind>
-                <S.InfoPaw>
-                  이용약관 | 개인정보취급방침
-                </S.InfoPaw>
+                <S.InfoPaw>이용약관 | 개인정보취급방침</S.InfoPaw>
               </S.AccoutAndInfoContainer>
             </S.LoginContentsBlock>
           </S.WrapperLoginContents>
         </S.Container>
       </S.WrapperContainer>
     </>
-  )
+  );
 }
