@@ -67,7 +67,7 @@ export default function ProfileUI(props) {
           <S.InfoTitle>이용안내</S.InfoTitle>
           <S.InfoContainer>
             <S.InfoItem>정보 동의 설정</S.InfoItem>
-            <S.InfoItem>로그아웃</S.InfoItem>
+            <S.InfoItem onClick={props.logOut}>로그아웃</S.InfoItem>
             <S.InfoItem>회원탈퇴</S.InfoItem>
           </S.InfoContainer>
         </S.InfoWrapper>

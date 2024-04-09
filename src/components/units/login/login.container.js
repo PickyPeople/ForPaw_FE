@@ -3,8 +3,7 @@ import { useLoginCheck } from "./hooks/useLoginCheck";
 import { useNavigate } from "../../commons/hooks/useNavigate";
 
 export default function Login() {
-
-  const {navigateTo} = useNavigate();
+  const { navigateTo } = useNavigate();
 
   const {
     email,
@@ -13,7 +12,7 @@ export default function Login() {
     loginMsg,
     handleEmailChange,
     handlePasswordChange,
-    verifyLogin
+    verifyLogin,
   } = useLoginCheck();
 
   return (
@@ -26,7 +25,7 @@ export default function Login() {
         loginMsg={loginMsg}
         handleEmailChange={handleEmailChange}
         handlePasswordChange={handlePasswordChange}
-        verifyLogin={verifyLogin}
+        verifyLogin={() => verifyLogin(email, password)}
       />
     </>
   );
