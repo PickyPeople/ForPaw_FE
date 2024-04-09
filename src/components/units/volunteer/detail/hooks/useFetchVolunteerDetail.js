@@ -33,7 +33,7 @@ const example = {
         name: "5차 동물 사랑 봉사",
         detailDate: "2/12 (월) 오전 11:00",
         location: "범어사역 1번 출구",
-        cost: 15000,
+        cost: 15000+"원",
         participantCnt: 7,
         maxNum: 15,
         profileURL: "/images/volunteer/volunteerDetail/meeting_detail_main.svg",
@@ -51,7 +51,7 @@ const example = {
         name: "6차 동물 사랑 봉사",
         detailDate: "2/12 (월) 오전 11:00",
         location: "범어사역 1번 출구",
-        cost: 15000,
+        cost: 15000+"원",
         participantCnt: 3,
         maxNum: 15,
         profileURL: "/images/volunteer/volunteerDetail/meeting_detail_main.svg",
@@ -72,13 +72,19 @@ const example = {
       },
       {
         id: 16,
-        name: "장재영",
+        name: "이종일",
         role: "Manager",
         profileURL: "/images/volunteer/volunteerDetail/member_icon.svg"
       },
       {
         id: 17,
-        name: "탁호영",
+        name: "장재영",
+        role: "USER",
+        profileURL: "/images/volunteer/volunteerDetail/member_icon.svg"
+      },
+      {
+        id: 18,
+        name: "아무개",
         role: "USER",
         profileURL: "/images/volunteer/volunteerDetail/member_icon.svg"
       }
