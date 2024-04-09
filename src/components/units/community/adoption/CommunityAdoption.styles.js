@@ -161,4 +161,5 @@ export const CommunityAddIcon = styled.div`
   position: fixed;
   bottom: 12%;
   right: calc(50% - 172px);
+  cursor: pointer;
 `;

@@ -1,7 +1,7 @@
 import * as S from "./CommunityQuestions.styles";
 import Image from "next/image";
 
-export default function CommunityQuestionsUI() {
+export default function CommunityQuestionsUI(props) {
   return (
     <>
       <S.WrapperContents>
@@ -125,7 +125,7 @@ export default function CommunityQuestionsUI() {
           </S.QuestionText>
           <S.NumberOfAnswers>답변 2</S.NumberOfAnswers>
         </S.CommunityQuestionBlock>
-        <S.CommunityAddIcon>
+        <S.CommunityAddIcon onClick={props.navigateTo("/community/write")}>
           <Image
             src="/images/community/community_add_icon.svg"
             alt="community_add_icon"

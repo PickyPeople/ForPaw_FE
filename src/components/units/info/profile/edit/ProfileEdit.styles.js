@@ -246,11 +246,25 @@ export const ProvinceDropdown = styled.div`
   z-index: 10;
   overflow-y: auto;
 
-  /* 스크롤 바 숨기기 */
-  ::-webkit-scrollbar {
-    display: none;
+  /* Chrome, Safari 등 */
+  &::-webkit-scrollbar {
+    width: 12px; /* 스크롤바의 너비 */
   }
-  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0); /* 스크롤바 뒷 배경을 투명 처리한다 */
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #bea597; /* 스크롤바 색상 */
+    border-radius: 10px; /* 스크롤바 둥근 처리 */
+    border: 3px solid #fef8f2; /* 스크롤바 외곽선(선택사항) */
+  }
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* Firefox */
+  scrollbar-width: thin; /* "auto" 또는 "thin" */
+  scrollbar-color: #bea597 rgba(0, 0, 0, 0); /* 스크롤바 색상과 트랙 색상 */
 `;
 
 export const ProvinceOption = styled.div`
@@ -326,11 +340,25 @@ export const DistrictDropdown = styled.div`
   z-index: 10;
   overflow-y: auto;
 
-  /* 스크롤 바 숨기기 */
-  ::-webkit-scrollbar {
-    display: none;
+  /* Chrome, Safari 등 */
+  &::-webkit-scrollbar {
+    width: 12px; /* 스크롤바의 너비 */
   }
-  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0); /* 스크롤바 뒷 배경을 투명 처리한다 */
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #bea597; /* 스크롤바 색상 */
+    border-radius: 10px; /* 스크롤바 둥근 처리 */
+    border: 3px solid #fef8f2; /* 스크롤바 외곽선(선택사항) */
+  }
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* Firefox */
+  scrollbar-width: thin; /* "auto" 또는 "thin" */
+  scrollbar-color: #bea597 rgba(0, 0, 0, 0); /* 스크롤바 색상과 트랙 색상 */
 `;
 
 export const DistrictOption = styled.div`
@@ -406,11 +434,25 @@ export const SubdistrictDropdown = styled.div`
   z-index: 10;
   overflow-y: auto;
 
-  /* 스크롤 바 숨기기 */
-  ::-webkit-scrollbar {
-    display: none;
+  /* Chrome, Safari 등 */
+  &::-webkit-scrollbar {
+    width: 12px; /* 스크롤바의 너비 */
   }
-  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0); /* 스크롤바 뒷 배경을 투명 처리한다 */
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #bea597; /* 스크롤바 색상 */
+    border-radius: 10px; /* 스크롤바 둥근 처리 */
+    border: 3px solid #fef8f2; /* 스크롤바 외곽선(선택사항) */
+  }
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* Firefox */
+  scrollbar-width: thin; /* "auto" 또는 "thin" */
+  scrollbar-color: #bea597 rgba(0, 0, 0, 0); /* 스크롤바 색상과 트랙 색상 */
 `;
 
 export const SubdistrictOption = styled.div`
