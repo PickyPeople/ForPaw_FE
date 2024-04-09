@@ -14,7 +14,7 @@ const example = {
         id: 23,
         name: "이한홍",
         date: "2023-03-28T14:30",
-        title: "다음주에는 1주년 행사가 있습니다~",
+        title: "이번주 봉사활동은 업체의 개인사정으로 인해 한 주 쉬어가니 착오 없으시길 바랍니다.",
         isRead: true
       },
       {
@@ -28,9 +28,11 @@ const example = {
     meetings: [
       {
         id: 23,
+        date: "2/12 (월)",
+        lefetDay: 1,
         name: "5차 동물 사랑 봉사",
-        date: "2023-03-28T14:30",
-        location: "범어역 1번 출구",
+        detailDate: "2/12 (월) 오전 11:00",
+        location: "범어사역 1번 출구",
         cost: 15000,
         participantCnt: 7,
         maxNum: 15,
@@ -44,9 +46,11 @@ const example = {
       },
       {
         id: 24,
+        date: "2/12 (월)",
+        lefetDay: 1,
         name: "6차 동물 사랑 봉사",
-        date: "2023-04-28T14:30",
-        location: "범어역 1번 출구",
+        detailDate: "2/12 (월) 오전 11:00",
+        location: "범어사역 1번 출구",
         cost: 15000,
         participantCnt: 3,
         maxNum: 15,
@@ -68,6 +72,12 @@ const example = {
       },
       {
         id: 16,
+        name: "장재영",
+        role: "Manager",
+        profileURL: "/images/volunteer/volunteerDetail/member_icon.svg"
+      },
+      {
+        id: 17,
         name: "탁호영",
         role: "USER",
         profileURL: "/images/volunteer/volunteerDetail/member_icon.svg"
@@ -77,16 +87,14 @@ const example = {
 };
 
 export default function useFetchVolunteerDetail() {
-  const [volunteerDetails, setVolunteerDetails] = useState(example.result);
-
+  const [volunteerDetailInfos, setVolunteerDetailInfos] = useState(example.result);
   useEffect(() => {
     async function loadVolunteerDetail() {
       const volunteerData = await fetchVolunteerDetail();
-      setVolunteerDetails(volunteerData);
+      setVolunteerDetailInfos(volunteerData);
     }
 
     //loadVolunteerDetail()
   }, []);
-
-  return{ volunteerDetails }
+  return{ volunteerDetailInfos }
 }

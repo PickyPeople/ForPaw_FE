@@ -1,165 +1,23 @@
 import VolunteerDetailHeader from "./volunteerDetailHeader/VolunteerDetailHeader.container";
 import VolunteerDetailUI from "./VolunteerDetail.presenter";
 import Navigation from "../../../commons/navigation/Navigation.container";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useNoticeClick } from "./hooks/useNoticeClick";
+import useFetchVolunteerDetail from "./hooks/useFetchVolunteerDetail";
 
 export default function VolunteerDetail() {
 
-  //라우팅 설정
-  const router = useRouter();
+  //공지사항 클릭 관련 기능 & 멤버가 아닌 회원은 다음 페이지로 못넘어가게끔 막는 기능
+  const {
+    navigateTo,
+    clickedIndex,
+    isJoinedClikced,
+    handleAnnouncementClick,
+    ChangeStatus,
+    status
+  } = useNoticeClick();
 
-  // 클릭 이벤트 처리를 위한 상태 변수와 상태 업데이트 함수 선언 공지사항에 쓰임
-  const [clickedIndex, setClickedIndex] = useState(-1); // 선택된 공지사항 인덱스를 추적하는 상태
-  //가입 여부에서 클릭 상태 확인
-  const [isJoinedClikced, setIsJoinedClicked] = useState(false);
-  //추천모임에서 온 사람인지 아니면 내 모임에서 온사람인지 판단
-  const status = router.query.name;
-
-  //클릭을 하였을 떄 멤버가 아닌 회원은 막는 기능
-  const navigateTo = (path) => () => {
-    if (status === 'member') {
-      router.push({
-        pathname: path,
-        query: {
-          name: 'member'
-        }
-      });
-    } else {
-      setIsJoinedClicked(true);
-      setTimeout(() => {
-        setIsJoinedClicked(false);
-      }, 1000);
-    }
-  }
-
-  //일반유저 status를 member로 바꿔주는 기능
-  const ChangeStatus = (path) => () => {
-    router.push({
-      pathname: path,
-      query: {
-        name: 'member'
-      }
-    });
-  };
-
-  const handleAnnouncementClick = (index) => {
-    if (status === 'member') {
-      // 클릭된 공지사항의 인덱스를 설정
-      setClickedIndex(index === clickedIndex ? -1 : index);
-
-      // 2초 후에 클릭된 상태를 초기화하여 원래 색으로 돌아가도록 타이머 설정
-      setTimeout(() => {
-        setClickedIndex(-1);
-      }, 2000);
-    } 
-  };
-
-  const notices = [
-    {
-      id: 1,
-      title: "이번주 봉사활동은 업체의 개인사정으로 인해 한 주 쉬어가니 착오 없으시길 바랍니다."
-    },
-    {
-      id: 2,
-      title: "이번주 봉사활동은 업체의 개인사정으로 인해 한 주 쉬어가니 착오 없으시길 바랍니다."
-    },
-    {
-      id: 3,
-      title: "이번주 봉사활동은 업체의 개인사정으로 인해 한 주 쉬어가니 착오 없으시길 바랍니다."
-    }
-  ];
-
-  const meetings = [
-    {
-      id: 1,
-      detailDate: "2/12 (월)",
-      leftDay: 1,
-      meetingName: <>유기견 구조활동</>,
-      infoName_date: "일시",
-      detail_date: "2/12 (월) 오전 11:00",
-      infoName_location: "위치",
-      detail_location: <>부산대</>,
-      infoName_cost: "비용",
-      detail_cost: "2천원(신규 인원제외)",
-      infoName_Participated: "인원",
-      detail_participated: "12",
-      maximun_people: "12",
-      participants: [
-        { profileURL: "/images/volunteer/volunteerDetail/user_3.svg" },
-        { profileURL: "/images/volunteer/volunteerDetail/user_3.svg" },
-        { profileURL: "/images/volunteer/volunteerDetail/user_3.svg" }
-      ]
-    },
-    {
-      id: 2,
-      detailDate: "2/12 (월)",
-      leftDay: 1,
-      meetingName: <>유기견 구조활동</>,
-      infoName_date: "일시",
-      detail_date: "2/12 (월) 오전 11:00",
-      infoName_location: "위치",
-      detail_location: <>부산대</>,
-      infoName_cost: "비용",
-      detail_cost: "2천원(신규 인원제외)",
-      infoName_Participated: "인원",
-      detail_participated: "12",
-      maximun_people: "12",
-      participants: [
-        { profileURL: "/images/volunteer/volunteerDetail/user_3.svg" },
-        { profileURL: "/images/volunteer/volunteerDetail/user_3.svg" },
-        { profileURL: "/images/volunteer/volunteerDetail/user_3.svg" }
-      ]
-    },
-    {
-      id: 3,
-      detailDate: "2/12 (월)",
-      leftDay: 1,
-      meetingName: <>유기견 구조활동</>,
-      infoName_date: "일시",
-      detail_date: "2/12 (월) 오전 11:00",
-      infoName_location: "위치",
-      detail_location: <>부산대</>,
-      infoName_cost: "비용",
-      detail_cost: "2천원(신규 인원제외)",
-      infoName_Participated: "인원",
-      detail_participated: "12",
-      maximun_people: "12",
-      participants: [
-        { profileURL: "/images/volunteer/volunteerDetail/user_3.svg" },
-        { profileURL: "/images/volunteer/volunteerDetail/user_3.svg" },
-        { profileURL: "/images/volunteer/volunteerDetail/user_3.svg" }
-      ]
-    },
-  ];
-
-  const members = [
-    {
-      id: 1,
-      name: "김포포",
-      role: "관리자"
-    },
-    {
-      id: 2,
-      name: "가나다라마바사",
-      role: "매니저"
-    },
-    {
-      id: 3,
-      name: "프로봉사러",
-      role: "회원"
-    },
-    {
-      id: 4,
-      name: "김포포",
-      role: "회원"
-    },
-    {
-      id: 5,
-      name: "김포포",
-      role: "회원"
-    },
-  ];
+  //공지사항, 정규모임, 멤버 등의 정보를 fetch해 오는 기능
+  const { volunteerDetailInfos } = useFetchVolunteerDetail();
 
   return (
     <>
@@ -168,14 +26,12 @@ export default function VolunteerDetail() {
       />
       <VolunteerDetailUI
         navigateTo={navigateTo}
-        notices={notices}
-        meetings={meetings}
-        clickedIndex={clickedIndex}
-        handleAnnouncementClick={handleAnnouncementClick}
-        isJoinedClikced={isJoinedClikced}
-        ChangeStatus={ChangeStatus}
-        status={status}
-        members={members}
+        volunteerDetailInfos={volunteerDetailInfos}
+        clickedIndex={clickedIndex} //공지사항을 클릭한 인데스 값
+        handleAnnouncementClick={handleAnnouncementClick} //공지사항을 클릭하였을 때 색 변환 기능
+        isJoinedClikced={isJoinedClikced} //회원인지 멤버인지 클릭한 확인 값
+        ChangeStatus={ChangeStatus} //가입하기 버튼을 눌렀을 때, status를 변환시켜 주는 기능
+        status={status} //자신이 일반회원인지 멤버인지를 담아주는 변수
       />
       <Navigation
         isJoinedClikced={isJoinedClikced}

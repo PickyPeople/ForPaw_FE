@@ -134,6 +134,10 @@ export const AnnouncementText = styled.p`
   margin-left: 10px;
 
   overflow:hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 `;
 
 export const MeetingContainer = styled.div`
