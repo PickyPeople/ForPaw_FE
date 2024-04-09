@@ -22,7 +22,6 @@ export const WrapperContents = styled.div`
 export const Container = styled.div`
   width: 344px;
   height: auto;
-  
 
   display: flex;
   flex-direction: column;
@@ -32,9 +31,9 @@ export const Container = styled.div`
 `;
 
 export const WrapperMeetingDetail = styled.div`
-  width:100%; /*344px*/
+  width: 100%; /*344px*/
   margin-top: 6px;
-  
+
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -46,11 +45,11 @@ export const WrapperMeetingDetail = styled.div`
 export const MeetingDetailContainer = styled.div`
   width: 343px;
   height: 233px;
-  background-color: #FEF8F2;
-  border: 1px solid #F6F2EE;
+  background-color: #fef8f2;
+  border: 1px solid #f6f2ee;
   border-radius: 20px;
 
-  box-shadow: 0 3px 6px rgba(0,0,0,0.12), 0 3px 6px rgba(0,0,0,0.10);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.1);
 
   /*display 설정*/
   display: flex;
@@ -82,7 +81,7 @@ export const DetailContentsDateBox = styled.div`
 export const DetailDate = styled.p`
   width: 79px;
   height: 24px;
-  font-wize: 20px;
+  font-size: 20px;
   font-weight: bold;
   line-height: 24px;
 `;
@@ -90,11 +89,11 @@ export const DetailDate = styled.p`
 export const LeftDdayBox = styled.div`
   width: 57px;
   height: 24px;
-  border: 2px solid #FF6636;
+  border: 2px solid #ff6636;
   border-radius: 20px;
-  color: #FF6636;
+  color: #ff6636;
   font-size: 16px;
- 
+
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -102,9 +101,9 @@ export const LeftDdayBox = styled.div`
 `;
 
 export const Day = styled.p`
-  color: #FF6636;
+  color: #ff6636;
   font-size: 16px;
-`;  
+`;
 
 export const MeetingName = styled.p`
   margin-top: 8px;
@@ -116,7 +115,7 @@ export const MeetingName = styled.p`
 
 export const MeetingDetailInfoBox = styled.div`
   margin-top: 8px;
-  width: 100%;/*312px*/
+  width: 100%; /*312px*/
   height: 92px;
 
   display: flex;
@@ -168,7 +167,7 @@ export const DetailInfo = styled.div`
 `;
 
 export const ParticipatedPeople = styled.p`
-  color: #FF7272;
+  color: #ff7272;
 `;
 
 export const MaximunPeople = styled.p`
@@ -205,7 +204,7 @@ export const UserImg = styled.div`
 export const ParticipateBtn = styled.button`
   width: 86px;
   height: 30px;
-  background-color: #240D05;
+  background-color: #240d05;
   border-radius: 20px;
   cursor: pointer;
 
@@ -219,7 +218,7 @@ export const ParticipateBtn = styled.button`
 `;
 
 export const AddMeeting = styled.div`
-width: 60px;
+  width: 60px;
   height: 60px;
   background-color: #ff6636;
   border-radius: 50%;

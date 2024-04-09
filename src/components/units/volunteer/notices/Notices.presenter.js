@@ -6,7 +6,7 @@ export default function NoticesUI(props) {
     <>
       <S.WrapperContents>
         <S.Container>
-          {props.notices.map((notice, index) => (
+          {props.noticesInfos.notice.map((notice, index) => (
             <S.AnnouncementBlock
               onClick={props.navigateTo("/volunteer/detail/notices/notice")}
               key={notice.id}
@@ -34,13 +34,13 @@ export default function NoticesUI(props) {
                   </S.CheckImg>
                 </S.CheckBox>
                 <S.AnnouncementText>
-                  {notice.text.length > 39
-                    ? `${notice.text.slice(0, 39)}...`
-                    : notice.text}
+                  {notice.title.length > 39
+                    ? `${notice.title.slice(0, 39)}...`
+                    : notice.title}
                 </S.AnnouncementText>
                 <S.WritersBlock>
-                  <S.Writer>{notice.writer}</S.Writer>
-                  <S.Time>{notice.time}</S.Time>
+                  <S.Writer>{notice.name}</S.Writer>
+                  <S.Time>{notice.date}</S.Time>
                 </S.WritersBlock>
               </S.AnnouncementItem>
             </S.AnnouncementBlock>
