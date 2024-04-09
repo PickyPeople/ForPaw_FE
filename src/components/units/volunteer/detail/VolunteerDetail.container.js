@@ -5,7 +5,6 @@ import { useNoticeClick } from "./hooks/useNoticeClick";
 import useFetchVolunteerDetail from "./hooks/useFetchVolunteerDetail";
 
 export default function VolunteerDetail() {
-
   //공지사항 클릭 관련 기능 & 멤버가 아닌 회원은 다음 페이지로 못넘어가게끔 막는 기능
   const {
     navigateTo,
@@ -13,7 +12,7 @@ export default function VolunteerDetail() {
     isJoinedClikced,
     handleAnnouncementClick,
     ChangeStatus,
-    status
+    status,
   } = useNoticeClick();
 
   //공지사항, 정규모임, 멤버 등의 정보를 fetch해 오는 기능
@@ -21,9 +20,7 @@ export default function VolunteerDetail() {
 
   return (
     <>
-      <VolunteerDetailHeader
-        isJoinedClikced={isJoinedClikced}
-      />
+      <VolunteerDetailHeader isJoinedClikced={isJoinedClikced} />
       <VolunteerDetailUI
         navigateTo={navigateTo}
         volunteerDetailInfos={volunteerDetailInfos}
@@ -33,9 +30,7 @@ export default function VolunteerDetail() {
         ChangeStatus={ChangeStatus} //가입하기 버튼을 눌렀을 때, status를 변환시켜 주는 기능
         status={status} //자신이 일반회원인지 멤버인지를 담아주는 변수
       />
-      <Navigation
-        isJoinedClikced={isJoinedClikced}
-      />
+      <Navigation isJoinedClikced={isJoinedClikced} />
     </>
-  )
+  );
 }

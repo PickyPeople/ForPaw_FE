@@ -9,9 +9,7 @@ export default function VolunteerDetailUI(props) {
       >
         <S.JudgeText>가입 멤버만 확인할 수 있습니다.</S.JudgeText>
       </S.Judge>
-      <S.WrapperContents
-        active={props.isJoinedClikced}
-      >
+      <S.WrapperContents active={props.isJoinedClikced}>
         <S.VolunteerIntroContainer>
           <S.IntroMainImgBlock>
             <Image
@@ -22,15 +20,17 @@ export default function VolunteerDetailUI(props) {
               priority={true}
             />
           </S.IntroMainImgBlock>
-          <S.IntroTitle>모임을 소개하는 한마디</S.IntroTitle>
-          <S.IntroDetail>해당 모임에 어울리는 문장을 간단하게 적어주세요</S.IntroDetail>
+          <S.IntroTitle>{props.volunteerDetailInfos.name}</S.IntroTitle>
+          <S.IntroDetail>
+            {props.volunteerDetailInfos.description}
+          </S.IntroDetail>
         </S.VolunteerIntroContainer>
         <S.AnnouncementContainer>
           <S.AnnouncementTitleBlock>
             <S.AnnouncementTitle>공지사항</S.AnnouncementTitle>
             <S.RightArrowImgBlock>
               <Image
-                onClick={props.navigateTo('/volunteer/detail/notices')}
+                onClick={props.navigateTo("/volunteer/detail/notices")}
                 src="/images/volunteer/volunteerDetail/right_arrow.svg"
                 alt="right_arrow"
                 width={44}
@@ -42,14 +42,20 @@ export default function VolunteerDetailUI(props) {
           <S.AnnouncementDetailContainer>
             {props.volunteerDetailInfos.notices.map((notice, index) => (
               <S.AnnouncementDetailBlock
-                onClick={props.navigateTo('/volunteer/detail/notices/notice')}
+                onClick={props.navigateTo("/volunteer/detail/notices/notice")}
                 key={notice.id}
-                style={{ backgroundColor: props.clickedIndex === index ? "#FEF8F2" : "#F6F6F6" }}
+                style={{
+                  backgroundColor:
+                    props.clickedIndex === index ? "#FEF8F2" : "#F6F6F6",
+                }}
                 onMouseDown={() => props.handleAnnouncementClick(index)} // 마우스를 눌렀을 때만 처리
               >
                 <S.AnnouncementItems>
                   <S.CheckBox
-                    style={{ backgroundColor: props.clickedIndex === index ? "#FF6636" : "#D9D9D9" }}
+                    style={{
+                      backgroundColor:
+                        props.clickedIndex === index ? "#FF6636" : "#D9D9D9",
+                    }}
                   >
                     <S.CheckImg>
                       <Image
@@ -62,7 +68,9 @@ export default function VolunteerDetailUI(props) {
                     </S.CheckImg>
                   </S.CheckBox>
                   <S.AnnouncementText>
-                    {notice.title.length > 55 ? `${announcement.text.slice(0, 55)}...` : notice.title}
+                    {notice.title.length > 55
+                      ? `${announcement.text.slice(0, 55)}...`
+                      : notice.title}
                   </S.AnnouncementText>
                 </S.AnnouncementItems>
               </S.AnnouncementDetailBlock>
@@ -74,7 +82,7 @@ export default function VolunteerDetailUI(props) {
             <S.MeetingTitle>정기모임</S.MeetingTitle>
             <S.RightArrowImgBlock>
               <Image
-                onClick={props.navigateTo('/volunteer/detail/regular_meetings')}
+                onClick={props.navigateTo("/volunteer/detail/regular_meetings")}
                 src="/images/volunteer/volunteerDetail/right_arrow.svg"
                 alt="right_arrow"
                 width={44}
@@ -85,14 +93,12 @@ export default function VolunteerDetailUI(props) {
           </S.MeetingTitleBlock>
           <S.WrapperMeetingDetail>
             {props.volunteerDetailInfos.meetings.map((infos, index) => (
-              <S.MeetingDetailContainer
-                key={infos.id}
-              >
+              <S.MeetingDetailContainer key={infos.id}>
                 <S.MeetingDetailContentsBlock>
                   <S.DetailContentsDateBox>
                     <S.DetailDate>{infos.date}</S.DetailDate>
                     <S.LeftDdayBox>
-                      D-<S.Day>{infos.lefetDay}</S.Day>
+                      D-<S.Day>{infos.leftDay}</S.Day>
                     </S.LeftDdayBox>
                   </S.DetailContentsDateBox>
                   <S.MeetingName>{infos.name}</S.MeetingName>
@@ -120,9 +126,10 @@ export default function VolunteerDetailUI(props) {
                       <S.MeetingDetailItems>
                         <S.DetailInfoName>인원</S.DetailInfoName>
                         <S.DetailInfo>
-                          <S.ParticipatedPeople>{infos.participantCnt}</S.ParticipatedPeople>
-                          /
-                          <S.MaximunPeople>{infos.maxNum}</S.MaximunPeople>
+                          <S.ParticipatedPeople>
+                            {infos.participantCnt}
+                          </S.ParticipatedPeople>
+                          /<S.MaximunPeople>{infos.maxNum}</S.MaximunPeople>
                         </S.DetailInfo>
                       </S.MeetingDetailItems>
                     </S.MeetingDetailInfo>
@@ -131,7 +138,7 @@ export default function VolunteerDetailUI(props) {
                     <S.UsersItems>
                       {infos.participants.map((participant, index) => (
                         <S.UserImg
-                          style={{right: index > 0 ? index * 8 + "px" : ""}}
+                          style={{ right: index > 0 ? index * 8 + "px" : "" }}
                           key={index}
                         >
                           <Image
@@ -145,7 +152,10 @@ export default function VolunteerDetailUI(props) {
                       ))}
                     </S.UsersItems>
                     <S.ParticipateBtn
-                      onClick={props.navigateTo("/volunteer/detail/regular_meetings/regular_meeting")}>
+                      onClick={props.navigateTo(
+                        "/volunteer/detail/regular_meetings/regular_meeting"
+                      )}
+                    >
                       참가하기
                     </S.ParticipateBtn>
                   </S.UsersAndParticipateBox>
@@ -159,9 +169,7 @@ export default function VolunteerDetailUI(props) {
             <S.MemberTitle>회원목록</S.MemberTitle>
           </S.MemberTitleBlock>
           {props.volunteerDetailInfos.members.map((infos, index) => (
-            <S.MemberListContainer
-              key={infos.id}
-            >
+            <S.MemberListContainer key={infos.id}>
               <S.MemberBox
               // onClick={props.navigateTo('/volunteer/detail/regular_meetings/regular_meeting')}
               >
@@ -175,8 +183,19 @@ export default function VolunteerDetailUI(props) {
                   />
                 </S.MemberIcon>
                 <S.MemberName>{infos.name}</S.MemberName>
-                <S.StatusBlock style={{ visibility: infos.role == "USER" ? "hidden" : "visible" }}>
-                  <S.Status style={{ backgroundColor: infos.role == "ADMIN" ? "#FF6636" : "#240D05" }}>{infos.role == "ADMIN" ? "관리자" : "매니저"}</S.Status>
+                <S.StatusBlock
+                  style={{
+                    visibility: infos.role == "USER" ? "hidden" : "visible",
+                  }}
+                >
+                  <S.Status
+                    style={{
+                      backgroundColor:
+                        infos.role == "ADMIN" ? "#FF6636" : "#240D05",
+                    }}
+                  >
+                    {infos.role == "ADMIN" ? "관리자" : "매니저"}
+                  </S.Status>
                 </S.StatusBlock>
               </S.MemberBox>
             </S.MemberListContainer>
@@ -185,10 +204,14 @@ export default function VolunteerDetailUI(props) {
         </S.MemberContainer>
       </S.WrapperContents>
       <S.NextButtonBlock
-        style={{ backgroundColor: props.status == 'member' ? "#240D05" : "#FF6636" }}
+        style={{
+          backgroundColor: props.status == "member" ? "#240D05" : "#FF6636",
+        }}
       >
-        <S.NextButtonItem onClick={props.ChangeStatus('/volunteer/detail')}>{props.status === "member" ? "채팅방 입장하기" : "가입하기"}</S.NextButtonItem>
+        <S.NextButtonItem onClick={props.ChangeStatus("/volunteer/detail")}>
+          {props.status === "member" ? "채팅방 입장하기" : "가입하기"}
+        </S.NextButtonItem>
       </S.NextButtonBlock>
     </>
-  )
+  );
 }

@@ -29,7 +29,7 @@ export const VolunteerIntroContainer = styled.div`
 export const IntroMainImgBlock = styled.div`
   width: 344px;
   height: 160px;
-`;  
+`;
 
 export const IntroTitle = styled.p`
   width: 100%;
@@ -86,10 +86,10 @@ export const AnnouncementDetailContainer = styled.div`
 export const AnnouncementDetailBlock = styled.div`
   width: 343px;
   height: 57px;
-  border: 1px solid #F6F2EE;
+  border: 1px solid #f6f2ee;
   border-radius: 16px;
   cursor: pointer;
-  background-color: #F6F6F6;
+  background-color: #f6f6f6;
 
   display: flex;
   flex-direction: row;
@@ -111,14 +111,13 @@ export const CheckBox = styled.div`
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background-color: #D9D9D9;
-  
+  background-color: #d9d9d9;
+
   /*display 영역*/
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 `;
 
 export const CheckImg = styled.div`
@@ -133,7 +132,7 @@ export const AnnouncementText = styled.p`
   letter-spacing: -0.7px;
   margin-left: 10px;
 
-  overflow:hidden;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -158,10 +157,10 @@ export const MeetingTitle = styled.p`
   font-size: 20px;
   font-weight: bold;
   padding: 10px 0px;
-`;  
+`;
 
 export const WrapperMeetingDetail = styled.div`
-  width:100%; /*344px*/
+  width: 100%; /*344px*/
   margin-top: 6px;
 
   display: flex;
@@ -175,11 +174,11 @@ export const WrapperMeetingDetail = styled.div`
 export const MeetingDetailContainer = styled.div`
   width: 343px;
   height: 233px;
-  background-color: #FEF8F2;
-  border: 1px solid #F6F2EE;
+  background-color: #fef8f2;
+  border: 1px solid #f6f2ee;
   border-radius: 20px;
 
-  box-shadow: 0 3px 6px rgba(0,0,0,0.12), 0 3px 6px rgba(0,0,0,0.10);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.1);
 
   /*display 설정*/
   display: flex;
@@ -219,11 +218,11 @@ export const DetailDate = styled.p`
 export const LeftDdayBox = styled.div`
   width: 57px;
   height: 24px;
-  border: 2px solid #FF6636;
+  border: 2px solid #ff6636;
   border-radius: 20px;
-  color: #FF6636;
+  color: #ff6636;
   font-size: 16px;
- 
+
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -231,9 +230,9 @@ export const LeftDdayBox = styled.div`
 `;
 
 export const Day = styled.p`
-  color: #FF6636;
+  color: #ff6636;
   font-size: 16px;
-`;  
+`;
 
 export const MeetingName = styled.p`
   margin-top: 8px;
@@ -245,7 +244,7 @@ export const MeetingName = styled.p`
 
 export const MeetingDetailInfoBox = styled.div`
   margin-top: 8px;
-  width: 100%;/*312px*/
+  width: 100%; /*312px*/
   height: 92px;
 
   display: flex;
@@ -297,7 +296,7 @@ export const DetailInfo = styled.div`
 `;
 
 export const ParticipatedPeople = styled.p`
-  color: #FF7272;
+  color: #ff7272;
 `;
 
 export const MaximunPeople = styled.p`
@@ -325,11 +324,11 @@ export const UsersItems = styled.div`
 `;
 
 export const UserImg = styled.div`
-  width: 28px;
+  width: 30px;
   height: 30px;
   position: relative;
   border-radius: 50%;
-  background-color: #FEF8F2;
+  background-color: #fef8f2;
 
   display: flex;
   flex-direction: column;
@@ -340,7 +339,7 @@ export const UserImg = styled.div`
 export const ParticipateBtn = styled.button`
   width: 86px;
   height: 30px;
-  background-color: #240D05;
+  background-color: #240d05;
   border-radius: 20px;
   cursor: pointer;
 
@@ -387,8 +386,8 @@ export const MemberListContainer = styled.div`
 export const MemberBox = styled.div`
   width: 344px;
   height: 57px;
-  background-color: #FEF8F2;
-  border: 1px solid #F6F2EE;
+  background-color: #fef8f2;
+  border: 1px solid #f6f2ee;
   border-radius: 28.5px;
   padding: 4px;
   cursor: pointer;
@@ -432,8 +431,8 @@ export const Status = styled.div`
   width: 86px;
   height: 30px;
   border-radius: 20px;
-  background-color: #FF6636;
-  color: #FFFFFF;
+  background-color: #ff6636;
+  color: #ffffff;
 
   display: flex;
   flex-direction: row;
@@ -492,7 +491,7 @@ export const Judge = styled.div`
 
 export const JudgeText = styled.p`
   width: 239px;
-  height: 24px; 
+  height: 24px;
   font-size: 20px;
   font-weight: bold;
   letter-spacing: -0.6px;
