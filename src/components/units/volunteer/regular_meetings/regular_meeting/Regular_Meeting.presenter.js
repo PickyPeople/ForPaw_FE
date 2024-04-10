@@ -15,7 +15,7 @@ export default function RegularMeetingUI(props) {
         </S.MeetingMainImg>
         <S.WrapperMeetingInfo>
           <S.MeetingInfoContainer>
-            <S.MeetingTitle>{props.example.result.name}</S.MeetingTitle>
+            <S.MeetingTitle>{props.regularMeetingInfos.name}</S.MeetingTitle>
             <S.DetailInfoContainer>
               <S.InFosBlock>
                 <S.InfoName>일시</S.InfoName>
@@ -23,17 +23,17 @@ export default function RegularMeetingUI(props) {
               </S.InFosBlock>
               <S.InFosBlock>
                 <S.InfoName>위치</S.InfoName>
-                <S.DetailInfo>{props.example.result.location}</S.DetailInfo>
+                <S.DetailInfo>{props.regularMeetingInfos.location}</S.DetailInfo>
               </S.InFosBlock>
               <S.InFosBlock>
                 <S.InfoName>비용</S.InfoName>
-                <S.DetailInfo>{props.example.result.cost}</S.DetailInfo>
+                <S.DetailInfo>{props.regularMeetingInfos.cost}</S.DetailInfo>
               </S.InFosBlock>
               <S.InFosBlock>
                 <S.InfoName>인원</S.InfoName>
                 <S.JoinInfoBlock>
-                  <S.JoinedPeople>{props.example.result.participantNum}</S.JoinedPeople>/
-                  <S.Maximun>{props.example.result.maxNum}</S.Maximun>
+                  <S.JoinedPeople>{props.regularMeetingInfos.participantNum}</S.JoinedPeople>/
+                  <S.Maximun>{props.regularMeetingInfos.maxNum}</S.Maximun>
                 </S.JoinInfoBlock>
               </S.InFosBlock>
               <S.InFosBlock>
@@ -42,7 +42,7 @@ export default function RegularMeetingUI(props) {
               </S.InFosBlock>
             </S.DetailInfoContainer>
             <S.DetailBlock>
-            {props.example.result.description}
+            {props.regularMeetingInfos.description}
             </S.DetailBlock>
             <S.NextButtonBlock>
               <S.NextButtonItem>참여하기</S.NextButtonItem>

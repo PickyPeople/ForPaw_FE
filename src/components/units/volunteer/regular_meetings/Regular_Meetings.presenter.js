@@ -7,7 +7,7 @@ export default function RegularMeetingsUI(props) {
       <S.WrapperContents>
         <S.Container>
           <S.WrapperMeetingDetail>
-            {props.RegularMeetingsInfos.meetings.map((infos, index) => (
+            {props.regularMeetingsInfos.meetings.map((infos, index) => (
               <S.MeetingDetailContainer key={infos.id}>
                 <S.MeetingDetailContentsBlock>
                   <S.DetailContentsDateBox>

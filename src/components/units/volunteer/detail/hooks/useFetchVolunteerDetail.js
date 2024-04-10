@@ -99,8 +99,8 @@ export default function useFetchVolunteerDetail() {
   );
   useEffect(() => {
     async function loadVolunteerDetail() {
-      const volunteerData = await fetchVolunteerDetail();
-      setVolunteerDetailInfos(volunteerData);
+      const volunteerDetailData = await fetchVolunteerDetail();
+      setVolunteerDetailInfos(volunteerDetailData);
     }
 
     //loadVolunteerDetail()

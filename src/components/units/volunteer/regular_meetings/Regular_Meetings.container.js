@@ -11,14 +11,14 @@ export default function RegularMeetings() {
 
   const status = router.query.name; //멤버인 것을 해주기 위해서
 
-  const { RegularMeetingsInfos } = useFetchRegularMeetings();
+  const { regularMeetingsInfos } = useFetchRegularMeetings();
 
   return (
     <>
       <Headers />
       <RegularMeetingsUI
         navigateTo={navigateTo}
-        RegularMeetingsInfos={RegularMeetingsInfos}
+        regularMeetingsInfos={regularMeetingsInfos}
         status={status}
       />
       <Navigation />
