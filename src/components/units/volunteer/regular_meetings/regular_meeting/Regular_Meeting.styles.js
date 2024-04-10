@@ -83,13 +83,13 @@ export const JoinInfoBlock = styled.div`
 `;
 
 export const JoinedPeople = styled.p`
-  width: 16px;
+  width: 8px;
   height: 24px;
   color: #FF7272
 `;
 
 export const Maximun = styled.p`
-  width: 16px;
+  width: 8px;
   height: 24px;
 `;
 

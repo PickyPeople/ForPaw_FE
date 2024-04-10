@@ -1,4 +1,4 @@
-export async function fetchRegularMeetings() {
+export async function fetchRegularMeeting() {
     try {
       const response = await fetch(
         "https://example.com/api/volunteer/detail/regular_meetings/regular_meeting",

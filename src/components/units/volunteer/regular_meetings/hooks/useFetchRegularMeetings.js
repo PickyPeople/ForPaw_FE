@@ -48,16 +48,16 @@ const example = {
 };
 
 export default function useFetchRegularMeetings() {
-  const [RegularMeetingsInfos, setRegularMeetingsInfos] = useState(
+  const [regularMeetingsInfos, setRegularMeetingsInfos] = useState(
     example.result
   );
   useEffect(() => {
     async function loadRegularMeetings() {
-      const RegularMeetingsData = await fetchRegularMeetings();
-      setRegularMeetingsInfos(RegularMeetingsData);
+      const regularMeetingsInfosData = await fetchRegularMeetings();
+      setRegularMeetingsInfos(regularMeetingsInfosData);
     }
 
     //loadRegularMeetings()
   }, []);
-  return { RegularMeetingsInfos };
+  return { regularMeetingsInfos };
 }
