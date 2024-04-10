@@ -66,69 +66,21 @@ export const WrapperWrite = styled.div`
   scrollbar-width: none; /* Firefox에서 스크롤바를 숨깁니다 */
 `;
 
-export const CategoryContainer = styled.div`
-  width: 342px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  margin-top: 20px;
-`;
-
-export const CategorySelect = styled.div`
+export const CategoryInput = styled.input`
   width: 342px;
   height: 44px;
-  line-height: 44px;
   background-color: #fef8f2;
-  border: ${(props) =>
-    props.isCategoryFocused ? "2px solid #bea597" : "2px solid transparent"};
-  color: ${(props) => (props.isCategoryFocused ? "#bea597" : "#bea597")};
+  border: 2px solid transparent;
   outline: none;
   border-radius: 10px;
   font-size: 16px;
   padding-left: 12px;
-  margin-top: 10px;
-  position: relative;
-`;
-
-export const CategoryArrowBlock = styled.div`
-  width: 25px;
-  height: 25px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 20px;
-  left: 305px;
-`;
-
-export const CategoryDropdown = styled.div`
-  position: absolute;
-  height: 120px;
-  top: 60px;
-  left: 0px;
-  width: 342px;
-  background-color: #fef8f2;
-  border: 2px solid #bea597;
-  border-radius: 10px;
-  padding-bottom: 15px;
-  z-index: 10;
-`;
-
-export const CategoryOption = styled.div`
-  width: 100%;
-  padding-top: 15px;
-  padding-left: 12px;
-  font-size: 16px;
+  margin-top: 15px;
   color: #bea597;
-  border-radius: 10px;
-  cursor: pointer;
   flex-shrink: 0;
 
-  :hover {
-    opacity: 0.5;
+  ::placeholder {
+    color: #bea597;
   }
 `;
 
@@ -157,7 +109,7 @@ export const TitleInput = styled.input`
 
 export const TextInput = styled.textarea`
   width: 342px;
-  height: 200px;
+  height: 160px;
   background-color: #fef8f2;
   border: 2px solid transparent;
   outline: none;

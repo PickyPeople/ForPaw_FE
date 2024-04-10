@@ -204,7 +204,9 @@ export default function CommunityAdoptionUI(props) {
             </S.CommunityViewBlock>
           </S.CommunityInfoBlock>
         </S.CommunityBlock>
-        <S.CommunityAddIcon onClick={props.navigateTo("/community/write")}>
+        <S.CommunityAddIcon
+          onClick={props.navigateTo("/community/write?type=adoption")}
+        >
           <Image
             src="/images/community/community_add_icon.svg"
             alt="community_add_icon"

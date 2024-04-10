@@ -204,7 +204,9 @@ export default function CommunityFosteringUI(props) {
             </S.CommunityViewBlock>
           </S.CommunityInfoBlock>
         </S.CommunityBlock>
-        <S.CommunityAddIcon onClick={props.navigateTo("/community/write")}>
+        <S.CommunityAddIcon
+          onClick={props.navigateTo("/community/write?type=fostering")}
+        >
           <Image
             src="/images/community/community_add_icon.svg"
             alt="community_add_icon"

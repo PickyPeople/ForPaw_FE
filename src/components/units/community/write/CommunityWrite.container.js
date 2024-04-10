@@ -4,30 +4,19 @@ import { useCategorySelection } from "./hooks/useCategorySelection";
 import { usePhotoManager } from "./hooks/usePhotoManager";
 
 export default function CommunityWrite() {
-  const {
-    wrapperRef,
-    categories,
-    selectedCategory,
-    isCategoryFocused,
-    isCategoryDropdownOpen,
-    handleCategorySelect,
-    categoryToggleDropdown,
-  } = useCategorySelection();
+  const { title, category } = useCategorySelection();
 
-  const { photos, addPhoto, deletePhoto } = usePhotoManager();
+  const { photos, isPhotoLimitReached, addPhoto, deletePhoto } =
+    usePhotoManager();
 
   const { navigateBack } = useNavigate();
 
   return (
     <CommunityWriteUI
-      wrapperRef={wrapperRef}
-      categories={categories}
-      selectedCategory={selectedCategory}
-      isCategoryFocused={isCategoryFocused}
-      isCategoryDropdownOpen={isCategoryDropdownOpen}
-      handleCategorySelect={handleCategorySelect}
-      categoryToggleDropdown={categoryToggleDropdown}
+      title={title}
+      category={category}
       photos={photos}
+      isPhotoLimitReached={isPhotoLimitReached}
       addPhoto={addPhoto}
       deletePhoto={deletePhoto}
       navigateBack={navigateBack}

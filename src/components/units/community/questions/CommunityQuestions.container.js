@@ -1,4 +1,4 @@
-import { useNavigate } from "@/src/components/commons/hooks/useNavigate";
+import { useNavigate } from "../../../../../src/components/commons/hooks/useNavigate";
 import Headers from "../../../commons/headers/Headers.container";
 import Navigation from "../../../commons/navigation/Navigation.container";
 import CommunityHandler from "../CommunityHandler.container";

@@ -125,7 +125,9 @@ export default function CommunityQuestionsUI(props) {
           </S.QuestionText>
           <S.NumberOfAnswers>답변 2</S.NumberOfAnswers>
         </S.CommunityQuestionBlock>
-        <S.CommunityAddIcon onClick={props.navigateTo("/community/write")}>
+        <S.CommunityAddIcon
+          onClick={props.navigateTo("/community/write?type=questions")}
+        >
           <Image
             src="/images/community/community_add_icon.svg"
             alt="community_add_icon"
