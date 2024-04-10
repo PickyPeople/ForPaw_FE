@@ -18,7 +18,10 @@ export default function VolunteerDetailHeaderUI(props) {
             </S.LeftArrowImg>
             <S.Title>{props.title}</S.Title>
           </S.LeftArrowTitleContainer>
-          <S.MenuContainer onClick={props.handleMenuClick}>
+          <S.MenuContainer
+            ref={props.wrapperRef}
+            onClick={props.handleMenuClick}
+          >
             <Image
               src="/images/header/menu_icon.svg"
               alt="menu_icon"
@@ -27,7 +30,7 @@ export default function VolunteerDetailHeaderUI(props) {
             />
           </S.MenuContainer>
         </S.Header>
-        <S.MenuBlock ref={props.wrapperRef} active={props.isMenuClicked}>
+        <S.MenuBlock active={props.isMenuClicked}>
           <S.Menu>URL 공유하기</S.Menu>
           <S.Report>신고하기</S.Report>
         </S.MenuBlock>

@@ -5,94 +5,52 @@ export default function VolunteerRecommendUI(props) {
   return (
     <>
       <S.WrapperContents>
-        <S.VolunteerBlock onClick={props.navigateTo('/volunteer/detail')}>
-          <S.VolunteerImg>
-            <Image
-              src="/images/volunteer/volunteer_1.svg"
-              alt="volunteer_1"
-              width={324}
-              height={183}
-            />
-            <S.VolunteerLikeBlock>
+        {props.volunteerInfos.recommandGroups.map((infos, index) => (
+          <S.VolunteerBlock onClick={props.navigateTo("/volunteer/detail")}>
+            <S.VolunteerImg>
               <Image
-                src="/images/volunteer/volunteer_like_icon.svg"
-                alt="volunteer_like_icon"
-                width={17}
-                height={14}
+                src={infos.profileURL}
+                alt="volunteer_1"
+                width={324}
+                height={183}
               />
-              12
-            </S.VolunteerLikeBlock>
-          </S.VolunteerImg>
-          <S.VolunteerTitle>추천모임 이름 적기</S.VolunteerTitle>
-          <S.VolunteerText>
-            소년은 개울가에서 소녀를 보자 곧 윤 초시네 증손녀 딸이라는 걸 알 수
-            있었다. 그런데, 어제까지는 개울 기슭에...
-          </S.VolunteerText>
-          <S.VolunteerInfoBlock>
-            <S.VolunteerNumberOfMember>12명 참여중</S.VolunteerNumberOfMember>
-            <S.VolunteerCategory>봉사 카테고리명</S.VolunteerCategory>
-            <S.VolunteerRegion>부산 금정구</S.VolunteerRegion>
-          </S.VolunteerInfoBlock>
-        </S.VolunteerBlock>
-        <S.VolunteerBlock onClick={props.navigateTo('/volunteer/detail')}>
-          <S.VolunteerImg>
-            <Image
-              src="/images/volunteer/volunteer_1.svg"
-              alt="volunteer_1"
-              width={324}
-              height={183}
-            />
-            <S.VolunteerLikeBlock>
-              <Image
-                src="/images/volunteer/volunteer_like_icon.svg"
-                alt="volunteer_like_icon"
-                width={17}
-                height={14}
-              />
-              12
-            </S.VolunteerLikeBlock>
-          </S.VolunteerImg>
-          <S.VolunteerTitle>추천모임 이름 적기</S.VolunteerTitle>
-          <S.VolunteerText>
-            소년은 개울가에서 소녀를 보자 곧 윤 초시네 증손녀 딸이라는 걸 알 수
-            있었다. 그런데, 어제까지는 개울 기슭에...
-          </S.VolunteerText>
-          <S.VolunteerInfoBlock>
-            <S.VolunteerNumberOfMember>12명 참여중</S.VolunteerNumberOfMember>
-            <S.VolunteerCategory>봉사 카테고리명</S.VolunteerCategory>
-            <S.VolunteerRegion>부산 금정구</S.VolunteerRegion>
-          </S.VolunteerInfoBlock>
-        </S.VolunteerBlock>
-        <S.VolunteerBlock onClick={props.navigateTo('/volunteer/detail')}>
-          <S.VolunteerImg>
-            <Image
-              src="/images/volunteer/volunteer_1.svg"
-              alt="volunteer_1"
-              width={324}
-              height={183}
-            />
-            <S.VolunteerLikeBlock>
-              <Image
-                src="/images/volunteer/volunteer_like_icon.svg"
-                alt="volunteer_like_icon"
-                width={17}
-                height={14}
-              />
-              12
-            </S.VolunteerLikeBlock>
-          </S.VolunteerImg>
-          <S.VolunteerTitle>추천모임 이름 적기</S.VolunteerTitle>
-          <S.VolunteerText>
-            소년은 개울가에서 소녀를 보자 곧 윤 초시네 증손녀 딸이라는 걸 알 수
-            있었다. 그런데, 어제까지는 개울 기슭에...
-          </S.VolunteerText>
-          <S.VolunteerInfoBlock>
-            <S.VolunteerNumberOfMember>12명 참여중</S.VolunteerNumberOfMember>
-            <S.VolunteerCategory>봉사 카테고리명</S.VolunteerCategory>
-            <S.VolunteerRegion>부산 금정구</S.VolunteerRegion>
-          </S.VolunteerInfoBlock>
-        </S.VolunteerBlock>
-        <S.VolunteerAddIcon onClick={props.navigateTo('/volunteer/create_volunteer')}>
+              <S.VolunteerLikeBlock>
+                <Image
+                  src="/images/volunteer/volunteer_like_icon.svg"
+                  alt="volunteer_like_icon"
+                  width={17}
+                  height={14}
+                />
+                {infos.likeNum}
+              </S.VolunteerLikeBlock>
+            </S.VolunteerImg>
+            <S.VolunteerTitleBlock>
+              <S.VolunteerTitle>{infos.name}</S.VolunteerTitle>
+            </S.VolunteerTitleBlock>
+            <S.VolunteerText>
+              {infos.description.length > 63
+                ? `${infos.description.slice(0, 63)}...`
+                : infos.description}
+            </S.VolunteerText>
+            <S.VolunteerInfoBlock>
+              <S.VolunteerNumberOfMember>
+                {infos.participation}명 참여중
+              </S.VolunteerNumberOfMember>
+              <S.VolunteerCategoryBlock>
+                <S.VolunteerCategory>{infos.category}</S.VolunteerCategory>
+              </S.VolunteerCategoryBlock>
+              <S.VolunteerRegionBlock>
+                <S.VolunteerRegion>
+                  {infos.region + " "}
+                  {infos.subRegion}
+                </S.VolunteerRegion>
+              </S.VolunteerRegionBlock>
+            </S.VolunteerInfoBlock>
+          </S.VolunteerBlock>
+        ))}
+        <S.VolunteerAddIcon
+          onClick={props.navigateTo("/volunteer/create_volunteer")}
+        >
           <Image
             src="/images/volunteer/volunteer_add_icon.svg"
             alt="volunteer_add_icon"
