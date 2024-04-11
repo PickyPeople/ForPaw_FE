@@ -6,10 +6,7 @@ export default function VolunteerRecommendUI(props) {
     <>
       <S.WrapperContents>
         {props.volunteerInfos.recommandGroups.map((infos, index) => (
-          <S.VolunteerBlock
-            key={infos.id}
-            onClick={props.navigateTo("/volunteer/detail")}
-          >
+          <S.VolunteerBlock onClick={props.navigateTo("/volunteer/detail")}>
             <S.VolunteerImg>
               <Image
                 src={infos.profileURL}

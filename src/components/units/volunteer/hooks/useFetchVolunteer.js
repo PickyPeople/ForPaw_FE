@@ -37,7 +37,7 @@ const example = {
         category: "봉사",
         region: "대구 광역시",
         subRegion: "수성구",
-        profileURL: "/images/volunteer/volunteer_new.svg",
+        profileURL: "https://s3.xxxx.xx.com",
       },
       {
         id: 24,
@@ -45,7 +45,7 @@ const example = {
         category: "봉사",
         region: "대구 광역시",
         subRegion: "수성구",
-        profileURL: "/images/volunteer/volunteer_new.svg",
+        profileURL: "https://s3.xxxx.xx.com",
       },
     ],
     localGroups: [
@@ -57,7 +57,7 @@ const example = {
         category: "봉사",
         region: "대구 광역시",
         subRegion: "수성구",
-        profileURL: "/images/volunteer/volunteer_1.svg",
+        profileURL: "https://s3.xxxx.xx.com",
         likeNum: 18,
       },
       {
@@ -68,7 +68,7 @@ const example = {
         category: "봉사",
         region: "대구 광역시",
         subRegion: "수성구",
-        profileURL: "/images/volunteer/volunteer_1.svg",
+        profileURL: "https://s3.xxxx.xx.com",
         likeNum: 20,
       },
     ],
