@@ -138,11 +138,16 @@ export const VolunteerNewImg = styled.div`
   margin-top: 8px;
 `;
 
-export const VolunteerNewName = styled.div`
+export const VolunteerNewNameBlock = styled.div`
+  width: 224px;
   font-size: 20px;
   font-weight: 700;
   margin-top: 8px;
-  margin-right: 55px;
+`;
+
+export const VolunteerNewName = styled.p`
+  width: auto;
+  margin-left: 10px;
 `;
 
 export const VolunteerNewInfoBlock = styled.div`
@@ -153,19 +158,23 @@ export const VolunteerNewInfoBlock = styled.div`
   color: white;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   margin-top: 20px;
-  margin-right: 13px;
+  gap: 5px;
 `;
 
-export const VolunteerNewCategory = styled.div`
-  width: 105px;
+export const VolunteerNewCategoryBlock = styled.div`
+  width: auto;
   height: 30px;
   line-height: 30px;
   text-align: center;
   background-color: #240d05;
   border-radius: 15px;
+`;
+
+export const VolunteerNewCategory = styled.p`
+  padding: 0 15px;
 `;
 
 export const VolunteerNewRegion = styled.div`
@@ -246,11 +255,21 @@ export const VolunteerLikeBlock = styled.div`
   left: 8px;
 `;
 
-export const VolunteerTitle = styled.div`
+export const VolunteerTitleBlock = styled.div`
+  width: 344px;
   font-size: 24px;
   font-weight: 600;
-  margin-right: 145px;
   margin-top: 15px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+`;
+
+export const VolunteerTitle = styled.p`
+  width: auto;
+  margin-left: 10px;
 `;
 
 export const VolunteerText = styled.div`
@@ -260,17 +279,19 @@ export const VolunteerText = styled.div`
   font-weight: 300;
   margin-top: 8px;
   margin-right: 10px;
+  overflow: hidden;
+  letter-spacing: -0.7px;
 `;
 
 export const VolunteerInfoBlock = styled.div`
-  width: 288px;
+  width: 324px;
   height: 30px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   margin-top: 25px;
-  margin-right: 35px;
+  gap: 5px;
 `;
 
 export const VolunteerNumberOfMember = styled.div`
@@ -285,8 +306,8 @@ export const VolunteerNumberOfMember = styled.div`
   text-align: center;
 `;
 
-export const VolunteerCategory = styled.div`
-  width: 106px;
+export const VolunteerCategoryBlock = styled.div`
+  width: auto;
   height: 30px;
   line-height: 30px;
   background-color: #e4e4e4;
@@ -295,14 +316,22 @@ export const VolunteerCategory = styled.div`
   text-align: center;
 `;
 
-export const VolunteerRegion = styled.div`
-  width: 86px;
+export const VolunteerCategory = styled.p`
+  padding: 0 15px;
+`;
+
+export const VolunteerRegionBLock = styled.div`
+  width: auto;
   height: 30px;
   line-height: 30px;
   background-color: #e4e4e4;
   border-radius: 15px;
   font-size: 12px;
   text-align: center;
+`;
+
+export const VolunteerRegion = styled.p`
+  padding: 0 15px;
 `;
 
 export const VolunteerAddIcon = styled.div`
@@ -318,4 +347,5 @@ export const VolunteerAddIcon = styled.div`
   position: fixed;
   bottom: 12%;
   right: calc(50% - 172px);
+  cursor: pointer;
 `;
