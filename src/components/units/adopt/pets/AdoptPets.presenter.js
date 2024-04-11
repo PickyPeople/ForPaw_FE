@@ -7,9 +7,21 @@ export default function AdpotPetsUI(props) {
     <>
       <S.WrapperContents>
         <S.AdoptPetMenuBlock>
-          <S.AdoptPetMenuDate>최근 날짜</S.AdoptPetMenuDate>
-          <S.AdoptPetMenuDogs>개</S.AdoptPetMenuDogs>
-          <S.AdoptPetMenuCats>고양이</S.AdoptPetMenuCats>
+          <S.AdoptPetMenuDate sort={props.sort} onClick={props.handleDateClick}>
+            최근 날짜
+          </S.AdoptPetMenuDate>
+          <S.AdoptPetMenuDogs sort={props.sort} onClick={props.handleDogsClick}>
+            개
+          </S.AdoptPetMenuDogs>
+          <S.AdoptPetMenuCats sort={props.sort} onClick={props.handleCatsClick}>
+            고양이
+          </S.AdoptPetMenuCats>
+          <S.AdoptPetMenuOthers
+            sort={props.sort}
+            onClick={props.handleOthersClick}
+          >
+            기타
+          </S.AdoptPetMenuOthers>
         </S.AdoptPetMenuBlock>
         {props.pets?.map((pet) => (
           <S.AdoptPet key={pet.id}>

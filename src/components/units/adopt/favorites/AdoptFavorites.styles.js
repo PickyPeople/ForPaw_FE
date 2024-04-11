@@ -20,7 +20,7 @@ export const WrapperContents = styled.div`
 `;
 
 export const AdoptPetMenuBlock = styled.div`
-  width: 240px;
+  width: 305px;
   height: 43px;
   display: flex;
   flex-direction: row;
@@ -30,7 +30,7 @@ export const AdoptPetMenuBlock = styled.div`
   font-weight: 600;
   text-align: center;
   margin-top: 18px;
-  margin-right: 100px;
+  margin-right: 40px;
   margin-bottom: 3px;
 `;
 
@@ -38,25 +38,44 @@ export const AdoptPetMenuDate = styled.div`
   width: 91px;
   height: 43px;
   line-height: 43px;
-  background-color: #ff6636;
+  background-color: ${(props) =>
+    props.sort === "date" ? "#ff6636" : "#eeeeee"};
   border-radius: 22px;
-  color: white;
+  color: ${(props) => (props.sort === "date" ? "#ffffff" : "#000000")};
+  cursor: pointer;
 `;
 
 export const AdoptPetMenuDogs = styled.div`
   width: 53px;
   height: 43px;
   line-height: 43px;
-  background-color: #eeeeee;
+  background-color: ${(props) =>
+    props.sort === "dogs" ? "#ff6636" : "#eeeeee"};
+  color: ${(props) => (props.sort === "dogs" ? "#ffffff" : "#000000")};
   border-radius: 22px;
+  cursor: pointer;
 `;
 
 export const AdoptPetMenuCats = styled.div`
   width: 76px;
   height: 43px;
   line-height: 43px;
-  background-color: #eeeeee;
+  background-color: ${(props) =>
+    props.sort === "cats" ? "#ff6636" : "#eeeeee"};
+  color: ${(props) => (props.sort === "cats" ? "#ffffff" : "#000000")};
   border-radius: 22px;
+  cursor: pointer;
+`;
+
+export const AdoptPetMenuOthers = styled.div`
+  width: 65px;
+  height: 43px;
+  line-height: 43px;
+  background-color: ${(props) =>
+    props.sort === "others" ? "#ff6636" : "#eeeeee"};
+  color: ${(props) => (props.sort === "others" ? "#ffffff" : "#000000")};
+  border-radius: 22px;
+  cursor: pointer;
 `;
 
 export const AdoptPet = styled.div`

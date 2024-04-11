@@ -36,7 +36,7 @@ const example = {
   },
 };
 
-export default function useFetchPetsData() {
+export default function useFetchPetsData(sort) {
   const [pets, setPets] = useState(example.result.animals);
   const { toggle } = useToggleLike();
 
@@ -47,7 +47,7 @@ export default function useFetchPetsData() {
     }
 
     // loadPetsData();
-  }, []);
+  }, [sort]);
 
   // '좋아요' 토글을 처리하는 함수
   const handleToggleLike = async (animalId) => {

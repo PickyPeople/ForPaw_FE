@@ -30,11 +30,13 @@ export default function CommunityWriteUI(props) {
           <S.PhotoTitle>사진 첨부</S.PhotoTitle>
           <S.PhotoContainer>
             {props.photos.map((photo, index) => (
-              <S.AddedPhotoBlock>
-                <S.PhotoBox key={index}>
-                  <span>{photo}</span>
+              <S.AddedPhotoBlock key={photo.id}>
+                <S.PhotoBox>
+                  <span>{photo.name}</span>
                 </S.PhotoBox>
-                <S.PhotoDeleteButton onClick={() => props.deletePhoto(index)}>
+                <S.PhotoDeleteButton
+                  onClick={() => props.deletePhoto(photo.id)}
+                >
                   삭제
                 </S.PhotoDeleteButton>
               </S.AddedPhotoBlock>

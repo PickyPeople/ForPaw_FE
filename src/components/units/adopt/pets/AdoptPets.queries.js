@@ -1,6 +1,6 @@
-export async function fetchPetsData() {
+export async function fetchPetsData(sort, page) {
   try {
-    const response = await fetch("https://example.com/api/pets", {
+    const response = await fetch(`/animals?sort=${sort}&page=${page}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
