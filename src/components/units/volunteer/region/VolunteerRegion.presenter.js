@@ -36,7 +36,7 @@ export default function VolunteerRegionUI(props) {
         <S.VolunteerNewTitle>새로 생겼어요</S.VolunteerNewTitle>
         <S.VolunteerNewBlock>
           {props.volunteerInfos.newGroups.map((infos, index) => (
-            <S.VolunteerNew>
+            <S.VolunteerNew key={infos.id}>
               <S.VolunteerNewImg>
                 <Image
                   src={infos.profileURL}
@@ -75,7 +75,7 @@ export default function VolunteerRegionUI(props) {
         </S.VolunteerNewAlarmBlock>
         <S.VolunteerRegionTitle>장전동 모임</S.VolunteerRegionTitle>
         {props.volunteerInfos.localGroups.map((infos, index) => (
-          <S.VolunteerBlock>
+          <S.VolunteerBlock key={infos.id}>
             <S.VolunteerImg>
               <Image
                 src={infos.profileURL}

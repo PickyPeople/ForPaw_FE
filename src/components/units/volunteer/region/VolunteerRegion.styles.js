@@ -139,7 +139,7 @@ export const VolunteerNewImg = styled.div`
 `;
 
 export const VolunteerNewNameBlock = styled.div`
-  width: 224px;
+  width: 208px;
   font-size: 20px;
   font-weight: 700;
   margin-top: 8px;
