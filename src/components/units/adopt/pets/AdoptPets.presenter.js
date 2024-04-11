@@ -5,7 +5,7 @@ export default function AdpotPetsUI(props) {
   // `props.pets` 내의 각 요소를 순회하여 UI 구성
   return (
     <>
-      <S.WrapperContents>
+      <S.WrapperContents ref={props.scrollRef}>
         <S.AdoptPetMenuBlock>
           <S.AdoptPetMenuDate sort={props.sort} onClick={props.handleDateClick}>
             최근 날짜
@@ -90,6 +90,7 @@ export default function AdpotPetsUI(props) {
             </S.AdoptInfoBlock>
           </S.AdoptPet>
         ))}
+        <S.MoreButton onClick={props.loadPetsData}>더 보기</S.MoreButton>
       </S.WrapperContents>
     </>
   );

@@ -4,7 +4,7 @@ export default function useLogOut() {
   const router = useRouter();
 
   function logOut() {
-    localStorage.removeItem("accessToken");
+    localStorage.clear();
     router.push("/login");
   }
 

@@ -5,6 +5,7 @@ import AdpotPetsUI from "./AdoptPets.presenter";
 import useFetchPetsData from "./hooks/useFetchPetsData";
 import { useNavigate } from "../../../../../src/components/commons/hooks/useNavigate";
 import { useSuseSortSelection } from "../../../../../src/components/commons/hooks/useSortSelection";
+import React, { useRef, useEffect } from "react";
 
 export default function AdpotPets() {
   const {
@@ -14,7 +15,7 @@ export default function AdpotPets() {
     handleCatsClick,
     handleOthersClick,
   } = useSuseSortSelection();
-  const { pets, handleToggleLike } = useFetchPetsData(sort);
+  const { pets, handleToggleLike, loadPetsData } = useFetchPetsData(sort);
   const { navigateTo } = useNavigate();
 
   console.log(sort);
@@ -25,6 +26,7 @@ export default function AdpotPets() {
       <AdoptHandler />
       <AdpotPetsUI
         sort={sort}
+        loadPetsData={loadPetsData}
         handleDateClick={handleDateClick}
         handleDogsClick={handleDogsClick}
         handleCatsClick={handleCatsClick}

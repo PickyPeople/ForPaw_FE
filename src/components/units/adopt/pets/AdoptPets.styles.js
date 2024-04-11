@@ -10,7 +10,7 @@ export const WrapperContents = styled.div`
   margin: 0 auto;
   overflow-y: auto;
   background-color: white;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
 
   /* 스크롤 바 숨기기 */
   ::-webkit-scrollbar {
@@ -189,4 +189,9 @@ export const AdoptView = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+`;
+
+export const MoreButton = styled.button`
+  margin-top: 12px;
+  cursor: pointer;
 `;
