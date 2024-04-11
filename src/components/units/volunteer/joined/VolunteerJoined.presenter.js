@@ -41,7 +41,7 @@ export default function VolunteerRecommendUI(props) {
               </S.VolunteerCategoryBlock>
               <S.VolunteerRegionBlock>
                 <S.VolunteerRegion>
-                  {infos.region.substring(0, 2) + " "}
+                  {infos.region + " "}
                   {infos.subRegion}
                 </S.VolunteerRegion>
               </S.VolunteerRegionBlock>
