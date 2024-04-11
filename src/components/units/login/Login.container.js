@@ -1,29 +1,24 @@
 import LoginUI from "./Login.presenter";
 import { useLoginCheck } from "./hooks/useLoginCheck";
 import { useNavigate } from "../../commons/hooks/useNavigate";
+import { useEmailPasswordCheck } from "./hooks/useEmailPasswordCheck";
 
 export default function Login() {
   const { navigateTo } = useNavigate();
 
-  const {
-    email,
-    password,
-    isPossibleLogin,
-    loginMsg,
-    handleEmailChange,
-    handlePasswordChange,
-    verifyLogin,
-  } = useLoginCheck();
+  const { email, password, isValid, handleEmailChange, handlePasswordChange } =
+    useEmailPasswordCheck();
+
+  const { verifyLogin } = useLoginCheck(email, password);
 
   return (
     <>
       <LoginUI
         navigateTo={navigateTo}
         email={email}
-        password={password}
-        isPossibleLogin={isPossibleLogin}
-        loginMsg={loginMsg}
+        isValid={isValid}
         handleEmailChange={handleEmailChange}
+        password={password}
         handlePasswordChange={handlePasswordChange}
         verifyLogin={() => verifyLogin(email, password)}
       />

@@ -10,6 +10,7 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/pretendard/dist/web/static/pretendard.css"
           />
+          <link rel="icon" href="./forpaw.svg" />
         </Head>
         <body>
           <Main />

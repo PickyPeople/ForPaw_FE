@@ -1,23 +1,8 @@
-import { useEffect } from "react";
 import "../styles/globals.css";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import useAuthCheck from "../src/components/commons/hooks/useAuthCheck";
 
-export default function App({ Component }) {
-  const client = new ApolloClient({
-    //uri: "",
-    cache: new InMemoryCache(),
-  });
+export default function App({ Component, pageProps }) {
+  useAuthCheck(); // 로그인 검증 및 리디렉션 처리
 
-  useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    console.log(accessToken);
-  }, []);
-
-  return (
-    <div>
-      <ApolloProvider client={client}>
-        <Component />
-      </ApolloProvider>
-    </div>
-  );
+  return <Component {...pageProps} />;
 }
