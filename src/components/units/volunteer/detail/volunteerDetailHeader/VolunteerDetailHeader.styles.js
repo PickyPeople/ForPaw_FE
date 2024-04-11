@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 
 export const WrapperHeader = styled.div`
+  position: relative;
+  z-index: 3;
   width: 390px;
   height: 95px;
   background-color: white;

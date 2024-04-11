@@ -69,7 +69,7 @@ export default function VolunteerDetailUI(props) {
                   </S.CheckBox>
                   <S.AnnouncementText>
                     {notice.title.length > 55
-                      ? `${announcement.text.slice(0, 55)}...`
+                      ? `${notice.title.slice(0, 55)}...`
                       : notice.title}
                   </S.AnnouncementText>
                 </S.AnnouncementItems>
