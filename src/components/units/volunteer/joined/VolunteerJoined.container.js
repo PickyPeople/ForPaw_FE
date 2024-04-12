@@ -17,10 +17,7 @@ export default function VolunteerJoined() {
     });
   };
   
-  const sort = "date"
-  const page = 0
-
-  const { volunteerJoinedInfos, loadUpdatedVolunteerJoinedData } = useFetchVolunteerJoined(sort, page);
+  const { volunteerJoinedInfos, loadUpdatedVolunteerJoinedData } = useFetchVolunteerJoined();
 
   return (
     <>

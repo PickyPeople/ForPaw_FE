@@ -35,61 +35,44 @@ const example = {
   },
 };
 
-export default function useFetchVolunteerJoined(sort, page) {
-  const { volunteerInfos } = useFetchVolunteer(); //전체적인 봉사활동 관련된 api문서를 다 불러옴
+export default function useFetchVolunteerJoined() {
+  const { volunteerInfos } = useFetchVolunteer(); // 전체적인 봉사활동 관련된 API 데이터를 가져오는 커스텀 훅
+  const [pageNumber, setPageNumber] = useState(0); // 페이지 번호 상태
   const [volunteerJoinedInfos, setVolunteerJoinedInfos] = useState(
     volunteerInfos.myGroups
-  ); //초기 내모임 값
-
-  useEffect(() => { //초기값을 localstorage로 주는 기능
-    localStorage.setItem(`${sort}Page`, page);
-    localStorage.setItem(
-      `VolunteerJoinedData_${sort}`,
-      JSON.stringify(volunteerJoinedInfos)
-    );
-  }, [])
+  ); // 초기 내 모임 값
 
   useEffect(() => {
-    const localVolunteerJoinedData = getLocalVolunteerJoinedData(sort);
+    if (typeof window !== 'undefined') { //새로고침의 문제해결
+      const savedPageNumber = localStorage.getItem('pageNumber');
+      setPageNumber(savedPageNumber ? parseInt(savedPageNumber) : 0);
 
-    if (localVolunteerJoinedData.lenght === 1) {
-      loadUpdatedVolunteerJoinedData();
-    } else {
-      setVolunteerJoinedInfos(localVolunteerJoinedData);
+      const savedVolunteerData = localStorage.getItem('VolunteerJoinedData');
+      if (savedVolunteerData) {
+        setVolunteerJoinedInfos(JSON.parse(savedVolunteerData));
+      }
     }
-  }, []);
+  }, [])
 
-  const getLocalVolunteerJoinedData = (sort) => {
-    const storedVolunteerJoined = localStorage.getItem(
-      `VolunteerJoinedData_${sort}`
-    );
-    return storedVolunteerJoined ? JSON.parse(storedVolunteerJoined) : [];
-  };
-
-  const getPageNumber = (sort) => {
-    return parseInt(localStorage.getItem(`${sort}Page`), 10) || 0;
-  };
-
-  const setPageNumber = (sort, page) => {
-    localStorage.setItem(`${sort}Page`, page.toString());
-  };
-
-  const loadUpdatedVolunteerJoinedData = async () => {
-    const page = getPageNumber(sort);
-    const localVolunteerJoinedData = getLocalVolunteerJoinedData(sort);
-
-    const fetchVolunteerJoinedData = example.result.myGroups;
-
-    setVolunteerJoinedInfos((prevState) => [
+  const loadUpdatedVolunteerJoinedData = async() => {
+    const fetchedVolunteerJoinedData = example.result.myGroups //여기에 한홍이형이 불러온 api주소를 입력해준다.
+    setVolunteerJoinedInfos(prevState => [
       ...prevState,
-      ...fetchVolunteerJoinedData,
+      ...fetchedVolunteerJoinedData,
     ]);
-    setPageNumber(sort, page + 1);
-    localStorage.setItem(
-      `VolunteerJoinedData_${sort}`,
-      JSON.stringify(localVolunteerJoinedData)
-    );
+    setPageNumber(prevPageNumber => prevPageNumber + 1);
   };
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('pageNumber', pageNumber);
+      localStorage.setItem(
+        `VolunteerJoinedData`,
+        JSON.stringify(volunteerJoinedInfos)
+      );
+    }
+  }, [pageNumber, volunteerJoinedInfos]);
+
 
   // const loadUpdatedVolunteerJoinedData = async () => {
   //       const volunteerJoinedInfosData =  await fetchVolunteerJoined(); //example변수
