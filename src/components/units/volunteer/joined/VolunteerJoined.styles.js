@@ -138,6 +138,11 @@ export const VolunteerRegion = styled.p`
   padding: 0 15px;
 `;
 
+export const MoreBtn = styled.button`
+  margin-top: 15px;
+  cursor: pointer;
+`;
+
 export const VolunteerAddIcon = styled.div`
   width: 60px;
   height: 60px;

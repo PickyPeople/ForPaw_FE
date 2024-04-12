@@ -55,8 +55,8 @@ export default function VolunteerRegionUI(props) {
                   </S.VolunteerNewCategory>
                 </S.VolunteerNewCategoryBlock>
                 <S.VolunteerNewRegion>
-                  {infos.region.substring(0, 2) + " "}
-                  {infos.subRegion}
+                  {infos.district + " "}
+                  {infos.subDistrict}
                 </S.VolunteerNewRegion>
               </S.VolunteerNewInfoBlock>
             </S.VolunteerNew>
@@ -110,8 +110,8 @@ export default function VolunteerRegionUI(props) {
               </S.VolunteerCategoryBlock>
               <S.VolunteerRegionBLock>
                 <S.VolunteerRegion>
-                  {infos.region.substring(0, 2) + " "}
-                  {infos.subRegion}
+                  {infos.district + " "}
+                  {infos.subDistrict}
                 </S.VolunteerRegion>
               </S.VolunteerRegionBLock>
             </S.VolunteerInfoBlock>

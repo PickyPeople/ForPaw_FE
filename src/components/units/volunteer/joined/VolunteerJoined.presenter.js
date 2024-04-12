@@ -5,7 +5,7 @@ export default function VolunteerRecommendUI(props) {
   return (
     <>
       <S.WrapperContents>
-        {props.volunteerInfos.myGroups.map((infos, index) => (
+        {props.volunteerJoinedInfos.map((infos, index) => (
           <S.VolunteerBlock
             key={infos.id}
             onClick={props.navigateTo("/volunteer/detail")}
@@ -44,13 +44,14 @@ export default function VolunteerRecommendUI(props) {
               </S.VolunteerCategoryBlock>
               <S.VolunteerRegionBlock>
                 <S.VolunteerRegion>
-                  {infos.region + " "}
-                  {infos.subRegion}
+                  {infos.district + " "}
+                  {infos.subDistrict}
                 </S.VolunteerRegion>
               </S.VolunteerRegionBlock>
             </S.VolunteerInfoBlock>
           </S.VolunteerBlock>
         ))}
+        <S.MoreBtn onClick={props.loadUpdatedVolunteerJoinedData}>더보기</S.MoreBtn>
         <S.VolunteerAddIcon
           onClick={props.navigateTo("/volunteer/create_volunteer")}
         >

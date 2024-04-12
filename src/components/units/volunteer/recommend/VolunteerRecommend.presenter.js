@@ -44,8 +44,8 @@ export default function VolunteerRecommendUI(props) {
               </S.VolunteerCategoryBlock>
               <S.VolunteerRegionBlock>
                 <S.VolunteerRegion>
-                  {infos.region + " "}
-                  {infos.subRegion}
+                  {infos.district + " "}
+                  {infos.subDistrict}
                 </S.VolunteerRegion>
               </S.VolunteerRegionBlock>
             </S.VolunteerInfoBlock>
