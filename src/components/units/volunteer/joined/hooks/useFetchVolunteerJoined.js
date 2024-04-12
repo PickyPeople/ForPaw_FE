@@ -42,7 +42,7 @@ export default function useFetchVolunteerJoined() {
     volunteerInfos.myGroups
   ); // 초기 내 모임 값
 
-  useEffect(() => {
+  useEffect(() => { //초기값을 불러와주는 기능
     if (typeof window !== 'undefined') { //새로고침의 문제해결
       const savedPageNumber = localStorage.getItem('pageNumber');
       setPageNumber(savedPageNumber ? parseInt(savedPageNumber) : 0);
@@ -54,12 +54,9 @@ export default function useFetchVolunteerJoined() {
     }
   }, [])
 
-  const loadUpdatedVolunteerJoinedData = async() => {
+  const loadUpdatedVolunteerJoinedData = async() => { //api문서를 더보기 버튼으로 fetch해 오는 기능
     const fetchedVolunteerJoinedData = example.result.myGroups //여기에 한홍이형이 불러온 api주소를 입력해준다.
-    setVolunteerJoinedInfos(prevState => [
-      ...prevState,
-      ...fetchedVolunteerJoinedData,
-    ]);
+    setVolunteerJoinedInfos(prevState => [...prevState, ...fetchedVolunteerJoinedData]);
     setPageNumber(prevPageNumber => prevPageNumber + 1);
   };
 
