@@ -1,8 +1,14 @@
 import { useRouter } from "next/router";
 import HeadersUI from "./Headers.presenter";
+import useModalStore from "../../../../src/store/useModalStore";
+import { useNavigate } from "../hooks/useNavigate";
+import { useLoginStatusCheck } from "../hooks/useLoginStatusCheck";
 
 export default function Headers() {
   const router = useRouter();
+  const { isLoggedIn } = useLoginStatusCheck();
+  const { openModal } = useModalStore();
+  const { navigateTo } = useNavigate();
 
   // 경로 패턴에 따른 타이틀 설정
   const getTitleByPath = (pathname) => {
@@ -35,9 +41,6 @@ export default function Headers() {
 
   const title = getTitleByPath(router.pathname);
 
-  // 페이지 이동을 처리하는 함수
-  const navigateTo = (iconName) => () => router.push(paths[iconName]);
-
   // 각 아이콘에 해당하는 경로
   const paths = {
     home: "/home",
@@ -46,5 +49,20 @@ export default function Headers() {
     profile: "/info/profile",
   };
 
-  return <HeadersUI title={title} navigateTo={navigateTo} />;
+  const handleIconClick = (path) => {
+    if (!isLoggedIn) {
+      openModal(); // 로그인 경로를 전달
+    } else {
+      router.push(path);
+    }
+  };
+
+  return (
+    <HeadersUI
+      title={title}
+      navigateTo={navigateTo}
+      handleIconClick={handleIconClick}
+      paths={paths}
+    />
+  );
 }

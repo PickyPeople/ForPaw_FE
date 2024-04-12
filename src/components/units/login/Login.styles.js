@@ -9,7 +9,7 @@ export const WrapperContainer = styled.div`
 
 export const Container = styled.div`
   width: 100%;
-  height: 844px;
+  height: 100vh;
   background-color: white;
 `;
 
@@ -51,7 +51,7 @@ export const WrapperLogo = styled.div`
 
 export const WrapperLoginContents = styled.div`
   width: 100%;
-  height: 621px;
+  height: calc(100vh - 223px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -60,7 +60,7 @@ export const WrapperLoginContents = styled.div`
 
 export const LoginContentsBlock = styled.div`
   width: 344px;
-  height: 552px;
+  /* height: 552px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -181,7 +181,7 @@ export const AccoutAndInfoContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 16px;
+  margin-top: 26px;
 `;
 
 export const AccoutFind = styled.div`
@@ -195,6 +195,21 @@ export const AccoutFind = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+`;
+
+export const BrowseAsGeust = styled.div`
+  width: 58px;
+  height: 20px;
+  color: #a1a1a1;
+  border-bottom: 1px solid #a1a1a1;
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
   cursor: pointer;
 `;
 

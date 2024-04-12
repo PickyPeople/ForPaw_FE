@@ -1,9 +1,14 @@
-export async function fetchFavPetsData() {
+import useAuthStore from "../../../../../src/store/useAuthStore";
+
+export async function fetchFavPetsData(sort, page) {
+  const { accessToken } = useAuthStore();
+
   try {
-    const response = await fetch("https://example.com/api/pets", {
+    const response = await fetch(`/animals/like?sort=${sort}&page=${page}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
       },
     });
     if (!response.ok) {

@@ -9,7 +9,7 @@ export default function CommunityAdoptionUI(props) {
           <S.CommunityMenuPopularity>인기순</S.CommunityMenuPopularity>
           <S.CommunityMenuNewest>최신순</S.CommunityMenuNewest>
         </S.CommunityMenuBlock>
-        <S.CommunityBlock onClick={props.navigateTo("/community/detail")}>
+        <S.CommunityBlock onClick={() => props.navigateTo("/community/detail")}>
           <S.CommunityImg>
             <Image
               src="/images/community/community_1.svg"
@@ -48,7 +48,7 @@ export default function CommunityAdoptionUI(props) {
             </S.CommunityViewBlock>
           </S.CommunityInfoBlock>
         </S.CommunityBlock>
-        <S.CommunityBlock onClick={props.navigateTo("/community/detail")}>
+        <S.CommunityBlock onClick={() => props.navigateTo("/community/detail")}>
           <S.CommunityImg>
             <Image
               src="/images/community/community_1.svg"
@@ -87,7 +87,7 @@ export default function CommunityAdoptionUI(props) {
             </S.CommunityViewBlock>
           </S.CommunityInfoBlock>
         </S.CommunityBlock>
-        <S.CommunityBlock onClick={props.navigateTo("/community/detail")}>
+        <S.CommunityBlock onClick={() => props.navigateTo("/community/detail")}>
           <S.CommunityImg>
             <Image
               src="/images/community/community_1.svg"
@@ -126,7 +126,7 @@ export default function CommunityAdoptionUI(props) {
             </S.CommunityViewBlock>
           </S.CommunityInfoBlock>
         </S.CommunityBlock>
-        <S.CommunityBlock onClick={props.navigateTo("/community/detail")}>
+        <S.CommunityBlock onClick={() => props.navigateTo("/community/detail")}>
           <S.CommunityImg>
             <Image
               src="/images/community/community_1.svg"
@@ -165,7 +165,7 @@ export default function CommunityAdoptionUI(props) {
             </S.CommunityViewBlock>
           </S.CommunityInfoBlock>
         </S.CommunityBlock>
-        <S.CommunityBlock onClick={props.navigateTo("/community/detail")}>
+        <S.CommunityBlock onClick={() => props.navigateTo("/community/detail")}>
           <S.CommunityImg>
             <Image
               src="/images/community/community_1.svg"
@@ -205,7 +205,9 @@ export default function CommunityAdoptionUI(props) {
           </S.CommunityInfoBlock>
         </S.CommunityBlock>
         <S.CommunityAddIcon
-          onClick={props.navigateTo("/community/write?type=adoption")}
+          onClick={() =>
+            props.handleAddIconClick("/community/write?type=adoption")
+          }
         >
           <Image
             src="/images/community/community_add_icon.svg"

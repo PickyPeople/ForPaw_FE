@@ -8,7 +8,7 @@ export default function NavigationUI(props) {
       {Object.keys(props.paths).map((iconName) => (
         <S.NavigationIconContainer
           key={iconName}
-          onClick={props.navigateTo(iconName)}
+          onClick={() => props.handleChattingClick(iconName)}
         >
           <Image
             src={props.getIconSrc(iconName)}

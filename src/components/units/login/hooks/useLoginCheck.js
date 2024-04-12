@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { requestLoginToken } from "../Login.queries";
 import { useRouter } from "next/router";
 import useAuthStore from "../../../../../src/store/useAuthStore";
@@ -20,5 +19,10 @@ export const useLoginCheck = (email, password) => {
     }
   };
 
-  return { verifyLogin };
+  const browseAsGeust = () => {
+    localStorage.setItem("isLoggedIn", false);
+    router.push("/home");
+  };
+
+  return { verifyLogin, browseAsGeust };
 };

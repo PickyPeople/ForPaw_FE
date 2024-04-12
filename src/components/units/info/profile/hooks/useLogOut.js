@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
 
-export default function useLogOut() {
+export default function useLogout() {
   const router = useRouter();
 
-  function logOut() {
+  function logout() {
     localStorage.clear();
     router.push("/login");
   }
 
-  return { logOut };
+  return { logout };
 }

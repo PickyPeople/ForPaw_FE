@@ -9,7 +9,7 @@ export default function Login() {
   const { email, password, isValid, handleEmailChange, handlePasswordChange } =
     useEmailPasswordCheck();
 
-  const { verifyLogin } = useLoginCheck(email, password);
+  const { verifyLogin, browseAsGeust } = useLoginCheck(email, password);
 
   return (
     <>
@@ -21,6 +21,7 @@ export default function Login() {
         password={password}
         handlePasswordChange={handlePasswordChange}
         verifyLogin={() => verifyLogin(email, password)}
+        browseAsGeust={browseAsGeust}
       />
     </>
   );

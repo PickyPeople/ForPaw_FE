@@ -21,7 +21,7 @@ export default function AdoptHandlerUI(props) {
             보호소
           </S.AdoptMenu>
           <S.AdoptMenu
-            onClick={props.navigateTo(props.paths.favorites)}
+            onClick={() => props.handleFavClick("/adopt/favorites")}
             active={props.isActive(props.paths.favorites)}
           >
             관심동물

@@ -81,6 +81,9 @@ export default function LoginUI(props) {
                 >
                   계정을 잃어버리셨나요?
                 </S.AccoutFind>
+                <S.BrowseAsGeust onClick={props.browseAsGeust}>
+                  둘러보기
+                </S.BrowseAsGeust>
                 <S.InfoPaw>이용약관 | 개인정보취급방침</S.InfoPaw>
               </S.AccoutAndInfoContainer>
             </S.LoginContentsBlock>

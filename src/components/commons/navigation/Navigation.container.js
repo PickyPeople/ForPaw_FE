@@ -1,12 +1,12 @@
-// Navigation.container.js
 import NavigationUI from "./Navigation.present";
 import { useRouter } from "next/router";
+import useModalStore from "../../../../src/store/useModalStore";
+import { useLoginStatusCheck } from "../hooks/useLoginStatusCheck";
 
 export default function Navigation(props) {
   const router = useRouter();
-
-  // 페이지 이동을 처리하는 함수
-  const navigateTo = (iconName) => () => router.push(paths[iconName]);
+  const { isLoggedIn } = useLoginStatusCheck();
+  const { openModal } = useModalStore();
 
   // 현재 경로에 따라 아이콘 이미지를 선택하는 함수이다.
   // 기본 아이콘과 활성화된 아이콘 중에서 해당 경로에서 활성화된 아이콘을 선택한다.
@@ -14,8 +14,9 @@ export default function Navigation(props) {
     // 아이콘 활성화 조건을 정확한 경로 일치로 변경
     const isActive = router.pathname.startsWith(`/${iconName}`) ? true : false;
 
-    return `/images/navigation/${iconName}_icon${isActive ? "_active" : ""
-      }.svg`;
+    return `/images/navigation/${iconName}_icon${
+      isActive ? "_active" : ""
+    }.svg`;
   };
 
   // 각 아이콘에 해당하는 경로
@@ -27,11 +28,19 @@ export default function Navigation(props) {
     chatting: "/chatting",
   };
 
+  const handleChattingClick = (iconName) => {
+    if (!isLoggedIn && iconName === "chatting") {
+      openModal(); // 로그인 경로를 전달
+    } else {
+      router.push(paths[iconName]);
+    }
+  };
+
   // NavigationUI 컴포넌트로 props를 통해 함수 전달
   return (
     <NavigationUI
       isJoinedClikced={props.isJoinedClikced}
-      navigateTo={navigateTo}
+      handleChattingClick={handleChattingClick}
       getIconSrc={getIconSrc}
       paths={paths}
     />

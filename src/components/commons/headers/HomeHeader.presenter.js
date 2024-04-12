@@ -14,7 +14,9 @@ export default function HomeHeaderUI(props) {
           />
         </S.ForPawImageContainer>
         <S.InfoContainer>
-          <S.InfoIconContainer onClick={props.navigateTo("search")}>
+          <S.InfoIconContainer
+            onClick={() => props.handleIconClick(props.paths.search)}
+          >
             <Image
               src="/images/header/search_icon.svg"
               alt="search_icon"
@@ -22,7 +24,9 @@ export default function HomeHeaderUI(props) {
               height={44}
             />
           </S.InfoIconContainer>
-          <S.InfoIconContainer onClick={props.navigateTo("alarm")}>
+          <S.InfoIconContainer
+            onClick={() => props.handleIconClick(props.paths.alarm)}
+          >
             <Image
               src="/images/header/alarm_icon.svg"
               alt="alarm_icon"
@@ -30,7 +34,9 @@ export default function HomeHeaderUI(props) {
               height={44}
             />
           </S.InfoIconContainer>
-          <S.ProfileIconContainer onClick={props.navigateTo("profile")}>
+          <S.ProfileIconContainer
+            onClick={() => props.handleIconClick(props.paths.profile)}
+          >
             <Image
               src="/images/header/profile_icon.svg"
               alt="profile_icon"

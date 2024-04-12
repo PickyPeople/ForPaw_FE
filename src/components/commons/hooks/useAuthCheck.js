@@ -32,8 +32,8 @@ const useAuthCheck = () => {
       setAccessToken(example.accessToken);
     }
 
-    // console.log("isLoggedIn : ", isLoggedIn);
-    // console.log("accessToken : ", accessToken);
+    console.log("isLoggedIn : ", isLoggedIn);
+    console.log("accessToken : ", accessToken);
   }, [router, accessToken, setAccessToken, clearAccessToken]);
 };
 

@@ -79,6 +79,7 @@ export default function useFetchPetsData(sort) {
     setPageNumber(sort, page + 1);
     localStorage.setItem(`petsData_${sort}`, JSON.stringify(updatedPetsData));
 
+    console.log("page = ", page);
     console.log("datePage = ", localStorage.getItem("datePage"));
     console.log("dogsPage = ", localStorage.getItem("dogsPage"));
     console.log("catsPage = ", localStorage.getItem("catsPage"));
