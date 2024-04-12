@@ -33,7 +33,7 @@ export default function AdpotPetsUI(props) {
               priority
               onClick={props.navigateTo(`/adopt/detail`)}
             />
-            <S.AdoptLikeToggle onClick={() => props.handleToggleLike(pet.id)}>
+            <S.AdoptLikeToggle onClick={() => props.handleToggleClick(pet.id)}>
               <Image
                 src={
                   pet.isLike === true

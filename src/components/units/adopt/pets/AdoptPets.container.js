@@ -6,8 +6,12 @@ import useFetchPetsData from "./hooks/useFetchPetsData";
 import { useNavigate } from "../../../../../src/components/commons/hooks/useNavigate";
 import { useSuseSortSelection } from "../../../../../src/components/commons/hooks/useSortSelection";
 import React, { useRef, useEffect } from "react";
+import { useLoginStatusCheck } from "../../../../../src/components/commons/hooks/useLoginStatusCheck";
+import useModalStore from "../../../../../src/store/useModalStore";
 
 export default function AdpotPets() {
+  const { isLoggedIn } = useLoginStatusCheck();
+  const { openModal } = useModalStore();
   const {
     sort,
     handleDateClick,
@@ -18,7 +22,13 @@ export default function AdpotPets() {
   const { pets, handleToggleLike, loadPetsData } = useFetchPetsData(sort);
   const { navigateTo } = useNavigate();
 
-  console.log(sort);
+  const handleToggleClick = (petId) => {
+    if (!isLoggedIn) {
+      openModal(); // 로그인 경로를 전달
+    } else {
+      handleToggleLike(petId);
+    }
+  };
 
   return (
     <>
@@ -32,7 +42,7 @@ export default function AdpotPets() {
         handleCatsClick={handleCatsClick}
         handleOthersClick={handleOthersClick}
         pets={pets}
-        handleToggleLike={handleToggleLike}
+        handleToggleClick={handleToggleClick}
         navigateTo={navigateTo}
       />
       <Navigation />
