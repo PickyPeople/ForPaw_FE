@@ -107,7 +107,7 @@ export default function useFetchVolunteer() {
       setVolunteerInfos(volunteerInfosData);
     }
 
-    //loadRegularMeetings()
+    //loadVolunteer()
   }, []);
   return { volunteerInfos };
 }

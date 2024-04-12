@@ -3,7 +3,7 @@ import Navigation from "../../../commons/navigation/Navigation.container";
 import VolunteerHandler from "../VolunteerHandler.container";
 import VolunteerJoinedUI from "./VolunteerJoined.presenter";
 import { useRouter } from "next/router";
-import useFetchVolunteer from "../hooks/useFetchVolunteer";
+import useFetchVolunteerJoined from "./hooks/useFetchVolunteerJoined";
 
 export default function VolunteerJoined() {
   const router = useRouter();
@@ -16,8 +16,11 @@ export default function VolunteerJoined() {
       },
     });
   };
+  
+  const sort = "date"
+  const page = 0
 
-  const { volunteerInfos } = useFetchVolunteer();
+  const { volunteerJoinedInfos, loadUpdatedVolunteerJoinedData } = useFetchVolunteerJoined(sort, page);
 
   return (
     <>
@@ -25,7 +28,8 @@ export default function VolunteerJoined() {
       <VolunteerHandler />
       <VolunteerJoinedUI
         navigateTo={navigateTo}
-        volunteerInfos={volunteerInfos}
+        volunteerJoinedInfos={volunteerJoinedInfos}
+        loadUpdatedVolunteerJoinedData={loadUpdatedVolunteerJoinedData}
       />
       <Navigation />
     </>
