@@ -190,3 +190,8 @@ export const AdoptView = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const MoreButton = styled.button`
+  margin-top: 12px;
+  cursor: pointer;
+`;

@@ -85,6 +85,7 @@ export default function AdpotFavoritesUI(props) {
             </S.AdoptInfoBlock>
           </S.AdoptPet>
         ))}
+        <S.MoreButton onClick={props.loadFavPetsData}>더 보기</S.MoreButton>
       </S.WrapperContents>
     </>
   );

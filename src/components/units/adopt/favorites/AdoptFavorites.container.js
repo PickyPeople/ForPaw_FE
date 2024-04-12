@@ -14,7 +14,8 @@ export default function AdpotFavorites() {
     handleCatsClick,
     handleOthersClick,
   } = useSuseSortSelection();
-  const { favPets, handleToggleLike } = useFetchFavPetsData();
+  const { favPets, handleToggleLike, loadFavPetsData } =
+    useFetchFavPetsData(sort);
   const { navigateTo } = useNavigate();
 
   return (
@@ -23,6 +24,7 @@ export default function AdpotFavorites() {
       <AdoptHandler />
       <AdpotFavoritesUI
         sort={sort}
+        loadFavPetsData={loadFavPetsData}
         handleDateClick={handleDateClick}
         handleDogsClick={handleDogsClick}
         handleCatsClick={handleCatsClick}

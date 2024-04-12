@@ -77,7 +77,10 @@ export default function useFetchFavPetsData(sort) {
     const updatedPetsData = [...localFavPetsData, ...fetchedFavPetsData];
     setFavPets(updatedPetsData);
     setPageNumber(sort, page + 1);
-    localStorage.setItem(`petsData_${sort}`, JSON.stringify(updatedPetsData));
+    localStorage.setItem(
+      `favPetsData_${sort}`,
+      JSON.stringify(updatedPetsData)
+    );
 
     console.log("page = ", page);
     console.log("fav_datePage = ", localStorage.getItem("fav_datePage"));
@@ -101,12 +104,10 @@ export default function useFetchFavPetsData(sort) {
 
   // '좋아요' 토글을 처리하는 함수
   const handleToggleLike = async (animalId) => {
-    const isSuccess = await toggle(animalId);
+    const isSuccess = await toggle(animalId); // API 호출을 통해 좋아요 상태 변경 시도
     if (isSuccess) {
-      setPets((currentPets) =>
-        currentPets.map((pet) =>
-          pet.id === animalId ? { ...pet, isLike: !pet.isLike } : pet
-        )
+      setFavPets(
+        (currentPets) => currentPets.filter((pet) => pet.id !== animalId) // 좋아요가 해제된 동물 제외
       );
     }
   };
