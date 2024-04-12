@@ -86,6 +86,7 @@ export const AdoptLikeToggle = styled.div`
   position: absolute;
   top: 318px;
   left: 323px;
+  cursor: pointer;
 `;
 
 export const PetInfoBlock = styled.div`

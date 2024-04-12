@@ -30,7 +30,7 @@ export default function AdpotFavoritesUI(props) {
               width={344}
               height={344}
               priority
-              onClick={props.navigateTo(`/adopt/detail`)}
+              onClick={props.navigateTo(`/adopt/detail/${pet.id}`)}
             />
             <S.AdoptLikeToggle onClick={() => props.handleToggleLike(pet.id)}>
               <Image
@@ -40,7 +40,9 @@ export default function AdpotFavoritesUI(props) {
                 height={32}
               />
             </S.AdoptLikeToggle>
-            <S.AdoptInfoBlock onClick={props.navigateTo(`/adopt/detail`)}>
+            <S.AdoptInfoBlock
+              onClick={props.navigateTo(`/adopt/detail/${pet.id}`)}
+            >
               <S.AdoptNameGender>
                 {pet.name}
                 <Image

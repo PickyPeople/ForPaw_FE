@@ -5,7 +5,7 @@ import AdpotPetsUI from "./AdoptPets.presenter";
 import useFetchPetsData from "./hooks/useFetchPetsData";
 import { useNavigate } from "../../../../../src/components/commons/hooks/useNavigate";
 import { useSuseSortSelection } from "../../../../../src/components/commons/hooks/useSortSelection";
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import { useLoginStatusCheck } from "../../../../../src/components/commons/hooks/useLoginStatusCheck";
 import useModalStore from "../../../../../src/store/useModalStore";
 

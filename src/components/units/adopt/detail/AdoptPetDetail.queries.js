@@ -1,9 +1,14 @@
-export async function fetchPetDetail() {
+import useAuthStore from "../../../../../src/store/useAuthStore";
+
+export async function fetchPetDetail(id) {
+  const { accessToken } = useAuthStore();
+
   try {
-    const response = await fetch("https://example.com/api/pets", {
+    const response = await fetch(`/animals/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
       },
     });
     if (!response.ok) {

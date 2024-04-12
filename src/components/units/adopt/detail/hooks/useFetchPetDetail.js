@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchPetDetail } from "../AdoptPetDetail.queries";
+import { useToggleLike } from "../../../../../../src/components/commons/hooks/useToggleLike";
 
 const example = {
   success: true,
@@ -27,6 +28,7 @@ const example = {
 
 export default function useFetchPetDetail() {
   const [petDetail, setPetDetail] = useState(example.result);
+  const { toggle } = useToggleLike();
 
   useEffect(() => {
     async function loadPetDetail() {
@@ -37,5 +39,17 @@ export default function useFetchPetDetail() {
     // loadPetDetail();
   }, []);
 
-  return { petDetail };
+  // '좋아요' 토글을 처리하는 함수
+  const handleToggleLike = async () => {
+    const isSuccess = await toggle(petDetail.id);
+    if (isSuccess) {
+      // 토글이 성공하면 'isLike' 상태를 반전
+      setPetDetail((currentDetail) => ({
+        ...currentDetail,
+        isLike: !currentDetail.isLike,
+      }));
+    }
+  };
+
+  return { petDetail, handleToggleLike };
 }

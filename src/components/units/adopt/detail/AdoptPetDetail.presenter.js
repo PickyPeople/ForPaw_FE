@@ -26,7 +26,9 @@ export default function AdoptPetDetailUI(props) {
             width={390}
             height={381}
           />
-          <S.AdoptLikeToggle>
+          <S.AdoptLikeToggle
+            onClick={() => props.handleToggleClick(props.petDetail.id)}
+          >
             <Image
               src={
                 props.petDetail?.isLike
@@ -101,7 +103,11 @@ export default function AdoptPetDetailUI(props) {
           {props.petDetail?.noticeEdt.substring(6)}
         </S.PetAdoptionPeriod>
         <S.PetAdoptionButton
-          onClick={props.navigateTo("/adopt/detail/inquire")}
+          onClick={() =>
+            props.handleAdoptionClick(
+              `/adopt/detail/inquire/${props.petDetail.id}`
+            )
+          }
         >
           입양 문의하기
         </S.PetAdoptionButton>
