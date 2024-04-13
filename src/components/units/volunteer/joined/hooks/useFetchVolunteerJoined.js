@@ -13,23 +13,23 @@ const example = {
         id: 17,
         name: "강아지 사랑",
         description: "강사모입니다!",
-        participation: 20,
+        participation: 18,
         category: "봉사",
         district: "수성구",
         subDistrict: "두산동",
         profileURL: "/images/volunteer/volunteer_1.svg",
-        likeNum: 18,
+        likeNum: 9,
       },
       {
         id: 18,
         name: "강아지 사랑2",
         description: "강사모2입니다!",
-        participation: 21,
+        participation: 9,
         category: "봉사",
         district: "수성구",
         subDistrict: "두산동",
         profileURL: "/images/volunteer/volunteer_1.svg",
-        likeNum: 20,
+        likeNum: 53,
       },
     ],
   },
@@ -44,10 +44,10 @@ export default function useFetchVolunteerJoined() {
 
   useEffect(() => { //초기값을 불러와주는 기능
     if (typeof window !== 'undefined') { //새로고침의 문제해결
-      const savedPageNumber = localStorage.getItem('pageNumber');
+      const savedPageNumber = localStorage.getItem('pageNumber_joined');
       setPageNumber(savedPageNumber ? parseInt(savedPageNumber) : 0);
 
-      const savedVolunteerData = localStorage.getItem('VolunteerJoinedData');
+      const savedVolunteerData = localStorage.getItem('volunteerJoinedData');
       if (savedVolunteerData) {
         setVolunteerJoinedInfos(JSON.parse(savedVolunteerData));
       }
@@ -62,9 +62,9 @@ export default function useFetchVolunteerJoined() {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      localStorage.setItem('pageNumber', pageNumber);
+      localStorage.setItem('pageNumber_joined', pageNumber);
       localStorage.setItem(
-        `VolunteerJoinedData`,
+        `volunteerJoinedData`,
         JSON.stringify(volunteerJoinedInfos)
       );
     }
