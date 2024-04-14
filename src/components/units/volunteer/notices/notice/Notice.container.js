@@ -2,20 +2,19 @@ import LikeImage from "./hooks/LikeImage";
 import NoticeUI from "./Notice.presenter";
 import VolunteerDetailHeader from "../../detail/volunteerDetailHeader/VolunteerDetailHeader.container";
 import { useRef, useState, useEffect } from "react";
-import { useClickMenu } from "./hooks/useClickMenu";
 import { useComment } from "./hooks/useComment";
 
 export default function Notice() {
   const {
     isCommentMenuClicked,
+    setIsCommentMenuClicked,
     clickedCommentID,
+    setClickedCommentID,
     isReplyMenuClicked,
+    setIsReplyMenuClicked,
     clickedReplyID,
     wrapperRef,
     handleMenuClick,
-  } = useClickMenu();
-
-  const {
     focus,
     comments,
     newComment,

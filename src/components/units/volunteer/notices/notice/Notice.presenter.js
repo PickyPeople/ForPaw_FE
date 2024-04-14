@@ -11,7 +11,7 @@ export default function NoticeUI(props) {
           props.isClickedReplyEdit
         }
       >
-        <S.AnnouncementContainer onClick={props.handleOutCommentMenuClick}>
+        <S.AnnouncementContainer>
           <S.AnnouncementTitle>
             공지사항 타이틀을 입력해주세요 최대 두줄 정도로 넘으면..처리
           </S.AnnouncementTitle>

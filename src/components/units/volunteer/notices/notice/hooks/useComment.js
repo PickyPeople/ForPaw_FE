@@ -3,11 +3,15 @@ import { useClickMenu } from "./useClickMenu";
 
 export const useComment = () => {
   const {
+    isCommentMenuClicked,
     setIsCommentMenuClicked,
     clickedCommentID,
     setClickedCommentID,
+    isReplyMenuClicked,
     setIsReplyMenuClicked,
     clickedReplyID,
+    wrapperRef,
+    handleMenuClick
   } = useClickMenu();
 
   const [comments, setComments] = useState([]); //input에서 입력한 값을 배열로서 받을 것이고 presenter에서 map 함수를 이용하여 사용할 것이다.
@@ -112,7 +116,6 @@ export const useComment = () => {
     ) {
       const updatedComments = comments.map((comment) => {
         if (comment.id === clickedCommentID) {
-          // 이부분을 확실히 해줘야함
           return {
             ...comment,
             replies: [
@@ -212,6 +215,16 @@ export const useComment = () => {
   };
 
   return {
+    isCommentMenuClicked,
+    setIsCommentMenuClicked,
+    clickedCommentID,
+    setClickedCommentID,
+    isReplyMenuClicked,
+    setIsReplyMenuClicked,
+    clickedReplyID,
+    wrapperRef,
+    handleMenuClick,
+    
     focus,
     comments,
     newComment,
