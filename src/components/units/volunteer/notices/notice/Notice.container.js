@@ -2,46 +2,20 @@ import LikeImage from "./hooks/LikeImage";
 import NoticeUI from "./Notice.presenter";
 import VolunteerDetailHeader from "../../detail/volunteerDetailHeader/VolunteerDetailHeader.container";
 import { useRef, useState, useEffect } from "react";
+import { useClickMenu } from "./hooks/useClickMenu";
 
 export default function Notice() {
-  const [isCommentMenuClicked, setIsCommentMenuClicked] = useState(false);
-  const [clickedCommentID, setClickedCommentID] = useState(null); // 클릭된 댓글의 ID를 관리합니다.
-  const [isReplyMenuClicked, setIsReplyMenuClicked] = useState(false);
-  const [clickedReplyID, setClickedReplyID] = useState(null); // 클릭된 답글의 ID를 관리한다. 메뉴보이게끔 하는 용도
-  const wrapperRef = useRef(null);
-
-  // 코멘트 메뉴 클릭 시 보이게끔 true로 설정
-  const handleCommentMenuClick = (commentID, replyID) => {
-    if (replyID == null) {
-      setIsCommentMenuClicked(true);
-      setIsReplyMenuClicked(false);
-      setClickedCommentID(commentID); // 클릭된 댓글의 ID를 설정합니다.
-    } else {
-      setIsCommentMenuClicked(false);
-      setIsReplyMenuClicked(true);
-      setClickedCommentID(commentID);
-      setClickedReplyID(replyID);
-    }
-  };
-
-  useEffect(() => {
-    // 외부 클릭을 감지하는 함수
-    function handleClickOutside(event) {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-        // 메뉴창 닫기
-        setIsCommentMenuClicked(false);
-        setIsReplyMenuClicked(false);
-      }
-    }
-
-    // 이벤트 리스너 등록
-    document.addEventListener("mousedown", handleClickOutside);
-
-    // 컴포넌트 언마운트 시 이벤트 리스너 제거
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  const {
+    isCommentMenuClicked,
+    setIsCommentMenuClicked,
+    clickedCommentID,
+    setClickedCommentID,
+    isReplyMenuClicked,
+    setIsReplyMenuClicked,
+    clickedReplyID,
+    wrapperRef,
+    handleMenuClick,
+  } = useClickMenu();
 
   /////////////////////////여기서부터는 댓글관련 기능들
 
@@ -90,7 +64,6 @@ export default function Notice() {
   //답글달기모드 활성화
   const activeReply = (commentID, userName) => {
     setIsClickedReply(true);
-    setIsReplyMenuClicked(false);
     setIsClickedEidt(false);
     setIsClickedReplyEdit(false);
     setNewComment("");
@@ -217,6 +190,8 @@ export default function Notice() {
       });
       setComments(updatedComments);
     }
+    setIsCommentMenuClicked(false);
+    setIsReplyMenuClicked(false);
     setIsClickedReply(false);
     setIsClickedEidt(false);
     setIsClickedReplyEdit(false);
@@ -317,7 +292,7 @@ export default function Notice() {
         activeReply={activeReply} //답글 모드 활성화
         isCommentMenuClicked={isCommentMenuClicked} //댓글 메뉴 true
         clickedCommentID={clickedCommentID} //클릭한 된 댓들 id취득
-        handleCommentMenuClick={handleCommentMenuClick} //댓글 or 답글 메뉴 판단
+        handleMenuClick={handleMenuClick} //댓글 or 답글 메뉴 판단
         isReplyMenuClicked={isReplyMenuClicked} //답글 메뉴 true
         clickedReplyID={clickedReplyID} //클릭한 닷글 id취득
         isClickedEdit={isClickedEdit} //수정하기를 클릭하였는지 판단
