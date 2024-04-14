@@ -60,9 +60,7 @@ export default function NoticeUI(props) {
                 <S.CommentText>
                   <S.Comment>{comment.text}</S.Comment>
                   <S.CommentMenuImg
-                    onClick={() =>
-                      props.handleCommentMenuClick(comment.id, null)
-                    }
+                    onClick={() => props.handleMenuClick(comment.id, null)}
                   >
                     <Image
                       src="/images/header/menu_icon.svg"
@@ -98,7 +96,6 @@ export default function NoticeUI(props) {
                   <S.LikeText>좋아요</S.LikeText>
                   <S.AddReplyText
                     onClick={() => {
-                      //이렇게 하면 여러가지 onCLick을 줄 수 있다
                       props.activeReply(comment.id, comment.name);
                     }}
                   >
@@ -129,7 +126,7 @@ export default function NoticeUI(props) {
                     <S.Reply>{reply.text}</S.Reply>
                     <S.ReplyMenuImg
                       onClick={() =>
-                        props.handleCommentMenuClick(comment.id, reply.id)
+                        props.handleMenuClick(comment.id, reply.id)
                       }
                     >
                       <Image

@@ -32,10 +32,6 @@ export default function VolunteerDetailHeaderUI(props) {
             </S.MenuBlock>
           </S.MenuContainer>
         </S.Header>
-        <S.MenuBlock active={props.isMenuClicked}>
-          <S.Menu>URL 공유하기</S.Menu>
-          <S.Report>신고하기</S.Report>
-        </S.MenuBlock>
       </S.WrapperHeader>
     </>
   );

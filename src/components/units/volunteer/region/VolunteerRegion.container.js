@@ -3,22 +3,28 @@ import Headers from "../../../commons/headers/Headers.container";
 import Navigation from "../../../commons/navigation/Navigation.container";
 import VolunteerHandler from "../VolunteerHandler.container";
 import VolunteerRegionUI from "./VolunteerRegion.presenter";
-import useFetchVolunteer from "../hooks/useFetchVolunteer";
+import useFetchVolunteerNewGrouop from "./hooks/useFetchVolunteerNewGroup";
+import useFetchVolunteerRegion from "./hooks/useFetchVolunteerRegion";
 
 export default function VolunteerRegion() {
   const router = useRouter();
 
   const navigateTo = (path) => () => router.push(path);
 
-  const { volunteerInfos } = useFetchVolunteer();
-
+  const { volunteerNewGroupInfos, loadUpdatedVolunteerNewGroupData } =
+    useFetchVolunteerNewGrouop();
+  const { volunteerRegionInfos, loadUpdatedVolunteerRegionData } =
+    useFetchVolunteerRegion();
   return (
     <>
       <Headers />
       <VolunteerHandler />
       <VolunteerRegionUI
         navigateTo={navigateTo}
-        volunteerInfos={volunteerInfos}
+        volunteerNewGroupInfos={volunteerNewGroupInfos}
+        loadUpdatedVolunteerNewGroupData={loadUpdatedVolunteerNewGroupData}
+        volunteerRegionInfos={volunteerRegionInfos}
+        loadUpdatedVolunteerRegionData={loadUpdatedVolunteerRegionData}
       />
       <Navigation />
     </>
