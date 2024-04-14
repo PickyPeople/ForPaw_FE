@@ -66,6 +66,7 @@ export default function Notice() {
     setIsClickedReply(true);
     setIsClickedEidt(false);
     setIsClickedReplyEdit(false);
+    setIsCommentMenuClicked(false);
     setNewComment("");
     setNewReply("");
     setClickedCommentID(commentID);
@@ -97,9 +98,11 @@ export default function Notice() {
     nameFoucs();
   };
 
-  //댓글, 답글 댓글 수정, 답글 수정 순으로 if문마다 조건을 부여해줌으로써 작동하도록
   const handleCommentSubmit = (e) => {
-    if (e.key === "Enter" && newComment.trim() !== "") {
+    if (
+      (e.type === "click" && newComment.trim() !== "") ||
+      (e.type === "keydown" && e.key === "Enter" && newComment.trim() !== "")
+    ) {
       const newCommentObject = {
         //배열에 추가되는 정보들
         id: comments.length + 1 + commentIdNum,
@@ -112,8 +115,10 @@ export default function Notice() {
       };
       setComments([...comments, newCommentObject]);
       setNewComment("");
-      setIsCommentMenuClicked(false);
-    } else if (e.key === "Enter" && newReply.trim() !== "") {
+    } else if (
+      (e.type === "click" && newReply.trim() !== "") ||
+      (e.type === "keydown" && e.key === "Enter" && newReply.trim() !== "")
+    ) {
       const updatedComments = comments.map((comment) => {
         if (comment.id === clickedCommentID) {
           // 이부분을 확실히 해줘야함
@@ -137,7 +142,12 @@ export default function Notice() {
       setComments(updatedComments);
       setNewReply("");
       setIsClickedReply(false); // 답글이 제출되면 isClickedReply를 false로 설정
-    } else if (e.key === "Enter" && editCommentText.trim() !== "") {
+    } else if (
+      (e.type === "click" && editCommentText.trim() !== "") ||
+      (e.type === "keydown" &&
+        e.key === "Enter" &&
+        editCommentText.trim() !== "")
+    ) {
       const updatedComments = comments.map((comment) => {
         if (comment.id === clickedCommentID) {
           return { ...comment, text: editCommentText };
@@ -148,7 +158,10 @@ export default function Notice() {
       setIsCommentMenuClicked(false);
       setIsClickedEidt(false);
       setEditCommentText("");
-    } else if (e.key === "Enter" && editReplyText.trim() !== "") {
+    } else if (
+      (e.type === "click" && editReplyText.trim() !== "") ||
+      (e.type === "keydown" && e.key === "Enter" && editReplyText.trim() !== "")
+    ) {
       const updatedComments = comments.map((comment) => {
         if (comment.id === clickedCommentID) {
           const updatedReplies = comment.replies.map((reply) => {
@@ -190,8 +203,6 @@ export default function Notice() {
       });
       setComments(updatedComments);
     }
-    setIsCommentMenuClicked(false);
-    setIsReplyMenuClicked(false);
     setIsClickedReply(false);
     setIsClickedEidt(false);
     setIsClickedReplyEdit(false);
@@ -206,73 +217,7 @@ export default function Notice() {
     setIsReplyMenuClicked(false);
     setIsClickedEidt(false);
     setIsClickedReplyEdit(false);
-  };
-
-  //enter를 눌렀을 때가 아닌 input옆의 보내기 버튼을 클릭하였을 때 댓글,답글,댓글수정,답글수정 기능
-  const activeBtn = () => {
-    if (isClickedReply == false && newComment.trim() !== "") {
-      const newCommentObject = {
-        //배열에 추가되는 정보들
-        id: comments.length + 1,
-        name: `닉네임${comments.length + 1}`,
-        region: "지역",
-        hours: "몇 시간전",
-        text: newComment,
-        replies: [],
-      };
-      setComments([...comments, newCommentObject]);
-      setNewComment("");
-    } else if (isClickedReply && newReply.trim() !== "") {
-      const updatedComments = comments.map((comment) => {
-        if (comment.id === clickedCommentID) {
-          // 이부분을 확실히 해줘야함
-          return {
-            ...comment,
-            replies: [
-              ...comment.replies,
-              {
-                id: comment.replies.length + 1,
-                name: `답글 닉네임${comment.replies.length + 1}`,
-                region: "지역",
-                hours: "몇 시간전",
-                text: newReply,
-              },
-            ],
-          };
-        } else {
-          return comment;
-        }
-      });
-      setComments(updatedComments);
-      setNewReply("");
-      setIsClickedReply(false); // 답글이 제출되면 isClickedReply를 false로 설정
-    } else if (isClickedEdit && editCommentText.trim() !== "") {
-      const updatedComments = comments.map((comment) => {
-        if (comment.id === clickedCommentID) {
-          return { ...comment, text: editCommentText };
-        }
-        return comment;
-      });
-      setComments(updatedComments);
-      setIsClickedEidt(false);
-      setEditCommentText("");
-    } else if (isClickedReplyEdit && editReplyText.trim() !== "") {
-      const updatedComments = comments.map((comment) => {
-        if (comment.id === clickedCommentID) {
-          const updatedReplies = comment.replies.map((reply) => {
-            if (reply.id === clickedReplyID) {
-              return { ...reply, text: editReplyText };
-            }
-            return reply;
-          });
-          return { ...comment, replies: updatedReplies };
-        }
-        return comment;
-      });
-      setComments(updatedComments);
-      setIsClickedReplyEdit(false);
-      setEditReplyText("");
-    }
+    nameFoucs();
   };
 
   return (
@@ -303,7 +248,6 @@ export default function Notice() {
         editReplyText={editReplyText}
         handleChangeReplyEdit={handleChangeReplyEdit} //답글의 수정내용 전달 기능
         activeReplyEdit={activeReplyEdit}
-        activeBtn={activeBtn} //댓글이나 답글을 보내는 버튼
         handleJudegeXClick={handleJudegeXClick}
         handleDelete={handleDelete} //댓글 삭제 기능
       />

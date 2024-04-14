@@ -5,14 +5,11 @@ export default function NoticeUI(props) {
   return (
     <>
       <S.WrapperContents
-        style={{
-          height:
-            props.isClickedReply ||
-            props.isClickedEdit ||
-            props.isClickedReplyEdit
-              ? "calc(100vh - 219px)"
-              : "calc(100vh - 179px)",
-        }}
+        active={
+          props.isClickedReply ||
+          props.isClickedEdit ||
+          props.isClickedReplyEdit
+        }
       >
         <S.AnnouncementContainer onClick={props.handleOutCommentMenuClick}>
           <S.AnnouncementTitle>
@@ -71,7 +68,7 @@ export default function NoticeUI(props) {
                     />
                     {props.isCommentMenuClicked &&
                       props.clickedCommentID === comment.id && (
-                        <S.MenuBlock ref={props.wrapperRef}>
+                        <S.MenuBlock>
                           <S.Edit
                             onClick={() =>
                               props.activeCommentEdit(comment.text)
@@ -250,7 +247,7 @@ export default function NoticeUI(props) {
               }
             }}
           />
-          <S.AddComment onClick={props.activeBtn}>
+          <S.AddComment onClick={props.handleCommentSubmit}>
             <S.ArrowLine />
             <S.ArrowBlock />
           </S.AddComment>
