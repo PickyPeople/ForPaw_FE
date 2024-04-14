@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const WrapperContents = styled.div`
   width: 390px;
-  height: calc(100vh - 219px);
+  height: ${(props) => (props.active ? "calc(100vh - 219px)" : "calc(100vh - 179px)")};
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
