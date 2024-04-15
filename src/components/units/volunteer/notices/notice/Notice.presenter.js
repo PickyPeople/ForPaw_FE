@@ -68,7 +68,7 @@ export default function NoticeUI(props) {
                     />
                     {props.isCommentMenuClicked &&
                       props.clickedCommentID === comment.id && (
-                        <S.MenuBlock>
+                        <S.MenuBlock ref={props.wrapperRef}>
                           <S.Edit
                             onClick={() =>
                               props.activeCommentEdit(comment.text)
@@ -166,8 +166,8 @@ export default function NoticeUI(props) {
         </S.CommentContainer>
       </S.WrapperContents>
       {props.isClickedReply ||
-      props.isClickedEdit ||
-      props.isClickedReplyEdit ? (
+        props.isClickedEdit ||
+        props.isClickedReplyEdit ? (
         <S.ToReplyBlock>
           {props.isClickedReply && <S.ToReply>댓글 다는중..</S.ToReply>}
           {props.isClickedEdit && <S.ToReply>댓글 수정중..</S.ToReply>}
@@ -190,60 +190,52 @@ export default function NoticeUI(props) {
             autoFocus
             ref={props.focus}
             placeholder={
-              props.isClickedEdit == false &&
-              props.isClickedReply == false &&
-              props.isClickedReplyEdit == false
+              props.isActiveComment === true
                 ? "댓글을 입력해주세요"
                 : props.isClickedReply
-                ? "답글을 입력해주세요"
-                : props.isClickedEdit
-                ? "댓글을 수정해주세요"
-                : props.isClickedReplyEdit
-                ? "답글을 수정해주세요"
-                : ""
+                  ? "답글을 입력해주세요"
+                  : props.isClickedEdit
+                    ? "댓글을 수정해주세요"
+                    : props.isClickedReplyEdit
+                      ? "답글을 수정해주세요"
+                      : ""
             }
             type="text"
             value={
-              props.isClickedEdit == false &&
-              props.isClickedReply == false &&
-              props.isClickedReplyEdit == false
+              props.isActiveComment === true
                 ? props.newComment
                 : props.isClickedReply
-                ? props.newReply
-                : props.isClickedEdit
-                ? props.editCommentText
-                : props.isClickedReplyEdit
-                ? props.editReplyText
-                : ""
+                  ? props.newComment
+                  : props.isClickedEdit
+                    ? props.newComment
+                    : props.isClickedReplyEdit
+                      ? props.newComment
+                      : ""
             }
             onKeyDown={(e) => {
               {
-                props.isClickedEdit == false &&
-                props.isClickedReply == false &&
-                props.isClickedReplyEdit == false
+                props.isActiveComment === true
                   ? props.handleCommentSubmit(e)
                   : props.isClickedReply
-                  ? props.handleCommentSubmit(e)
-                  : props.isClickedEdit
-                  ? props.handleCommentSubmit(e)
-                  : props.isClickedReplyEdit
-                  ? props.handleCommentSubmit(e)
-                  : "";
+                    ? props.handleCommentSubmit(e)
+                    : props.isClickedEdit
+                      ? props.handleCommentSubmit(e)
+                      : props.isClickedReplyEdit
+                        ? props.handleCommentSubmit(e)
+                        : "";
               }
             }}
             onChange={(e) => {
               {
-                props.isClickedEdit == false &&
-                props.isClickedReply == false &&
-                props.isClickedReplyEdit == false
+                props.isActiveComment === true
                   ? props.handleCommentValue(e)
                   : props.isClickedReply
-                  ? props.handleReplyValue(e)
-                  : props.isClickedEdit
-                  ? props.handleChangeCommentEdit(e)
-                  : props.isClickedReplyEdit
-                  ? props.handleChangeReplyEdit(e)
-                  : "";
+                    ? props.handleCommentValue(e)
+                    : props.isClickedEdit
+                      ? props.handleCommentValue(e)
+                      : props.isClickedReplyEdit
+                        ? props.handleCommentValue(e)
+                        : "";
               }
             }}
           />

@@ -1,11 +1,10 @@
 import { useRef, useState, useEffect } from "react";
-import { useRouter } from "next/router";
 
 export const useClickMenu = () => {
   const [isCommentMenuClicked, setIsCommentMenuClicked] = useState(false);
   const [clickedCommentID, setClickedCommentID] = useState(null); // 클릭된 댓글의 ID를 관리합니다.
   const [isReplyMenuClicked, setIsReplyMenuClicked] = useState(false);
-  const [clickedReplyID, setClickedReplyID] = useState(null); // 클릭된 답글의 ID를 관리한다. 메뉴보이게끔 하는 용도
+  const [clickedReplyID, setClickedReplyID] = useState(null); // 클릭된 답글의 ID를 관리한다.
   const wrapperRef = useRef(null);
 
   // 코멘트 메뉴 클릭 시 보이게끔 true로 설정
