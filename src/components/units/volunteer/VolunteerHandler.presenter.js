@@ -18,7 +18,7 @@ export default function VolunteerHandlerUI(props) {
             지역별 모임
           </S.VolunteerMenu>
           <S.VolunteerMenu
-            onClick={props.navigateTo(props.paths.joined)}
+            onClick={() => props.handleFavClick("/volunteer/joined")}
             active={props.isActive(props.paths.joined)}
           >
             내 모임

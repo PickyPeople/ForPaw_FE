@@ -3,20 +3,22 @@ import { useClickMenu } from "./useClickMenu";
 
 export const useComment = () => {
   const {
+    isCommentMenuClicked,
     setIsCommentMenuClicked,
     clickedCommentID,
     setClickedCommentID,
+    isReplyMenuClicked,
     setIsReplyMenuClicked,
     clickedReplyID,
+    wrapperRef,
+    handleMenuClick
   } = useClickMenu();
 
   const [comments, setComments] = useState([]); //input에서 입력한 값을 배열로서 받을 것이고 presenter에서 map 함수를 이용하여 사용할 것이다.
 
   const [newComment, setNewComment] = useState(""); //input안의 내용을 onChange로 받아줄 변수이다.
-  const [newReply, setNewReply] = useState(""); //답글의 텍스트를 onChange로 받아줄 변수
-  const [editCommentText, setEditCommentText] = useState(""); //댓글 수정내용을 받아오는 change함수에 들어가는 값
-  const [editReplyText, setEditReplyText] = useState(""); //답글 수정내용을 받아오는 cchange함수에 들어가는 값
 
+  const [isActiveComment, setIsActiveComment] = useState(true);
   const [isClickedReply, setIsClickedReply] = useState(false); //답글달기를 눌렀는가 판단하는 변수
   const [isClickedEdit, setIsClickedEidt] = useState(false); //댓글의 수정하기 메뉴를 눌렀을 경우
   const [isClickedReplyEdit, setIsClickedReplyEdit] = useState(false); //답글의 수정하기 메뉴를 눌렀을 경우
@@ -37,29 +39,15 @@ export const useComment = () => {
     setNewComment(e.target.value);
   };
 
-  const handleReplyValue = (e) => {
-    //Reply Input을 받아오는 기능
-    setNewReply(e.target.value);
-  };
-
-  const handleChangeCommentEdit = (e) => {
-    //수정값을 받아오는 기능
-    setEditCommentText(e.target.value);
-  };
-
-  const handleChangeReplyEdit = (e) => {
-    //답글 수정값을 받아오는 기능
-    setEditReplyText(e.target.value);
-  };
-
   //답글달기모드 활성화
   const activeReply = (commentID, userName) => {
     setIsClickedReply(true);
+    setIsActiveComment(false);
     setIsClickedEidt(false);
     setIsClickedReplyEdit(false);
     setIsCommentMenuClicked(false);
+    setIsReplyMenuClicked(false);
     setNewComment("");
-    setNewReply("");
     setClickedCommentID(commentID);
     // setName(userName);
     nameFoucs();
@@ -68,31 +56,27 @@ export const useComment = () => {
   //댓글 수정모드를 활성화 밑의 text는 수정하기를 눌렀을 때 댓글의 텍스트를 받아오기 위해서
   const activeCommentEdit = (text) => {
     setIsClickedEidt(true);
+    setIsActiveComment(false);
     setIsClickedReply(false);
     setIsClickedReplyEdit(false);
-    setNewComment("");
-    setNewReply("");
-    setEditReplyText("");
-    setEditCommentText(text);
+    setNewComment(text);
     nameFoucs();
   };
 
   //답글 수정모드 활성화
   const activeReplyEdit = (text) => {
     setIsClickedReplyEdit(true);
+    setIsActiveComment(false);
     setIsClickedReply(false);
     setIsClickedEidt(false);
-    setNewComment("");
-    setNewReply("");
-    setEditCommentText("");
-    setEditReplyText(text);
+    setNewComment(text);
     nameFoucs();
   };
 
   const handleCommentSubmit = (e) => {
     if (
-      (e.type === "click" && newComment.trim() !== "") ||
-      (e.type === "keydown" && e.key === "Enter" && newComment.trim() !== "")
+      (e.type === "click" && newComment.trim() !== "" && isActiveComment == true) ||
+      (e.type === "keydown" && e.key === "Enter" && newComment.trim() !== "" && isActiveComment == true)
     ) {
       const newCommentObject = {
         //배열에 추가되는 정보들
@@ -107,12 +91,11 @@ export const useComment = () => {
       setComments([...comments, newCommentObject]);
       setNewComment("");
     } else if (
-      (e.type === "click" && newReply.trim() !== "") ||
-      (e.type === "keydown" && e.key === "Enter" && newReply.trim() !== "")
+      (e.type === "click" && newComment.trim() !== "" && isClickedReply === true) ||
+      (e.type === "keydown" && e.key === "Enter" && newComment.trim() !== "" && isClickedReply === true)
     ) {
       const updatedComments = comments.map((comment) => {
         if (comment.id === clickedCommentID) {
-          // 이부분을 확실히 해줘야함
           return {
             ...comment,
             replies: [
@@ -122,7 +105,7 @@ export const useComment = () => {
                 name: `답글 닉네임${comment.replies.length + 1 + comment.num}`,
                 region: "지역",
                 hours: "몇 시간전",
-                text: newReply,
+                text: newComment,
               },
             ],
           };
@@ -131,33 +114,35 @@ export const useComment = () => {
         }
       });
       setComments(updatedComments);
-      setNewReply("");
+      setIsActiveComment(true);
+      setNewComment("");
       setIsClickedReply(false); // 답글이 제출되면 isClickedReply를 false로 설정
     } else if (
-      (e.type === "click" && editCommentText.trim() !== "") ||
+      (e.type === "click" && newComment.trim() !== "" && isClickedEdit === true) ||
       (e.type === "keydown" &&
         e.key === "Enter" &&
-        editCommentText.trim() !== "")
+        newComment.trim() !== "" && isClickedEdit === true)
     ) {
       const updatedComments = comments.map((comment) => {
         if (comment.id === clickedCommentID) {
-          return { ...comment, text: editCommentText };
+          return { ...comment, text: newComment };
         }
         return comment;
       });
+      setIsActiveComment(true);
       setComments(updatedComments);
       setIsCommentMenuClicked(false);
       setIsClickedEidt(false);
-      setEditCommentText("");
+      setNewComment("");
     } else if (
-      (e.type === "click" && editReplyText.trim() !== "") ||
-      (e.type === "keydown" && e.key === "Enter" && editReplyText.trim() !== "")
+      (e.type === "click" && newComment.trim() !== "" && isClickedReplyEdit === true) ||
+      (e.type === "keydown" && e.key === "Enter" && newComment.trim() !== "" && isClickedReplyEdit === true)
     ) {
       const updatedComments = comments.map((comment) => {
         if (comment.id === clickedCommentID) {
           const updatedReplies = comment.replies.map((reply) => {
             if (reply.id === clickedReplyID) {
-              return { ...reply, text: editReplyText };
+              return { ...reply, text: newComment };
             }
             return reply;
           });
@@ -165,10 +150,11 @@ export const useComment = () => {
         }
         return comment;
       });
+      setIsActiveComment(true);
       setComments(updatedComments);
       setIsReplyMenuClicked(false);
       setIsClickedReplyEdit(false);
-      setEditReplyText("");
+      setNewComment("");
     }
   };
 
@@ -197,8 +183,6 @@ export const useComment = () => {
     setIsClickedReply(false);
     setIsClickedEidt(false);
     setIsClickedReplyEdit(false);
-    setEditCommentText("");
-    setEditReplyText("");
   };
 
   //답글달기 혹은 수정하기를 누르고 나오는 div의 영역의 X버튼을 누르는지 판단
@@ -212,23 +196,24 @@ export const useComment = () => {
   };
 
   return {
+    isCommentMenuClicked,
+    clickedCommentID,
+    isReplyMenuClicked,
+    clickedReplyID,
+    wrapperRef,
+    handleMenuClick,
     focus,
     comments,
     newComment,
-    newReply,
+    isActiveComment,
     handleCommentValue,
-    handleReplyValue,
-    handleCommentSubmit,
     isClickedReply,
     activeReply,
     isClickedEdit,
-    editCommentText,
-    handleChangeCommentEdit,
     activeCommentEdit,
     isClickedReplyEdit,
-    editReplyText,
-    handleChangeReplyEdit,
     activeReplyEdit,
+    handleCommentSubmit,
     handleJudegeXClick,
     handleDelete,
   };
