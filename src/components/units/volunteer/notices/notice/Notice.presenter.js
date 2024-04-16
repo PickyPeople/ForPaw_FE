@@ -120,7 +120,7 @@ export default function NoticeUI(props) {
                     </S.ReplyUser>
                   </S.UserInfoItems>
                   <S.CommentText>
-                    <S.Reply>{reply.text}</S.Reply>
+                    <S.Reply><S.Name>{comment.name + " "}</S.Name>{reply.text}</S.Reply>
                     <S.ReplyMenuImg
                       onClick={() =>
                         props.handleMenuClick(comment.id, reply.id)
@@ -190,7 +190,7 @@ export default function NoticeUI(props) {
             autoFocus
             ref={props.focus}
             placeholder={
-              props.isActiveComment === true
+              props.isActiveComment
                 ? "댓글을 입력해주세요"
                 : props.isClickedReply
                   ? "답글을 입력해주세요"
@@ -201,43 +201,9 @@ export default function NoticeUI(props) {
                       : ""
             }
             type="text"
-            value={
-              props.isActiveComment === true
-                ? props.newComment
-                : props.isClickedReply
-                  ? props.newComment
-                  : props.isClickedEdit
-                    ? props.newComment
-                    : props.isClickedReplyEdit
-                      ? props.newComment
-                      : ""
-            }
-            onKeyDown={(e) => {
-              {
-                props.isActiveComment === true
-                  ? props.handleCommentSubmit(e)
-                  : props.isClickedReply
-                    ? props.handleCommentSubmit(e)
-                    : props.isClickedEdit
-                      ? props.handleCommentSubmit(e)
-                      : props.isClickedReplyEdit
-                        ? props.handleCommentSubmit(e)
-                        : "";
-              }
-            }}
-            onChange={(e) => {
-              {
-                props.isActiveComment === true
-                  ? props.handleCommentValue(e)
-                  : props.isClickedReply
-                    ? props.handleCommentValue(e)
-                    : props.isClickedEdit
-                      ? props.handleCommentValue(e)
-                      : props.isClickedReplyEdit
-                        ? props.handleCommentValue(e)
-                        : "";
-              }
-            }}
+            value={props.text}
+            onKeyDown={(e) => {props.handleCommentSubmit(e)}}
+            onChange={(e) => {props.handleCommentValue(e)}}
           />
           <S.AddComment onClick={props.handleCommentSubmit}>
             <S.ArrowLine />

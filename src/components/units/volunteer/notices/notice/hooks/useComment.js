@@ -15,15 +15,14 @@ export const useComment = () => {
   } = useClickMenu();
 
   const [comments, setComments] = useState([]); //input에서 입력한 값을 배열로서 받을 것이고 presenter에서 map 함수를 이용하여 사용할 것이다.
-
-  const [newComment, setNewComment] = useState(""); //input안의 내용을 onChange로 받아줄 변수이다.
-
+  const [text, setText] = useState(""); //input안의 내용을 onChange로 받아줄 변수이다.
   const [isActiveComment, setIsActiveComment] = useState(true);
   const [isClickedReply, setIsClickedReply] = useState(false); //답글달기를 눌렀는가 판단하는 변수
   const [isClickedEdit, setIsClickedEidt] = useState(false); //댓글의 수정하기 메뉴를 눌렀을 경우
   const [isClickedReplyEdit, setIsClickedReplyEdit] = useState(false); //답글의 수정하기 메뉴를 눌렀을 경우
-
   const [commentIdNum, setCommentIdNum] = useState(0); // 삭제하기를 누르고 난 뒤 댓글id 값을 올려주기 위한 변수
+  const [name, setName] = useState(''); //답글 달기에 이름을 주기 위해서
+  const nameLength = name.length;
 
   const focus = useRef(null); //input태그에 포커스를 주기 위해
 
@@ -34,32 +33,32 @@ export const useComment = () => {
     }
   };
 
+  //Comment input값을 받아오는 기능
   const handleCommentValue = (e) => {
-    //Comment input값을 받아오는 기능
-    setNewComment(e.target.value);
+    setText(e.target.value);
   };
 
   //답글달기모드 활성화
-  const activeReply = (commentID, userName) => {
+  const activeReply = (commentID, name) => {
     setIsClickedReply(true);
     setIsActiveComment(false);
     setIsClickedEidt(false);
     setIsClickedReplyEdit(false);
     setIsCommentMenuClicked(false);
     setIsReplyMenuClicked(false);
-    setNewComment("");
+    setText("@" + name + " ");
+    setName(name);
     setClickedCommentID(commentID);
-    // setName(userName);
     nameFoucs();
   };
 
-  //댓글 수정모드를 활성화 밑의 text는 수정하기를 눌렀을 때 댓글의 텍스트를 받아오기 위해서
+  //댓글 수정모드를 활성화
   const activeCommentEdit = (text) => {
     setIsClickedEidt(true);
     setIsActiveComment(false);
     setIsClickedReply(false);
     setIsClickedReplyEdit(false);
-    setNewComment(text);
+    setText(text);
     nameFoucs();
   };
 
@@ -69,14 +68,14 @@ export const useComment = () => {
     setIsActiveComment(false);
     setIsClickedReply(false);
     setIsClickedEidt(false);
-    setNewComment(text);
+    setText(text);
     nameFoucs();
   };
 
   const handleCommentSubmit = (e) => {
     if (
-      (e.type === "click" && newComment.trim() !== "" && isActiveComment == true) ||
-      (e.type === "keydown" && e.key === "Enter" && newComment.trim() !== "" && isActiveComment == true)
+      (e.type === "click" && text.trim() !== "" && isActiveComment == true) ||
+      (e.type === "keydown" && e.key === "Enter" && text.trim() !== "" && isActiveComment == true)
     ) {
       const newCommentObject = {
         //배열에 추가되는 정보들
@@ -84,15 +83,15 @@ export const useComment = () => {
         name: `닉네임${comments.length + 1 + commentIdNum}`,
         region: "지역",
         hours: "몇 시간전",
-        text: newComment,
+        text: text,
         replies: [],
         num: 0,
       };
       setComments([...comments, newCommentObject]);
-      setNewComment("");
+      setText("");
     } else if (
-      (e.type === "click" && newComment.trim() !== "" && isClickedReply === true) ||
-      (e.type === "keydown" && e.key === "Enter" && newComment.trim() !== "" && isClickedReply === true)
+      (e.type === "click" && text.trim() !== "" && isClickedReply === true) ||
+      (e.type === "keydown" && e.key === "Enter" && text.trim() !== "" && isClickedReply === true)
     ) {
       const updatedComments = comments.map((comment) => {
         if (comment.id === clickedCommentID) {
@@ -105,7 +104,7 @@ export const useComment = () => {
                 name: `답글 닉네임${comment.replies.length + 1 + comment.num}`,
                 region: "지역",
                 hours: "몇 시간전",
-                text: newComment,
+                text: text.substring(nameLength + 1, text.length),
               },
             ],
           };
@@ -115,17 +114,17 @@ export const useComment = () => {
       });
       setComments(updatedComments);
       setIsActiveComment(true);
-      setNewComment("");
+      setText("");
       setIsClickedReply(false); // 답글이 제출되면 isClickedReply를 false로 설정
     } else if (
-      (e.type === "click" && newComment.trim() !== "" && isClickedEdit === true) ||
+      (e.type === "click" && text.trim() !== "" && isClickedEdit === true) ||
       (e.type === "keydown" &&
         e.key === "Enter" &&
-        newComment.trim() !== "" && isClickedEdit === true)
+        text.trim() !== "" && isClickedEdit === true)
     ) {
       const updatedComments = comments.map((comment) => {
         if (comment.id === clickedCommentID) {
-          return { ...comment, text: newComment };
+          return { ...comment, text: text };
         }
         return comment;
       });
@@ -133,16 +132,16 @@ export const useComment = () => {
       setComments(updatedComments);
       setIsCommentMenuClicked(false);
       setIsClickedEidt(false);
-      setNewComment("");
+      setText("");
     } else if (
-      (e.type === "click" && newComment.trim() !== "" && isClickedReplyEdit === true) ||
-      (e.type === "keydown" && e.key === "Enter" && newComment.trim() !== "" && isClickedReplyEdit === true)
+      (e.type === "click" && text.trim() !== "" && isClickedReplyEdit === true) ||
+      (e.type === "keydown" && e.key === "Enter" && text.trim() !== "" && isClickedReplyEdit === true)
     ) {
       const updatedComments = comments.map((comment) => {
         if (comment.id === clickedCommentID) {
           const updatedReplies = comment.replies.map((reply) => {
             if (reply.id === clickedReplyID) {
-              return { ...reply, text: newComment };
+              return { ...reply, text: text };
             }
             return reply;
           });
@@ -154,7 +153,7 @@ export const useComment = () => {
       setComments(updatedComments);
       setIsReplyMenuClicked(false);
       setIsClickedReplyEdit(false);
-      setNewComment("");
+      setText("");
     }
   };
 
@@ -204,9 +203,10 @@ export const useComment = () => {
     handleMenuClick,
     focus,
     comments,
-    newComment,
+    text,
     isActiveComment,
     handleCommentValue,
+    name,
     isClickedReply,
     activeReply,
     isClickedEdit,
