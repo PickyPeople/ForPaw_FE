@@ -158,6 +158,14 @@ export const CommentText = styled.div`
   flex-shrink: 0;
 `;
 
+export const Name = styled.span`
+  width: auto;
+  height: auto;
+  font-size: 16px;
+  font-weight: 500;
+  color: #b282f5;
+`;
+
 export const Comment = styled.p`
   width: 265px;
   height: auto;

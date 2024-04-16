@@ -13,7 +13,7 @@ export default function Notice() {
     handleMenuClick,
     focus,
     comments,
-    newComment,
+    text,
     isActiveComment,
     handleCommentValue,
     isClickedReply,
@@ -40,7 +40,7 @@ export default function Notice() {
         clickedReplyID={clickedReplyID} //클릭한 닷글 id취득
         focus={focus} //input태그에 항상 focus를 유지
         comments={comments} //댓글이나 답글을 담아둘 배열
-        newComment={newComment} //input에 있는 댓글
+        text={text} //input에 있는 댓글
         isActiveComment={isActiveComment}
         handleCommentValue={handleCommentValue} //댓글 텍스트를 받아오는 값
         handleCommentSubmit={handleCommentSubmit} //댓글을 등록하기 위한 기능
