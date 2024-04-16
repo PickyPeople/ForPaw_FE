@@ -11,9 +11,9 @@ export default function RegularMeetingsUI(props) {
               <S.MeetingDetailContainer key={infos.id}>
                 <S.MeetingDetailContentsBlock>
                   <S.DetailContentsDateBox>
-                    <S.DetailDate>{infos.date}</S.DetailDate>
+                    <S.DetailDate>{infos.date.substring(0, 8)}</S.DetailDate>
                     <S.LeftDdayBox>
-                      D-<S.Day>{infos.leftDay}</S.Day>
+                      D-<S.Day>{props.daysDifferences[index]}</S.Day>
                     </S.LeftDdayBox>
                   </S.DetailContentsDateBox>
                   <S.MeetingName>{infos.name}</S.MeetingName>
@@ -28,7 +28,7 @@ export default function RegularMeetingsUI(props) {
                     <S.MeetingDetailInfo>
                       <S.MeetingDetailItems>
                         <S.DetailInfoName>일시</S.DetailInfoName>
-                        <S.DetailInfo>{infos.detailDate}</S.DetailInfo>
+                        <S.DetailInfo>{infos.date}</S.DetailInfo>
                       </S.MeetingDetailItems>
                       <S.MeetingDetailItems>
                         <S.DetailInfoName>위치</S.DetailInfoName>

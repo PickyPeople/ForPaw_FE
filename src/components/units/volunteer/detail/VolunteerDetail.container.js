@@ -16,7 +16,7 @@ export default function VolunteerDetail() {
   } = useNoticeClick();
 
   //공지사항, 정규모임, 멤버 등의 정보를 fetch해 오는 기능
-  const { volunteerDetailInfos } = useFetchVolunteerDetail();
+  const { volunteerDetailInfos, daysDifferences } = useFetchVolunteerDetail();
 
   return (
     <>
@@ -24,6 +24,7 @@ export default function VolunteerDetail() {
       <VolunteerDetailUI
         navigateTo={navigateTo}
         volunteerDetailInfos={volunteerDetailInfos}
+        daysDifferences={daysDifferences}
         clickedIndex={clickedIndex} //공지사항을 클릭한 인데스 값
         handleAnnouncementClick={handleAnnouncementClick} //공지사항을 클릭하였을 때 색 변환 기능
         isJoinedClikced={isJoinedClikced} //회원인지 멤버인지 클릭한 확인 값
