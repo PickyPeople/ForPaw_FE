@@ -19,7 +19,7 @@ export default function RegularMeetingUI(props) {
             <S.DetailInfoContainer>
               <S.InFosBlock>
                 <S.InfoName>일시</S.InfoName>
-                <S.DetailInfo>2/12 (월) 오전 11:00</S.DetailInfo>
+                <S.DetailInfo>{props.regularMeetingInfos.date}</S.DetailInfo>
               </S.InFosBlock>
               <S.InFosBlock>
                 <S.InfoName>위치</S.InfoName>

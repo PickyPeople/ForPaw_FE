@@ -11,7 +11,7 @@ export default function RegularMeetings() {
 
   const status = router.query.name; //멤버인 것을 해주기 위해서
 
-  const { regularMeetingsInfos } = useFetchRegularMeetings();
+  const { regularMeetingsInfos, daysDifferences } = useFetchRegularMeetings();
 
   return (
     <>
@@ -19,6 +19,7 @@ export default function RegularMeetings() {
       <RegularMeetingsUI
         navigateTo={navigateTo}
         regularMeetingsInfos={regularMeetingsInfos}
+        daysDifferences={daysDifferences}
         status={status}
       />
       <Navigation />
