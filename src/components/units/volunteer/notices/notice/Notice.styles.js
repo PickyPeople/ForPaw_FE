@@ -163,7 +163,7 @@ export const Name = styled.span`
   height: auto;
   font-size: 16px;
   font-weight: 500;
-  color: #b282f5;
+  color: #1f507d;
 `;
 
 export const Comment = styled.p`

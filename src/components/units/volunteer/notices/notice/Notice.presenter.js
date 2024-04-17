@@ -92,9 +92,10 @@ export default function NoticeUI(props) {
                   />
                   <S.LikeText>좋아요</S.LikeText>
                   <S.AddReplyText
-                    onClick={() => {
-                      props.activeReply(comment.id, comment.name);
+                    onClick={(e) => {
+                      props.activeReply(e, comment.id, comment.name);
                     }}
+                    data-action = "reply"
                   >
                     답글 달기
                   </S.AddReplyText>
@@ -120,7 +121,10 @@ export default function NoticeUI(props) {
                     </S.ReplyUser>
                   </S.UserInfoItems>
                   <S.CommentText>
-                    <S.Reply><S.Name>{comment.name + " "}</S.Name>{reply.text}</S.Reply>
+                    <S.Reply>
+                      <S.Name> {`@${reply.text.substring(0, props.name.length)}`}</S.Name>
+                      {reply.text.substring(props.name.length, reply.text.length)}
+                    </S.Reply>
                     <S.ReplyMenuImg
                       onClick={() =>
                         props.handleMenuClick(comment.id, reply.id)
@@ -158,6 +162,14 @@ export default function NoticeUI(props) {
                       alt="comment_like_icon"
                     />
                     <S.LikeText>좋아요</S.LikeText>
+                    <S.AddReplyText 
+                      onClick={(e) => {
+                        props.activeReply(e, comment.id, reply.name);
+                      }}
+                      data-action="subreply"
+                    >
+                      답글 달기
+                    </S.AddReplyText>
                   </S.LikeBlock>
                 </S.ReplyBlock>
               ))}
@@ -166,12 +178,16 @@ export default function NoticeUI(props) {
         </S.CommentContainer>
       </S.WrapperContents>
       {props.isClickedReply ||
-        props.isClickedEdit ||
-        props.isClickedReplyEdit ? (
+      props.isClickedEdit ||
+      props.isClickedReplyEdit ? (
         <S.ToReplyBlock>
-          {props.isClickedReply && <S.ToReply>댓글 다는중..</S.ToReply>}
-          {props.isClickedEdit && <S.ToReply>댓글 수정중..</S.ToReply>}
-          {props.isClickedReplyEdit && <S.ToReply>답글 수정중..</S.ToReply>}
+          {props.isClickedReply && (
+            <S.ToReply>{props.name}님 에게 답글 다는중..</S.ToReply>
+          )}
+          {props.isClickedEdit && <S.ToReply>댓글을 수정하는 중..</S.ToReply>}
+          {props.isClickedReplyEdit && (
+            <S.ToReply>답글을 수정하는 중..</S.ToReply>
+          )}
           <S.ToReplyClose onClick={props.handleJudegeXClick}>X</S.ToReplyClose>
         </S.ToReplyBlock>
       ) : null}
@@ -193,17 +209,21 @@ export default function NoticeUI(props) {
               props.isActiveComment
                 ? "댓글을 입력해주세요"
                 : props.isClickedReply
-                  ? "답글을 입력해주세요"
-                  : props.isClickedEdit
-                    ? "댓글을 수정해주세요"
-                    : props.isClickedReplyEdit
-                      ? "답글을 수정해주세요"
-                      : ""
+                ? "답글을 입력해주세요"
+                : props.isClickedEdit
+                ? "댓글을 수정해주세요"
+                : props.isClickedReplyEdit
+                ? "답글을 수정해주세요"
+                : ""
             }
             type="text"
             value={props.text}
-            onKeyDown={(e) => {props.handleCommentSubmit(e)}}
-            onChange={(e) => {props.handleCommentValue(e)}}
+            onKeyDown={(e) => {
+              props.handleCommentSubmit(e);
+            }}
+            onChange={(e) => {
+              props.handleCommentValue(e);
+            }}
           />
           <S.AddComment onClick={props.handleCommentSubmit}>
             <S.ArrowLine />

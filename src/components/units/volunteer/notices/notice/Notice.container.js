@@ -16,6 +16,7 @@ export default function Notice() {
     text,
     isActiveComment,
     handleCommentValue,
+    name,
     isClickedReply,
     activeReply,
     isClickedEdit,
@@ -52,6 +53,7 @@ export default function Notice() {
         activeReplyEdit={activeReplyEdit}
         handleJudegeXClick={handleJudegeXClick}
         handleDelete={handleDelete} //댓글 삭제 기능
+        name={name}
       />
     </>
   );
