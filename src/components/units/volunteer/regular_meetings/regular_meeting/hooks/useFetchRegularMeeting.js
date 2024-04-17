@@ -10,7 +10,7 @@ const example = {
     name: "5차 동물 사랑 봉사",
     date: "2024-04-20T14:30",
     location: "범어역 1번 출구",
-    cost: 15000 + "원",
+    cost: 15000,
     participantNum: 7,
     maxNum: 15,
     profileURL: "/images/volunteer/regular_meeting/meeting_main_img.svg",
