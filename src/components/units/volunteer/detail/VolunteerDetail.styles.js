@@ -213,7 +213,7 @@ export const DetailDate = styled.p`
   font-size: 20px;
   font-weight: bold;
   line-height: 24px;
-  letter-spacing: -0.6px;
+  letter-spacing: -0.7px;
 `;
 
 export const LeftDdayBox = styled.div`

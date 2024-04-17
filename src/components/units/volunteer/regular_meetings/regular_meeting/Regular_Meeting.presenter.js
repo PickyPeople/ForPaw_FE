@@ -27,7 +27,7 @@ export default function RegularMeetingUI(props) {
               </S.InFosBlock>
               <S.InFosBlock>
                 <S.InfoName>비용</S.InfoName>
-                <S.DetailInfo>{props.regularMeetingInfos.cost}</S.DetailInfo>
+                <S.DetailInfo>{props.regularMeetingInfos.cost + "원"}</S.DetailInfo>
               </S.InFosBlock>
               <S.InFosBlock>
                 <S.InfoName>인원</S.InfoName>

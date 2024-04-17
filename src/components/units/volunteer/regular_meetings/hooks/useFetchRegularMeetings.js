@@ -121,7 +121,7 @@ export default function useFetchRegularMeetings() {
         const differences = regularMeetingsData.meetings.map((meeting) => {
           const receivedDate = new Date(meeting.date);
           const timeDiff = receivedDate - currentDate;
-          return Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+          return Math.floor(timeDiff / (1000 * 60 * 60 * 24));
         });
         setDaysDifferences(differences);
       } catch (error) {
