@@ -31,18 +31,6 @@ export const useNoticeClick = () => {
     }
   };
 
-  //일반유저 status를 member로 바꿔주는 기능
-  const ChangeStatus = (path) => () => {
-    router.push(
-      {
-        pathname: path,
-        query: {
-          name: "member",
-        },
-      },
-      `${path}`
-    );
-  };
   //공지사항을 클릭한 후 클릭한 공지사항의 색을 바꿔주는 기능
   const handleAnnouncementClick = (index) => {
     if (status === "member") {
@@ -60,7 +48,6 @@ export const useNoticeClick = () => {
     clickedIndex,
     isJoinedClikced,
     handleAnnouncementClick,
-    ChangeStatus,
     status,
   };
 };
