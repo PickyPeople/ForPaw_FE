@@ -16,7 +16,7 @@ export const useComment = () => {
   } = useClickMenu();
 
   const [comments, setComments] = useState([]); //input에서 입력한 값을 배열로서 받을 것이고 presenter에서 map 함수를 이용하여 사용할 것이다.
-  const [text, setText] = useState(""); //input안의 내용을 onChange로 받아줄 변수이다.
+  const [content, setContent] = useState(""); //input안의 내용을 onChange로 받아줄 변수이다.
   const [isActiveComment, setIsActiveComment] = useState(true);
   const [isClickedReply, setIsClickedReply] = useState(false); //답글달기를 눌렀는가 판단하는 변수
   const [isClickedEdit, setIsClickedEidt] = useState(false); //댓글의 수정하기 메뉴를 눌렀을 경우
@@ -24,7 +24,7 @@ export const useComment = () => {
   const [commentIdNum, setCommentIdNum] = useState(0); // 삭제하기를 누르고 난 뒤 댓글id 값을 올려주기 위한 변수
   const [name, setName] = useState(""); //답글 달기에 이름을 주기 위해서
   const nameLength = name.length;
-  const [actionTypeReply, setActionTypeReply] = useState(true);
+  //const [actionTypeReply, setActionTypeReply] = useState(true);
 
   const focus = useRef(null); //input태그에 포커스를 주기 위해
 
@@ -37,7 +37,7 @@ export const useComment = () => {
 
   //Comment input값을 받아오는 기능
   const handleCommentValue = (e) => {
-    setText(e.target.value);
+    setContent(e.target.value);
   };
 
   //답글달기모드 활성화
@@ -48,57 +48,57 @@ export const useComment = () => {
     setIsClickedReplyEdit(false);
     setIsCommentMenuClicked(false);
     setIsReplyMenuClicked(false);
-    setText("@" + name + " ");
+    setContent("@" + name + " ");
     setName(name);
     setClickedCommentID(commentID);
     nameFoucs();
   };
 
   //댓글 수정모드를 활성화
-  const activeCommentEdit = (text) => {
+  const activeCommentEdit = (content) => {
     setIsClickedEidt(true);
     setIsActiveComment(false);
     setIsClickedReply(false);
     setIsClickedReplyEdit(false);
-    setText(text);
+    setContent(content);
     nameFoucs();
   };
 
   //답글 수정모드 활성화
-  const activeReplyEdit = (text) => {
+  const activeReplyEdit = (content) => {
     setIsClickedReplyEdit(true);
     setIsActiveComment(false);
     setIsClickedReply(false);
     setIsClickedEidt(false);
-    setText(text);
+    setContent(content);
     nameFoucs();
   };
 
   const handleCommentSubmit = (e) => {
     if (
-      (e.type === "click" && text.trim() !== "" && isActiveComment == true) ||
+      (e.type === "click" && content.trim() !== "" && isActiveComment == true) ||
       (e.type === "keydown" &&
         e.key === "Enter" &&
-        text.trim() !== "" &&
+        content.trim() !== "" &&
         isActiveComment == true)
     ) {
       const newCommentObject = {
         //배열에 추가되는 정보들
         id: comments.length + 1 + commentIdNum,
         name: `닉네임${comments.length + 1 + commentIdNum}`,
-        region: "지역",
-        hours: "몇 시간전",
-        text: text,
+        location: "지역",
+        date: "몇 시간전",
+        content: content,
         replies: [],
         num: 0,
       };
       setComments([...comments, newCommentObject]);
-      setText("");
+      setContent("");
     } else if (
-      (e.type === "click" && text.trim() !== "" && isClickedReply === true) ||
+      (e.type === "click" && content.trim() !== "" && isClickedReply === true) ||
       (e.type === "keydown" &&
         e.key === "Enter" &&
-        text.trim() !== "" &&
+        content.trim() !== "" &&
         isClickedReply === true)
     ) {
       const updatedComments = comments.map((comment) => {
@@ -110,9 +110,9 @@ export const useComment = () => {
               {
                 id: comment.replies.length + 1 + comment.num,
                 name: `답글 닉네임${comment.replies.length + 1 + comment.num}`,
-                region: "지역",
-                hours: "몇 시간전",
-                text: name + text.substring(nameLength + 1, text.length),
+                location: "지역",
+                date: "몇 시간전",
+                content: name + content.substring(nameLength + 1, content.length),
               },
             ],
           };
@@ -122,18 +122,18 @@ export const useComment = () => {
       });
       setComments(updatedComments);
       setIsActiveComment(true);
-      setText("");
+      setContent("");
       setIsClickedReply(false); // 답글이 제출되면 isClickedReply를 false로 설정
     } else if (
-      (e.type === "click" && text.trim() !== "" && isClickedEdit === true) ||
+      (e.type === "click" && content.trim() !== "" && isClickedEdit === true) ||
       (e.type === "keydown" &&
         e.key === "Enter" &&
-        text.trim() !== "" &&
+        content.trim() !== "" &&
         isClickedEdit === true)
     ) {
       const updatedComments = comments.map((comment) => {
         if (comment.id === clickedCommentID) {
-          return { ...comment, text: text };
+          return { ...comment, content: content };
         }
         return comment;
       });
@@ -141,21 +141,21 @@ export const useComment = () => {
       setComments(updatedComments);
       setIsCommentMenuClicked(false);
       setIsClickedEidt(false);
-      setText("");
+      setContent("");
     } else if (
       (e.type === "click" &&
-        text.trim() !== "" &&
+        content.trim() !== "" &&
         isClickedReplyEdit === true) ||
       (e.type === "keydown" &&
         e.key === "Enter" &&
-        text.trim() !== "" &&
+        content.trim() !== "" &&
         isClickedReplyEdit === true)
     ) {
       const updatedComments = comments.map((comment) => {
         if (comment.id === clickedCommentID) {
           const updatedReplies = comment.replies.map((reply) => {
             if (reply.id === clickedReplyID) {
-              return { ...reply, text: text };
+              return { ...reply, content: content };
             }
             return reply;
           });
@@ -167,7 +167,7 @@ export const useComment = () => {
       setComments(updatedComments);
       setIsReplyMenuClicked(false);
       setIsClickedReplyEdit(false);
-      setText("");
+      setContent("");
     }
   };
 
@@ -200,11 +200,13 @@ export const useComment = () => {
 
   //답글달기 혹은 수정하기를 누르고 나오는 div의 영역의 X버튼을 누르는지 판단
   const handleJudegeXClick = () => {
+    setIsActiveComment(true);
     setIsClickedReply(false);
     setIsCommentMenuClicked(false);
     setIsReplyMenuClicked(false);
     setIsClickedEidt(false);
     setIsClickedReplyEdit(false);
+    setContent("");
     nameFoucs();
   };
 
@@ -217,7 +219,7 @@ export const useComment = () => {
     handleMenuClick,
     focus,
     comments,
-    text,
+    content,
     isActiveComment,
     handleCommentValue,
     name,

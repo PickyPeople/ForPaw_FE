@@ -410,7 +410,7 @@ export const MenuBlock = styled.div`
   border-radius: 10px;
   background-color: white;
   position: relative;
-  font-size: 17px;
+  font-size: 15px;
   right: 80px;
 
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.1);
