@@ -74,7 +74,7 @@ export const useComment = () => {
     nameFoucs();
   };
 
-  const handleCommentSubmit = (e) => {
+  const handleCommentSubmit = (e) => { //post통신으로 가게끔 만들어줄 필요가 있어보인다.
     if (
       (e.type === "click" && content.trim() !== "" && isActiveComment == true) ||
       (e.type === "keydown" &&

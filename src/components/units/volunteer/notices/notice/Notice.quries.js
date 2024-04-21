@@ -22,3 +22,29 @@ export async function fetchNotice() {
     }
   }
   
+ //여기서 댓글 답글 수정 삭제 내용을 받아줄 필요가 있다 
+export const sendContents = async (content) => {
+  try {
+    const response = await fetch(
+      "https://your-api-endpoint.com/content/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          content: content
+        })
+      }
+    );
+    
+    if(!response.ok){
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log("댓글 등록에 실패하였습니다");
+  }
+}
