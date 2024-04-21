@@ -12,9 +12,7 @@ export default function NoticeUI(props) {
         }
       >
         <S.AnnouncementContainer>
-          <S.AnnouncementTitle>
-            공지사항 타이틀을 입력해주세요 최대 두줄 정도로 넘으면..처리
-          </S.AnnouncementTitle>
+          <S.AnnouncementTitle>{props.noticeInfos.title}</S.AnnouncementTitle>
           <S.AnnouncementImg>
             <Image
               src="/images/volunteer/announcement/announcement_img.svg"
@@ -24,13 +22,7 @@ export default function NoticeUI(props) {
               priority={true}
             />
           </S.AnnouncementImg>
-          <S.AnnouncementText>
-            소년은 개울가에서 소녀를 보자 곧 윤 초시네 증손녀 딸<br />
-            이라는 걸 알 수 있었다. 그런데, 어제까지는 개울 기슭에서 하더니,
-            오늘은 징검다리 한가운데 앉아서 하고 있다.
-            <br />
-            소녀는 소년이 개울둑에 앉아 있는 걸 아는지 모르는지
-          </S.AnnouncementText>
+          <S.AnnouncementText>{props.noticeInfos.content}</S.AnnouncementText>
         </S.AnnouncementContainer>
         <S.Boundary />
         <S.CommentContainer>
@@ -50,12 +42,12 @@ export default function NoticeUI(props) {
                   <S.CommentUser>
                     <S.UserName>{comment.name}</S.UserName>
                     <S.CommentTime>
-                      {comment.region} {comment.hours}
+                      {comment.location} {comment.date}
                     </S.CommentTime>
                   </S.CommentUser>
                 </S.UserInfoItems>
                 <S.CommentText>
-                  <S.Comment>{comment.text}</S.Comment>
+                  <S.Comment>{comment.content}</S.Comment>
                   <S.CommentMenuImg
                     onClick={() => props.handleMenuClick(comment.id, null)}
                   >
@@ -71,7 +63,7 @@ export default function NoticeUI(props) {
                         <S.MenuBlock ref={props.wrapperRef}>
                           <S.Edit
                             onClick={() =>
-                              props.activeCommentEdit(comment.text)
+                              props.activeCommentEdit(comment.content)
                             }
                           >
                             수정하기
@@ -95,7 +87,7 @@ export default function NoticeUI(props) {
                     onClick={(e) => {
                       props.activeReply(e, comment.id, comment.name);
                     }}
-                    data-action = "reply"
+                    data-action="reply"
                   >
                     답글 달기
                   </S.AddReplyText>
@@ -116,14 +108,20 @@ export default function NoticeUI(props) {
                     <S.ReplyUser>
                       <S.UserName>{reply.name}</S.UserName>
                       <S.CommentTime>
-                        {reply.region} {reply.hours}
+                        {reply.location} {reply.date}
                       </S.CommentTime>
                     </S.ReplyUser>
                   </S.UserInfoItems>
                   <S.CommentText>
                     <S.Reply>
-                      <S.Name> {`@${reply.text.substring(0, props.name.length)}`}</S.Name>
-                      {reply.text.substring(props.name.length, reply.text.length)}
+                      <S.Name>
+                        {" "}
+                        {`@${reply.content.substring(0, props.name.length)}`}
+                      </S.Name>
+                      {reply.content.substring(
+                        props.name.length,
+                        reply.content.length
+                      )}
                     </S.Reply>
                     <S.ReplyMenuImg
                       onClick={() =>
@@ -141,7 +139,9 @@ export default function NoticeUI(props) {
                         props.clickedCommentID === comment.id && (
                           <S.MenuBlock ref={props.wrapperRef}>
                             <S.Edit
-                              onClick={() => props.activeReplyEdit(reply.text)}
+                              onClick={() =>
+                                props.activeReplyEdit(reply.content)
+                              }
                             >
                               수정하기
                             </S.Edit>
@@ -162,7 +162,7 @@ export default function NoticeUI(props) {
                       alt="comment_like_icon"
                     />
                     <S.LikeText>좋아요</S.LikeText>
-                    <S.AddReplyText 
+                    <S.AddReplyText
                       onClick={(e) => {
                         props.activeReply(e, comment.id, reply.name);
                       }}
@@ -217,7 +217,7 @@ export default function NoticeUI(props) {
                 : ""
             }
             type="text"
-            value={props.text}
+            value={props.content}
             onKeyDown={(e) => {
               props.handleCommentSubmit(e);
             }}

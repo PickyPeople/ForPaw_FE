@@ -2,8 +2,11 @@ import LikeImage from "./hooks/LikeImage";
 import NoticeUI from "./Notice.presenter";
 import VolunteerDetailHeader from "../../detail/volunteerDetailHeader/VolunteerDetailHeader.container";
 import { useComment } from "./hooks/useComment";
+import useFetchNotice from "./hooks/useFetchNotice";
 
 export default function Notice() {
+  const { noticeInfos } = useFetchNotice();
+
   const {
     isCommentMenuClicked,
     clickedCommentID,
@@ -13,7 +16,7 @@ export default function Notice() {
     handleMenuClick,
     focus,
     comments,
-    text,
+    content,
     isActiveComment,
     handleCommentValue,
     name,
@@ -32,6 +35,7 @@ export default function Notice() {
     <>
       <VolunteerDetailHeader />
       <NoticeUI
+        noticeInfos={noticeInfos}
         LikeImage={LikeImage} //좋아요 버튼을 위한 컴포넌트
         wrapperRef={wrapperRef} //메뉴창 내/외부 판단
         handleMenuClick={handleMenuClick} //댓글 or 답글 메뉴 판단
@@ -41,7 +45,7 @@ export default function Notice() {
         clickedReplyID={clickedReplyID} //클릭한 닷글 id취득
         focus={focus} //input태그에 항상 focus를 유지
         comments={comments} //댓글이나 답글을 담아둘 배열
-        text={text} //input에 있는 댓글
+        content={content} //input에 있는 댓글
         isActiveComment={isActiveComment}
         handleCommentValue={handleCommentValue} //댓글 텍스트를 받아오는 값
         handleCommentSubmit={handleCommentSubmit} //댓글을 등록하기 위한 기능
