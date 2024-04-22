@@ -18,7 +18,7 @@ export default function Notice() {
     comments,
     content,
     isActiveComment,
-    handleCommentValue,
+    handleContentValue,
     name,
     isClickedReply,
     activeReply,
@@ -26,7 +26,7 @@ export default function Notice() {
     activeCommentEdit,
     isClickedReplyEdit,
     activeReplyEdit,
-    handleCommentSubmit,
+    handleContentSubmit,
     handleJudegeXClick,
     handleDelete,
   } = useComment();
@@ -47,8 +47,8 @@ export default function Notice() {
         comments={comments} //댓글이나 답글을 담아둘 배열
         content={content} //input에 있는 댓글
         isActiveComment={isActiveComment}
-        handleCommentValue={handleCommentValue} //댓글 텍스트를 받아오는 값
-        handleCommentSubmit={handleCommentSubmit} //댓글을 등록하기 위한 기능
+        handleContentValue={handleContentValue} //댓글 텍스트를 받아오는 값
+        handleContentSubmit={handleContentSubmit} //댓글을 등록하기 위한 기능
         isClickedReply={isClickedReply} //답글 달기를 눌렀는지를 판단하는 변수
         activeReply={activeReply} //답글 모드 활성화
         isClickedEdit={isClickedEdit} //수정하기를 클릭하였는지 판단

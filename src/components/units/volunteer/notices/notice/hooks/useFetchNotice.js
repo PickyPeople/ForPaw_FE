@@ -68,6 +68,6 @@ export default function useFetchNotice() {
     }
 
     //loadNotice()
-  }, []);
+  }, [noticeInfos]);
   return { noticeInfos };
 }

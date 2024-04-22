@@ -178,8 +178,8 @@ export default function NoticeUI(props) {
         </S.CommentContainer>
       </S.WrapperContents>
       {props.isClickedReply ||
-      props.isClickedEdit ||
-      props.isClickedReplyEdit ? (
+        props.isClickedEdit ||
+        props.isClickedReplyEdit ? (
         <S.ToReplyBlock>
           {props.isClickedReply && (
             <S.ToReply>{props.name}님 에게 답글 다는중..</S.ToReply>
@@ -209,23 +209,23 @@ export default function NoticeUI(props) {
               props.isActiveComment
                 ? "댓글을 입력해주세요"
                 : props.isClickedReply
-                ? "답글을 입력해주세요"
-                : props.isClickedEdit
-                ? "댓글을 수정해주세요"
-                : props.isClickedReplyEdit
-                ? "답글을 수정해주세요"
-                : ""
+                  ? "답글을 입력해주세요"
+                  : props.isClickedEdit
+                    ? "댓글을 수정해주세요"
+                    : props.isClickedReplyEdit
+                      ? "답글을 수정해주세요"
+                      : ""
             }
             type="text"
             value={props.content}
             onKeyDown={(e) => {
-              props.handleCommentSubmit(e);
+              props.handleContentSubmit(e);
             }}
             onChange={(e) => {
-              props.handleCommentValue(e);
+              props.handleContentValue(e);
             }}
           />
-          <S.AddComment onClick={props.handleCommentSubmit}>
+          <S.AddComment onClick={props.handleContentSubmit}>
             <S.ArrowLine />
             <S.ArrowBlock />
           </S.AddComment>

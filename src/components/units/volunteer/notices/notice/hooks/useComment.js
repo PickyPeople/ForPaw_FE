@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect } from "react";
 import { useClickMenu } from "./useClickMenu";
-import { UserName } from "../Notice.styles";
 
 export const useComment = () => {
   const {
@@ -36,7 +35,7 @@ export const useComment = () => {
   };
 
   //Comment input값을 받아오는 기능
-  const handleCommentValue = (e) => {
+  const handleContentValue = (e) => {
     setContent(e.target.value);
   };
 
@@ -74,7 +73,7 @@ export const useComment = () => {
     nameFoucs();
   };
 
-  const handleCommentSubmit = (e) => { //post통신으로 가게끔 만들어줄 필요가 있어보인다.
+  const handleContentSubmit = (e) => { //post통신으로 가게끔 만들어줄 필요가 있어보인다.
     if (
       (e.type === "click" && content.trim() !== "" && isActiveComment == true) ||
       (e.type === "keydown" &&
@@ -221,7 +220,7 @@ export const useComment = () => {
     comments,
     content,
     isActiveComment,
-    handleCommentValue,
+    handleContentValue,
     name,
     isClickedReply,
     activeReply,
@@ -229,7 +228,7 @@ export const useComment = () => {
     activeCommentEdit,
     isClickedReplyEdit,
     activeReplyEdit,
-    handleCommentSubmit,
+    handleContentSubmit,
     handleJudegeXClick,
     handleDelete,
   };
