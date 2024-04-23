@@ -23,7 +23,6 @@ export const useComment = () => {
   const [commentIdNum, setCommentIdNum] = useState(0); // 삭제하기를 누르고 난 뒤 댓글id 값을 올려주기 위한 변수
   const [name, setName] = useState(""); //답글 달기에 이름을 주기 위해서
   const nameLength = name.length;
-  //const [actionTypeReply, setActionTypeReply] = useState(true);
 
   const focus = useRef(null); //input태그에 포커스를 주기 위해
 

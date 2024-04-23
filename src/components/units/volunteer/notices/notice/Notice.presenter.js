@@ -115,7 +115,6 @@ export default function NoticeUI(props) {
                   <S.CommentText>
                     <S.Reply>
                       <S.Name>
-                        {" "}
                         {`@${reply.content.substring(0, props.name.length)}`}
                       </S.Name>
                       {reply.content.substring(
