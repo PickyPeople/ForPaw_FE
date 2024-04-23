@@ -227,10 +227,9 @@ export const AddReplyText = styled.p`
 `;
 
 export const ReplyBlock = styled.div`
-  margin-top: 24px;
-
+  margin-top: 20px;
   width: 296px;
-  height: 103px;
+  height: auto;
 `;
 
 export const ReplyUser = styled.div`
