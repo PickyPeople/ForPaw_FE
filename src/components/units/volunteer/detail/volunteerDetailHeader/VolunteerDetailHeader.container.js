@@ -42,7 +42,7 @@ export default function VolunteerDetailHeader(props) {
   const getTitleByPath = (pathname) => {
     if (pathname === `/volunteer/detail/[id]`) {
       return "봉사모임 이름";
-    } else if (pathname === "/volunteer/detail/notices/notice") {
+    } else if (pathname === "/volunteer/detail/notices/notice/[id]") {
       return "공지사항";
     } else {
       return ""; // 기본값 혹은 다른 경로에 대한 타이틀 설정

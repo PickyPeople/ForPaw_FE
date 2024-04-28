@@ -51,13 +51,13 @@ export default function RegularMeetingsUI(props) {
                   </S.MeetingDetailInfoBox>
                   <S.UsersAndParticipateBox>
                     <S.UsersItems>
-                      {infos.participants.map((participant, index) => (
+                      {infos.participants.map((infos, index) => (
                         <S.UserImg
                           style={{ right: index > 0 ? index * 8 + "px" : "" }}
-                          key={index}
+                          key={infos.id}
                         >
                           <Image
-                            src={participant.profileURL}
+                            src={infos.profileURL}
                             alt="user"
                             width={25}
                             height={30}
@@ -68,7 +68,7 @@ export default function RegularMeetingsUI(props) {
                     </S.UsersItems>
                     <S.ParticipateBtn
                       onClick={props.navigateTo(
-                        "/volunteer/detail/regular_meetings/regular_meeting"
+                        `/volunteer/detail/regular_meetings/regular_meeting/${infos.id}`
                       )}
                     >
                       참가하기

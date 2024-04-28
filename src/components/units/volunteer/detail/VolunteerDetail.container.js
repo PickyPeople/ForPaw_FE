@@ -11,7 +11,6 @@ export default function VolunteerDetail() {
   const router = useRouter();
   const { isLoggedIn } = useLoginStatusCheck();
   const { openModal } = useModalStore();
-
   const id = router.query.id;
 
   //공지사항 클릭 관련 기능 & 멤버가 아닌 회원은 다음 페이지로 못넘어가게끔 막는 기능

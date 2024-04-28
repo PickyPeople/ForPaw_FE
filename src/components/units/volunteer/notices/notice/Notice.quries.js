@@ -72,7 +72,7 @@ export const sendReply = async (content) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log("댓글 등록에 실패하였습니다");
+    console.log("답글 등록에 실패하였습니다");
   }
 }
 
@@ -99,7 +99,7 @@ export const sendCommentEdit = async (content) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log("댓글 등록에 실패하였습니다");
+    console.log("댓글 수정에 실패하였습니다");
   }
 }
 
@@ -125,11 +125,11 @@ export const sendReplyEdit = async (content) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log("댓글 등록에 실패하였습니다");
+    console.log("답글 수정에 실패하였습니다");
   }
 }
 
-export const sendDelete = async (content) => {
+export const sendDelete = async () => {
   try {
     const response = await fetch(
       " /posts/{postId}/comments/{commentId}",
@@ -148,6 +148,6 @@ export const sendDelete = async (content) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log("댓글 등록에 실패하였습니다");
+    console.log("댓글 삭제 실패");
   }
 }

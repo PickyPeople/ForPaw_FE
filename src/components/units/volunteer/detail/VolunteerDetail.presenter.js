@@ -40,10 +40,10 @@ export default function VolunteerDetailUI(props) {
             </S.RightArrowImgBlock>
           </S.AnnouncementTitleBlock>
           <S.AnnouncementDetailContainer>
-            {props.volunteerDetailInfos.notices.map((notice, index) => (
+            {props.volunteerDetailInfos.notices.map((infos, index) => (
               <S.AnnouncementDetailBlock
-                onClick={props.navigateTo("/volunteer/detail/notices/notice")}
-                key={notice.id}
+                onClick={props.navigateTo(`/volunteer/detail/notices/notice/${infos.id}`)}
+                key={infos.id}
                 style={{
                   backgroundColor:
                     props.clickedIndex === index ? "#FEF8F2" : "#F6F6F6",
@@ -68,9 +68,9 @@ export default function VolunteerDetailUI(props) {
                     </S.CheckImg>
                   </S.CheckBox>
                   <S.AnnouncementText>
-                    {notice.title.length > 55
-                      ? `${notice.title.slice(0, 55)}...`
-                      : notice.title}
+                    {infos.title.length > 55
+                      ? `${infos.title.slice(0, 55)}...`
+                      : infos.title}
                   </S.AnnouncementText>
                 </S.AnnouncementItems>
               </S.AnnouncementDetailBlock>
@@ -153,7 +153,7 @@ export default function VolunteerDetailUI(props) {
                     </S.UsersItems>
                     <S.ParticipateBtn
                       onClick={props.navigateTo(
-                        "/volunteer/detail/regular_meetings/regular_meeting"
+                        `/volunteer/detail/regular_meetings/regular_meeting/${infos.id}`
                       )}
                     >
                       참가하기
