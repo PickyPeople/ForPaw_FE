@@ -1,6 +1,6 @@
 export async function fetchVolunteerDetail() {
   try {
-    const response = await fetch("https://example.com/api/volunteer/detail", {
+    const response = await fetch("/groups/{id}/detail", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

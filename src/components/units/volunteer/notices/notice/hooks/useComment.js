@@ -1,5 +1,12 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { useClickMenu } from "./useClickMenu";
+import {
+  sendComment,
+  sendCommentEdit,
+  sendDelete,
+  sendReply,
+  sendReplyEdit,
+} from "../Notice.quries";
 
 export const useComment = () => {
   const {
@@ -14,13 +21,11 @@ export const useComment = () => {
     handleMenuClick,
   } = useClickMenu();
 
-  const [comments, setComments] = useState([]); //input에서 입력한 값을 배열로서 받을 것이고 presenter에서 map 함수를 이용하여 사용할 것이다.
   const [content, setContent] = useState(""); //input안의 내용을 onChange로 받아줄 변수이다.
   const [isActiveComment, setIsActiveComment] = useState(true);
   const [isClickedReply, setIsClickedReply] = useState(false); //답글달기를 눌렀는가 판단하는 변수
   const [isClickedEdit, setIsClickedEidt] = useState(false); //댓글의 수정하기 메뉴를 눌렀을 경우
   const [isClickedReplyEdit, setIsClickedReplyEdit] = useState(false); //답글의 수정하기 메뉴를 눌렀을 경우
-  const [commentIdNum, setCommentIdNum] = useState(0); // 삭제하기를 누르고 난 뒤 댓글id 값을 올려주기 위한 변수
   const [name, setName] = useState(""); //답글 달기에 이름을 주기 위해서
   const nameLength = name.length;
 
@@ -72,75 +77,68 @@ export const useComment = () => {
     nameFoucs();
   };
 
-  const handleContentSubmit = (e) => { //post통신으로 가게끔 만들어줄 필요가 있어보인다.
+  const handleContentSubmit = async (e) => {
+    //post통신으로 가게끔 만들어줄 필요가 있어보인다.
     if (
-      (e.type === "click" && content.trim() !== "" && isActiveComment == true) ||
+      //댓글을 보내기 위한 조건들
+      (e.type === "click" &&
+        content.trim() !== "" &&
+        isActiveComment == true) ||
       (e.type === "keydown" &&
         e.key === "Enter" &&
         content.trim() !== "" &&
         isActiveComment == true)
     ) {
-      const newCommentObject = {
-        //배열에 추가되는 정보들
-        id: comments.length + 1 + commentIdNum,
-        name: `닉네임${comments.length + 1 + commentIdNum}`,
-        location: "지역",
-        date: "몇 시간전",
-        content: content,
-        replies: [],
-        num: 0,
-      };
-      setComments([...comments, newCommentObject]);
+      //댓글을 보내는 코드들 api문서에 보내는 것이기 때문에 내가 보낼 것은 content만 취득하면 된다.
+      try {
+        const data = await sendComment(content);
+        console.log(`댓글: ${data}`);
+      } catch (error) {
+        console.log("댓글을 달 수 없습니다.");
+      }
       setContent("");
     } else if (
-      (e.type === "click" && content.trim() !== "" && isClickedReply === true) ||
+      //답글을 보내기 위한 조건들
+      (e.type === "click" &&
+        content.trim() !== "" &&
+        isClickedReply === true) ||
       (e.type === "keydown" &&
         e.key === "Enter" &&
         content.trim() !== "" &&
         isClickedReply === true)
     ) {
-      const updatedComments = comments.map((comment) => {
-        if (comment.id === clickedCommentID) {
-          return {
-            ...comment,
-            replies: [
-              ...comment.replies,
-              {
-                id: comment.replies.length + 1 + comment.num,
-                name: `답글 닉네임${comment.replies.length + 1 + comment.num}`,
-                location: "지역",
-                date: "몇 시간전",
-                content: name + content.substring(nameLength + 1, content.length),
-              },
-            ],
-          };
-        } else {
-          return comment;
-        }
-      });
-      setComments(updatedComments);
+      //답글의 내용을 api문서에 보내기 위한 코드
+      try {
+        const data = await sendReply(
+          name + content.substring(nameLength + 1, content.length)
+        );
+        console.log(`답글: ${data}`);
+      } catch (error) {
+        console.log("답글을 보낼 수 없습니다.");
+      }
       setIsActiveComment(true);
       setContent("");
-      setIsClickedReply(false); // 답글이 제출되면 isClickedReply를 false로 설정
+      setIsClickedReply(false);
     } else if (
+      //댓글 수정을 하기 위한 조건들
       (e.type === "click" && content.trim() !== "" && isClickedEdit === true) ||
       (e.type === "keydown" &&
         e.key === "Enter" &&
         content.trim() !== "" &&
         isClickedEdit === true)
     ) {
-      const updatedComments = comments.map((comment) => {
-        if (comment.id === clickedCommentID) {
-          return { ...comment, content: content };
-        }
-        return comment;
-      });
+      try {
+        const data = await sendCommentEdit(content);
+        console.log(`댓글 수정내용: ${data}`);
+      } catch (error) {
+        console.log("댓글 수정 실패");
+      }
       setIsActiveComment(true);
-      setComments(updatedComments);
       setIsCommentMenuClicked(false);
       setIsClickedEidt(false);
       setContent("");
     } else if (
+      //답글을 수정하기 위한 조건들
       (e.type === "click" &&
         content.trim() !== "" &&
         isClickedReplyEdit === true) ||
@@ -149,20 +147,13 @@ export const useComment = () => {
         content.trim() !== "" &&
         isClickedReplyEdit === true)
     ) {
-      const updatedComments = comments.map((comment) => {
-        if (comment.id === clickedCommentID) {
-          const updatedReplies = comment.replies.map((reply) => {
-            if (reply.id === clickedReplyID) {
-              return { ...reply, content: content };
-            }
-            return reply;
-          });
-          return { ...comment, replies: updatedReplies };
-        }
-        return comment;
-      });
+      try {
+        const data = await sendReplyEdit(content);
+        console.log(`답글 수정: ${data}`);
+      } catch (error) {
+        console.log("답글 수정 실해");
+      }
       setIsActiveComment(true);
-      setComments(updatedComments);
       setIsReplyMenuClicked(false);
       setIsClickedReplyEdit(false);
       setContent("");
@@ -170,26 +161,22 @@ export const useComment = () => {
   };
 
   // 댓글 삭제기능
-  const handleDelete = (commentID, replyID) => {
+  const handleDelete = async (commentID, replyID) => {
     if (replyID === null) {
-      const updatedComments = comments.filter(
-        (comment) => comment.id !== commentID
-      );
-      setComments(updatedComments);
-      setCommentIdNum(commentIdNum + 1); //삭제하기를 클릭하여 id값을 눌려주기 위해
+      try {
+        const data = await sendDelete();
+        console.log("댓글 삭제 완료");
+      } catch (error) {
+        console.log("댓글 삭제 실패");
+      }
     } else {
       // 답글 삭제
-      const updatedComments = comments.map((comment) => {
-        if (comment.id === commentID) {
-          // 현재 댓글의 replies 배열에서 해당 답글 제외
-          const updatedReplies = comment.replies.filter(
-            (reply) => reply.id !== replyID
-          );
-          return { ...comment, replies: updatedReplies, num: comment.num + 1 };
-        }
-        return comment;
-      });
-      setComments(updatedComments);
+      try {
+        const data = await sendDelete();
+        console.log("답글 삭제 완료");
+      } catch (error) {
+        console.log("답글 삭제 실패");
+      }
     }
     setIsClickedReply(false);
     setIsClickedEidt(false);
@@ -216,7 +203,6 @@ export const useComment = () => {
     wrapperRef,
     handleMenuClick,
     focus,
-    comments,
     content,
     isActiveComment,
     handleContentValue,

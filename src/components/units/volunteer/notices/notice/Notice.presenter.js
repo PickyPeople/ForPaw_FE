@@ -26,7 +26,7 @@ export default function NoticeUI(props) {
         </S.AnnouncementContainer>
         <S.Boundary />
         <S.CommentContainer>
-          {props.comments.map((comment, index) => (
+          {props.noticeInfos.comments.map((comment, index) => (
             <S.Comments key={comment.id}>
               <S.CommentBlock>
                 <S.UserInfoItems>

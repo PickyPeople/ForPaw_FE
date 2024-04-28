@@ -32,7 +32,7 @@ export default function VolunteerDetailHeader(props) {
   }, []); // 빈 배열을 넘겨 컴포넌트 마운트 시에만 실행되도록 함
 
   const PrevPage = () => {
-    if (status == "member" && router.pathname === "/volunteer/detail") {
+    if (status == "member" && router.pathname === `/volunteer/detail/[id]`) {
       router.push("/volunteer/joined");
     } else {
       router.back();
@@ -40,9 +40,9 @@ export default function VolunteerDetailHeader(props) {
   };
 
   const getTitleByPath = (pathname) => {
-    if (pathname === "/volunteer/detail") {
+    if (pathname === `/volunteer/detail/[id]`) {
       return "봉사모임 이름";
-    } else if (pathname === "/volunteer/detail/notices/notice") {
+    } else if (pathname === "/volunteer/detail/notices/notice/[id]") {
       return "공지사항";
     } else {
       return ""; // 기본값 혹은 다른 경로에 대한 타이틀 설정
