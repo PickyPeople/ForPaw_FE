@@ -1,7 +1,7 @@
 //추천모임, 지역모임, 내모임 해서 전체적으로 불러와서 통신하는 코드
 export async function fetchVolunteer() {
   try {
-    const response = await fetch("https://example.com/api/volunteer", {
+    const response = await fetch("/groups", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

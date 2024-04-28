@@ -1,7 +1,7 @@
 export async function fetchNotice() {
   try {
     const response = await fetch(
-      "https://example.com/api/volunteer/detail/notices/notice",
+      "/groups/{groupId}/notices",
       {
         method: "GET",
         headers: {
@@ -106,7 +106,7 @@ export const sendCommentEdit = async (content) => {
 export const sendReplyEdit = async (content) => {
   try {
     const response = await fetch(
-      " /posts/{postId}/comments/{commentId}",
+      "/posts/{postId}/comments/{commentId}",
       {
         method: "PATCH",
         headers: {

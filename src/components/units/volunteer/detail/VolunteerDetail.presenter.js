@@ -208,7 +208,7 @@ export default function VolunteerDetailUI(props) {
           backgroundColor: props.status == "member" ? "#240D05" : "#FF6636",
         }}
       >
-        <S.NextButtonItem onClick={() => props.handleFavClick("/volunteer/detail")}>
+        <S.NextButtonItem onClick={() => props.handleFavClick(`/volunteer/detail/${props.id}`)}>
           {props.status === "member" ? "채팅방 입장하기" : "가입하기"}
         </S.NextButtonItem>
       </S.NextButtonBlock>

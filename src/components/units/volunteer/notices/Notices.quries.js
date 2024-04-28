@@ -1,7 +1,7 @@
 export async function fetchNotices() {
   try {
     const response = await fetch(
-      "https://example.com/api/volunteer/detail/notices",
+      "/groups/{id}/notices?page={}",
       {
         method: "GET",
         headers: {
