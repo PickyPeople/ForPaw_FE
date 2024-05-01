@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useClickMenu } from "./useClickMenu";
 import {
   sendComment,
@@ -7,6 +7,7 @@ import {
   sendReply,
   sendReplyEdit,
 } from "../Notice.quries";
+import useFetchNotice from "./useFetchNotice";
 
 export const useComment = () => {
   const {
@@ -21,6 +22,8 @@ export const useComment = () => {
     handleMenuClick,
   } = useClickMenu();
 
+  const { noticeInfos } = useFetchNotice();
+  const [comments, setComments] = useState(noticeInfos.comments);
   const [content, setContent] = useState(""); //input안의 내용을 onChange로 받아줄 변수이다.
   const [isActiveComment, setIsActiveComment] = useState(true);
   const [isClickedReply, setIsClickedReply] = useState(false); //답글달기를 눌렀는가 판단하는 변수
@@ -28,8 +31,10 @@ export const useComment = () => {
   const [isClickedReplyEdit, setIsClickedReplyEdit] = useState(false); //답글의 수정하기 메뉴를 눌렀을 경우
   const [name, setName] = useState(""); //답글 달기에 이름을 주기 위해서
   const nameLength = name.length;
-
+  const [commentIdNum, setCommentIdNum] = useState(0); // 삭제하기를 누르고 난 뒤 댓글id 값을 올려주기 위한 변수
   const focus = useRef(null); //input태그에 포커스를 주기 위해
+
+  console.log(comments);
 
   //input태그에 focus주기
   const nameFoucs = () => {
@@ -81,38 +86,55 @@ export const useComment = () => {
     //post통신으로 가게끔 만들어줄 필요가 있어보인다.
     if (
       //댓글을 보내기 위한 조건들
-      (e.type === "click" &&
-        content.trim() !== "" &&
-        isActiveComment == true) ||
-      (e.type === "keydown" &&
-        e.key === "Enter" &&
-        content.trim() !== "" &&
-        isActiveComment == true)
+      (e.type === "click" || (e.type === "keydown" && e.key === "Enter")) && content.trim() && isActiveComment
     ) {
       //댓글을 보내는 코드들 api문서에 보내는 것이기 때문에 내가 보낼 것은 content만 취득하면 된다.
       try {
-        const data = await sendComment(content);
-        console.log(`댓글: ${data}`);
+        const newComment = {
+          id: comments.length + 1 + commentIdNum,
+          name: `닉네임${comments.length + 1 + commentIdNum}`,
+          location: "지역",
+          date: "몇 시간전",
+          content: content,
+          replies: [],
+        }
+        setComments([...comments, newComment]);
+        // const data = await sendComment(content);
+        // console.log(`댓글: ${data}`);
       } catch (error) {
         console.log("댓글을 달 수 없습니다.");
       }
       setContent("");
     } else if (
       //답글을 보내기 위한 조건들
-      (e.type === "click" &&
-        content.trim() !== "" &&
-        isClickedReply === true) ||
-      (e.type === "keydown" &&
-        e.key === "Enter" &&
-        content.trim() !== "" &&
-        isClickedReply === true)
+      (e.type === "click" || (e.type === "keydown" && e.key === "Enter")) && content.trim() && isClickedReply
     ) {
       //답글의 내용을 api문서에 보내기 위한 코드
       try {
-        const data = await sendReply(
-          name + content.substring(nameLength + 1, content.length)
-        );
-        console.log(`답글: ${data}`);
+        const updatedComments = comments.map((comment) => {
+          if (comment.id === clickedCommentID) {
+            return {
+              ...comment,
+              replies: [
+                ...comment.replies,
+                {
+                  id: comment.replies.length + 1,
+                  name: `답글 닉네임${comment.replies.length + 1}`,
+                  location: "지역",
+                  date: "몇 시간전",
+                  content: name + content.substring(nameLength + 1, content.length),
+                },
+              ],
+            };
+          } else {
+            return comment;
+          }
+        });
+        setComments(updatedComments);
+        // const data = await sendReply(
+        //   name + content.substring(nameLength + 1, content.length)
+        // );
+        // console.log(`답글: ${data}`);
       } catch (error) {
         console.log("답글을 보낼 수 없습니다.");
       }
@@ -121,15 +143,18 @@ export const useComment = () => {
       setIsClickedReply(false);
     } else if (
       //댓글 수정을 하기 위한 조건들
-      (e.type === "click" && content.trim() !== "" && isClickedEdit === true) ||
-      (e.type === "keydown" &&
-        e.key === "Enter" &&
-        content.trim() !== "" &&
-        isClickedEdit === true)
+      (e.type === "click" || (e.type === "keydown" && e.key === "Enter")) && content.trim() && isClickedEdit
     ) {
       try {
-        const data = await sendCommentEdit(content);
-        console.log(`댓글 수정내용: ${data}`);
+        const updatedComments = comments.map((comment) => {
+          if (comment.id === clickedCommentID) {
+            return { ...comment, content: content };
+          }
+          return comment;
+        });
+        setComments(updatedComments);
+        // const data = await sendCommentEdit(content);
+        // console.log(`댓글 수정내용: ${data}`);
       } catch (error) {
         console.log("댓글 수정 실패");
       }
@@ -139,17 +164,24 @@ export const useComment = () => {
       setContent("");
     } else if (
       //답글을 수정하기 위한 조건들
-      (e.type === "click" &&
-        content.trim() !== "" &&
-        isClickedReplyEdit === true) ||
-      (e.type === "keydown" &&
-        e.key === "Enter" &&
-        content.trim() !== "" &&
-        isClickedReplyEdit === true)
+      (e.type === "click" || (e.type === "keydown" && e.key === "Enter")) && content.trim() && isClickedReplyEdit
     ) {
       try {
-        const data = await sendReplyEdit(content);
-        console.log(`답글 수정: ${data}`);
+        const updatedComments = comments.map((comment) => {
+          if (comment.id === clickedCommentID) {
+            const updatedReplies = comment.replies.map((reply) => {
+              if (reply.id === clickedReplyID) {
+                return { ...reply, content: content };
+              }
+              return reply;
+            });
+            return { ...comment, replies: updatedReplies }
+          }
+          return comment;
+        });
+        setComments(updatedComments)
+        // const data = await sendReplyEdit(content);
+        // console.log(`답글 수정: ${data}`);
       } catch (error) {
         console.log("답글 수정 실해");
       }
@@ -164,16 +196,31 @@ export const useComment = () => {
   const handleDelete = async (commentID, replyID) => {
     if (replyID === null) {
       try {
-        const data = await sendDelete();
-        console.log("댓글 삭제 완료");
+        const updatedComments = comments.filter(
+          (comment) => comment.id !== commentID
+        )
+        setComments(updatedComments);
+        setCommentIdNum(commentIdNum + 1);
+        // const data = await sendDelete();
+        // console.log("댓글 삭제 완료");
       } catch (error) {
         console.log("댓글 삭제 실패");
       }
     } else {
       // 답글 삭제
       try {
-        const data = await sendDelete();
-        console.log("답글 삭제 완료");
+        const updatedComments = comments.map((comment) => {
+          if (comment.id === commentID) {
+            const updatedReplies = comment.replies.filter(
+              (reply) => reply.id !== replyID
+            );
+            return { ...comment, replies: updatedReplies};
+          }
+          return comment;
+        });
+        setComments(updatedComments);
+        // const data = await sendDelete();
+        // console.log("답글 삭제 완료");
       } catch (error) {
         console.log("답글 삭제 실패");
       }
@@ -196,6 +243,7 @@ export const useComment = () => {
   };
 
   return {
+    noticeInfos,
     isCommentMenuClicked,
     clickedCommentID,
     isReplyMenuClicked,
@@ -203,6 +251,7 @@ export const useComment = () => {
     wrapperRef,
     handleMenuClick,
     focus,
+    comments,
     content,
     isActiveComment,
     handleContentValue,
