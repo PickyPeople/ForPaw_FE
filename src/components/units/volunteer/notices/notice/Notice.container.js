@@ -5,9 +5,8 @@ import { useComment } from "./hooks/useComment";
 import useFetchNotice from "./hooks/useFetchNotice";
 
 export default function Notice() {
-  const { noticeInfos } = useFetchNotice();
-
   const {
+    noticeInfos,
     isCommentMenuClicked,
     clickedCommentID,
     isReplyMenuClicked,
