@@ -23,7 +23,14 @@ export const useComment = () => {
   } = useClickMenu();
 
   const { noticeInfos } = useFetchNotice();
-  const [comments, setComments] = useState(noticeInfos.comments);
+
+  const [comments, setComments] = useState(
+    noticeInfos.comments.map(comment => ({
+      ...comment,
+      replyDeleteCount: 0
+    }))
+  );
+
   const [content, setContent] = useState(""); //input안의 내용을 onChange로 받아줄 변수이다.
   const [isActiveComment, setIsActiveComment] = useState(true);
   const [isClickedReply, setIsClickedReply] = useState(false); //답글달기를 눌렀는가 판단하는 변수
@@ -31,7 +38,7 @@ export const useComment = () => {
   const [isClickedReplyEdit, setIsClickedReplyEdit] = useState(false); //답글의 수정하기 메뉴를 눌렀을 경우
   const [name, setName] = useState(""); //답글 달기에 이름을 주기 위해서
   const nameLength = name.length;
-  const [commentIdNum, setCommentIdNum] = useState(0); // 삭제하기를 누르고 난 뒤 댓글id 값을 올려주기 위한 변수
+  const [commentDeleteCount, setCommentDeleteCount] = useState(0); // 삭제하기를 누르고 난 뒤 댓글id 값을 올려주기 위한 변수
   const focus = useRef(null); //input태그에 포커스를 주기 위해
 
   console.log(comments);
@@ -91,8 +98,8 @@ export const useComment = () => {
       //댓글을 보내는 코드들 api문서에 보내는 것이기 때문에 내가 보낼 것은 content만 취득하면 된다.
       try {
         const newComment = {
-          id: comments.length + 1 + commentIdNum,
-          name: `닉네임${comments.length + 1 + commentIdNum}`,
+          id: comments.length + 1 + commentDeleteCount,
+          name: `닉네임${comments.length + 1 + commentDeleteCount}`,
           location: "지역",
           date: "몇 시간전",
           content: content,
@@ -118,8 +125,8 @@ export const useComment = () => {
               replies: [
                 ...comment.replies,
                 {
-                  id: comment.replies.length + 1,
-                  name: `답글 닉네임${comment.replies.length + 1}`,
+                  id: comment.replies.length + 1 + comment.replyDeleteCount,
+                  name: `답글 닉네임${comment.replies.length + 1 + comment.replyDeleteCount}`,
                   location: "지역",
                   date: "몇 시간전",
                   content: name + content.substring(nameLength + 1, content.length),
@@ -200,7 +207,7 @@ export const useComment = () => {
           (comment) => comment.id !== commentID
         )
         setComments(updatedComments);
-        setCommentIdNum(commentIdNum + 1);
+        setCommentDeleteCount(commentDeleteCount + 1);
         // const data = await sendDelete();
         // console.log("댓글 삭제 완료");
       } catch (error) {
@@ -214,7 +221,7 @@ export const useComment = () => {
             const updatedReplies = comment.replies.filter(
               (reply) => reply.id !== replyID
             );
-            return { ...comment, replies: updatedReplies};
+            return { ...comment, replies: updatedReplies, replyDeleteCount: comment.replyDeleteCount + 1};
           }
           return comment;
         });
