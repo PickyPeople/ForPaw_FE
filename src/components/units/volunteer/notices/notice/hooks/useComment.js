@@ -23,14 +23,6 @@ export const useComment = () => {
   } = useClickMenu();
 
   const { noticeInfos } = useFetchNotice();
-
-  const [comments, setComments] = useState(
-    noticeInfos.comments.map(comment => ({
-      ...comment,
-      replyDeleteCount: 0
-    }))
-  );
-
   const [content, setContent] = useState(""); //input안의 내용을 onChange로 받아줄 변수이다.
   const [isActiveComment, setIsActiveComment] = useState(true);
   const [isClickedReply, setIsClickedReply] = useState(false); //답글달기를 눌렀는가 판단하는 변수
@@ -40,6 +32,13 @@ export const useComment = () => {
   const nameLength = name.length;
   const [commentDeleteCount, setCommentDeleteCount] = useState(0); // 삭제하기를 누르고 난 뒤 댓글id 값을 올려주기 위한 변수
   const focus = useRef(null); //input태그에 포커스를 주기 위해
+
+  const [comments, setComments] = useState(
+    noticeInfos.comments.map(comment => ({
+      ...comment,
+      replyDeleteCount: commentDeleteCount
+    }))
+  );
 
   console.log(comments);
 
@@ -103,6 +102,7 @@ export const useComment = () => {
           location: "지역",
           date: "몇 시간전",
           content: content,
+          replyDeleteCount: commentDeleteCount,
           replies: [],
         }
         setComments([...comments, newComment]);
