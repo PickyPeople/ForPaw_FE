@@ -29,7 +29,6 @@ export const useComment = () => {
   const [isClickedEdit, setIsClickedEidt] = useState(false); //댓글의 수정하기 메뉴를 눌렀을 경우
   const [isClickedReplyEdit, setIsClickedReplyEdit] = useState(false); //답글의 수정하기 메뉴를 눌렀을 경우
   const [name, setName] = useState(""); //답글 달기에 이름을 주기 위해서
-  const nameLength = name.length;
   const [commentDeleteCount, setCommentDeleteCount] = useState(0); // 삭제하기를 누르고 난 뒤 댓글id 값을 올려주기 위한 변수
   const focus = useRef(null); //input태그에 포커스를 주기 위해
 
@@ -129,7 +128,8 @@ export const useComment = () => {
                   name: `답글 닉네임${comment.replies.length + 1 + comment.replyDeleteCount}`,
                   location: "지역",
                   date: "몇 시간전",
-                  content: name + content.substring(nameLength + 1, content.length),
+                  replyName: name,
+                  content: content.substring(name.length + 1, content.length),
                 },
               ],
             };
@@ -139,7 +139,7 @@ export const useComment = () => {
         });
         setComments(updatedComments);
         // const data = await sendReply(
-        //   name + content.substring(nameLength + 1, content.length)
+        //   content.substring(name.length + 1, content.length)
         // );
         // console.log(`답글: ${data}`);
       } catch (error) {
