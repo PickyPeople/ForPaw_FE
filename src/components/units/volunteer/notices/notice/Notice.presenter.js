@@ -115,12 +115,9 @@ export default function NoticeUI(props) {
                   <S.CommentText>
                     <S.Reply>
                       <S.Name>
-                        {`@${reply.content.substring(0, props.name.length)}`}
+                        {`@${reply.replyName} `}
                       </S.Name>
-                      {reply.content.substring(
-                        props.name.length,
-                        reply.content.length
-                      )}
+                      {reply.content}
                     </S.Reply>
                     <S.ReplyMenuImg
                       onClick={() =>
