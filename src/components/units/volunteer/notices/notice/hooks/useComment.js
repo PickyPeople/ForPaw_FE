@@ -31,15 +31,12 @@ export const useComment = () => {
   const [name, setName] = useState(""); //답글 달기에 이름을 주기 위해서
   const [commentDeleteCount, setCommentDeleteCount] = useState(0); // 삭제하기를 누르고 난 뒤 댓글id 값을 올려주기 위한 변수
   const focus = useRef(null); //input태그에 포커스를 주기 위해
-
   const [comments, setComments] = useState(
     noticeInfos.comments.map(comment => ({
       ...comment,
       replyDeleteCount: commentDeleteCount
     }))
   );
-
-  console.log(comments);
 
   //input태그에 focus주기
   const nameFoucs = () => {
@@ -88,9 +85,7 @@ export const useComment = () => {
   };
 
   const handleContentSubmit = async (e) => {
-    //post통신으로 가게끔 만들어줄 필요가 있어보인다.
     if (
-      //댓글을 보내기 위한 조건들
       (e.type === "click" || (e.type === "keydown" && e.key === "Enter")) && content.trim() && isActiveComment
     ) {
       //댓글을 보내는 코드들 api문서에 보내는 것이기 때문에 내가 보낼 것은 content만 취득하면 된다.
@@ -99,7 +94,7 @@ export const useComment = () => {
           id: comments.length + 1 + commentDeleteCount,
           name: `닉네임${comments.length + 1 + commentDeleteCount}`,
           location: "지역",
-          date: "몇 시간전",
+          date: "방금 전",
           content: content,
           replyDeleteCount: commentDeleteCount,
           replies: [],
@@ -112,10 +107,8 @@ export const useComment = () => {
       }
       setContent("");
     } else if (
-      //답글을 보내기 위한 조건들
       (e.type === "click" || (e.type === "keydown" && e.key === "Enter")) && content.trim() && isClickedReply
     ) {
-      //답글의 내용을 api문서에 보내기 위한 코드
       try {
         const updatedComments = comments.map((comment) => {
           if (comment.id === clickedCommentID) {
@@ -127,7 +120,7 @@ export const useComment = () => {
                   id: comment.replies.length + 1 + comment.replyDeleteCount,
                   name: `답글 닉네임${comment.replies.length + 1 + comment.replyDeleteCount}`,
                   location: "지역",
-                  date: "몇 시간전",
+                  date: "방금 전",
                   replyName: name,
                   content: content.substring(name.length + 1, content.length),
                 },
@@ -149,7 +142,6 @@ export const useComment = () => {
       setContent("");
       setIsClickedReply(false);
     } else if (
-      //댓글 수정을 하기 위한 조건들
       (e.type === "click" || (e.type === "keydown" && e.key === "Enter")) && content.trim() && isClickedEdit
     ) {
       try {
@@ -170,7 +162,6 @@ export const useComment = () => {
       setIsClickedEidt(false);
       setContent("");
     } else if (
-      //답글을 수정하기 위한 조건들
       (e.type === "click" || (e.type === "keydown" && e.key === "Enter")) && content.trim() && isClickedReplyEdit
     ) {
       try {
@@ -221,7 +212,7 @@ export const useComment = () => {
             const updatedReplies = comment.replies.filter(
               (reply) => reply.id !== replyID
             );
-            return { ...comment, replies: updatedReplies, replyDeleteCount: comment.replyDeleteCount + 1};
+            return { ...comment, replies: updatedReplies, replyDeleteCount: comment.replyDeleteCount + 1 };
           }
           return comment;
         });
