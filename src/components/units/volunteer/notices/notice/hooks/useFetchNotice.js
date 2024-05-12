@@ -60,7 +60,71 @@ const example = {
 };
 
 export default function useFetchNotice() {
-  const [noticeInfos, setNoticeInfos] = useState(example.result);
+  const currentDate = new Date();
+  const comments = example.result.comments.map(comment => {
+    // 각 댓글의 날짜를 처리하여 시간 간격을 계산
+    const commentDate = new Date(comment.date);
+    const timeDiff = currentDate - commentDate;
+    let date;
+
+    if (timeDiff < 60 * 1000) {
+      // 1분 이내
+      date = "방금 전";
+    } else if (timeDiff < 60 * 60 * 1000) {
+      // 1시간 이내
+      const minutesDiff = Math.round(timeDiff / (60 * 1000));
+      date = `${minutesDiff}분 전`;
+    } else if (timeDiff < 24 * 60 * 60 * 1000) {
+      // 24시간 이내
+      const hoursDiff = Math.round(timeDiff / (60 * 60 * 1000));
+      date = `${hoursDiff}시간 전`;
+    } else if (timeDiff < 30 * 24 * 60 * 60 * 1000) {
+      // 30일 이내
+      const daysDiff = Math.round(timeDiff / (24 * 60 * 60 * 1000));
+      date = `${daysDiff}일 전`;
+    } else if (timeDiff < 365 * 24 * 60 * 60 * 1000) {
+      // 1년 이내
+      const monthsDiff = Math.round(timeDiff / (30 * 24 * 60 * 60 * 1000));
+      date = `${monthsDiff}달 전`;
+    } else {
+      // 1년 이상
+      const yearsDiff = Math.round(timeDiff / (365 * 24 * 60 * 60 * 1000));
+      date = `${yearsDiff}년 전`;
+    }
+
+    // replies 배열의 각 댓글의 날짜도 동일하게 처리
+    const replies = comment.replies.map(reply => {
+      const replyDate = new Date(reply.date);
+      const replyTimeDiff = currentDate - replyDate;
+      let date;
+
+      if (replyTimeDiff < 60 * 1000) {
+        date = "방금 전";
+      } else if (replyTimeDiff < 60 * 60 * 1000) {
+        const minutesDiff = Math.round(replyTimeDiff / (60 * 1000));
+        date = `${minutesDiff}분 전`;
+      } else if (replyTimeDiff < 24 * 60 * 60 * 1000) {
+        const hoursDiff = Math.round(replyTimeDiff / (60 * 60 * 1000));
+        date = `${hoursDiff}시간 전`;
+      } else if (replyTimeDiff < 30 * 24 * 60 * 60 * 1000) {
+        const daysDiff = Math.round(replyTimeDiff / (24 * 60 * 60 * 1000));
+        date = `${daysDiff}일 전`;
+      } else if (replyTimeDiff < 365 * 24 * 60 * 60 * 1000) {
+        const monthsDiff = Math.round(replyTimeDiff / (30 * 24 * 60 * 60 * 1000));
+        date = `${monthsDiff}달 전`;
+      } else {
+        const yearsDiff = Math.round(replyTimeDiff / (365 * 24 * 60 * 60 * 1000));
+        date = `${yearsDiff}년 전`;
+      }
+
+      return { ...reply, date: date };
+    });
+
+    return { ...comment, date, replies };
+  });
+
+  const [noticeInfos, setNoticeInfos] = useState({ ...example.result, comments });
+
   useEffect(() => {
     async function loadNotice() {
       const noticeData = await fetchNotice();
