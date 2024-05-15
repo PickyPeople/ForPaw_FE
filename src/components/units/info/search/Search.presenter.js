@@ -29,10 +29,27 @@ export default function SearchUI(props) {
               height={31.36}
             />
           </S.SearchImageContainer>
-          <S.SearchButton>취소</S.SearchButton>
+          <S.CancelButton>취소</S.CancelButton>
         </S.SearchContainer>
-        <S.SearchContentsContainer></S.SearchContentsContainer>
       </S.WrapperSearch>
+      <S.WrapperContents>
+        <S.SearchContentsContainer>
+          <S.SearchContent className="shelters">
+            <S.ContentTitle>보호소</S.ContentTitle>
+            <S.ContentInfos>
+              <S.ContentImageBlock></S.ContentImageBlock>
+            </S.ContentInfos>
+          </S.SearchContent>
+          
+          <S.SearchContent className="community"> 
+
+          </S.SearchContent>
+          
+          <S.SearchContent className="groups">
+
+          </S.SearchContent>
+        </S.SearchContentsContainer>
+      </S.WrapperContents>
     </>
-  );
+  )
 }

@@ -1,5 +1,24 @@
 import styled from "@emotion/styled";
 
+export const WrapperContents = styled.div`
+  width: 390px;
+  height: calc(100vh - 163px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 auto;
+  overflow-y: auto;
+  background-color: white;
+  padding-bottom: 10px;
+
+  /* 스크롤 바 숨기기 */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none; /* Firefox */
+`;
+
 export const WrapperHeader = styled.div`
   width: 390px;
   height: 95px;
@@ -47,7 +66,7 @@ export const Title = styled.h1`
 
 export const WrapperSearch = styled.div`
   width: 390px;
-  height: calc(100vh - 95px);
+  height: 68px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -58,11 +77,11 @@ export const WrapperSearch = styled.div`
 
 export const SearchContainer = styled.div`
   width: 390px;
-  height: 80px;
+  height: 68px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: flex-end;
   margin: 0 auto;
   padding: 0 10px;
   position: relative;
@@ -93,10 +112,10 @@ export const SearchImageContainer = styled.div`
   height: 40px;
   position: absolute;
   left: 37px;
-  top: 24px;
+  top: 30px;
 `;
 
-export const SearchButton = styled.button`
+export const CancelButton = styled.button`
   width: 73px;
   height: 44px;
   line-height: 44px;
@@ -113,12 +132,41 @@ export const SearchButton = styled.button`
 
 export const SearchContentsContainer = styled.div`
   width: 390px;
-  height: calc(100vh - 175px);
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   margin: 0 auto;
+  background-color: white;
 `;
 
-export const SearchContent = styled.div``;
+export const SearchContent = styled.div`
+  width: 342px;
+  height: 374px;
+  background-color: aquamarine;
+  flex-shrink: 0;
+  margin-top: 24px;
+`;
+
+export const ContentTitle = styled.p`
+  width: 100%;
+  height: 36px;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+`;
+
+export const ContentInfos = styled.div`
+  width: 100%;
+  height: 270px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ContentImageBlock = styled.div`
+  width: 74px;
+  height: 74px;
+  border-radius: 10px;
+  background-color: #D9D9D9;
+`;
