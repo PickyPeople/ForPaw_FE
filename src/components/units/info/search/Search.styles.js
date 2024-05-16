@@ -141,12 +141,12 @@ export const SearchContentsContainer = styled.div`
   background-color: white;
 `;
 
-export const SearchContent = styled.div`
+export const SearchContent = styled.div` //나중에 height auto로 변경*
   width: 342px;
-  height: 374px;
-  background-color: aquamarine;
+  height: 306px;
   flex-shrink: 0;
   margin-top: 24px;
+  margin-bottom: 24px;
 `;
 
 export const ContentTitle = styled.p`
@@ -157,16 +157,78 @@ export const ContentTitle = styled.p`
   font-weight: bold;
 `;
 
-export const ContentInfos = styled.div`
+export const ContentBlocks = styled.div` //나중에 height auto로 변경*
   width: 100%;
   height: 270px;
   display: flex;
   flex-direction: column;
 `;
 
-export const ContentImageBlock = styled.div`
+export const ContentBlock = styled.div`
+  width: 100%;
+  height: 74px;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+`;
+
+export const BorderLine = styled.div`
+  width: 100%;
+  height: 1px;
+  border: 1px solid #DBDBDB;
+  margin: 11px 0px;
+`;
+
+export const ImageContainer = styled.div`
   width: 74px;
   height: 74px;
-  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: #D9D9D9;
+  border-radius: 10px;
 `;
+
+export const ContentInfos = styled.div`
+  width: 252px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
+
+export const ContentName = styled.p`
+  width: 101px;
+  height: 19px;
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  letter-spacing: -0.4px;
+`;
+
+export const ContentDetail = styled.p`
+  width: 100%;
+  height: 43px;
+  font-size: 12px;
+  letter-spacing: -0.5px;
+`;
+
+export const ReqInfosBtn = styled.div`
+  width: 99px;
+  height: 44px;
+  font-size: 20px;
+  font-weight: 500;
+  border-radius: 30px;
+  border: 2px solid #FF6636;
+  color: black;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: 1px 0 2px 1px rgba(0, 0, 0, 0.05),
+    0 2px 2px 1px rgba(0, 0, 0, 0.15);
+`;
+
