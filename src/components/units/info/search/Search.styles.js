@@ -143,10 +143,9 @@ export const SearchContentsContainer = styled.div`
 
 export const SearchContent = styled.div` //나중에 height auto로 변경*
   width: 342px;
-  height: 306px;
+  height: 374px;
   flex-shrink: 0;
   margin-top: 24px;
-  margin-bottom: 24px;
 `;
 
 export const ContentTitle = styled.p`
@@ -162,21 +161,16 @@ export const ContentBlocks = styled.div` //나중에 height auto로 변경*
   height: 270px;
   display: flex;
   flex-direction: column;
+  gap: 12px;
 `;
 
 export const ContentBlock = styled.div`
   width: 100%;
-  height: 74px;
+  height: 89px;
   display: flex;
   flex-direction: row;
   gap: 16px;
-`;
-
-export const BorderLine = styled.div`
-  width: 100%;
-  height: 1px;
-  border: 1px solid #DBDBDB;
-  margin: 11px 0px;
+  border-bottom: 1px solid #DBDBDB;
 `;
 
 export const ImageContainer = styled.div`
@@ -199,7 +193,7 @@ export const ContentInfos = styled.div`
 `;
 
 export const ContentName = styled.p`
-  width: 101px;
+  width: auto;
   height: 19px;
   font-size: 16px;
   font-weight: bold;
@@ -222,11 +216,14 @@ export const ReqInfosBtn = styled.div`
   border-radius: 30px;
   border: 2px solid #FF6636;
   color: black;
+  margin-top: 24px;
+  margin: 24px auto;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 
   box-shadow: 1px 0 2px 1px rgba(0, 0, 0, 0.05),
     0 2px 2px 1px rgba(0, 0, 0, 0.15);

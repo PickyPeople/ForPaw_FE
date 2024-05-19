@@ -21,7 +21,14 @@ export default function HomeHeader() {
     if (!isLoggedIn) {
       openModal(); // 로그인 경로를 전달
     } else {
-      router.push(path);
+      if(router.pathname.startsWith("/home")) {
+        router.push({
+          pathname: path,
+          query: {
+            name: "searchAll"
+          }
+        });
+      }
     }
   };
 
