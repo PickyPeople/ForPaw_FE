@@ -53,7 +53,28 @@ export default function Headers() {
     if (!isLoggedIn) {
       openModal(); // 로그인 경로를 전달
     } else {
-      router.push(path);
+      if (router.pathname.startsWith("/adopt")) {
+        router.push({
+          pathname: path,
+          query: {
+            name: `searchAdopt`
+          }
+        });
+      } else if (router.pathname.startsWith("/community")) {
+        router.push({
+          pathname: path,
+          query: {
+            name: `searchPosts`
+          }
+        })
+      } else if (router.pathname.startsWith("/volunteer")) {
+        router.push({
+          pathname: path,
+          query: {
+            name: `searchGroups`
+          }
+        })
+      }
     }
   };
 
