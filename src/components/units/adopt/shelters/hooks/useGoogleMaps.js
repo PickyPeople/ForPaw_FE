@@ -1,51 +1,128 @@
-import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { useRef, useState, useEffect } from "react";
+import { useCurrentLocation } from "./useCurrentLocation";
+import useSortedShelters from "./useSortedShelters";
+import useGoogleMapsScript from "./useGoogleMapsScript";
+import useUpdateMarkers from "./useUpdateMarkers";
 
-export const useGoogleMaps = (ref, options, markersData) => {
+export const useGoogleMaps = (
+  ref,
+  shelters,
+  searchResults = [],
+  searchSuccess = false
+) => {
+  const router = useRouter();
+  const mapRef = useRef(null);
+  const currentCenter = useRef({ lat: null, lng: null });
+  const markersRef = useRef([]);
+  const [initialLocation, setInitialLocation] = useState({
+    lat: 35.234,
+    lng: 129.0807,
+  });
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
+  const [selectedShelterId, setSelectedShelterId] = useState(null);
+  const { location: userLocation, locationLoaded } = useCurrentLocation();
+  const sortedShelters = useSortedShelters(
+    shelters,
+    userLocation.lat,
+    userLocation.lng
+  );
+
   useEffect(() => {
-    const loadGoogleMapsScript = (callback) => {
-      if (typeof window !== "undefined" && !window.google) {
-        const script = document.createElement("script");
-        script.type = "text/javascript";
-        script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyC0Xh1i9FVuHDehtCgiHnr9TuaKxEJYB9M`;
-        script.async = true;
-        script.defer = true;
-        script.onload = () => callback();
-        document.head.appendChild(script);
-      } else {
-        callback();
-      }
-    };
-
-    // 스크립트 로드 및 맵 초기화 로직
-    if (markersData && markersData.length > 0) {
-      loadGoogleMapsScript(() => {
-        if (window.google && ref.current) {
-          const map = new window.google.maps.Map(ref.current, options);
-
-          markersData.forEach((markerData) => {
-            const marker = new window.google.maps.Marker({
-              position: {
-                lat: markerData.lat,
-                lng: markerData.lng,
-              },
-              map: map,
-              title: markerData.name,
-            });
-
-            const infoWindow = new window.google.maps.InfoWindow({
-              content: `<div>${markerData.name}</div>`, // HTML 형식의 내용
-            });
-
-            marker.addListener("click", () => {
-              infoWindow.open({
-                anchor: marker,
-                map,
-                shouldFocus: false,
-              });
-            });
-          });
-        }
-      });
+    if (userLocation.lat && userLocation.lng) {
+      setInitialLocation(userLocation);
     }
-  }, [ref, options, markersData]);
+  }, [userLocation]);
+
+  useGoogleMapsScript(() => {
+    if (!locationLoaded) return;
+
+    if (window.google && ref.current) {
+      if (!mapRef.current) {
+        mapRef.current = new window.google.maps.Map(ref.current, {
+          disableDefaultUI: true,
+          zoomControl: true,
+          mapTypeControl: false,
+          scaleControl: false,
+          streetViewControl: false,
+          rotateControl: false,
+          fullscreenControl: false,
+          center: initialLocation,
+          zoom: 15,
+        });
+        setIsMapLoaded(true);
+
+        new window.google.maps.Marker({
+          position: initialLocation,
+          map: mapRef.current,
+          title: "Initial Location",
+          icon: {
+            path: window.google.maps.SymbolPath.CIRCLE,
+            scale: 10,
+            fillColor: "#4285F4", // 파란색
+            fillOpacity: 1,
+            strokeWeight: 2,
+            strokeColor: "#ffffff",
+          },
+        });
+      } else {
+        mapRef.current.setCenter(
+          new google.maps.LatLng(initialLocation.lat, initialLocation.lng)
+        );
+      }
+    }
+  });
+
+  const setCurrentLocation = (location) => {
+    if (!isMapLoaded) return;
+
+    setSelectedShelterId(location.id); // 선택된 보호소 ID 업데이트
+    // 상태가 업데이트된 후에 중앙으로 이동
+    setTimeout(() => {
+      mapRef.current.panTo(new google.maps.LatLng(location.lat, location.lng));
+      mapRef.current.setZoom(15);
+    }, 0);
+  };
+
+  const shelterLocationDetail = (shelter) => {
+    const mapCenter = mapRef.current.getCenter();
+    currentCenter.current = { lat: mapCenter.lat(), lng: mapCenter.lng() };
+
+    if (
+      currentCenter.current.lat.toFixed(5) === shelter.lat.toFixed(5) &&
+      currentCenter.current.lng.toFixed(5) === shelter.lng.toFixed(5)
+    ) {
+      router.push("/adopt/shelters/detail");
+    } else {
+      setCurrentLocation(shelter);
+    }
+  };
+
+  const sheltersToDisplay = searchSuccess ? searchResults : sortedShelters;
+
+  useUpdateMarkers(
+    mapRef.current,
+    sheltersToDisplay,
+    markersRef,
+    userLocation,
+    setCurrentLocation,
+    selectedShelterId // 선택된 보호소 ID 전달
+  );
+
+  useEffect(() => {
+    if (searchSuccess && searchResults.length > 0) {
+      shelterLocationDetail(searchResults[0]);
+    } else if (!searchSuccess) {
+      setCurrentLocation(initialLocation);
+    }
+  }, [searchSuccess, searchResults, initialLocation]);
+
+  return {
+    isMapLoaded,
+    sortedShelters,
+    initialLocation,
+    setCurrentLocation,
+    shelterLocationDetail,
+    selectedShelterId, // 선택된 보호소 ID 반환
+  };
 };

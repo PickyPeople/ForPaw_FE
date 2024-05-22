@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const useDragHandler = () => {
+export const useDragHandler = (isMapLoaded) => {
   useEffect(() => {
     const mapInfoDragBlock = document.getElementById("map-info-drag-block");
     const mapInfoContainer = document.getElementById("map-info-container");
@@ -9,6 +9,8 @@ export const useDragHandler = () => {
     if (!mapInfoDragBlock || !mapInfoContainer) return;
 
     const handleDragStart = (event) => {
+      if (!isMapLoaded) return;
+
       event.preventDefault(); // 기본 클릭 동작 방지
       const startY = event.clientY;
       const originalY = mapInfoContainer.getBoundingClientRect().top;
@@ -43,5 +45,5 @@ export const useDragHandler = () => {
     return () => {
       mapInfoDragBlock.removeEventListener("mousedown", handleDragStart);
     };
-  }, []);
+  }, [isMapLoaded]);
 };
