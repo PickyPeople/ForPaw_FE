@@ -97,6 +97,10 @@ export const ShelterCategory = styled.div`
 export const MapDisplay = styled.div`
   width: 390px;
   height: calc(100% - 40px);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   z-index: 0;
 `;
 
@@ -110,16 +114,9 @@ export const MapInfoContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  overflow-y: auto;
   position: fixed;
-  top: calc(100% - 223px);
+  top: calc(100% - 120px);
   z-index: 1;
-
-  /* 스크롤 바 숨기기 */
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  scrollbar-width: none; /* Firefox */
 `;
 
 export const MapInfoDragBlock = styled.div`
@@ -141,23 +138,44 @@ export const MapInfoDragIcon = styled.div`
   border-bottom: 3px solid #b9b9b9;
 `;
 
-export const MapCurrentPositionIcon = styled.div`
+export const MapCurrentLocationIcon = styled.div`
   width: 60px;
   height: 60px;
   position: fixed;
-  top: calc(100% - 290px);
+  top: calc(100% - 187px);
   left: calc(50% - 190px);
+  cursor: pointer;
   z-index: 10;
+`;
+
+export const MapInfoBlock = styled.div`
+  width: 390px;
+  height: 330px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-y: auto;
+  z-index: 1;
+
+  /* 스크롤 바 숨기기 */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none; /* Firefox */
 `;
 
 export const MapInfoItem = styled.div`
   width: 343px;
   height: 105px;
-  border-bottom: 1px solid #b2b2b2;
+  border-bottom: 1px solid #f6f2ee;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  background-color: ${(props) => (props.isSelected ? "#FEF8F2" : "#fff")};
+  padding: 0 15px;
 
   :hover {
     cursor: pointer;
@@ -179,7 +197,7 @@ export const MapInfoDetailBlock = styled.div`
 `;
 
 export const ShelterName = styled.div`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   margin-top: 15px;
 `;
