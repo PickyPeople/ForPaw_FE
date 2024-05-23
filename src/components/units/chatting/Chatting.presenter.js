@@ -19,8 +19,8 @@ export default function ChattingUI(props) {
             />
           </S.ChattingSearchIcon>
         </S.ChattingSearchBlock>
-        {props.chattingList.map((chatting) => (
-          <S.ChattingBlock key={chatting.chatRoomId}>
+        {props.chatRoomList.map((chatRoom) => (
+          <S.ChattingBlock key={chatRoom.chatRoomId}>
             <S.UserProfileImg>
               <Image
                 src="/images/chatting/chatting_profile.svg"
@@ -30,12 +30,12 @@ export default function ChattingUI(props) {
               />
             </S.UserProfileImg>
             <S.ChattingInfoBlock>
-              <S.UserName>{props.truncateString(chatting.name, 13)}</S.UserName>
+              <S.UserName>{props.truncateString(chatRoom.name, 13)}</S.UserName>
               <S.ChattingDate>
-                {chatting.lastMessageTime.replace(/[TZ]/g, " ")}
+                {chatRoom.lastMessageTime.replace(/[TZ]/g, " ")}
               </S.ChattingDate>
               <S.ChattingContent>
-                {props.truncateString(chatting.lastMessageContent, 20)}
+                {props.truncateString(chatRoom.lastMessageContent, 20)}
               </S.ChattingContent>
             </S.ChattingInfoBlock>
           </S.ChattingBlock>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchChattingList } from "../Chatting.queries";
+import { fetchChatRoomList } from "../Chatting.queries";
 
 const example = {
   success: true,
@@ -25,17 +25,17 @@ const example = {
   },
 };
 
-export default function useFetchChattingList() {
-  const [chattingList, setChattingList] = useState(example.result.rooms);
+export default function useFetchChatRoomList() {
+  const [chatRoomList, setChatRoomList] = useState(example.result.rooms);
 
   useEffect(() => {
-    async function loadChattingList() {
-      const chattingListData = await fetchChattingList();
-      setChattingList(chattingListData);
+    async function loadChatRoomList() {
+      const chatRoomListData = await fetchChatRoomList();
+      setChatRoomList(chatRoomListData);
     }
 
-    // loadChattingList();
+    // loadChatRoomList();
   }, []);
 
-  return { chattingList };
+  return { chatRoomList };
 }

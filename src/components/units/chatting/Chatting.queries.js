@@ -1,4 +1,4 @@
-export async function fetchChattingList() {
+export async function fetchChatRoomList() {
   try {
     const response = await fetch("https://example.com/api/pets", {
       method: "GET",
