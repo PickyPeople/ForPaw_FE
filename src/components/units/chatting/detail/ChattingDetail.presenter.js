@@ -1,9 +1,10 @@
-import Image from "next/image";
 import * as S from "./ChattingDetail.styles";
+import Image from "next/image";
 
 export default function ChattingDetailUI(props) {
   return (
     <>
+      <S.WrapperSideMenu></S.WrapperSideMenu>
       <S.WrapperHeader>
         <S.Header>
           <S.LeftArrowTitleContainer>
@@ -25,7 +26,7 @@ export default function ChattingDetailUI(props) {
                 height={44}
               />
             </S.MenuIcon>
-            <S.MenuIcon>
+            <S.MenuIcon onClick={props.toggleSide}>
               <Image
                 src="/images/header/bar_menu_icon.svg"
                 alt="bar_menu_icon"
@@ -58,6 +59,20 @@ export default function ChattingDetailUI(props) {
           />
         </S.ChatInputButton>
       </S.ChatInputWrapper>
+
+      <S.Overlay isOpen={props.isOpen} onClick={props.toggleSide} />
+
+      <S.SideMenuContainer className={props.isOpen ? "open" : ""}>
+        <S.SideMenuTitleBlock className={props.isOpen ? "open" : ""}>
+          사진
+          <Image
+            src="/images/chatting/chatting_right_arrow.svg"
+            alt="chatting_right_arrow"
+            width={22}
+            height={22}
+          />
+        </S.SideMenuTitleBlock>
+      </S.SideMenuContainer>
     </>
   );
 }

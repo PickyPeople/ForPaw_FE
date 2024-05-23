@@ -1,5 +1,15 @@
 import styled from "@emotion/styled";
 
+export const WrapperSideMenu = styled.div`
+  width: 300px;
+  height: 100%;
+  background-color: #f5f5f5;
+  position: fixed;
+  top: 0;
+  left: calc(50% + 195px);
+  z-index: 102;
+`;
+
 export const WrapperHeader = styled.div`
   width: 390px;
   height: 95px;
@@ -125,6 +135,7 @@ export const ChatDataAdd = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const ChatInputBlock = styled.input`
@@ -157,4 +168,51 @@ export const ChatInputButton = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
+
+export const Overlay = styled.div`
+  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
+  position: fixed;
+  top: 0;
+  left: calc(50% - 195px);
+  width: 390px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  transition: opacity 0.3s ease-in-out;
+`;
+
+export const SideMenuContainer = styled.div`
+  z-index: 101;
+  border-radius: 20px 0 0 20px;
+  background-color: #fff;
+  height: 100%;
+  width: 293px;
+  top: 0;
+  right: calc(50% - 195px);
+  transform: translateX(293px);
+  position: fixed;
+  transition: 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  &.open {
+    transform: translateX(0);
+  }
+`;
+
+export const SideMenuTitleBlock = styled.div`
+  width: 255px;
+  font-size: 24px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+`;
+
+export const SideMenuImgBlock = styled.div``;

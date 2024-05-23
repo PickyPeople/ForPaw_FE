@@ -1,13 +1,20 @@
-import Navigation from "../../../../../src/components/commons/navigation/Navigation.container";
+import { useState } from "react";
 import { useNavigate } from "../../../../../src/components/commons/hooks/useNavigate";
 import ChattingDetailUI from "./ChattingDetail.presenter";
+import { useSideMenu } from "./hook/useSideMenu";
 
 export default function ChattingDetail() {
   const { navigateTo, navigateBack } = useNavigate();
+  const { isOpen, toggleSide } = useSideMenu();
 
-  return (
+  https: return (
     <>
-      <ChattingDetailUI navigateTo={navigateTo} navigateBack={navigateBack} />
+      <ChattingDetailUI
+        isOpen={isOpen}
+        toggleSide={toggleSide}
+        navigateTo={navigateTo}
+        navigateBack={navigateBack}
+      />
     </>
   );
 }
