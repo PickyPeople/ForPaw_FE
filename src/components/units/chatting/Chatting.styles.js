@@ -113,8 +113,8 @@ export const ChattingDate = styled.div`
   font-weight: 600;
   color: #828282;
   position: absolute;
-  top: 0;
-  left: 255px;
+  top: 2px;
+  left: 155px;
 `;
 
 export const ChattingContent = styled.div`
