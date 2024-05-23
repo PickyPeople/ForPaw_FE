@@ -13,12 +13,17 @@ export default function ChattingDetailUI(props) {
               alt="arrow_left_icon"
               width={15}
               height={25}
-              onClick={props.navigateBack}
+              onClick={
+                props.isSearchOpen ? props.toggleSearch : props.navigateBack
+              }
             />
             <S.Title>단톡방 이름</S.Title>
           </S.LeftArrowTitleContainer>
           <S.MenuContainer>
-            <S.MenuIcon>
+            <S.MenuIcon
+              onClick={props.toggleSearch}
+              isSearchOpen={props.isSearchOpen}
+            >
               <Image
                 src="/images/header/search_icon.svg"
                 alt="search_icon"
@@ -26,7 +31,11 @@ export default function ChattingDetailUI(props) {
                 height={44}
               />
             </S.MenuIcon>
-            <S.MenuIcon onClick={props.toggleSide}>
+            <S.SearchInput
+              isSearchOpen={props.isSearchOpen}
+              placeholder="검색어를 입력해주세요"
+            />
+            <S.MenuIcon onClick={props.toggleSideMenu}>
               <Image
                 src="/images/header/bar_menu_icon.svg"
                 alt="bar_menu_icon"
@@ -60,10 +69,13 @@ export default function ChattingDetailUI(props) {
         </S.ChatInputButton>
       </S.ChatInputWrapper>
 
-      <S.Overlay isOpen={props.isOpen} onClick={props.toggleSide} />
+      <S.Overlay
+        isSideMenuOpen={props.isSideMenuOpen}
+        onClick={props.toggleSideMenu}
+      />
 
-      <S.SideMenuContainer className={props.isOpen ? "open" : ""}>
-        <S.SideMenuTitleBlock className={props.isOpen ? "open" : ""}>
+      <S.SideMenuContainer className={props.isSideMenuOpen ? "open" : ""}>
+        <S.SideMenuTitleBlock>
           사진
           <Image
             src="/images/chatting/chatting_right_arrow.svg"

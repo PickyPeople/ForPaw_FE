@@ -1,17 +1,19 @@
-import { useState } from "react";
 import { useNavigate } from "../../../../../src/components/commons/hooks/useNavigate";
 import ChattingDetailUI from "./ChattingDetail.presenter";
-import { useSideMenu } from "./hook/useSideMenu";
+import { useSearchSideMenu } from "./hook/useSideMenu";
 
 export default function ChattingDetail() {
+  const { isSearchOpen, toggleSearch, isSideMenuOpen, toggleSideMenu } =
+    useSearchSideMenu();
   const { navigateTo, navigateBack } = useNavigate();
-  const { isOpen, toggleSide } = useSideMenu();
 
-  https: return (
+  return (
     <>
       <ChattingDetailUI
-        isOpen={isOpen}
-        toggleSide={toggleSide}
+        isSearchOpen={isSearchOpen}
+        toggleSearch={toggleSearch}
+        isSideMenuOpen={isSideMenuOpen}
+        toggleSideMenu={toggleSideMenu}
         navigateTo={navigateTo}
         navigateBack={navigateBack}
       />

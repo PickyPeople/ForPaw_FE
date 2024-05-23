@@ -20,7 +20,6 @@ export const WrapperHeader = styled.div`
   margin: 0 auto;
   z-index: 1;
   background-color: white;
-  /* opacity: 0; */
 `;
 
 export const Header = styled.div`
@@ -73,7 +72,6 @@ export const MenuIcon = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   position: relative;
 
   img {
@@ -93,7 +91,6 @@ export const WrapperContents = styled.div`
   background-color: white;
   padding-bottom: 10px;
 
-  /* 스크롤 바 숨기기 */
   ::-webkit-scrollbar {
     display: none;
   }
@@ -172,7 +169,7 @@ export const ChatInputButton = styled.div`
 `;
 
 export const Overlay = styled.div`
-  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
+  display: ${({ isSideMenuOpen }) => (isSideMenuOpen ? "block" : "none")};
   position: fixed;
   top: 0;
   left: calc(50% - 195px);
@@ -180,7 +177,30 @@ export const Overlay = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 100;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.6s ease-in-out;
+`;
+
+export const SearchInput = styled.input`
+  height: 50px;
+  background-color: #fff;
+  border: 2px solid transparent;
+  outline: none;
+  font-size: 20px;
+  font-weight: 300;
+  position: absolute;
+  top: -5px;
+  right: 50px;
+
+  ::placeholder {
+    color: #888;
+  }
+
+  :focus {
+    color: #888;
+  }
+
+  width: ${({ isSearchOpen }) => (isSearchOpen ? "270px" : "0px")};
+  transition: width 0.4s ease;
 `;
 
 export const SideMenuContainer = styled.div`
@@ -193,7 +213,7 @@ export const SideMenuContainer = styled.div`
   right: calc(50% - 195px);
   transform: translateX(293px);
   position: fixed;
-  transition: 0.3s ease;
+  transition: 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

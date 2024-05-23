@@ -1,10 +1,16 @@
 import { useState } from "react";
 
-export const useSideMenu = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleSide = () => {
-    setIsOpen(!isOpen);
+export const useSearchSideMenu = () => {
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
   };
 
-  return { isOpen, toggleSide };
+  const toggleSideMenu = () => {
+    setIsSideMenuOpen(!isSideMenuOpen);
+  };
+
+  return { isSearchOpen, toggleSearch, isSideMenuOpen, toggleSideMenu };
 };
