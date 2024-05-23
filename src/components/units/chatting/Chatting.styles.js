@@ -84,6 +84,7 @@ export const ChattingBlock = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-shrink: 0;
+  cursor: pointer;
 `;
 
 export const UserProfileImg = styled.div`

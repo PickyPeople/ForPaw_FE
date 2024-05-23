@@ -1,10 +1,12 @@
 import Headers from "../../commons/headers/Headers.container";
+import { useNavigate } from "../../commons/hooks/useNavigate";
 import Navigation from "../../commons/navigation/Navigation.container";
 import ChattingUI from "./Chatting.presenter";
 import useFetchChatRoomList from "./hook/useFetchChatRoomList";
 
 export default function Chatting() {
   const { chatRoomList } = useFetchChatRoomList();
+  const { navigateTo } = useNavigate();
 
   function truncateString(name, maxLength) {
     if (name.length > maxLength) {
@@ -16,7 +18,11 @@ export default function Chatting() {
   return (
     <>
       <Headers />
-      <ChattingUI chatRoomList={chatRoomList} truncateString={truncateString} />
+      <ChattingUI
+        chatRoomList={chatRoomList}
+        truncateString={truncateString}
+        navigateTo={navigateTo}
+      />
       <Navigation />
     </>
   );

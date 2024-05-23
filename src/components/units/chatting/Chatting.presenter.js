@@ -20,7 +20,10 @@ export default function ChattingUI(props) {
           </S.ChattingSearchIcon>
         </S.ChattingSearchBlock>
         {props.chatRoomList.map((chatRoom) => (
-          <S.ChattingBlock key={chatRoom.chatRoomId}>
+          <S.ChattingBlock
+            key={chatRoom.chatRoomId}
+            onClick={() => props.navigateTo("/chatting/detail")()}
+          >
             <S.UserProfileImg>
               <Image
                 src="/images/chatting/chatting_profile.svg"
