@@ -10,7 +10,8 @@ export default function VolunteerDetailHeader(props) {
 
   //매뉴를 눌렀을 때 메뉴창이 나오도록 하는 기능 (헤더 컴포넌트에 넘겨줄값이다.)
   const handleMenuClick = () => {
-    setIsMenuClicked(true);
+    if (isMenuClicked) setIsMenuClicked(false);
+    else setIsMenuClicked(true);
   };
 
   useEffect(() => {
