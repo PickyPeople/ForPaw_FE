@@ -22,6 +22,7 @@ export default function AdpotSheltersUI(props) {
             alt="map_1"
             width={200}
             height={200}
+            priority
           />
         </S.MapDisplay>
         <S.MapCurrentLocationIcon

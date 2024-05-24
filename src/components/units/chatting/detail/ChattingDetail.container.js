@@ -1,6 +1,6 @@
 import { useNavigate } from "../../../../../src/components/commons/hooks/useNavigate";
 import ChattingDetailUI from "./ChattingDetail.presenter";
-import { useSearchSideMenu } from "./hook/useSideMenu";
+import { useSearchSideMenu } from "./hook/useSearchSideMenu";
 
 export default function ChattingDetail() {
   const { isSearchOpen, toggleSearch, isSideMenuOpen, toggleSideMenu } =
