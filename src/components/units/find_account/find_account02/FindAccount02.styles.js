@@ -105,6 +105,11 @@ export const InfoFormPassWord = styled.p`
   margin-top: 8px;
 `;
 
+export const isPwAvailable = styled.span`
+  width: 100%;
+  height: 100%;
+`;
+
 export const CheckNewPassWordTitle = styled.div`
   width: 100%;
   height: 21px;

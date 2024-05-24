@@ -19,18 +19,20 @@ export const useEmailAndCodeCheck = () => {
     setSelectedOption(e.target.value);
   };
 
+  const handleCode = (e) => {
+    setCode(e.target.value);
+  }
+
   const handleCheckEmailAndStartTimer = () => {
     setIsEmailAvailable(true);
     setIsvisible(true);
     setTimer(90);
-    StartTimer();
-
     clearInterval(timerId);
   };
 
-  const handleCode = (e) => {
-    setCode(e.target.value);
-  }
+  useEffect(() => {
+    StartTimer();
+  }, [isEmailAvailable]);
 
   const StartTimer = () => {
     if (isEmailAvailable) {
@@ -47,11 +49,7 @@ export const useEmailAndCodeCheck = () => {
     }
   }
 
-  useEffect(() => {
-    StartTimer();
-  }, [isEmailAvailable]);
-
-  const verifyEmail = async () => { //중복확인 버튼을 눌리면 실행이 되는 함수
+  const verifyEmail = async () => { //가입된 이메일이 있는지 확인
     try {
       const data = await CheckEmailDuplication(fullEmail);
       if (data.success) {
