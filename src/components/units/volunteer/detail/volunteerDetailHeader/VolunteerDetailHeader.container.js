@@ -45,6 +45,12 @@ export default function VolunteerDetailHeader(props) {
       return "봉사모임 이름";
     } else if (pathname === "/volunteer/detail/notices/notice/[id]") {
       return "공지사항";
+    } else if (pathname === "/volunteer/detail/notices") {
+      return "공지사항"
+    } else if (pathname === "/volunteer/detail/regular_meetings") {
+      return "정기모임"
+    } else if (pathname === "/volunteer/detail/regular_meetings/regular_meeting/[id]") {
+      return "정기모임"
     } else {
       return ""; // 기본값 혹은 다른 경로에 대한 타이틀 설정
     }

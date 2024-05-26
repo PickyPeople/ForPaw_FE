@@ -199,27 +199,23 @@ export default function useFetchSearch() {
 
   const loadSearch = async (e) => {
     if (e.key === "Enter" && search.trim() && name == "searchAdopt") {
-      console.log("입양");
       setSearchInfos(searchShelters.result);
-      setIsActive(!isActive);
+      setIsActive(true);
       // const searchInfosData = await fetchSearchShelters(search);
       // setSearchInfos(searchInfosData);
     } else if (e.key === "Enter" && search.trim() && name == "searchPosts") {
-      console.log("게시물");
       setSearchInfos(searchPosts.result);
-      setIsActive(!isActive);
+      setIsActive(true);
       // const searchInfosData = await fetchSearchPosts(search) ;
       // setSearchInfos(searchInfosData);
     } else if (e.key === "Enter" && search.trim() && name == "searchGroups") {
-      console.log("봉사");
       setSearchInfos(searchGroups.result);
-      setIsActive(!isActive);
+      setIsActive(true);
       // const searchInfosData = await fetchSearchGroups(search);
       // setSearchInfos(searchInfosData);
     } else if (e.key === "Enter" && search.trim() && name == "searchAll") {
-      console.log("전체");
       setSearchInfos(searchAll.result);
-      setIsActive(!isActive);
+      setIsActive(true);
       // const searchInfosData = searchInfos //await fetchSearchAll(search);
       // setSearchInfos(searchInfosData);
     }
