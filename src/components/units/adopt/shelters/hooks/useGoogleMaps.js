@@ -77,6 +77,26 @@ export const useGoogleMaps = (
     if (!isMapLoaded) return;
 
     setSelectedShelterId(location.id); // 선택된 보호소 ID 업데이트
+
+    // 선택된 보호소 요소로 스크롤
+    const selectedShelterElement = document.querySelector(
+      `[data-id="${location.id}"]`
+    );
+
+    // 선택된 보호소 요소가 없을 경우 첫 번째 보호소로 스크롤
+    if (!selectedShelterElement) {
+      selectedShelterElement = document.querySelector(
+        `[data-id="${sheltersToDisplay[0].id}"]`
+      );
+    }
+
+    if (selectedShelterElement) {
+      selectedShelterElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+
     // 상태가 업데이트된 후에 중앙으로 이동
     setTimeout(() => {
       mapRef.current.panTo(new google.maps.LatLng(location.lat, location.lng));
