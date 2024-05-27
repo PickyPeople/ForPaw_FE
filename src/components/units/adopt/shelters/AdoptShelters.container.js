@@ -8,6 +8,7 @@ import { useNavigate } from "../../../../../src/components/commons/hooks/useNavi
 import useFetchSheltersData from "./hooks/useFetchSheltersData";
 import { useGoogleMaps } from "./hooks/useGoogleMaps";
 import useSearchShelters from "./hooks/useSearchShelters";
+import { useTruncateString } from "../../../../../src/components/commons/hooks/useTruncateString";
 
 export default function AdpotShelters() {
   const { shelters } = useFetchSheltersData();
@@ -33,6 +34,8 @@ export default function AdpotShelters() {
     }
   };
 
+  const { truncateString } = useTruncateString();
+
   const { navigateTo } = useNavigate();
 
   return (
@@ -51,6 +54,7 @@ export default function AdpotShelters() {
         searchSuccess={searchSuccess}
         searchShelters={searchShelters}
         handleSearch={handleSearch}
+        truncateString={truncateString}
         navigateTo={navigateTo}
       />
       <Navigation />
