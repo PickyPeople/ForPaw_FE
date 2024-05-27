@@ -20,42 +20,45 @@ export default function CreateVolunteerUI(props) {
           <S.TitleBlock>
             <S.Title>새 모임 이름</S.Title>
           </S.TitleBlock>
-          <S.InputVolunteerName placeholder="새 모임 이름 작성하기" type="text" />
+          <S.InputVolunteerName
+            placeholder="새 모임 이름 작성하기"
+            type="text"
+            value={props.name}
+            onChange={props.handleVolunteerNameChange}
+          />
           <S.AreaSelectContainer ref={props.wrapperRef}>
             <S.EditTextBlock>
               <S.ProfileInfoLabel>활동 지역</S.ProfileInfoLabel>
             </S.EditTextBlock>
-            <S.ProvinceContainer>
-              <S.ProvinceSelect
-                isProvinceFocused={props.isProvinceFocused}
-                onClick={props.toggleProvinceDropdown}
-              >
-                {props.selectedProvince}
-              </S.ProvinceSelect>
-              <S.ProvinceArrowBlock
-                isProvinceFocused={props.isProvinceFocused}
-                onClick={props.toggleProvinceDropdown}
-              >
-                <Image
-                  src="/images/info/select_arrow_icon.svg"
-                  alt="select_arrow_icon"
-                  width={22}
-                  height={12}
-                />
-              </S.ProvinceArrowBlock>
-              {props.isProvinceDropdownOpen && (
-                <S.ProvinceDropdown>
-                  {Object.keys(props.regions).map((province, index) => (
-                    <S.ProvinceOption
-                      key={index}
-                      onClick={() => props.handleProvinceSelect(province)}
-                    >
-                      {province}
-                    </S.ProvinceOption>
-                  ))}
-                </S.ProvinceDropdown>
-              )}
-            </S.ProvinceContainer>
+            <S.ProvinceSelect
+              isProvinceFocused={props.isProvinceFocused}
+              onClick={props.toggleProvinceDropdown}
+            >
+              {props.selectedProvince}
+            </S.ProvinceSelect>
+            <S.ProvinceArrowBlock
+              isProvinceFocused={props.isProvinceFocused}
+              onClick={props.toggleProvinceDropdown}
+            >
+              <Image
+                src="/images/info/select_arrow_icon.svg"
+                alt="select_arrow_icon"
+                width={22}
+                height={12}
+              />
+            </S.ProvinceArrowBlock>
+            {props.isProvinceDropdownOpen && (
+              <S.ProvinceDropdown>
+                {Object.keys(props.regions).map((province, index) => (
+                  <S.ProvinceOption
+                    key={index}
+                    onClick={() => props.handleProvinceSelect(province)}
+                  >
+                    {province}
+                  </S.ProvinceOption>
+                ))}
+              </S.ProvinceDropdown>
+            )}
             <S.DistrictSelectBlock>
               <S.DistrictSelect
                 isDistrictFocused={props.isDistrictFocused}
@@ -81,7 +84,9 @@ export default function CreateVolunteerUI(props) {
                       (district, index) => (
                         <S.DistrictOption
                           key={index}
-                          onClick={() => props.handleDistrictSelect(district)}
+                          onClick={() =>
+                            props.handleDistrictSelect(district)
+                          }
                         >
                           {district}
                         </S.DistrictOption>
@@ -143,10 +148,18 @@ export default function CreateVolunteerUI(props) {
             </S.Arrow1Img>
           </S.BigSelectWrap>
           <S.NextButtonBlock>
-            <S.NextButtonItem type="submit">모임 만들기</S.NextButtonItem>
+            <S.NextButtonItem
+              type="submit"
+              onClick={() => {
+                props.navigateTo("/volunteer/recommend");
+                props.handleSendVolunteerInfo
+              }}
+            >
+              모임 만들기
+            </S.NextButtonItem>
           </S.NextButtonBlock>
-        </S.ContentsContainer>
-      </S.WrapperContents>
+        </S.ContentsContainer >
+      </S.WrapperContents >
     </>
-  )
+  );
 }

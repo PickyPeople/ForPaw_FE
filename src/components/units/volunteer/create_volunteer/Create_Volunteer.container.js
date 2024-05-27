@@ -1,19 +1,13 @@
 import Header from "../../../commons/headers/Headers.container";
 import CreateVolunteerUI from "./Create_volunteer.presenter";
-import { districtName } from "../../../commons/district/districtName";
-import { useRegionSelection } from "../../../commons/hooks/useRegionSelection";
-import { useState, useEffect } from "react";
+import { useSendVolunteerInfo } from "./hooks/useSendVolunteerInfo";
 
 export default function CreateVolunteer() {
-  const regions = districtName;
-
-  const [userInfo, setUserInfo] = useState({
-    province: "시/도 선택",
-    district: "구/군/시",
-    subdistrict: "동/읍/면",
-  });
 
   const {
+    name,
+    handleVolunteerNameChange,
+    regions,
     selectedProvince,
     isProvinceDropdownOpen,
     isProvinceFocused,
@@ -28,16 +22,16 @@ export default function CreateVolunteer() {
     handleDistrictSelect,
     handleSubdistrictSelect,
     toggleDropdown,
-  } = useRegionSelection(
-    userInfo.province,
-    userInfo.district,
-    userInfo.subdistrict
-  );
+    handleSendVolunteerInfo,
+    navigateTo
+  } = useSendVolunteerInfo();
 
   return (
     <>
       <Header />
       <CreateVolunteerUI
+        name={name}
+        handleVolunteerNameChange={handleVolunteerNameChange}
         regions={regions}
         wrapperRef={wrapperRef}
         selectedProvince={selectedProvince}
@@ -55,6 +49,8 @@ export default function CreateVolunteer() {
         isSubdistrictDropdownOpen={isSubdistrictDropdownOpen}
         toggleSubdistrictDropdown={() => toggleDropdown("subdistrict")}
         handleSubdistrictSelect={handleSubdistrictSelect}
+        handleSendVolunteerInfo={handleSendVolunteerInfo} //모임만들기 버튼
+        navigateTo={navigateTo}
       />
     </>
   )
