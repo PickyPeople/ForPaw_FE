@@ -36,6 +36,12 @@ const useSearchShelters = (shelters) => {
     setQuery(query);
   };
 
+  const handleSearch = (e) => {
+    if (e.target.value.trim() !== "" && e.key === "Enter") {
+      searchShelters(e.target.value);
+    }
+  };
+
   useEffect(() => {
     if (query === "") return;
 
@@ -71,7 +77,7 @@ const useSearchShelters = (shelters) => {
     }
   }, [query, shelters]);
 
-  return { searchResults, searchSuccess, searchShelters, query };
+  return { searchResults, searchSuccess, searchShelters, handleSearch, query };
 };
 
 export default useSearchShelters;

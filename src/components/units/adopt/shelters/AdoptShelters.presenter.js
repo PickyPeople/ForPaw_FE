@@ -2,10 +2,6 @@ import * as S from "./AdoptShelters.styles";
 import Image from "next/image";
 
 export default function AdpotSheltersUI(props) {
-  const sheltersToDisplay = props.searchSuccess
-    ? props.searchResults
-    : props.sortedShelters;
-
   return (
     <>
       <S.WrapperContents>
@@ -42,7 +38,7 @@ export default function AdpotSheltersUI(props) {
           </S.MapInfoDragBlock>
           <S.MapInfoBlock>
             {props.isMapLoaded &&
-              sheltersToDisplay.map((shelter) => (
+              props.sheltersToDisplay.map((shelter) => (
                 <S.MapInfoItem
                   key={shelter.id}
                   data-id={shelter.id}
