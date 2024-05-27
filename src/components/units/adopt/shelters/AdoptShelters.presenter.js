@@ -45,6 +45,7 @@ export default function AdpotSheltersUI(props) {
               sheltersToDisplay.map((shelter) => (
                 <S.MapInfoItem
                   key={shelter.id}
+                  data-id={shelter.id}
                   onClick={() => props.shelterLocationDetail(shelter)}
                   isSelected={shelter.id === props.selectedShelterId}
                 >

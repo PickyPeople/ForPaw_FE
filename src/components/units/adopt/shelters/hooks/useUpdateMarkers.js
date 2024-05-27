@@ -47,6 +47,17 @@ const useUpdateMarkers = (
         const handleDoubleClick = () => {
           clearTimeout(clickTimer);
           setCurrentLocation(markerData); // 더블 클릭 시 마커 위치로 이동
+
+          // 선택된 보호소 요소로 스크롤
+          const selectedShelterElement = document.querySelector(
+            `[data-id="${markerData.id}"]`
+          );
+          if (selectedShelterElement) {
+            selectedShelterElement.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
         };
 
         marker.addListener("click", () => {

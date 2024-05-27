@@ -270,7 +270,7 @@ export const DataBlock = styled.div`
   margin-top: 5px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 `;
 
@@ -279,7 +279,8 @@ export const DataImg = styled.div`
   height: 37px;
   border-radius: 12px;
   background-color: #747474;
-  margin-right: 18px;
+  margin-left: 10px;
+  margin-right: 15px;
 `;
 
 export const DataInfoBlock = styled.div`
