@@ -19,7 +19,6 @@ export default function AdpotShelters() {
 
   const {
     isMapLoaded,
-    sortedShelters,
     initialLocation,
     setCurrentLocation,
     shelterLocationDetail,

@@ -44,6 +44,17 @@ export const useGoogleMaps = (
     }
   }, [searchSuccess, searchResults, sortedShelters]);
 
+  useEffect(() => {
+    // sheltersToDisplay가 변경될 때마다 실행될 로직
+    if (sheltersToDisplay.length > 0) {
+      if (searchSuccess && searchResults.length > 0) {
+        shelterLocationDetail(searchResults[0]);
+      } else if (!searchSuccess) {
+        setCurrentLocation(initialLocation);
+      }
+    }
+  }, [sheltersToDisplay]);
+
   useGoogleMapsScript(() => {
     if (!locationLoaded) return;
 
@@ -101,6 +112,7 @@ export const useGoogleMaps = (
     }
 
     if (selectedShelterElement) {
+      console.log(selectedShelterElement);
       selectedShelterElement.scrollIntoView({
         behavior: "smooth",
         block: "start",
@@ -136,14 +148,6 @@ export const useGoogleMaps = (
     setCurrentLocation,
     selectedShelterId // 선택된 보호소 ID 전달
   );
-
-  useEffect(() => {
-    if (searchSuccess && searchResults.length > 0) {
-      shelterLocationDetail(searchResults[0]);
-    } else if (!searchSuccess) {
-      setCurrentLocation(initialLocation);
-    }
-  }, [searchSuccess, searchResults, initialLocation]);
 
   return {
     isMapLoaded,
