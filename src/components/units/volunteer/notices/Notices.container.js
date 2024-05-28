@@ -1,5 +1,5 @@
 import NoticesUI from "./Notices.presenter";
-import Headers from "../../../commons/headers/Headers.container";
+import VolunteerDetailHeader from "../detail/volunteerDetailHeader/VolunteerDetailHeader.container";
 import Navigation from "../../../commons/navigation/Navigation.container";
 import { useNoticeClick } from "../detail/hooks/useNoticeClick";
 import useFetchNotices from "./hooks/useFetchNotices";
@@ -14,7 +14,7 @@ export default function Announcements() {
 
   return (
     <>
-      <Headers />
+      <VolunteerDetailHeader />
       <NoticesUI
         navigateTo={navigateTo}
         noticesInfos={noticesInfos}

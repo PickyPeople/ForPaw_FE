@@ -1,5 +1,5 @@
 import RegularMeetingsUI from "./Regular_Meetings.presenter";
-import Headers from "../../../commons/headers/Headers.container";
+import VolunteerDetailHeader from "../detail/volunteerDetailHeader/VolunteerDetailHeader.container";
 import Navigation from "../../../commons/navigation/Navigation.container";
 import { useRouter } from "next/router";
 import useFetchRegularMeetings from "./hooks/useFetchRegularMeetings";
@@ -15,7 +15,7 @@ export default function RegularMeetings() {
 
   return (
     <>
-      <Headers />
+      <VolunteerDetailHeader />
       <RegularMeetingsUI
         navigateTo={navigateTo}
         regularMeetingsInfos={regularMeetingsInfos}

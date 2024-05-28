@@ -24,7 +24,9 @@ export default function FindAccount02UI(props) {
                 />
               </S.InfoContentsBlock>
               <S.InfoFormPassWord>
-                특수문자를 포함한 10자리를 입력해주세요.
+                {props.isPasswordAvailable ? (
+                  <S.isPwAvailable style={{color: '#9AC8FF'}}>사용가능한 비밀번호입니다.</S.isPwAvailable>
+                ) : <S.isPwAvailable>특수문자를 포함 한 10자리를 입력해주세요.</S.isPwAvailable>}
               </S.InfoFormPassWord>
               <S.InfoContentsBlock>
                 <S.CheckNewPassWordTitle>새 비밀번호 확인</S.CheckNewPassWordTitle>
@@ -41,7 +43,7 @@ export default function FindAccount02UI(props) {
                 <S.NewPassWordCorrect style={{ color: '#FF9A9A', visibility: props.isVisible ? 'visible' : 'hidden' }}>비밀번호가 일치하지 않습니다.</S.NewPassWordCorrect>
               )}
               <S.NextButtonBlock>
-              <S.NextButtonItem onClick={props.navigateTo("/login")}>
+                <S.NextButtonItem onClick={props.navigateTo("/login")}>
                   확인
                 </S.NextButtonItem>
               </S.NextButtonBlock>

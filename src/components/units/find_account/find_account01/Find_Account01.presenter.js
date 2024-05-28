@@ -20,7 +20,7 @@ export default function FindAccount01UI(props) {
                 이메일
               </S.EmailTitle>
               <S.EmailBlock>
-                <S.EmailItem placeholder="이메일" type="email" value={props.emailIdValue} onChange={props.handleEmailIdValueChange} />
+                <S.EmailItem placeholder="이메일" type="email" value={props.email} onChange={props.handleEmailValueChange} />
                 <S.AddressIcon>@</S.AddressIcon>
                 <S.SelectAddress value={props.selectedOption} onChange={props.handleSelectOptionChange}>
                   <S.AddressOption value="">직접입력</S.AddressOption>
@@ -45,7 +45,7 @@ export default function FindAccount01UI(props) {
                   코드입력
                 </S.GetCodeTitle>
                 <S.GetCodeBlock>
-                  <S.GetCodeItem placeholder="1234" type="number" />
+                  <S.GetCodeItem value={props.code} onChange={props.handleCode} placeholder="1234" type="text" />
                   <S.TimerItem>{Math.floor(props.timer / 60)}:{(props.timer % 60).toString().padStart(2, '0')}</S.TimerItem>
                 </S.GetCodeBlock>
                 <S.CorretCode>
