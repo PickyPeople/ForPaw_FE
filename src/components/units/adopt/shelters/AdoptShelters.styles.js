@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { keyframes } from "@emotion/react";
 
 export const WrapperContents = styled.div`
   width: 390px;
@@ -102,6 +103,24 @@ export const MapDisplay = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 0;
+`;
+
+const loading = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
+export const LoadingImg = styled.div`
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ff6636;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: ${loading} 1s linear infinite;
 `;
 
 export const MapInfoContainer = styled.div`

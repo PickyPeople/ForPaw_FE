@@ -13,13 +13,14 @@ export default function AdpotSheltersUI(props) {
           disabled={!props.isMapLoaded}
         />
         <S.MapDisplay ref={props.mapRef}>
-          <Image
+          {/* <Image
             src="/images/shelter/loading.gif"
             alt="map_1"
             width={200}
             height={200}
             priority
-          />
+          /> */}
+          <S.LoadingImg></S.LoadingImg>
         </S.MapDisplay>
         <S.MapCurrentLocationIcon
           id="map-current-icon"
