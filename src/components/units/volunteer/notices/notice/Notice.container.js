@@ -3,6 +3,7 @@ import NoticeUI from "./Notice.presenter";
 import VolunteerDetailHeader from "../../detail/volunteerDetailHeader/VolunteerDetailHeader.container";
 import { useComment } from "./hooks/useComment";
 import useFetchNotice from "./hooks/useFetchNotice";
+import { useState } from 'react';
 
 export default function Notice() {
   const {
@@ -34,6 +35,8 @@ export default function Notice() {
     <>
       <VolunteerDetailHeader />
       <NoticeUI
+        imgSrc={imgSrc}
+        handleImgClick={handleImgClick}
         noticeInfos={noticeInfos}
         LikeImage={LikeImage} //좋아요 버튼을 위한 컴포넌트
         wrapperRef={wrapperRef} //메뉴창 내/외부 판단

@@ -78,10 +78,14 @@ export default function NoticeUI(props) {
                   </S.CommentMenuImg>
                 </S.CommentText>
                 <S.LikeBlock>
-                  <props.LikeImage
-                    initialSrc="/images/volunteer/announcement/comment_like_icon.svg"
-                    alt="comment_like_icon"
-                  />
+                  <S.LikeImg onClick={props.handleImgClick}>
+                    <Image
+                      src={props.imgSrc}
+                      alt='comment_likeImg'
+                      width={30}
+                      height={30}
+                    />
+                  </S.LikeImg>
                   <S.LikeText>좋아요</S.LikeText>
                   <S.AddReplyText
                     onClick={(e) => {
@@ -153,10 +157,14 @@ export default function NoticeUI(props) {
                     </S.ReplyMenuImg>
                   </S.CommentText>
                   <S.LikeBlock>
-                    <props.LikeImage
-                      initialSrc="/images/volunteer/announcement/comment_like_icon.svg"
-                      alt="comment_like_icon"
+                  <S.LikeImg>
+                    <Image
+                      src='/images/volunteer/announcement/comment_like_icon.svg'
+                      alt='comment_likeImg'
+                      width={30}
+                      height={30}
                     />
+                  </S.LikeImg>
                     <S.LikeText>좋아요</S.LikeText>
                     <S.AddReplyText
                       onClick={(e) => {
