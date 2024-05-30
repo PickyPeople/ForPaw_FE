@@ -8,7 +8,7 @@ export const WrapperContainer = styled.div`
 `;
 
 export const MenuContainer = styled.div`
-  width: 14vw;
+  width: 17vw;
   height: 100vh;
   background-color: white;
   display: flex;
@@ -17,22 +17,23 @@ export const MenuContainer = styled.div`
 `;
 
 export const MenuBlock = styled.div`
-  width: 239px;
-  height: 210px;
+  width: 14.744vw;
+  height: 23.605vh;
   background-color: antiquewhite;
   display: flex;
   flex-direction: column;
+  margin: 50px auto;
 `;
 
 export const ContentsContainer = styled.div`
-  width: 86vw;
+  width: 83vw;
   height: 100vh;
   background-color: bisque;
 `;
 
 export const ContentsBlock = styled.div`
-  width: 983px;
-  height: 516px;
-  margin-top: 24px;
+  width: 60.642vw;
+  height: 55.365vh;
+  margin-top: 2.575vh;
   background-color: aliceblue;
 `;
