@@ -31,10 +31,12 @@ export const useComment = () => {
   const [name, setName] = useState(""); //답글 달기에 이름을 주기 위해서
   const [commentDeleteCount, setCommentDeleteCount] = useState(0); // 삭제하기를 누르고 난 뒤 댓글id 값을 올려주기 위한 변수
   const focus = useRef(null); //input태그에 포커스를 주기 위해
+  const [isLike, setIsLike] = useState(false);
   const [comments, setComments] = useState(
     noticeInfos.comments.map(comment => ({
       ...comment,
-      replyDeleteCount: commentDeleteCount
+      replyDeleteCount: commentDeleteCount,
+      isLike: isLike
     }))
   );
 
@@ -238,6 +240,18 @@ export const useComment = () => {
     setIsClickedReplyEdit(false);
     setContent("");
     nameFoucs();
+  };
+
+  const initialSrc = '/images/volunteer/announcement/comment_like_icon.svg';
+  const [imgSrc, setImgSrc] = useState(initialSrc);
+  //const [isSecondClick, setIsSecondClick] = useState(false);
+
+  const handleImgClick = () => {
+    const newSrc = isSecondClick
+      ? '/images/volunteer/announcement/comment_like_icon.svg'
+      : '/images/volunteer/announcement/comment_active_like_icon.svg';
+    setImgSrc(newSrc);
+    setIsSecondClick(!isSecondClick);
   };
 
   return {

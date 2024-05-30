@@ -2,19 +2,19 @@ import styled from "@emotion/styled";
 
 export const WrapperContainer = styled.div`
   width: 100%;
-  height: 79px;
+  height: 8.476vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   background-color: White;
-  border-bottom: 1px solid #717478;
+  border-bottom: 0.062vw solid #717478;
 `;
 
 export const HeaderContainer = styled.div`
-  width: 178px;
-  height: 32px;
-  margin-left: 30px;
+  width: 10.981vw;
+  height: 3.433vh;
+  margin-left: 1.851vw;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -22,13 +22,13 @@ export const HeaderContainer = styled.div`
 `;
 
 export const ImageBlock = styled.div`
-  width: 42px;
-  height: 32px;
+  width: 2.591vw;
+  height: 3.433vh;
 `;
 
 export const HeaderTitle = styled.p`
-  width: 116px;
-  height: 20px;
-  font-size: 20px;
+  width: 7.156vw;
+  height: 2.146vh;
+  font-size: 1.234vw;
   font-weight: bolder;
 `
