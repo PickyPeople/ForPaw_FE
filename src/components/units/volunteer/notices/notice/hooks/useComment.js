@@ -6,6 +6,7 @@ import {
   sendDelete,
   sendReply,
   sendReplyEdit,
+  likeComment
 } from "../Notice.quries";
 import useFetchNotice from "./useFetchNotice";
 
@@ -31,12 +32,21 @@ export const useComment = () => {
   const [name, setName] = useState(""); //답글 달기에 이름을 주기 위해서
   const [commentDeleteCount, setCommentDeleteCount] = useState(0); // 삭제하기를 누르고 난 뒤 댓글id 값을 올려주기 위한 변수
   const focus = useRef(null); //input태그에 포커스를 주기 위해
-  const [isLike, setIsLike] = useState(false);
+  const isLike = false;
+
   const [comments, setComments] = useState(
     noticeInfos.comments.map(comment => ({
       ...comment,
       replyDeleteCount: commentDeleteCount,
-      isLike: isLike
+      isLike: isLike,
+      likeSrc: "/images/volunteer/announcement/comment_like_icon.svg",
+      likeCount: 0,
+      replies: comment.replies.map(reply => ({
+        ...reply,
+        isLike: isLike,
+        likeSrc: "/images/volunteer/announcement/comment_like_icon.svg",
+        likeCount: 0
+      }))
     }))
   );
 
@@ -98,6 +108,9 @@ export const useComment = () => {
           location: "지역",
           date: "방금 전",
           content: content,
+          isLike: isLike,
+          likeSrc: "/images/volunteer/announcement/comment_like_icon.svg",
+          likeCount: 0,
           replyDeleteCount: commentDeleteCount,
           replies: [],
         }
@@ -125,6 +138,9 @@ export const useComment = () => {
                   date: "방금 전",
                   replyName: name,
                   content: content.substring(name.length + 1, content.length),
+                  isLike: isLike,
+                  likeCount: 0,
+                  likeSrc: "/images/volunteer/announcement/comment_like_icon.svg",
                 },
               ],
             };
@@ -242,19 +258,58 @@ export const useComment = () => {
     nameFoucs();
   };
 
-  const initialSrc = '/images/volunteer/announcement/comment_like_icon.svg';
-  const [imgSrc, setImgSrc] = useState(initialSrc);
-  //const [isSecondClick, setIsSecondClick] = useState(false);
-
-  const handleImgClick = () => {
-    const newSrc = isSecondClick
-      ? '/images/volunteer/announcement/comment_like_icon.svg'
-      : '/images/volunteer/announcement/comment_active_like_icon.svg';
-    setImgSrc(newSrc);
-    setIsSecondClick(!isSecondClick);
+  const handleCommentLikeClick = async (commentID) => {
+    try {
+      setComments((prevComments) =>
+        prevComments.map((comment) =>
+          comment.id === commentID
+            ? {
+              ...comment,
+              isLike: !comment.isLike,
+              likeCount: comment.isLike ? comment.likeCount - 1 : comment.likeCount + 1,
+              likeSrc: comment.isLike
+                ? '/images/volunteer/announcement/comment_like_icon.svg'
+                : '/images/volunteer/announcement/comment_active_like_icon.svg',
+            }
+            : comment
+        )
+      );
+      //const data = await likeComment();
+    } catch {
+      console.log(error);
+    }
   };
 
+  const handleReplyLikeClick = (commentID, replyID) => {
+    setComments((prevComments) =>
+      prevComments.map((comment) => {
+        if (comment.id === commentID) {
+          return {
+            ...comment,
+            replies: comment.replies.map((reply) =>
+              reply.id === replyID
+                ? {
+                  ...reply,
+                  isLike: !reply.isLike,
+                  likeCount: reply.isLike ? reply.likeCount - 1 : reply.likeCount + 1,
+                  likeSrc: reply.isLike
+                    ? '/images/volunteer/announcement/comment_like_icon.svg'
+                    : '/images/volunteer/announcement/comment_active_like_icon.svg',
+                }
+                : reply
+            ),
+          };
+        }
+        return comment;
+      })
+    );
+  };
+
+  console.log(comments)
+
   return {
+    handleCommentLikeClick,
+    handleReplyLikeClick,
     noticeInfos,
     isCommentMenuClicked,
     clickedCommentID,
