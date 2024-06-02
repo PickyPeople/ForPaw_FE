@@ -11,7 +11,7 @@ export default function AdminHeaderUI() {
             <Image
               src="/images/header/forpaw_icon.svg"
               alt="paw_icon"
-              width={42}
+              width={48}
               height={32}
             />
           </S.ImageBlock>

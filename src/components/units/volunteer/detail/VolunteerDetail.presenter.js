@@ -205,11 +205,26 @@ export default function VolunteerDetailUI(props) {
       </S.WrapperContents>
       <S.NextButtonBlock
         style={{
-          backgroundColor: props.status == "member" ? "#240D05" : "#FF6636",
+          backgroundColor: props.status == "member" ? "white" : "#FF6636",
+          width: props.status == "member" ? "60px" : "344px"
         }}
       >
-        <S.NextButtonItem onClick={() => props.handleFavClick(`/volunteer/detail/${props.id}`)}>
-          {props.status === "member" ? "채팅방 입장하기" : "가입하기"}
+        <S.NextButtonItem
+          style={{
+            width: props.status == "member" ? "60px" : "344px"
+          }}
+          onClick={() => props.handleFavClick(`/volunteer/detail/${props.id}`)}
+        >
+          {props.status === "member" ?
+            <Image
+              src="/images/volunteer/chat_Icon.svg"
+              alt="chat"
+              width={60}
+              height={60}
+            />
+            :
+            "가입하기"
+          }
         </S.NextButtonItem>
       </S.NextButtonBlock>
     </>

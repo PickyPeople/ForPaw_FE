@@ -132,9 +132,32 @@ export const sendReplyEdit = async (content) => {
 export const sendDelete = async () => {
   try {
     const response = await fetch(
-      " /posts/{postId}/comments/{commentId}",
+      "/posts/{postId}/comments/{commentId}",
       {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log("댓글 삭제 실패");
+  }
+}
+
+export const likeComment = async () => {
+  try {
+    const response = await fetch(
+      "/posts/{postId}/comments/{commentId}/like",
+      {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
