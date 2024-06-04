@@ -102,10 +102,25 @@ export const WrapperContents = styled.div`
   background-color: white;
   padding-bottom: 20px;
 
-  ::-webkit-scrollbar {
-    display: none;
+  /* Chrome, Safari 등 */
+  &::-webkit-scrollbar {
+    width: 12px; /* 스크롤바의 너비 */
   }
-  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0); /* 스크롤바 뒷 배경을 투명 처리한다 */
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #f6f6f6; /* 스크롤바 색상 */
+    border-radius: 10px; /* 스크롤바 둥근 처리 */
+    border: 3px solid #f6f6f6; /* 스크롤바 외곽선(선택사항) */
+  }
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* Firefox */
+  scrollbar-width: thin; /* "auto" 또는 "thin" */
+  scrollbar-color: #f6f6f6 rgba(0, 0, 0, 0); /* 스크롤바 색상과 트랙 색상 */
 `;
 
 export const DateTextBlock = styled.div`
@@ -127,8 +142,7 @@ export const MsgBlock = styled.div`
   justify-content: ${(props) => (props.isMyMsg ? "flex-end" : "flex-start")};
   align-items: flex-start;
   margin-top: 15px;
-  margin-right: ${(props) => (props.isMyMsg ? "0" : "5px")};
-  margin-left: ${(props) => (props.isMyMsg ? "5px" : "0")};
+  margin-left: ${(props) => (props.isMyMsg ? "10px" : "0")};
   gap: 10px;
 `;
 
