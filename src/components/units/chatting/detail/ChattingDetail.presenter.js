@@ -85,6 +85,7 @@ export default function ChattingDetailUI(props) {
             ))}
           </React.Fragment>
         ))}
+        <div ref={props.messagesEndRef} />
       </S.WrapperContents>
       <S.ChatInputWrapper>
         <S.ChatDataAdd>
