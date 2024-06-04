@@ -79,24 +79,6 @@ export const MenuIcon = styled.div`
   }
 `;
 
-export const WrapperContents = styled.div`
-  width: 390px;
-  height: calc(100vh - 179px);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  margin: 0 auto;
-  overflow-y: auto;
-  background-color: white;
-  padding-bottom: 10px;
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  scrollbar-width: none; /* Firefox */
-`;
-
 export const NoticeTextBlock = styled.div`
   width: 390px;
   height: 50px;
@@ -106,6 +88,85 @@ export const NoticeTextBlock = styled.div`
   font-size: 20px;
   font-weight: 400;
   padding-left: 20px;
+`;
+
+export const WrapperContents = styled.div`
+  width: 390px;
+  height: calc(100vh - 229px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 auto;
+  overflow-y: auto;
+  background-color: white;
+  padding-bottom: 20px;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none; /* Firefox */
+`;
+
+export const DateTextBlock = styled.div`
+  font-size: 12px;
+  font-weight: 400;
+  background-color: white;
+  border: 1px solid #f5f5f5;
+  box-shadow: 1px 0 2px 1px rgba(0, 0, 0, 0.05),
+    0 2px 2px 1px rgba(0, 0, 0, 0.15);
+  padding: 10px 15px;
+  border-radius: 20px;
+  margin-top: 25px;
+`;
+
+export const MsgBlock = styled.div`
+  width: 360px;
+  display: flex;
+  flex-direction: row;
+  justify-content: ${(props) => (props.isMyMsg ? "flex-end" : "flex-start")};
+  align-items: flex-start;
+  margin-top: 15px;
+  margin-right: ${(props) => (props.isMyMsg ? "0" : "5px")};
+  margin-left: ${(props) => (props.isMyMsg ? "5px" : "0")};
+  gap: 10px;
+`;
+
+export const UserImgBlock = styled.div`
+  width: 40px;
+  height: 40px;
+  order: ${(props) => (props.isMyMsg ? 3 : 1)};
+`;
+
+export const UserInfoBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: ${(props) => (props.isMyMsg ? "flex-end" : "flex-start")};
+  gap: 5px;
+  order: 2;
+`;
+
+export const UserNameText = styled.div`
+  font-size: 12px;
+  font-weight: 700;
+`;
+
+export const MsgText = styled.div`
+  max-width: 250px;
+  border-radius: ${(props) =>
+    props.isMyMsg ? "20px 0 20px 20px" : "0 20px 20px 20px"};
+  background-color: ${(props) => (props.isMyMsg ? "#ffdfd5" : "#f6f6f6")};
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 15px;
+`;
+
+export const TimeTextBlock = styled.div`
+  font-size: 10px;
+  font-weight: 400;
+  order: ${(props) => (props.isMyMsg ? 1 : 3)};
+  align-self: flex-end;
 `;
 
 export const ChatInputWrapper = styled.div`

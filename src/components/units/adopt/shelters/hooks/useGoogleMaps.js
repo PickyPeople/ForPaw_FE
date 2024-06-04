@@ -55,12 +55,14 @@ export const useGoogleMaps = (
     }
   }, [sheltersToDisplay]);
 
-  useGoogleMapsScript(() => {
+  useGoogleMapsScript(async () => {
     if (!locationLoaded) return;
 
     if (window.google && ref.current) {
+      const { Map } = await google.maps.importLibrary("maps");
+
       if (!mapRef.current) {
-        mapRef.current = new window.google.maps.Map(ref.current, {
+        mapRef.current = new Map(ref.current, {
           disableDefaultUI: true,
           zoomControl: true,
           mapTypeControl: false,

@@ -1,3 +1,4 @@
+import React from "react";
 import * as S from "./ChattingDetail.styles";
 import Image from "next/image";
 
@@ -46,8 +47,44 @@ export default function ChattingDetailUI(props) {
           </S.MenuContainer>
         </S.Header>
       </S.WrapperHeader>
+      <S.NoticeTextBlock>공지사항을 입력해주세요</S.NoticeTextBlock>
       <S.WrapperContents>
-        <S.NoticeTextBlock>공지사항을 입력해주세요</S.NoticeTextBlock>
+        {Object.entries(props.chatMsgList).map(([date, messages]) => (
+          <React.Fragment key={date}>
+            <S.DateTextBlock>
+              {`${date.slice(0, 4)}년 
+              ${parseInt(date.slice(5, 7))}월 
+              ${date.slice(8, 10)}일`}
+            </S.DateTextBlock>
+            {messages.map((message) => (
+              <S.MsgBlock key={message.messageId} isMyMsg={message.isMine}>
+                <S.UserImgBlock isMyMsg={message.isMine}>
+                  <Image
+                    src="/images/commons/user_icon.svg"
+                    alt="user_icon"
+                    width={40}
+                    height={40}
+                  />
+                </S.UserImgBlock>
+                <S.UserInfoBlock isMyMsg={message.isMine}>
+                  <S.UserNameText>{message.userName}</S.UserNameText>
+                  <S.MsgText isMyMsg={message.isMine}>
+                    {message.content}
+                  </S.MsgText>
+                </S.UserInfoBlock>
+                <S.TimeTextBlock isMyMsg={message.isMine}>
+                  {message.date.slice(11, 13) > 12
+                    ? `오후 ${
+                        message.date.slice(11, 13) - 12
+                      }${message.date.slice(13, 16)}`
+                    : `오전 ${
+                        message.date.slice(11, 13) - 0
+                      }${message.date.slice(13, 16)}`}
+                </S.TimeTextBlock>
+              </S.MsgBlock>
+            ))}
+          </React.Fragment>
+        ))}
       </S.WrapperContents>
       <S.ChatInputWrapper>
         <S.ChatDataAdd>
