@@ -33,5 +33,172 @@ export const UserInfoContainer = styled.div`
   height: 498px;  
   font-size: 15px;
 
-  background-color: burlywood;
+`;
+
+export const UserInfoTitleBlock = styled.div`
+  width: 900px;
+  height: 57px;
+  border-bottom: 1px solid #E9ECEF;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+`;
+
+export const RequestNum = styled.div`
+  width: 60px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const RequestDate = styled.div`
+  width: 132px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const AnimaiId = styled.div`
+  width: 47px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Breed = styled.div`
+  width: 28px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Sex = styled.div`
+  width: 28px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Age = styled.div`
+  width: 147px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ApplicantName = styled.div`
+  width: 74px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const State = styled.div`
+  width: 42px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const UserInfoBlock = styled.div`
+  width: 976px;
+  height: 350px;
+`;
+
+export const UserInfoItems = styled.div`
+  width: 100%;
+  height: 70px;
+  
+  display: flex;
+  flex-direction: row;
+`;
+
+export const UserInfoItem = styled.div`
+  width: 900px;
+  height: 100%;
+  border-bottom: 1px solid #E9ECEF;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+`;
+
+export const ChangeBtnBlock = styled.div`
+  width: 76px;
+  height: 60px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+`;
+
+export const ChangeBtn = styled.div`
+  width: 50px;
+  height: 26px;
+  background-color: #FF6636;
+  color: white;
+  font-size: 16px;
+  font-weight: bolder;
+  border-radius: 6px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const PageBlock = styled.div`
+  width: 976px;
+  height: 70px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const PageItem = styled.div`
+  width: 141px;
+  height: 18px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+export const Page = styled.div`
+  width: 7px;
+  height: 100%;
+
+  cursor: pointer;
 `;

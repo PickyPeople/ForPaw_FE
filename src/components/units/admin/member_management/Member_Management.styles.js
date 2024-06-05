@@ -42,7 +42,7 @@ export const UserInfoTitleBlock = styled.div`
 
   display: flex;
   flex-direction: row;
-  gap: 25px;
+  justify-content: space-around;
 `;
 
 export const Nickname = styled.div`
@@ -145,7 +145,7 @@ export const UserInfoItem = styled.div`
 
   display: flex;
   flex-direction: row;
-  gap: 25px;
+  justify-content: space-around;
 `;
 
 export const ChangeBtnBlock = styled.div`
