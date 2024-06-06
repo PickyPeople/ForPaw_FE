@@ -48,7 +48,7 @@ export default function ChattingDetailUI(props) {
         </S.Header>
       </S.WrapperHeader>
       <S.NoticeTextBlock>공지사항을 입력해주세요</S.NoticeTextBlock>
-      <S.WrapperContents>
+      <S.WrapperContents ref={props.scrollRef}>
         {Object.entries(props.chatMsgList).map(([date, messages]) => (
           <React.Fragment key={date}>
             <S.DateTextBlock>
@@ -64,6 +64,7 @@ export default function ChattingDetailUI(props) {
                     alt="user_icon"
                     width={40}
                     height={40}
+                    priority
                   />
                 </S.UserImgBlock>
                 <S.UserInfoBlock isMyMsg={message.isMine}>
@@ -73,9 +74,11 @@ export default function ChattingDetailUI(props) {
                   </S.MsgText>
                 </S.UserInfoBlock>
                 <S.TimeTextBlock isMyMsg={message.isMine}>
-                  {message.date.slice(11, 13) > 12
+                  {message.date.slice(11, 13) - 0 >= 12
                     ? `오후 ${
-                        message.date.slice(11, 13) - 12
+                        message.date.slice(11, 13) - 0 === 12
+                          ? 12
+                          : message.date.slice(11, 13) - 12
                       }${message.date.slice(13, 16)}`
                     : `오전 ${
                         message.date.slice(11, 13) - 0
@@ -85,7 +88,6 @@ export default function ChattingDetailUI(props) {
             ))}
           </React.Fragment>
         ))}
-        <div ref={props.messagesEndRef} />
       </S.WrapperContents>
       <S.ChatInputWrapper>
         <S.ChatDataAdd>

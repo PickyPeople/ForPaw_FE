@@ -5,8 +5,8 @@ import useScrollToBottom from "./hook/useScrollToBottom";
 import { useSearchSideMenu } from "./hook/useSearchSideMenu";
 
 export default function ChattingDetail() {
-  const { chatMsgList } = useFetchChatMsgList();
-  const messagesEndRef = useScrollToBottom(chatMsgList);
+  const { chatMsgList, handleChange, handleSend } = useFetchChatMsgList();
+  const scrollRef = useScrollToBottom(chatMsgList);
   const { isSearchOpen, toggleSearch, isSideMenuOpen, toggleSideMenu } =
     useSearchSideMenu();
   const { navigateTo, navigateBack } = useNavigate();
@@ -15,7 +15,9 @@ export default function ChattingDetail() {
     <>
       <ChattingDetailUI
         chatMsgList={chatMsgList}
-        messagesEndRef={messagesEndRef}
+        handleChange={handleChange}
+        handleSend={handleSend}
+        scrollRef={scrollRef}
         isSearchOpen={isSearchOpen}
         toggleSearch={toggleSearch}
         isSideMenuOpen={isSideMenuOpen}

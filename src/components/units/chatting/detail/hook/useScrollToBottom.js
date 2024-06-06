@@ -1,15 +1,23 @@
 import { useEffect, useRef } from "react";
 
 const useScrollToBottom = (dependencies) => {
-  const elementRef = useRef(null);
+  const scrollRef = useRef(null);
 
   useEffect(() => {
-    if (elementRef.current) {
-      elementRef.current.scrollIntoView();
-    }
-  }, dependencies);
+    scrollToBottom();
+  }, []);
 
-  return elementRef;
+  useEffect(() => {
+    scrollToBottom();
+  }, [dependencies]);
+
+  const scrollToBottom = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  };
+
+  return scrollRef;
 };
 
 export default useScrollToBottom;

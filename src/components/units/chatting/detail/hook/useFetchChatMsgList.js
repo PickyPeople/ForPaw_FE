@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { fetchChatMsgList } from "../ChattingDetail.queries";
 
 const example = {
@@ -76,14 +76,14 @@ const example = {
         messageId: 32,
         userName: "호영",
         content: "지금 부산대 쪽을 가는 중인데 조금 늦을 것 같습니다ㅠㅠ",
-        date: "2024-03-18T015:37:00Z",
+        date: "2024-03-18T12:37:00Z",
         isMine: false,
       },
       {
         messageId: 33,
         userName: "호얘이",
         content: "그럼 먼저 가서 커피 마시면서 회의할 내용들 검토해볼게요.",
-        date: "2024-03-18T015:49:00Z",
+        date: "2024-03-18T15:49:00Z",
         isMine: true,
       },
       {
@@ -116,12 +116,52 @@ export default function useFetchChatMsgList() {
   useEffect(() => {
     async function loadChatMsgList() {
       const chatMsgListData = await fetchChatMsgList();
-      setChatMsgList(chatMsgListData);
+      setChatMsgList(groupMessagesByDate(chatMsgListData.result.messages));
     }
 
     console.log(chatMsgList);
     // loadChatMsgList();
   }, []);
 
-  return { chatMsgList };
+  const addMessage = useCallback(
+    (newMessage) => {
+      const date = newMessage.date.split("T")[0];
+      setChatMsgList((prevChatMsgList) => {
+        const updatedChatMsgList = { ...prevChatMsgList };
+        if (!updatedChatMsgList[date]) {
+          updatedChatMsgList[date] = [];
+        }
+        updatedChatMsgList[date] = [
+          ...updatedChatMsgList[date],
+          newMessage,
+        ].sort((a, b) => new Date(a.date) - new Date(b.date));
+        return updatedChatMsgList;
+      });
+    },
+    [setChatMsgList]
+  );
+
+  const handleAddMessage = (content) => {
+    const newMessage = {
+      messageId: Date.now(), // Unique ID
+      userName: "현재 사용자", // 현재 사용자 이름 (로그인 정보에서 가져올 수 있습니다)
+      content,
+      date: new Date().toISOString(), // 현재 시간
+      isMine: true,
+    };
+    addMessage(newMessage);
+  };
+
+  const handleChange = (e) => {
+    setMessage(e.target.value);
+  };
+
+  const handleSend = () => {
+    if (message.trim()) {
+      handleAddMessage(message);
+      setMessage(""); // 메시지 전송 후 입력 필드 초기화
+    }
+  };
+
+  return { chatMsgList, handleChange, handleSend };
 }
