@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "../../../../../src/components/commons/hooks/useNavigate";
 import ChattingDetailUI from "./ChattingDetail.presenter";
 import useFetchChatMsgList from "./hook/useFetchChatMsgList";

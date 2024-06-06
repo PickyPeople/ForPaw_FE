@@ -35,13 +35,11 @@ export const useDragHandler = (isMapLoaded) => {
         document.removeEventListener("mouseup", handleDragEnd);
       };
 
-      document.addEventListener("mousemove", handleDragging, { passive: true });
-      document.addEventListener("mouseup", handleDragEnd, { passive: true });
+      document.addEventListener("mousemove", handleDragging);
+      document.addEventListener("mouseup", handleDragEnd);
     };
 
-    mapInfoDragBlock.addEventListener("mousedown", handleDragStart, {
-      passive: true,
-    });
+    mapInfoDragBlock.addEventListener("mousedown", handleDragStart);
 
     return () => {
       mapInfoDragBlock.removeEventListener("mousedown", handleDragStart);
