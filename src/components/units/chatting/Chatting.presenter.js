@@ -1,7 +1,7 @@
 import * as S from "./Chatting.styles";
 import Image from "next/image";
 
-export default function ChattingUI() {
+export default function ChattingUI(props) {
   return (
     <>
       <S.WrapperContents>
@@ -19,176 +19,30 @@ export default function ChattingUI() {
             />
           </S.ChattingSearchIcon>
         </S.ChattingSearchBlock>
-        <S.ChattingBlock>
-          <S.UserProfileImg>
-            <Image
-              src="/images/chatting/chatting_profile.svg"
-              alt="chatting_profile"
-              width={38}
-              height={38}
-            />
-          </S.UserProfileImg>
-          <S.ChattingInfoBlock>
-            <S.UserName>홍길동</S.UserName>
-            <S.ChattingDate>어제</S.ChattingDate>
-            <S.ChattingContent>
-              이번주 봉사활동은 쉰다고 하던데 들으셨어요?
-            </S.ChattingContent>
-          </S.ChattingInfoBlock>
-        </S.ChattingBlock>
-        <S.ChattingBlock>
-          <S.UserProfileImg>
-            <Image
-              src="/images/chatting/chatting_profile.svg"
-              alt="chatting_profile"
-              width={38}
-              height={38}
-            />
-          </S.UserProfileImg>
-          <S.ChattingInfoBlock>
-            <S.UserName>홍길동</S.UserName>
-            <S.ChattingDate>어제</S.ChattingDate>
-            <S.ChattingContent>
-              이번주 봉사활동은 쉰다고 하던데 들으셨어요?
-            </S.ChattingContent>
-          </S.ChattingInfoBlock>
-        </S.ChattingBlock>
-        <S.ChattingBlock>
-          <S.UserProfileImg>
-            <Image
-              src="/images/chatting/chatting_profile.svg"
-              alt="chatting_profile"
-              width={38}
-              height={38}
-            />
-          </S.UserProfileImg>
-          <S.ChattingInfoBlock>
-            <S.UserName>홍길동</S.UserName>
-            <S.ChattingDate>어제</S.ChattingDate>
-            <S.ChattingContent>
-              이번주 봉사활동은 쉰다고 하던데 들으셨어요?
-            </S.ChattingContent>
-          </S.ChattingInfoBlock>
-        </S.ChattingBlock>
-        <S.ChattingBlock>
-          <S.UserProfileImg>
-            <Image
-              src="/images/chatting/chatting_profile.svg"
-              alt="chatting_profile"
-              width={38}
-              height={38}
-            />
-          </S.UserProfileImg>
-          <S.ChattingInfoBlock>
-            <S.UserName>홍길동</S.UserName>
-            <S.ChattingDate>어제</S.ChattingDate>
-            <S.ChattingContent>
-              이번주 봉사활동은 쉰다고 하던데 들으셨어요?
-            </S.ChattingContent>
-          </S.ChattingInfoBlock>
-        </S.ChattingBlock>
-        <S.ChattingBlock>
-          <S.UserProfileImg>
-            <Image
-              src="/images/chatting/chatting_profile.svg"
-              alt="chatting_profile"
-              width={38}
-              height={38}
-            />
-          </S.UserProfileImg>
-          <S.ChattingInfoBlock>
-            <S.UserName>홍길동</S.UserName>
-            <S.ChattingDate>어제</S.ChattingDate>
-            <S.ChattingContent>
-              이번주 봉사활동은 쉰다고 하던데 들으셨어요?
-            </S.ChattingContent>
-          </S.ChattingInfoBlock>
-        </S.ChattingBlock>
-        <S.ChattingBlock>
-          <S.UserProfileImg>
-            <Image
-              src="/images/chatting/chatting_profile.svg"
-              alt="chatting_profile"
-              width={38}
-              height={38}
-            />
-          </S.UserProfileImg>
-          <S.ChattingInfoBlock>
-            <S.UserName>홍길동</S.UserName>
-            <S.ChattingDate>어제</S.ChattingDate>
-            <S.ChattingContent>
-              이번주 봉사활동은 쉰다고 하던데 들으셨어요?
-            </S.ChattingContent>
-          </S.ChattingInfoBlock>
-        </S.ChattingBlock>
-        <S.ChattingBlock>
-          <S.UserProfileImg>
-            <Image
-              src="/images/chatting/chatting_profile.svg"
-              alt="chatting_profile"
-              width={38}
-              height={38}
-            />
-          </S.UserProfileImg>
-          <S.ChattingInfoBlock>
-            <S.UserName>홍길동</S.UserName>
-            <S.ChattingDate>어제</S.ChattingDate>
-            <S.ChattingContent>
-              이번주 봉사활동은 쉰다고 하던데 들으셨어요?
-            </S.ChattingContent>
-          </S.ChattingInfoBlock>
-        </S.ChattingBlock>
-        <S.ChattingBlock>
-          <S.UserProfileImg>
-            <Image
-              src="/images/chatting/chatting_profile.svg"
-              alt="chatting_profile"
-              width={38}
-              height={38}
-            />
-          </S.UserProfileImg>
-          <S.ChattingInfoBlock>
-            <S.UserName>홍길동</S.UserName>
-            <S.ChattingDate>어제</S.ChattingDate>
-            <S.ChattingContent>
-              이번주 봉사활동은 쉰다고 하던데 들으셨어요?
-            </S.ChattingContent>
-          </S.ChattingInfoBlock>
-        </S.ChattingBlock>
-        <S.ChattingBlock>
-          <S.UserProfileImg>
-            <Image
-              src="/images/chatting/chatting_profile.svg"
-              alt="chatting_profile"
-              width={38}
-              height={38}
-            />
-          </S.UserProfileImg>
-          <S.ChattingInfoBlock>
-            <S.UserName>홍길동</S.UserName>
-            <S.ChattingDate>어제</S.ChattingDate>
-            <S.ChattingContent>
-              이번주 봉사활동은 쉰다고 하던데 들으셨어요?
-            </S.ChattingContent>
-          </S.ChattingInfoBlock>
-        </S.ChattingBlock>
-        <S.ChattingBlock>
-          <S.UserProfileImg>
-            <Image
-              src="/images/chatting/chatting_profile.svg"
-              alt="chatting_profile"
-              width={38}
-              height={38}
-            />
-          </S.UserProfileImg>
-          <S.ChattingInfoBlock>
-            <S.UserName>홍길동</S.UserName>
-            <S.ChattingDate>어제</S.ChattingDate>
-            <S.ChattingContent>
-              이번주 봉사활동은 쉰다고 하던데 들으셨어요?
-            </S.ChattingContent>
-          </S.ChattingInfoBlock>
-        </S.ChattingBlock>
+        {props.chatRoomList.map((chatRoom) => (
+          <S.ChattingBlock
+            key={chatRoom.chatRoomId}
+            onClick={() => props.navigateTo("/chatting/detail")()}
+          >
+            <S.UserProfileImg>
+              <Image
+                src="/images/chatting/chatting_profile.svg"
+                alt="chatting_profile"
+                width={38}
+                height={38}
+              />
+            </S.UserProfileImg>
+            <S.ChattingInfoBlock>
+              <S.UserName>{props.truncateString(chatRoom.name, 13)}</S.UserName>
+              <S.ChattingDate>
+                {chatRoom.lastMessageTime.replace(/[TZ]/g, " ")}
+              </S.ChattingDate>
+              <S.ChattingContent>
+                {props.truncateString(chatRoom.lastMessageContent, 20)}
+              </S.ChattingContent>
+            </S.ChattingInfoBlock>
+          </S.ChattingBlock>
+        ))}
       </S.WrapperContents>
     </>
   );

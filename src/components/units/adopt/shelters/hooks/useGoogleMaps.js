@@ -27,19 +27,42 @@ export const useGoogleMaps = (
     userLocation.lat,
     userLocation.lng
   );
+  const [sheltersToDisplay, setSheltersToDisplay] = useState(sortedShelters);
 
   useEffect(() => {
     if (userLocation.lat && userLocation.lng) {
+      console.log(userLocation);
       setInitialLocation(userLocation);
     }
   }, [userLocation]);
 
-  useGoogleMapsScript(() => {
+  useEffect(() => {
+    if (searchSuccess) {
+      setSheltersToDisplay(searchResults);
+    } else {
+      setSheltersToDisplay(sortedShelters);
+    }
+  }, [searchSuccess, searchResults, sortedShelters]);
+
+  useEffect(() => {
+    // sheltersToDisplay가 변경될 때마다 실행될 로직
+    if (sheltersToDisplay.length > 0) {
+      if (searchSuccess && searchResults.length > 0) {
+        shelterLocationDetail(searchResults[0]);
+      } else if (!searchSuccess) {
+        setCurrentLocation(initialLocation);
+      }
+    }
+  }, [sheltersToDisplay]);
+
+  useGoogleMapsScript(async () => {
     if (!locationLoaded) return;
 
     if (window.google && ref.current) {
+      const { Map } = await google.maps.importLibrary("maps");
+
       if (!mapRef.current) {
-        mapRef.current = new window.google.maps.Map(ref.current, {
+        mapRef.current = new Map(ref.current, {
           disableDefaultUI: true,
           zoomControl: true,
           mapTypeControl: false,
@@ -77,6 +100,27 @@ export const useGoogleMaps = (
     if (!isMapLoaded) return;
 
     setSelectedShelterId(location.id); // 선택된 보호소 ID 업데이트
+
+    // 선택된 보호소 요소로 스크롤
+    let selectedShelterElement = document.querySelector(
+      `[data-id="${location.id}"]`
+    );
+
+    // 선택된 보호소 요소가 없을 경우 첫 번째 보호소로 스크롤
+    if (!selectedShelterElement) {
+      selectedShelterElement = document.querySelector(
+        `[data-id="${sheltersToDisplay[0].id}"]`
+      );
+    }
+
+    if (selectedShelterElement) {
+      console.log(selectedShelterElement);
+      selectedShelterElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+
     // 상태가 업데이트된 후에 중앙으로 이동
     setTimeout(() => {
       mapRef.current.panTo(new google.maps.LatLng(location.lat, location.lng));
@@ -98,8 +142,6 @@ export const useGoogleMaps = (
     }
   };
 
-  const sheltersToDisplay = searchSuccess ? searchResults : sortedShelters;
-
   useUpdateMarkers(
     mapRef.current,
     sheltersToDisplay,
@@ -109,14 +151,6 @@ export const useGoogleMaps = (
     selectedShelterId // 선택된 보호소 ID 전달
   );
 
-  useEffect(() => {
-    if (searchSuccess && searchResults.length > 0) {
-      shelterLocationDetail(searchResults[0]);
-    } else if (!searchSuccess) {
-      setCurrentLocation(initialLocation);
-    }
-  }, [searchSuccess, searchResults, initialLocation]);
-
   return {
     isMapLoaded,
     sortedShelters,
@@ -124,5 +158,6 @@ export const useGoogleMaps = (
     setCurrentLocation,
     shelterLocationDetail,
     selectedShelterId, // 선택된 보호소 ID 반환
+    sheltersToDisplay, // 상태로 관리되는 sheltersToDisplay 반환
   };
 };

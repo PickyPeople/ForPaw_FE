@@ -24,8 +24,17 @@ const useUpdateMarkers = (
           title: markerData.name,
         });
 
+        const contentString = `
+          <div>
+            <div style="font-size: 16px; font-weight: bold; margin-bottom: 10px;">${markerData.name}</div>            
+            <div style="font-size: 12px; font-weight: 500; margin-bottom: 3px;">${markerData.province} ${markerData.district}</div>
+            <div style="font-size: 12px; font-weight: 500;">전화번호</div>                        
+          </div>
+        `;
+
         const infoWindow = new window.google.maps.InfoWindow({
-          content: `<div style="font-weight: bold;">${markerData.name}</div>`,
+          content: contentString,
+          maxWidth: 250,
         });
 
         let isInfoWindowOpen = false;
