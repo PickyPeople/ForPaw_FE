@@ -206,13 +206,13 @@ export const LikeImg = styled.div`
 `;
 
 export const LikeText = styled.p`
-  width: 31px;
+  width: 14px;
   height: 14px;
-  font-size: 12px;
+  font-size: 15px;
   letter-spacing: -0.4px;
   margin-left: 5px;
 
-  padding-top: 3px;
+ padding-top: 1px;
 `;
 
 export const AddReplyText = styled.p`

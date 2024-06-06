@@ -87,6 +87,7 @@ export const Menu = styled.li`
   font-size: 16px;
   font-weight: 500;
   color: black;
+  border-bottom: 1px solid #dbdbdb;
 
   display: flex;
   flex-direction: column;
