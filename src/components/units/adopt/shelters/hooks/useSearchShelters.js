@@ -49,14 +49,11 @@ const useSearchShelters = (shelters) => {
 
     const results = shelters.filter((shelter) => {
       const nameMatch = shelter.name.toLowerCase().includes(lowerCaseQuery);
-      const provinceMatch = shelter.province
-        .toLowerCase()
-        .includes(lowerCaseQuery);
-      const districtMatch = shelter.district
+      const careAddrMatch = shelter.careAddr
         .toLowerCase()
         .includes(lowerCaseQuery);
 
-      return nameMatch || provinceMatch || districtMatch;
+      return nameMatch || careAddrMatch;
     });
 
     setSearchResults(results);
