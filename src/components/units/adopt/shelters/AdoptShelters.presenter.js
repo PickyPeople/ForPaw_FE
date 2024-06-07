@@ -2,10 +2,6 @@ import * as S from "./AdoptShelters.styles";
 import Image from "next/image";
 
 export default function AdpotSheltersUI(props) {
-  const sheltersToDisplay = props.searchSuccess
-    ? props.searchResults
-    : props.sortedShelters;
-
   return (
     <>
       <S.WrapperContents>
@@ -17,12 +13,14 @@ export default function AdpotSheltersUI(props) {
           disabled={!props.isMapLoaded}
         />
         <S.MapDisplay ref={props.mapRef}>
-          <Image
+          {/* <Image
             src="/images/shelter/loading.gif"
             alt="map_1"
             width={200}
             height={200}
-          />
+            priority
+          /> */}
+          <S.LoadingImg></S.LoadingImg>
         </S.MapDisplay>
         <S.MapCurrentLocationIcon
           id="map-current-icon"
@@ -41,9 +39,10 @@ export default function AdpotSheltersUI(props) {
           </S.MapInfoDragBlock>
           <S.MapInfoBlock>
             {props.isMapLoaded &&
-              sheltersToDisplay.map((shelter) => (
+              props.sheltersToDisplay.map((shelter) => (
                 <S.MapInfoItem
                   key={shelter.id}
+                  data-id={shelter.id}
                   onClick={() => props.shelterLocationDetail(shelter)}
                   isSelected={shelter.id === props.selectedShelterId}
                 >
@@ -56,7 +55,9 @@ export default function AdpotSheltersUI(props) {
                     />
                   </S.MapInfoImg>
                   <S.MapInfoDetailBlock>
-                    <S.ShelterName>{shelter.name}</S.ShelterName>
+                    <S.ShelterName>
+                      {props.truncateString(shelter.name, 13)}
+                    </S.ShelterName>
                     <S.ShelterPlace>
                       {shelter.province} {shelter.district}
                     </S.ShelterPlace>

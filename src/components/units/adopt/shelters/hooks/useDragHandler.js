@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export const useDragHandler = (isMapLoaded) => {
   useEffect(() => {
@@ -26,7 +26,6 @@ export const useDragHandler = (isMapLoaded) => {
         newY = Math.min(maxY, newY);
         let currentIconY = newY - 67;
 
-        // mapInfoContainer.style.transform = `translateY(${newY - originalY}px)`;
         mapInfoContainer.style.top = `${newY}px`; // top 속성으로 위치 조절
         mapCurrentIcon.style.top = `${currentIconY}px`;
       };
