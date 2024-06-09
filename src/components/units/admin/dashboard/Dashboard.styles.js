@@ -7,62 +7,6 @@ export const WrapperContainer = styled.div`
   flex-direction: row;
 `;
 
-export const MenuContainer = styled.div`
-  width: 15vw;
-  height: 100vh;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-export const MenuBlock = styled.div`
-  width: 12vw;
-  height: 21.484vh;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  gap: 0.488vh;
-`;
-
-export const MenuItem = styled.div`
-  width: 100%;
-  height: 3.906vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  border-radius: 10px;
-  cursor: pointer;
-
-  :hover {
-    background-color: #F4F4F5;
-  }
-
-  padding-left: 15px;
-`;
-
-export const MenuImgBox = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const MenuTitle = styled.p`
-  width: 6.25vw;
-  height: 100%;
-  font-size: 1.111vw;
-  font-weight: bold;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding-left: 0.347vw;
-`;
-
 export const ContentsContainer = styled.div`
   width: 85vw;
   height: 100vh;
@@ -71,21 +15,21 @@ export const ContentsContainer = styled.div`
 
 export const ContentsBlock = styled.div`
   width: 77.986vw;
-  height: 63.086vh;
-  background-color: beige;
+  height: 69.727vh;
+  margin-top: 40px;
 `;
 
 export const Title = styled.div`
-  width: 899px;
+  width: 900px;
   height: 68px;
-  font-size: 26px;
+  font-size: 36px;
   font-weight: bold;
 
   border-bottom: 1px solid #E9ECEF;
 `;
 
 export const ContentItems = styled.div`
-  width: 899px;
+  width: 900px;
   height: 52px;
 
   display: flex;
@@ -127,9 +71,111 @@ export const ContentCount = styled.div`
 `;
 
 export const  GraphContainer = styled.div`
-  width: 100%;
-  height: 380px;
+  width: 1103px;
+  height: 383px;
   border-bottom: 1px solid #E9ECEF;
+
+  display: flex;
+  flex-direction: row;
 `;
 
+export const GraphBlock = styled.div`
+  width: 538px;
+  height: 100%;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const GraphItem = styled.div`
+  width: 515px;
+  height: 325px;
+`;
+
+export const GraphTitle = styled.p`
+  width: 150px;
+  height: 50px;
+  font-size: 18px;
+  font-weight: bold;
+`;
+
+export const Graph = styled.div`
+  width: 100%;
+  height: 249px;
+  background-color: aqua;
+`;
+
+export const DateBlock = styled.div`
+  width: 100%;
+  height: 32px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+`;
+
+export const Date = styled.span`
+  width: 40px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const TodayInfoContainer = styled.div`
+  width: 900px;
+  height: 118px;
+  margin-top: 23px;
+  
+  display: flex;
+  flex-direction: column;
+`;
+
+export const CurrentDate = styled.p`
+  width: 100%;
+  height: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  padding-left: 10px;
+  
+`;
+
+export const CurrentInfoBlock = styled.div`
+  width: 100%;
+  height: 45px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #F4F4F5;
+  border-radius: 10px;
+`;
+
+export const CurrentInfoItem = styled.div`
+  width: 113px;
+  height: 50px;
+  font-size: 18px;
+  font-weight: bold;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const CurrentInfoNum = styled.div`
+  width: auto;
+  height: 50px;
+  font-size: 15px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
