@@ -17,9 +17,10 @@ const example = {
         subDistrict: "두산동",
         profileURL: "/images/volunteer/volunteer_1.svg",
         likeNum: 18,
+        isLike: false
       },
       {
-        id: 15,
+        id: 16,
         name: "고양이 사랑",
         description: "집사들의 모임입니다!",
         participation: 20,
@@ -28,6 +29,7 @@ const example = {
         subDistrict: "두산동",
         profileURL: "/images/volunteer/volunteer_1.svg",
         likeNum: 18,
+        isLike: false
       },
     ],
     newGroups: [
@@ -59,6 +61,7 @@ const example = {
         subDistrict: "두산동",
         profileURL: "/images/volunteer/volunteer_1.svg",
         likeNum: 18,
+        isLike: false
       },
       {
         id: 16,
@@ -70,6 +73,7 @@ const example = {
         subDistrict: "두산동",
         profileURL: "/images/volunteer/volunteer_1.svg",
         likeNum: 20,
+        isLike: false
       },
     ],
     myGroups: [
@@ -83,6 +87,7 @@ const example = {
         subDistrict: "두산동",
         profileURL: "/images/volunteer/volunteer_1.svg",
         likeNum: 18,
+        isLike: false
       },
       {
         id: 16,
@@ -94,6 +99,7 @@ const example = {
         subDistrict: "두산동",
         profileURL: "/images/volunteer/volunteer_1.svg",
         likeNum: 20,
+        isLike: false
       },
     ],
   },
