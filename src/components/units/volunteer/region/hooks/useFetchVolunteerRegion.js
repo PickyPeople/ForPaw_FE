@@ -18,6 +18,7 @@ const example = {
         subDistrict: "두산동",
         profileURL: "/images/volunteer/volunteer_1.svg",
         likeNum: 18,
+        isLike: false
       },
       {
         id: 18,
@@ -29,6 +30,7 @@ const example = {
         subDistrict: "두산동",
         profileURL: "/images/volunteer/volunteer_1.svg",
         likeNum: 20,
+        isLike: false
       },
     ],
   },
@@ -72,5 +74,13 @@ export default function useFetchVolunteerRegion() {
     }
   }, [pageNumber, volunteerRegionInfos]);
 
-  return { volunteerRegionInfos, loadUpdatedVolunteerRegionData };
+  const handleToggleLike = (localId) => {
+    setVolunteerRegionInfos((currentVolunteer) =>
+      currentVolunteer.map((local) =>
+        local.id === localId ? {...local, isLike: !local.isLike} : local
+      )
+    )
+  }
+
+  return { volunteerRegionInfos, loadUpdatedVolunteerRegionData, handleToggleLike };
 }

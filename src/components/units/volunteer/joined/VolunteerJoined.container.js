@@ -4,9 +4,13 @@ import VolunteerHandler from "../VolunteerHandler.container";
 import VolunteerJoinedUI from "./VolunteerJoined.presenter";
 import { useRouter } from "next/router";
 import useFetchVolunteerJoined from "./hooks/useFetchVolunteerJoined";
+import { useLoginStatusCheck } from "../../../commons/hooks/useLoginStatusCheck";
+import useModalStore from "../../../../store/useModalStore";
 
 export default function VolunteerJoined() {
   const router = useRouter();
+  const { isLoggedIn } = useLoginStatusCheck();
+  const { openModal } = useModalStore();
 
   const navigateTo = (path) => () => {
     router.push({
@@ -16,8 +20,16 @@ export default function VolunteerJoined() {
       },
     });
   };
-  
-  const { volunteerJoinedInfos, loadUpdatedVolunteerJoinedData } = useFetchVolunteerJoined();
+
+  const { volunteerJoinedInfos, loadUpdatedVolunteerJoinedData, handleToggleLike } = useFetchVolunteerJoined();
+
+  const handleToggleClick = (volunteerId) => {
+    if (!isLoggedIn) {
+      openModal();
+    } else {
+      handleToggleLike(volunteerId);
+    }
+  }
 
   return (
     <>
@@ -27,6 +39,7 @@ export default function VolunteerJoined() {
         navigateTo={navigateTo}
         volunteerJoinedInfos={volunteerJoinedInfos}
         loadUpdatedVolunteerJoinedData={loadUpdatedVolunteerJoinedData}
+        handleToggleClick={handleToggleClick}
       />
       <Navigation />
     </>

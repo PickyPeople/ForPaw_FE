@@ -16,11 +16,11 @@ export default function VolunteerRecommend() {
 
   const { volunteerRecommendInfos, handleToggleLike } = useFetchVolunteerRecommend();
 
-  const handleToggleClick = (volunteerRecommendId) => {
+  const handleToggleClick = (volunteerId) => {
     if (!isLoggedIn) {
       openModal();
     } else {
-      handleToggleLike(volunteerRecommendId);
+      handleToggleLike(volunteerId);
     }
   }
 

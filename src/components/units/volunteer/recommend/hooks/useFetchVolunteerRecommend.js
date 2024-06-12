@@ -9,8 +9,8 @@ export default function useFetchVolunteerRecommend() {
 
   const handleToggleLike = (recommendId) => {
     setVolunteerRecommendInfos((currentVolunteer) =>
-      currentVolunteer.map((recmmend) =>
-        recmmend.id === recommendId ? {...recmmend, isLike: !recmmend.isLike} : recmmend
+      currentVolunteer.map((recommend) =>
+        recommend.id === recommendId ? {...recommend, isLike: !recommend.isLike} : recommend
       )
     )
   }

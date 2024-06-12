@@ -83,9 +83,18 @@ export default function VolunteerRegionUI(props) {
                 width={324}
                 height={183}
               />
-              <S.VolunteerLikeBlock>
+              <S.VolunteerLikeBlock
+                onClick={(event) => {
+                  event.stopPropagation();
+                  props.handleToggleClick(infos.id);
+                }}
+              >
                 <Image
-                  src="/images/volunteer/volunteer_like_icon.svg"
+                  src={
+                    infos.isLike
+                      ? "/images/volunteer/volunteer_like_icon.svg"
+                      : "/images/volunteer/volunteer_unlike_icon.svg"
+                  }
                   alt="volunteer_like_icon"
                   width={17}
                   height={14}
@@ -118,7 +127,9 @@ export default function VolunteerRegionUI(props) {
           </S.VolunteerBlock>
         ))}
         <S.MoreBtn onClick={props.loadUpdatedVolunteerRegionData}>더보기</S.MoreBtn>
-        <S.VolunteerAddIcon>
+        <S.VolunteerAddIcon
+          onClick={props.navigateTo("/volunteer/create_volunteer")}
+        >
           <Image
             src="/images/volunteer/volunteer_add_icon.svg"
             alt="volunteer_add_icon"
