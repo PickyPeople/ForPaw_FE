@@ -2,7 +2,7 @@ import * as S from "./Inquiries.styles";
 import Image from "next/image";
 import AdminHandler from "../adminHandler/AdminHandler.container";
 
-export default function InquiriesUI() {
+export default function InquiriesUI(props) {
   return (
     <>
       <S.WrapperContainer>
@@ -20,71 +20,23 @@ export default function InquiriesUI() {
                 <S.State>상태</S.State>
               </S.UserInfoTitleBlock>
               <S.UserInfoBlock>
-                <S.UserInfoItems>
-                  <S.UserInfoItem>
-                    <S.RequestNum>23</S.RequestNum>
-                    <S.RequestDate>2024-04-25 14:35</S.RequestDate>
-                    <S.Nickname>user 12</S.Nickname>
-                    <S.Kind>시스템 오류</S.Kind>
-                    <S.InquiriesTitle>최근에 입양을 신청했는데..</S.InquiriesTitle>
-                    <S.State>완료</S.State>
-                  </S.UserInfoItem>
-                  <S.ChangeBtnBlock>
-                    <S.ChangeBtn>처리</S.ChangeBtn>
-                  </S.ChangeBtnBlock>
-                </S.UserInfoItems>
-                <S.UserInfoItems>
-                  <S.UserInfoItem>
-                    <S.RequestNum>24</S.RequestNum>
-                    <S.RequestDate>2024-04-25 14:35</S.RequestDate>
-                    <S.Nickname>user 13</S.Nickname>
-                    <S.Kind>기타</S.Kind>
-                    <S.InquiriesTitle>삭제한 게시글 복구 가능할..</S.InquiriesTitle>
-                    <S.State>진행중</S.State>
-                  </S.UserInfoItem>
-                  <S.ChangeBtnBlock>
-                    <S.ChangeBtn>처리</S.ChangeBtn>
-                  </S.ChangeBtnBlock>
-                </S.UserInfoItems>
-                <S.UserInfoItems>
-                  <S.UserInfoItem>
-                    <S.RequestNum>24</S.RequestNum>
-                    <S.RequestDate>2024-04-25 14:35</S.RequestDate>
-                    <S.Nickname>user 13</S.Nickname>
-                    <S.Kind>기타</S.Kind>
-                    <S.InquiriesTitle>삭제한 게시글 복구 가능할..</S.InquiriesTitle>
-                    <S.State>진행중</S.State>
-                  </S.UserInfoItem>
-                  <S.ChangeBtnBlock>
-                    <S.ChangeBtn>처리</S.ChangeBtn>
-                  </S.ChangeBtnBlock>
-                </S.UserInfoItems>
-                <S.UserInfoItems>
-                  <S.UserInfoItem>
-                    <S.RequestNum>24</S.RequestNum>
-                    <S.RequestDate>2024-04-25 14:35</S.RequestDate>
-                    <S.Nickname>user 13</S.Nickname>
-                    <S.Kind>기타</S.Kind>
-                    <S.InquiriesTitle>삭제한 게시글 복구 가능할..</S.InquiriesTitle>
-                    <S.State>진행중</S.State>
-                  </S.UserInfoItem>
-                  <S.ChangeBtnBlock>
-                    <S.ChangeBtn>처리</S.ChangeBtn>
-                  </S.ChangeBtnBlock>
-                </S.UserInfoItems>
-                <S.UserInfoItems>
-                  <S.UserInfoItem>
-                    <S.RequestNum>24</S.RequestNum>
-                    <S.RequestDate>2024-04-25 14:35</S.RequestDate>
-                    <S.Nickname>user 13</S.Nickname>
-                    <S.Kind>기타</S.Kind>
-                    <S.InquiriesTitle>삭제한 게시글 복구 가능할..</S.InquiriesTitle>
-                    <S.State>진행중</S.State>
-                  </S.UserInfoItem>
-                  <S.ChangeBtnBlock>
-                    <S.ChangeBtn>처리</S.ChangeBtn>
-                  </S.ChangeBtnBlock>
-                </S.UserInfoItems>
+                {props.inquiriesInfos.map((infos, index) => (
+                  <S.UserInfoItems>
+                    <S.UserInfoItem>
+                      <S.RequestNum>{infos.inquiryId}</S.RequestNum>
+                      <S.RequestDate>{infos.inquiryDate}</S.RequestDate>
+                      <S.Nickname>{infos.userNickName}</S.Nickname>
+                      <S.Kind>{infos.type}</S.Kind>
+                      <S.InquiriesTitle>
+                        {infos.subject}
+                      </S.InquiriesTitle>
+                      <S.State>{infos.status === "PROCESSING" ? "진행중" : "완료"}</S.State>
+                    </S.UserInfoItem>
+                    <S.ChangeBtnBlock>
+                      <S.ChangeBtn onClick={props.changeStatus}>처리</S.ChangeBtn>
+                    </S.ChangeBtnBlock>
+                  </S.UserInfoItems>
+                ))}
               </S.UserInfoBlock>
               <S.PageBlock>
                 <S.PageItem>
@@ -99,5 +51,5 @@ export default function InquiriesUI() {
         </S.ContentsContainer>
       </S.WrapperContainer>
     </>
-  )
+  );
 }

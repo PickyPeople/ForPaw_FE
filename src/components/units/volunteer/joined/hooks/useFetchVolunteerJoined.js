@@ -19,6 +19,7 @@ const example = {
         subDistrict: "두산동",
         profileURL: "/images/volunteer/volunteer_1.svg",
         likeNum: 9,
+        isLike: false
       },
       {
         id: 18,
@@ -30,6 +31,7 @@ const example = {
         subDistrict: "두산동",
         profileURL: "/images/volunteer/volunteer_1.svg",
         likeNum: 53,
+        isLike: false
       },
     ],
   },
@@ -54,7 +56,7 @@ export default function useFetchVolunteerJoined() {
     }
   }, [])
 
-  const loadUpdatedVolunteerJoinedData = async() => { //api문서를 더보기 버튼으로 fetch해 오는 기능
+  const loadUpdatedVolunteerJoinedData = async () => { //api문서를 더보기 버튼으로 fetch해 오는 기능
     const fetchedVolunteerJoinedData = example.result.myGroups //여기에 한홍이형이 불러온 api주소를 입력해준다.
     setVolunteerJoinedInfos(prevState => [...prevState, ...fetchedVolunteerJoinedData]);
     setPageNumber(prevPageNumber => prevPageNumber + 1);
@@ -70,6 +72,14 @@ export default function useFetchVolunteerJoined() {
     }
   }, [pageNumber, volunteerJoinedInfos]);
 
+  const handleToggleLike = (myGroupId) => {
+    setVolunteerJoinedInfos((currentVolunteer) =>
+      currentVolunteer.map((myGroups) =>
+        myGroups.id === myGroupId ? {...myGroups, isLike: !myGroups.isLike} : myGroups
+      )
+    )
+  }
+
 
   // const loadUpdatedVolunteerJoinedData = async () => {
   //       const volunteerJoinedInfosData =  await fetchVolunteerJoined(); //example변수
@@ -77,5 +87,5 @@ export default function useFetchVolunteerJoined() {
   //       setVolunteerJoinedInfos(prevState => [...prevState, ...fetchVolunteerJoinedData]);
   // };
 
-  return { volunteerJoinedInfos, loadUpdatedVolunteerJoinedData };
+  return { volunteerJoinedInfos, loadUpdatedVolunteerJoinedData, handleToggleLike };
 }

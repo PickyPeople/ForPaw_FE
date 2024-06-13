@@ -33,6 +33,8 @@ export const MenuItem = styled.div`
     background-color: #F4F4F5;
   }
 
+  background-color: ${(props) => (props.active? "#F4F4F5" : "white")};
+
   padding-left: 15px;
 `;
 

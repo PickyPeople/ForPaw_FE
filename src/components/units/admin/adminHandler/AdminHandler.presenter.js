@@ -6,7 +6,10 @@ export default function AdminHandlerUI(props) {
     <>
       <S.MenuContainer>
         <S.MenuBlock>
-          <S.MenuItem>
+          <S.MenuItem
+            onClick={props.navigateTo(props.paths.dashboard)}
+            active={props.isActive(props.paths.dashboard)}
+          >
             <Image
               src="/images/admin/dashboard.svg"
               alt="dashboard_Icon"
@@ -20,7 +23,10 @@ export default function AdminHandlerUI(props) {
               대시보드
             </S.MenuTitle>
           </S.MenuItem>
-          <S.MenuItem>
+          <S.MenuItem
+            onClick={props.navigateTo(props.paths.member_management)}
+            active={props.isActive(props.paths.member_management)}
+          >
             <Image
               src="/images/admin/members.svg"
               alt="members"
@@ -29,7 +35,10 @@ export default function AdminHandlerUI(props) {
             />
             <S.MenuTitle>구성원 관리</S.MenuTitle>
           </S.MenuItem>
-          <S.MenuItem>
+          <S.MenuItem
+            onClick={props.navigateTo(props.paths.adopt_request)}
+            active={props.isActive(props.paths.adopt_request)}
+          >
             <Image
               src="/images/admin/folder.svg"
               alt="members"
@@ -38,7 +47,10 @@ export default function AdminHandlerUI(props) {
             />
             <S.MenuTitle>입양 요청</S.MenuTitle>
           </S.MenuItem>
-          <S.MenuItem>
+          <S.MenuItem
+            onClick={props.navigateTo(props.paths.inquiries)}
+            active={props.isActive(props.paths.inquiries)}
+          >
             <Image
               src="/images/admin/folder.svg"
               alt="members"
@@ -47,7 +59,10 @@ export default function AdminHandlerUI(props) {
             />
             <S.MenuTitle>문의 내역</S.MenuTitle>
           </S.MenuItem>
-          <S.MenuItem>
+          <S.MenuItem
+            onClick={props.navigateTo(props.paths.reports)}
+            active={props.isActive(props.paths.reports)}
+          >
             <Image
               src="/images/admin/folder.svg"
               alt="members"

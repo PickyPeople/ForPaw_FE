@@ -2,7 +2,7 @@ import * as S from "./Reports.styles";
 import Image from "next/image";
 import AdminHandler from "../adminHandler/AdminHandler.container";
 
-export default function ReportsUI() {
+export default function ReportsUI(props) {
   return (
     <>
       <S.WrapperContainer>
@@ -20,81 +20,23 @@ export default function ReportsUI() {
                 <S.State>상태</S.State>
               </S.UserInfoTitleBlock>
               <S.UserInfoBlock>
-                <S.UserInfoItems>
-                  <S.UserInfoItem>
-                    <S.RequestNum>23</S.RequestNum>
-                    <S.RequestDate>2024-04-25 14:35</S.RequestDate>
-                    <S.ContentKindNameBlock>
-                      <S.ContentKindName>게시글</S.ContentKindName>
-                    </S.ContentKindNameBlock>
-                    <S.Kind>게시판 성격에 부적절함</S.Kind>
-                    <S.Reason>잘못된 카테고리</S.Reason>
-                    <S.State>완료</S.State>
-                  </S.UserInfoItem>
-                  <S.ChangeBtnBlock>
-                    <S.ChangeBtn>처리</S.ChangeBtn>
-                  </S.ChangeBtnBlock>
-                </S.UserInfoItems>
-                <S.UserInfoItems>
-                  <S.UserInfoItem>
-                    <S.RequestNum>23</S.RequestNum>
-                    <S.RequestDate>2024-04-25 14:35</S.RequestDate>
-                    <S.ContentKindNameBlock>
-                      <S.ContentKindName>게시글</S.ContentKindName>
-                    </S.ContentKindNameBlock>
-                    <S.Kind>게시판 성격에 부적절함</S.Kind>
-                    <S.Reason>잘못된 카테고리</S.Reason>
-                    <S.State>완료</S.State>
-                  </S.UserInfoItem>
-                  <S.ChangeBtnBlock>
-                    <S.ChangeBtn>처리</S.ChangeBtn>
-                  </S.ChangeBtnBlock>
-                </S.UserInfoItems>
-                <S.UserInfoItems>
-                  <S.UserInfoItem>
-                    <S.RequestNum>23</S.RequestNum>
-                    <S.RequestDate>2024-04-25 14:35</S.RequestDate>
-                    <S.ContentKindNameBlock>
-                      <S.ContentKindName>게시글</S.ContentKindName>
-                    </S.ContentKindNameBlock>
-                    <S.Kind>게시판 성격에 부적절함</S.Kind>
-                    <S.Reason>잘못된 카테고리</S.Reason>
-                    <S.State>완료</S.State>
-                  </S.UserInfoItem>
-                  <S.ChangeBtnBlock>
-                    <S.ChangeBtn>처리</S.ChangeBtn>
-                  </S.ChangeBtnBlock>
-                </S.UserInfoItems>
-                <S.UserInfoItems>
-                  <S.UserInfoItem>
-                    <S.RequestNum>23</S.RequestNum>
-                    <S.RequestDate>2024-04-25 14:35</S.RequestDate>
-                    <S.ContentKindNameBlock>
-                      <S.ContentKindName>댓글</S.ContentKindName>
-                    </S.ContentKindNameBlock>
-                    <S.Kind>게시판 성격에 부적절함</S.Kind>
-                    <S.Reason>잘못된 카테고리</S.Reason>
-                    <S.State>완료</S.State>
-                  </S.UserInfoItem>
-                  <S.ChangeBtnBlock>
-                    <S.ChangeBtn>처리</S.ChangeBtn>
-                  </S.ChangeBtnBlock>
-                </S.UserInfoItems>
-                <S.UserInfoItems>
-                  <S.UserInfoItem>
-                    <S.RequestNum>23</S.RequestNum>
-                    <S.RequestDate>2024-04-25 14:35</S.RequestDate>
-                    <S.ContentKindNameBlock>
-                      <S.ContentKindName>게시글</S.ContentKindName>
-                    </S.ContentKindNameBlock>
-                    <S.Kind>게시판 성격에 부적절함</S.Kind>
-                    <S.Reason>잘못된 카테고리</S.Reason>
-                    <S.State>완료</S.State>
-                  </S.UserInfoItem>
-                  <S.ChangeBtnBlock>
-                    <S.ChangeBtn>처리</S.ChangeBtn>
-                  </S.ChangeBtnBlock>
-                </S.UserInfoItems>
+                {props.reportInfos.map((infos, index) => (
+                  <S.UserInfoItems>
+                    <S.UserInfoItem>
+                      <S.RequestNum>{infos.id}</S.RequestNum>
+                      <S.RequestDate>{infos.reportDate}</S.RequestDate>
+                      <S.ContentKindNameBlock>
+                        <S.ContentKindName>게시글</S.ContentKindName>
+                      </S.ContentKindNameBlock>
+                      <S.Kind>{infos.reportType}</S.Kind>
+                      <S.Reason>{infos.reason}</S.Reason>
+                      <S.State>{infos.status === "PROCESSING" ? "진행중" : "완료"}</S.State>
+                    </S.UserInfoItem>
+                    <S.ChangeBtnBlock>
+                      <S.ChangeBtn>처리</S.ChangeBtn>
+                    </S.ChangeBtnBlock>
+                  </S.UserInfoItems>
+                ))}
               </S.UserInfoBlock>
               <S.PageBlock>
                 <S.PageItem>
@@ -109,5 +51,5 @@ export default function ReportsUI() {
         </S.ContentsContainer>
       </S.WrapperContainer>
     </>
-  )
+  );
 }
