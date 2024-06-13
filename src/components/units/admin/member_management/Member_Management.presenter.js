@@ -3,7 +3,7 @@ import Image from "next/image";
 import AdminHandler from "../adminHandler/AdminHandler.container";
 
 
-export default function MemberManagementUI() {
+export default function MemberManagementUI(props) {
   return (
     <>
       <S.WrapperContainer>
@@ -23,81 +23,23 @@ export default function MemberManagementUI() {
                 <S.Active>활성화</S.Active>
               </S.UserInfoTitleBlock>
               <S.UserInfoBlock>
-                <S.UserInfoItems>
-                  <S.UserInfoItem>
-                    <S.Nickname>hoyoi</S.Nickname>
-                    <S.Email>jjyjjh33@gmail.com</S.Email>
-                    <S.SignDay>2024-01-10</S.SignDay>
-                    <S.CurrentLogin>2024-04-25 14:35</S.CurrentLogin>
-                    <S.Status>Admin</S.Status>
-                    <S.Adopting>2</S.Adopting>
-                    <S.Adopted>1</S.Adopted>
-                    <S.Active>O</S.Active>
-                  </S.UserInfoItem>
-                  <S.ChangeBtnBlock>
-                    <S.ChangeBtn>변경</S.ChangeBtn>
-                  </S.ChangeBtnBlock>
-                </S.UserInfoItems>
-                <S.UserInfoItems>
-                  <S.UserInfoItem>
-                    <S.Nickname>hoyoi</S.Nickname>
-                    <S.Email>jjyjjh33@gmail.com</S.Email>
-                    <S.SignDay>2024-01-10</S.SignDay>
-                    <S.CurrentLogin>2024-04-25 14:35</S.CurrentLogin>
-                    <S.Status>Admin</S.Status>
-                    <S.Adopting>2</S.Adopting>
-                    <S.Adopted>1</S.Adopted>
-                    <S.Active>O</S.Active>
-                  </S.UserInfoItem>
-                  <S.ChangeBtnBlock>
-                    <S.ChangeBtn>변경</S.ChangeBtn>
-                  </S.ChangeBtnBlock>
-                </S.UserInfoItems>
-                <S.UserInfoItems>
-                  <S.UserInfoItem>
-                    <S.Nickname>hoyoi</S.Nickname>
-                    <S.Email>jjyjjh33@gmail.com</S.Email>
-                    <S.SignDay>2024-01-10</S.SignDay>
-                    <S.CurrentLogin>2024-04-25 14:35</S.CurrentLogin>
-                    <S.Status>Admin</S.Status>
-                    <S.Adopting>2</S.Adopting>
-                    <S.Adopted>1</S.Adopted>
-                    <S.Active>O</S.Active>
-                  </S.UserInfoItem>
-                  <S.ChangeBtnBlock>
-                    <S.ChangeBtn>변경</S.ChangeBtn>
-                  </S.ChangeBtnBlock>
-                </S.UserInfoItems>
-                <S.UserInfoItems>
-                  <S.UserInfoItem>
-                    <S.Nickname>hoyoi</S.Nickname>
-                    <S.Email>jjyjjh33@gmail.com</S.Email>
-                    <S.SignDay>2024-01-10</S.SignDay>
-                    <S.CurrentLogin>2024-04-25 14:35</S.CurrentLogin>
-                    <S.Status>Admin</S.Status>
-                    <S.Adopting>2</S.Adopting>
-                    <S.Adopted>1</S.Adopted>
-                    <S.Active>O</S.Active>
-                  </S.UserInfoItem>
-                  <S.ChangeBtnBlock>
-                    <S.ChangeBtn>변경</S.ChangeBtn>
-                  </S.ChangeBtnBlock>
-                </S.UserInfoItems>
-                <S.UserInfoItems>
-                  <S.UserInfoItem>
-                    <S.Nickname>hoyoi</S.Nickname>
-                    <S.Email>jjyjjh33@gmail.com</S.Email>
-                    <S.SignDay>2024-01-10</S.SignDay>
-                    <S.CurrentLogin>2024-04-25 14:35</S.CurrentLogin>
-                    <S.Status>Admin</S.Status>
-                    <S.Adopting>2</S.Adopting>
-                    <S.Adopted>1</S.Adopted>
-                    <S.Active>O</S.Active>
-                  </S.UserInfoItem>
-                  <S.ChangeBtnBlock>
-                    <S.ChangeBtn>변경</S.ChangeBtn>
-                  </S.ChangeBtnBlock>
-                </S.UserInfoItems>
+                {props.memberInfos.map((infos, index) => (
+                  <S.UserInfoItems>
+                    <S.UserInfoItem>
+                      <S.Nickname>{infos.nickName}</S.Nickname>
+                      <S.Email>{infos.email}</S.Email>
+                      <S.SignDay>{infos.signUpDate}</S.SignDay>
+                      <S.CurrentLogin>{infos.lastLogin}</S.CurrentLogin>
+                      <S.Status>{infos.role}</S.Status>
+                      <S.Adopting>{infos.applicationsSubmitted}</S.Adopting>
+                      <S.Adopted>{infos.applicationsCompleted}</S.Adopted>
+                      <S.Active>{infos.isActive ? "O" : "X"}</S.Active>
+                    </S.UserInfoItem>
+                    <S.ChangeBtnBlock>
+                      <S.ChangeBtn onClick={props.changeStatus}>변경</S.ChangeBtn>
+                    </S.ChangeBtnBlock>
+                  </S.UserInfoItems>
+                ))}
               </S.UserInfoBlock>
               <S.PageBlock>
                 <S.PageItem>

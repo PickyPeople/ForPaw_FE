@@ -3,14 +3,26 @@ import Navigation from "../../../commons/navigation/Navigation.container";
 import VolunteerHandler from "../VolunteerHandler.container";
 import VolunteerRecommendUI from "./VolunteerRecommend.presenter";
 import { useRouter } from "next/router";
-import useFetchVolunteer from "../hooks/useFetchVolunteer";
+import useFetchVolunteerRecommend from "./hooks/useFetchVolunteerRecommend";
+import { useLoginStatusCheck } from "../../../commons/hooks/useLoginStatusCheck";
+import useModalStore from "../../../../store/useModalStore";
 
 export default function VolunteerRecommend() {
   const router = useRouter();
+  const { isLoggedIn } = useLoginStatusCheck();
+  const { openModal } = useModalStore()
 
   const navigateTo = (path) => () => router.push(path);
 
-  const { volunteerInfos } = useFetchVolunteer();
+  const { volunteerRecommendInfos, handleToggleLike } = useFetchVolunteerRecommend();
+
+  const handleToggleClick = (volunteerId) => {
+    if (!isLoggedIn) {
+      openModal();
+    } else {
+      handleToggleLike(volunteerId);
+    }
+  }
 
   return (
     <>
@@ -18,7 +30,8 @@ export default function VolunteerRecommend() {
       <VolunteerHandler />
       <VolunteerRecommendUI
         navigateTo={navigateTo}
-        volunteerInfos={volunteerInfos}
+        volunteerRecommendInfos={volunteerRecommendInfos}
+        handleToggleClick={handleToggleClick}
       />
       <Navigation />
     </>
