@@ -77,7 +77,7 @@ export const AnimaiId = styled.div`
 `;
 
 export const Breed = styled.div`
-  width: 28px;
+  width: 60px;
   height: 100%;
 
   display: flex;

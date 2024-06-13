@@ -22,81 +22,23 @@ export default function AdoptRequestUI(props) {
                 <S.State>상태</S.State>
               </S.UserInfoTitleBlock>
               <S.UserInfoBlock>
-                <S.UserInfoItems>
-                  <S.UserInfoItem>
-                    <S.RequestNum>23</S.RequestNum>
-                    <S.RequestDate>2024-04-25 14:35</S.RequestDate>
-                    <S.AnimaiId>124</S.AnimaiId>
-                    <S.Breed>진도</S.Breed>
-                    <S.Sex>M</S.Sex>
-                    <S.Age>2024(60일미만)(년생)</S.Age>
-                    <S.ApplicantName>탁호용</S.ApplicantName>
-                    <S.State>진행중</S.State>
-                  </S.UserInfoItem>
-                  <S.ChangeBtnBlock>
-                    <S.ChangeBtn>처리</S.ChangeBtn>
-                  </S.ChangeBtnBlock>
-                </S.UserInfoItems>
-                <S.UserInfoItems>
-                  <S.UserInfoItem>
-                    <S.RequestNum>24</S.RequestNum>
-                    <S.RequestDate>2024-04-25 14:35</S.RequestDate>
-                    <S.AnimaiId>124</S.AnimaiId>
-                    <S.Breed>진도</S.Breed>
-                    <S.Sex>M</S.Sex>
-                    <S.Age>2024(60일미만)(년생)</S.Age>
-                    <S.ApplicantName>탁호용</S.ApplicantName>
-                    <S.State>진행중</S.State>
-                  </S.UserInfoItem>
-                  <S.ChangeBtnBlock>
-                    <S.ChangeBtn>처리</S.ChangeBtn>
-                  </S.ChangeBtnBlock>
-                </S.UserInfoItems>
-                <S.UserInfoItems>
-                  <S.UserInfoItem>
-                    <S.RequestNum>23</S.RequestNum>
-                    <S.RequestDate>2024-04-25 14:35</S.RequestDate>
-                    <S.AnimaiId>124</S.AnimaiId>
-                    <S.Breed>진도</S.Breed>
-                    <S.Sex>M</S.Sex>
-                    <S.Age>2024(60일미만)(년생)</S.Age>
-                    <S.ApplicantName>탁호용</S.ApplicantName>
-                    <S.State>진행중</S.State>
-                  </S.UserInfoItem>
-                  <S.ChangeBtnBlock>
-                    <S.ChangeBtn>처리</S.ChangeBtn>
-                  </S.ChangeBtnBlock>
-                </S.UserInfoItems>
-                <S.UserInfoItems>
-                  <S.UserInfoItem>
-                    <S.RequestNum>23</S.RequestNum>
-                    <S.RequestDate>2024-04-25 14:35</S.RequestDate>
-                    <S.AnimaiId>124</S.AnimaiId>
-                    <S.Breed>진도</S.Breed>
-                    <S.Sex>M</S.Sex>
-                    <S.Age>2024(60일미만)(년생)</S.Age>
-                    <S.ApplicantName>탁호용</S.ApplicantName>
-                    <S.State>진행중</S.State>
-                  </S.UserInfoItem>
-                  <S.ChangeBtnBlock>
-                    <S.ChangeBtn>처리</S.ChangeBtn>
-                  </S.ChangeBtnBlock>
-                </S.UserInfoItems>
-                <S.UserInfoItems>
-                  <S.UserInfoItem>
-                    <S.RequestNum>23</S.RequestNum>
-                    <S.RequestDate>2024-04-25 14:35</S.RequestDate>
-                    <S.AnimaiId>124</S.AnimaiId>
-                    <S.Breed>진도</S.Breed>
-                    <S.Sex>M</S.Sex>
-                    <S.Age>2024(60일미만)(년생)</S.Age>
-                    <S.ApplicantName>탁호용</S.ApplicantName>
-                    <S.State>진행중</S.State>
-                  </S.UserInfoItem>
-                  <S.ChangeBtnBlock>
-                    <S.ChangeBtn>처리</S.ChangeBtn>
-                  </S.ChangeBtnBlock>
-                </S.UserInfoItems>
+                {props.requestInfos.map((infos, indwx) => (
+                  <S.UserInfoItems>
+                    <S.UserInfoItem>
+                      <S.RequestNum>{infos.applyId}</S.RequestNum>
+                      <S.RequestDate>{infos.applyDate}</S.RequestDate>
+                      <S.AnimaiId>{infos.animalId}</S.AnimaiId>
+                      <S.Breed>{infos.kind}</S.Breed>
+                      <S.Sex>{infos.gender}</S.Sex>
+                      <S.Age>{infos.age}</S.Age>
+                      <S.ApplicantName>{infos.userName}</S.ApplicantName>
+                      <S.State>{infos.status === "PROCESSING" ? "진행중" : "완료"}</S.State>
+                    </S.UserInfoItem>
+                    <S.ChangeBtnBlock>
+                      <S.ChangeBtn>처리</S.ChangeBtn>
+                    </S.ChangeBtnBlock>
+                  </S.UserInfoItems>
+                ))}
               </S.UserInfoBlock>
               <S.PageBlock>
                 <S.PageItem>
@@ -111,5 +53,5 @@ export default function AdoptRequestUI(props) {
         </S.ContentsContainer>
       </S.WrapperContainer>
     </>
-  )
+  );
 }
