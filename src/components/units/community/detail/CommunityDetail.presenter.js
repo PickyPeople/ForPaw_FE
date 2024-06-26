@@ -62,6 +62,7 @@ export default function CommunityDetailUI(props) {
                 alt="community_detail_1"
                 width={224}
                 height={197}
+                priority
               />
             </S.BoardImg>
             <S.BoardImg>
@@ -70,6 +71,7 @@ export default function CommunityDetailUI(props) {
                 alt="community_detail_1"
                 width={224}
                 height={197}
+                priority
               />
             </S.BoardImg>
             <S.BoardImg>

@@ -8,7 +8,7 @@ export default function Headers() {
   const router = useRouter();
   const { isLoggedIn } = useLoginStatusCheck();
   const { openModal } = useModalStore();
-  const { navigateTo } = useNavigate();
+  const { navigateTo, navigateBack } = useNavigate();
 
   // 경로 패턴에 따른 타이틀 설정
   const getTitleByPath = (pathname) => {
@@ -57,24 +57,33 @@ export default function Headers() {
         router.push({
           pathname: path,
           query: {
-            name: `searchAdopt`
-          }
+            name: `searchAdopt`,
+          },
         });
       } else if (router.pathname.startsWith("/community")) {
         router.push({
           pathname: path,
           query: {
-            name: `searchPosts`
-          }
-        })
+            name: `searchPosts`,
+          },
+        });
       } else if (router.pathname.startsWith("/volunteer")) {
         router.push({
           pathname: path,
           query: {
-            name: `searchGroups`
-          }
-        })
+            name: `searchGroups`,
+          },
+        });
       }
+    }
+  };
+
+  const handleArrowClick = () => {
+    const currentPath = router.pathname;
+    if (currentPath.includes("community/questions/")) {
+      navigateBack();
+    } else {
+      navigateTo("/home")();
     }
   };
 
@@ -82,6 +91,7 @@ export default function Headers() {
     <HeadersUI
       title={title}
       navigateTo={navigateTo}
+      handleArrowClick={handleArrowClick}
       handleIconClick={handleIconClick}
       paths={paths}
     />

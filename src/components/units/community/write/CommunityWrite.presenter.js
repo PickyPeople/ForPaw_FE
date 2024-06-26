@@ -19,11 +19,13 @@ export default function CommunityWriteUI(props) {
         </S.Header>
       </S.WrapperHeader>
       <S.WrapperWrite>
-        <S.CategoryInput
-          type="text"
-          placeholder={props.category}
-          disabled
-        ></S.CategoryInput>
+        {props.category !== "궁금해요" && (
+          <S.CategoryInput
+            type="text"
+            placeholder={props.category}
+            disabled
+          ></S.CategoryInput>
+        )}
         <S.TitleInput type="text" placeholder="제목을 작성해주세요." />
         <S.TextInput type="text" placeholder="내용을 작성해주세요." />
         <S.PhotoWrapper>
