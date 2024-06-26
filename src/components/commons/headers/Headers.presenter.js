@@ -12,7 +12,7 @@ export default function HeadersUI(props) {
             alt="left_arrow_icon"
             width={15}
             height={25}
-            onClick={props.navigateTo("/home")}
+            onClick={props.handleArrowClick}
           />
           <S.Title>{props.title}</S.Title>
         </S.LeftArrowTitleContainer>

@@ -9,9 +9,9 @@ import useModalStore from "../../../../../src/store/useModalStore";
 
 export default function CommunityFostering() {
   const router = useRouter();
-  const { navigateTo } = useNavigate();
   const { isLoggedIn } = useLoginStatusCheck();
   const { openModal } = useModalStore();
+  const { navigateTo } = useNavigate();
 
   const handleAddIconClick = (path) => {
     if (!isLoggedIn) {
