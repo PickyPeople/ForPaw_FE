@@ -58,10 +58,8 @@ export default function AdpotSheltersUI(props) {
                     <S.ShelterName>
                       {props.truncateString(shelter.name, 13)}
                     </S.ShelterName>
-                    <S.ShelterPlace>
-                      {shelter.province} {shelter.district}
-                    </S.ShelterPlace>
-                    <S.ShelterStatus>영업중</S.ShelterStatus>
+                    <S.ShelterPlace>{shelter.careAddr}</S.ShelterPlace>
+                    <S.ShelterStatus>{shelter.careTel}</S.ShelterStatus>
                   </S.MapInfoDetailBlock>
                 </S.MapInfoItem>
               ))}
