@@ -1,10 +1,50 @@
 import styled from "@emotion/styled";
 
+export const UserInfoDetailContainer = styled.div`
+  background-color: white;
+  width: 761px;
+  height: 438px;
+  border-radius: 20px;
+  z-index: 999;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+`;
+
+export const CloseBtnBlock = styled.div`
+  width: 656px;
+  height: 28px;
+  padding-right: 15px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: self-end;
+`;
+
+export const CloseBtn = styled.div`
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+`;
+
 export const WrapperContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
+  position: relative;
+  top: 0;
+  left: 0;
+
+  filter: ${(props) => (props.active ? "brightness(0.5)" : "brightness(1.0)")};
 `;
 
 export const ContentsContainer = styled.div`

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { fetchReports } from "../Reports.queries";
 
 const example = {
@@ -35,10 +35,30 @@ const example = {
   },
 };
 
+function formatDate(isoString) {
+  const date = new Date(isoString);
+  const yyyy = date.getFullYear();
+  const mm = String(date.getMonth() + 1).padStart(2, "0"); // Months start at 0!
+  const dd = String(date.getDate()).padStart(2, "0");
+  const hh = String(date.getHours()).padStart(2, "0");
+  const min = String(date.getMinutes()).padStart(2, "0");
+  const ss = String(date.getSeconds()).padStart(2, "0");
+
+  return `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`;
+}
+
 export default function useFetchReports() {
   const [reportInfos, setReportInfos] = useState(example.result.reports);
 
-  return{
-    reportInfos
-  }
+  useEffect(() => {
+    const formattedReports = example.result.reports.map((report) => ({
+      ...report,
+      reportDate: formatDate(report.reportDate),
+    }));
+    setReportInfos(formattedReports);
+  }, []);
+
+  return {
+    reportInfos,
+  };
 }

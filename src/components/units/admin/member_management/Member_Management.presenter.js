@@ -2,11 +2,41 @@ import * as S from "./Member_Management.styles";
 import Image from "next/image";
 import AdminHandler from "../adminHandler/AdminHandler.container";
 
-
 export default function MemberManagementUI(props) {
   return (
     <>
-      <S.WrapperContainer>
+      {props.isUserInfoClicked ? (
+        <S.UserInfoDetailContainer>
+          <S.CloseBtnBlock>
+            <S.CloseBtn onClick={props.closeUserInfo}>
+              <Image src="/images/admin/x.svg" alt="x" width={24} height={24} />
+            </S.CloseBtn>
+          </S.CloseBtnBlock>
+          <S.BigTitle>
+            닉네임 - <S.UserInfo>user1</S.UserInfo>
+          </S.BigTitle>
+          <S.UserInfoDetailBlock>
+            <S.UserItem>
+              <S.UserStatus>권한</S.UserStatus>
+              <S.CurrentStatus>USER</S.CurrentStatus>
+              <S.StatusChgBtn>변경</S.StatusChgBtn>
+            </S.UserItem>
+            <S.ReasonTitle>정지 사유</S.ReasonTitle>
+            <S.ReasonTable contentEditable="true"></S.ReasonTable>
+            <S.UserItem>
+              <S.ReasonTitle>정지 기한</S.ReasonTitle>
+              <S.StopDays>90일</S.StopDays>
+            </S.UserItem>
+          </S.UserInfoDetailBlock>
+          <S.UserInfoDetailBtnContainer>
+            <S.UserInfoDetailBtnBlock>
+              <S.StopAccount>계정 정지</S.StopAccount>
+              <S.DeleteAccount>계정 삭제</S.DeleteAccount>
+            </S.UserInfoDetailBtnBlock>
+          </S.UserInfoDetailBtnContainer>
+        </S.UserInfoDetailContainer>
+      ) : null}
+      <S.WrapperContainer active={props.isUserInfoClicked}>
         <AdminHandler />
         <S.ContentsContainer>
           <S.ContentsBlock>
@@ -24,7 +54,7 @@ export default function MemberManagementUI(props) {
               </S.UserInfoTitleBlock>
               <S.UserInfoBlock>
                 {props.memberInfos.map((infos, index) => (
-                  <S.UserInfoItems>
+                  <S.UserInfoItems key={index}>
                     <S.UserInfoItem>
                       <S.Nickname>{infos.nickName}</S.Nickname>
                       <S.Email>{infos.email}</S.Email>
@@ -36,7 +66,9 @@ export default function MemberManagementUI(props) {
                       <S.Active>{infos.isActive ? "O" : "X"}</S.Active>
                     </S.UserInfoItem>
                     <S.ChangeBtnBlock>
-                      <S.ChangeBtn onClick={props.changeStatus}>변경</S.ChangeBtn>
+                      <S.ChangeBtn onClick={props.openUserInfo}>
+                        변경
+                      </S.ChangeBtn>
                     </S.ChangeBtnBlock>
                   </S.UserInfoItems>
                 ))}
@@ -54,5 +86,5 @@ export default function MemberManagementUI(props) {
         </S.ContentsContainer>
       </S.WrapperContainer>
     </>
-  )
+  );
 }

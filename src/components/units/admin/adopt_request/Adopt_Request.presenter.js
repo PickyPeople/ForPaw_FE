@@ -5,7 +5,16 @@ import AdminHandler from "../adminHandler/AdminHandler.container";
 export default function AdoptRequestUI(props) {
   return (
     <>
-      <S.WrapperContainer>
+      {props.isUserInfoClicked ? (
+        <S.UserInfoDetailContainer>
+          <S.CloseBtnBlock>
+            <S.CloseBtn onClick={props.closeUserInfo}>
+              <Image src="/images/admin/x.svg" alt="x" width={24} height={24} />
+            </S.CloseBtn>
+          </S.CloseBtnBlock>
+        </S.UserInfoDetailContainer>
+      ) : null}
+      <S.WrapperContainer active={props.isUserInfoClicked}>
         <AdminHandler />
         <S.ContentsContainer>
           <S.ContentsBlock>
@@ -32,10 +41,14 @@ export default function AdoptRequestUI(props) {
                       <S.Sex>{infos.gender}</S.Sex>
                       <S.Age>{infos.age}</S.Age>
                       <S.ApplicantName>{infos.userName}</S.ApplicantName>
-                      <S.State>{infos.status === "PROCESSING" ? "진행중" : "완료"}</S.State>
+                      <S.State>
+                        {infos.status === "PROCESSING" ? "진행중" : "완료"}
+                      </S.State>
                     </S.UserInfoItem>
                     <S.ChangeBtnBlock>
-                      <S.ChangeBtn>처리</S.ChangeBtn>
+                      <S.ChangeBtn onClick={props.openUserInfo}>
+                        처리
+                      </S.ChangeBtn>
                     </S.ChangeBtnBlock>
                   </S.UserInfoItems>
                 ))}

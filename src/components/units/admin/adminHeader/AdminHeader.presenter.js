@@ -1,11 +1,13 @@
 import * as S from "./AdminHeader.styles";
 import Image from "next/image";
 
-export default function AdminHeaderUI() {
+export default function AdminHeaderUI(props) {
 
   return (
     <>
-      <S.WrapperContainer>
+      <S.WrapperContainer
+        active={props.isUserInfoClicked}
+      >
         <S.HeaderContainer>
           <S.ImageBlock>
             <Image

@@ -4,18 +4,29 @@ import AdoptRequestUI from "./Adopt_Request.presenter";
 import useFetchAdoptRequest from "./hooks/useFetchAdoptRequest";
 
 export default function AdoptRequest() {
-  const [isClicked, setIsClicked] = useState(false);
+  const [isUserInfoClicked, setIsUserInfoClicked] = useState(false);
 
-  const changeStatus = () => {
-    setIsClicked(true);
+  const openUserInfo = () => {
+    setIsUserInfoClicked(true);
   };
+
+  const closeUserInfo = () => {
+    setIsUserInfoClicked(false);
+  }
 
   const { requestInfos } = useFetchAdoptRequest();
 
   return (
     <>
-      <AdminHeaderUI />
-      <AdoptRequestUI changeStatus={changeStatus} requestInfos={requestInfos} />
+      <AdminHeaderUI 
+        isUserInfoClicked={isUserInfoClicked}
+      />
+      <AdoptRequestUI
+        isUserInfoClicked={isUserInfoClicked}
+        openUserInfo={openUserInfo}
+        closeUserInfo={closeUserInfo}
+        requestInfos={requestInfos}
+      />
     </>
   );
 }

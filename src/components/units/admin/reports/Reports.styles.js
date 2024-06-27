@@ -55,7 +55,7 @@ export const RequestNum = styled.div`
 `;
 
 export const RequestDate = styled.div`
-  width: 132px;
+  width: 150px;
   height: 100%;
 
   display: flex;

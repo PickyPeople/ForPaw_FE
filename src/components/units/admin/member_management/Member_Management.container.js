@@ -4,19 +4,27 @@ import MemberManagementUI from "./Member_Management.presenter";
 import useFetchMemberManagement from "./hooks/useFetchMemberManagement";
 
 export default function MemberManagement() {
-  const [isClicked, setIsClicked] = useState(false);
+  const [isUserInfoClicked, setIsUserInfoClicked] = useState(false);
 
-  const changeStatus = () => {
-    setIsClicked(true);
+  const openUserInfo = () => {
+    setIsUserInfoClicked(true);
   };
+
+  const closeUserInfo = () => {
+    setIsUserInfoClicked(false);
+  }
 
   const { memberInfos } = useFetchMemberManagement();
 
   return (
     <>
-      <AdminHeaderUI />
+      <AdminHeaderUI
+        isUserInfoClicked={isUserInfoClicked} 
+      />
       <MemberManagementUI
-        changeStatus={changeStatus}
+        isUserInfoClicked={isUserInfoClicked}
+        openUserInfo={openUserInfo}
+        closeUserInfo={closeUserInfo}
         memberInfos={memberInfos}
       />
     </>
