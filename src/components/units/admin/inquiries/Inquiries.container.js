@@ -4,19 +4,25 @@ import InquiriesUI from "./Inquiries.presenter";
 import useFetchInquiries from "./hooks/useFetchInquiries";
 
 export default function Inquiries(props) {
-  const [isClicked, setIsClicked] = useState(false);
+  const [isUserInfoClicked, setIsUserInfoClicked] = useState(false);
 
-  const changeStatus = () => {
-    setIsClicked(true);
+  const openUserInfo = () => {
+    setIsUserInfoClicked(true);
+  };
+
+  const closeUserInfo = () => {
+    setIsUserInfoClicked(false);
   };
 
   const { inquiriesInfos } = useFetchInquiries();
 
   return (
     <>
-      <AdminHeaderUI />
+      <AdminHeaderUI isUserInfoClicked={isUserInfoClicked}/>
       <InquiriesUI
-        changeStatus={changeStatus}
+        isUserInfoClicked={isUserInfoClicked}
+        openUserInfo={openUserInfo}
+        closeUserInfo={closeUserInfo}
         inquiriesInfos={inquiriesInfos}
       />
     </>

@@ -5,7 +5,50 @@ import AdminHandler from "../adminHandler/AdminHandler.container";
 export default function ReportsUI(props) {
   return (
     <>
-      <S.WrapperContainer>
+      {props.isUserInfoClicked ? (
+        <S.UserInfoDetailContainer>
+          <S.CloseBtnBlock>
+            <S.CloseBtn onClick={props.closeUserInfo}>
+              <Image src="/images/admin/x.svg" alt="x" width={24} height={24} />
+            </S.CloseBtn>
+          </S.CloseBtnBlock>
+          <S.BigTitle>
+            요청번호 - <S.UserInfo>23</S.UserInfo>
+          </S.BigTitle>
+          <S.UserInfoDetailBlock>
+            <S.UserItem>
+              <S.UserInfosTitle>신고자 닉네임</S.UserInfosTitle>
+              <S.UserInfosContent>hoyai</S.UserInfosContent>
+            </S.UserItem>
+            <S.UserItem>
+              <S.UserInfosTitle>피신고자 닉네임</S.UserInfosTitle>
+              <S.UserInfosContent>user1234</S.UserInfosContent>
+            </S.UserItem>
+            <S.UserItem>
+              <S.UserInfosTitle>사유</S.UserInfosTitle>
+              <S.UserInfosContent>심각한 욕설을 하였음</S.UserInfosContent>
+            </S.UserItem>
+            <S.UserItem>
+              <S.UserInfosTitle>처리</S.UserInfosTitle>
+              <S.UserInfosContent
+                style={{
+                  border: "1px solid gray",
+                  width: "150px",
+                  height: "50px",
+                  borderRadius: "6px",
+                  alignItems: "center"
+                }}
+              >
+                정지 6개월
+              </S.UserInfosContent>
+            </S.UserItem>
+          </S.UserInfoDetailBlock>
+          <S.UserInfoDetailBtnContainer>
+            <S.Btn>확인</S.Btn>
+          </S.UserInfoDetailBtnContainer>
+        </S.UserInfoDetailContainer>
+      ) : null}
+      <S.WrapperContainer active={props.isUserInfoClicked}>
         <AdminHandler />
         <S.ContentsContainer>
           <S.ContentsBlock>
@@ -21,7 +64,7 @@ export default function ReportsUI(props) {
               </S.UserInfoTitleBlock>
               <S.UserInfoBlock>
                 {props.reportInfos.map((infos, index) => (
-                  <S.UserInfoItems>
+                  <S.UserInfoItems key={infos.id}>
                     <S.UserInfoItem>
                       <S.RequestNum>{infos.id}</S.RequestNum>
                       <S.RequestDate>{infos.reportDate}</S.RequestDate>
@@ -30,10 +73,14 @@ export default function ReportsUI(props) {
                       </S.ContentKindNameBlock>
                       <S.Kind>{infos.reportType}</S.Kind>
                       <S.Reason>{infos.reason}</S.Reason>
-                      <S.State>{infos.status === "PROCESSING" ? "진행중" : "완료"}</S.State>
+                      <S.State>
+                        {infos.status === "PROCESSING" ? "진행중" : "완료"}
+                      </S.State>
                     </S.UserInfoItem>
                     <S.ChangeBtnBlock>
-                      <S.ChangeBtn>처리</S.ChangeBtn>
+                      <S.ChangeBtn onClick={props.openUserInfo}>
+                        처리
+                      </S.ChangeBtn>
                     </S.ChangeBtnBlock>
                   </S.UserInfoItems>
                 ))}

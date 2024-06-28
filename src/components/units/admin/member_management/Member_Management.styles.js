@@ -41,7 +41,6 @@ export const UserInfoDetailBtnBlock = styled.div`
 export const CloseBtnBlock = styled.div`
   width: 656px;
   height: 28px;
-  padding-right: 15px;
 
   display: flex;
   flex-direction: column;
@@ -115,11 +114,10 @@ export const UserItem = styled.div`
 `;
 
 export const UserStatus = styled.div`
-  width: auto;
+  width: 100px;
   height: 100%;
   font-size: 18px;
   font-weight: bold;
-  margin-right: 50px;
 
   display: flex;
   flex-direction: column;
@@ -164,6 +162,7 @@ export const ReasonTitle = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 `;
 
 export const ReasonTable = styled.div`
@@ -173,6 +172,7 @@ export const ReasonTable = styled.div`
   border: 1px solid gray;
   border-radius: 6px;
   padding: 12px 14px;
+  margin-left: 20px;
 
   :focus{
     border: 1px solid gray;

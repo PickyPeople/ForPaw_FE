@@ -12,6 +12,37 @@ export default function AdoptRequestUI(props) {
               <Image src="/images/admin/x.svg" alt="x" width={24} height={24} />
             </S.CloseBtn>
           </S.CloseBtnBlock>
+          <S.BigTitle>
+            요청번호 - <S.UserInfo>23</S.UserInfo>
+          </S.BigTitle>
+          <S.UserInfoDetailBlock>
+            <S.UserItem>
+              <S.UserInfosTitle>지원자 이름</S.UserInfosTitle>
+              <S.UserInfosContent>탁호영</S.UserInfosContent>
+            </S.UserItem>
+            <S.UserItem>
+              <S.UserInfosTitle>연락처</S.UserInfosTitle>
+              <S.UserInfosContent>010-1234-6789</S.UserInfosContent>
+            </S.UserItem>
+            <S.UserItem>
+              <S.UserInfosTitle>거주지</S.UserInfosTitle>
+              <S.UserInfosContent>대구광역시 수성구 두산동</S.UserInfosContent>
+            </S.UserItem>
+            <S.UserItem>
+              <S.UserInfosTitle>연결 보호소</S.UserInfosTitle>
+              <S.UserInfosContent>수성 유기 보호센터</S.UserInfosContent>
+            </S.UserItem>
+            <S.UserItem>
+              <S.UserInfosTitle>보호소 연락처</S.UserInfosTitle>
+              <S.UserInfosContent>053-1325-4567</S.UserInfosContent>
+            </S.UserItem>
+          </S.UserInfoDetailBlock>
+          <S.UserInfoDetailBtnContainer>
+            <S.UserInfoDetailBtnBlock>
+              <S.Btn>완료하기</S.Btn>
+              <S.Btn>반려하기</S.Btn>
+            </S.UserInfoDetailBtnBlock>
+          </S.UserInfoDetailBtnContainer>
         </S.UserInfoDetailContainer>
       ) : null}
       <S.WrapperContainer active={props.isUserInfoClicked}>
@@ -32,7 +63,7 @@ export default function AdoptRequestUI(props) {
               </S.UserInfoTitleBlock>
               <S.UserInfoBlock>
                 {props.requestInfos.map((infos, indwx) => (
-                  <S.UserInfoItems>
+                  <S.UserInfoItems key={infos.id}>
                     <S.UserInfoItem>
                       <S.RequestNum>{infos.applyId}</S.RequestNum>
                       <S.RequestDate>{infos.applyDate}</S.RequestDate>

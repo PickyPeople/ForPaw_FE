@@ -54,7 +54,7 @@ export default function MemberManagementUI(props) {
               </S.UserInfoTitleBlock>
               <S.UserInfoBlock>
                 {props.memberInfos.map((infos, index) => (
-                  <S.UserInfoItems key={index}>
+                  <S.UserInfoItems key={infos.id}>
                     <S.UserInfoItem>
                       <S.Nickname>{infos.nickName}</S.Nickname>
                       <S.Email>{infos.email}</S.Email>
