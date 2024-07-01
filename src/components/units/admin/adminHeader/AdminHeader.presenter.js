@@ -6,7 +6,7 @@ export default function AdminHeaderUI(props) {
   return (
     <>
       <S.WrapperContainer
-        active={props.isUserInfoClicked}
+        active={props.isUserInfoClicked || props.isActiveClicked || props.changeStatus}
       >
         <S.HeaderContainer>
           <S.ImageBlock>

@@ -18,6 +18,22 @@ export const UserInfoDetailContainer = styled.div`
   padding-top: 40px;
 `;
 
+export const CloseBtnBlock = styled.div`
+  width: 656px;
+  height: 28px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: self-end;
+`;
+
+export const CloseBtn = styled.div`
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+`;
+
 export const UserInfoDetailBtnContainer = styled.div`
   width: 100%;
   height: 36px;
@@ -38,42 +54,11 @@ export const UserInfoDetailBtnBlock = styled.div`
   align-items: center;
 `;
 
-export const CloseBtnBlock = styled.div`
-  width: 656px;
-  height: 28px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: self-end;
-`;
-
-export const CloseBtn = styled.div`
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-`;
-
-export const StopAccount = styled.div`
+export const Btn = styled.div`
   width: 90px;
   height: 36px;
   border-radius: 6px;
   background-color: #464646;
-  color: white;
-  font-weight: 500;
-  cursor: pointer;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const DeleteAccount = styled.div`
-  width: 90px;
-  height: 36px;
-  border-radius: 6px;
-  background-color: #FF6636;
   color: white;
   font-weight: 500;
   cursor: pointer;
@@ -113,9 +98,9 @@ export const UserItem = styled.div`
   align-items: center;
 `;
 
-export const UserStatus = styled.div`
-  width: 100px;
-  height: 100%;
+export const UserInfoDetailTitle = styled.div`
+  width: 105px;
+  height: 50px;
   font-size: 18px;
   font-weight: bold;
 
@@ -123,6 +108,19 @@ export const UserStatus = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+export const UserInfoDetail = styled.div`
+  width: 400px;
+  height: 100%;
+  font-size: 18px;
+  font-weight: 500;
+  padding-left: 50px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 `;
 
 export const CurrentStatus = styled.div`
@@ -153,18 +151,6 @@ export const StatusChgBtn = styled.div`
   align-items: center;
 `;
 
-export const ReasonTitle = styled.div`
-  width: 100px;
-  height: 50px;
-  font-size: 18px;
-  font-weight: bold;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const ReasonTable = styled.div`
   width: 636px;
   height: 60px;
@@ -174,7 +160,7 @@ export const ReasonTable = styled.div`
   padding: 12px 14px;
   margin-left: 20px;
 
-  :focus{
+  :focus {
     border: 1px solid gray;
     outline: none;
   }
@@ -313,9 +299,19 @@ export const Adopted = styled.div`
   align-items: center;
 `;
 
-export const Active = styled.div`
+export const ActiveBlock = styled.div`
   width: 42px;
   height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Active = styled.div`
+  width: 30px;
+  height: 36px;
 
   display: flex;
   flex-direction: column;

@@ -5,6 +5,35 @@ import AdminHandler from "../adminHandler/AdminHandler.container";
 export default function MemberManagementUI(props) {
   return (
     <>
+      {props.isActiveClicked ? (
+        <S.UserInfoDetailContainer>
+          <S.CloseBtnBlock>
+            <S.CloseBtn onClick={props.closeUserInfo}>
+              <Image src="/images/admin/x.svg" alt="x" width={24} height={24} />
+            </S.CloseBtn>
+          </S.CloseBtnBlock>
+          <S.BigTitle>
+            닉네임 - <S.UserInfo>user1</S.UserInfo>
+          </S.BigTitle>
+          <S.UserInfoDetailBlock>
+            <S.UserItem>
+              <S.UserInfoDetailTitle>정지 시작 날짜</S.UserInfoDetailTitle>
+              <S.UserInfoDetail>2024-04-04 09:20</S.UserInfoDetail>
+            </S.UserItem>
+            <S.UserItem>
+              <S.UserInfoDetailTitle>정지 기한</S.UserInfoDetailTitle>
+              <S.UserInfoDetail>60일</S.UserInfoDetail>
+            </S.UserItem>
+            <S.UserItem>
+              <S.UserInfoDetailTitle>정지 사유</S.UserInfoDetailTitle>
+              <S.UserInfoDetail>커뮤니티 욕설</S.UserInfoDetail>
+            </S.UserItem>
+          </S.UserInfoDetailBlock>
+          <S.UserInfoDetailBtnContainer style={{ marginTop: "15px" }}>
+            <S.Btn>확인 완료</S.Btn>
+          </S.UserInfoDetailBtnContainer>
+        </S.UserInfoDetailContainer>
+      ) : null}
       {props.isUserInfoClicked ? (
         <S.UserInfoDetailContainer>
           <S.CloseBtnBlock>
@@ -17,26 +46,57 @@ export default function MemberManagementUI(props) {
           </S.BigTitle>
           <S.UserInfoDetailBlock>
             <S.UserItem>
-              <S.UserStatus>권한</S.UserStatus>
+              <S.UserInfoDetailTitle>권한</S.UserInfoDetailTitle>
               <S.CurrentStatus>USER</S.CurrentStatus>
-              <S.StatusChgBtn>변경</S.StatusChgBtn>
+              <S.StatusChgBtn onClick={props.changeStatusBtn}>
+                변경
+              </S.StatusChgBtn>
             </S.UserItem>
-            <S.ReasonTitle>정지 사유</S.ReasonTitle>
+            <S.UserInfoDetailTitle>정지 사유</S.UserInfoDetailTitle>
             <S.ReasonTable contentEditable="true"></S.ReasonTable>
             <S.UserItem>
-              <S.ReasonTitle>정지 기한</S.ReasonTitle>
+              <S.UserInfoDetailTitle>정지 기한</S.UserInfoDetailTitle>
               <S.StopDays>90일</S.StopDays>
             </S.UserItem>
           </S.UserInfoDetailBlock>
           <S.UserInfoDetailBtnContainer>
             <S.UserInfoDetailBtnBlock>
-              <S.StopAccount>계정 정지</S.StopAccount>
-              <S.DeleteAccount>계정 삭제</S.DeleteAccount>
+              <S.Btn>계정 정지</S.Btn>
+              <S.Btn style={{ backgroundColor: "#FF6636" }}>계정 삭제</S.Btn>
             </S.UserInfoDetailBtnBlock>
           </S.UserInfoDetailBtnContainer>
         </S.UserInfoDetailContainer>
       ) : null}
-      <S.WrapperContainer active={props.isUserInfoClicked}>
+      {props.changeStatus ? (
+        <S.UserInfoDetailContainer style={{ height: "304px" }}>
+          <S.CloseBtnBlock>
+            <S.CloseBtn onClick={props.closeUserInfo}>
+              <Image src="/images/admin/x.svg" alt="x" width={24} height={24} />
+            </S.CloseBtn>
+          </S.CloseBtnBlock>
+          <S.BigTitle>
+            닉네임 - <S.UserInfo>user1</S.UserInfo>
+          </S.BigTitle>
+          <S.UserInfoDetailBlock style={{height: "50px"}}>
+            <S.UserItem>
+              <S.UserInfoDetailTitle>권한</S.UserInfoDetailTitle>
+              <S.CurrentStatus>USER</S.CurrentStatus>
+              <S.StatusChgBtn>변경</S.StatusChgBtn>
+            </S.UserItem>
+          </S.UserInfoDetailBlock>
+          <S.UserInfoDetailBtnContainer style={{marginTop: "60px"}}>
+            <S.UserInfoDetailBtnBlock>
+              <S.Btn>계정 정지</S.Btn>
+              <S.Btn style={{ backgroundColor: "#FF6636" }}>계정 삭제</S.Btn>
+            </S.UserInfoDetailBtnBlock>
+          </S.UserInfoDetailBtnContainer>
+        </S.UserInfoDetailContainer>
+      ) : null}
+      <S.WrapperContainer
+        active={
+          props.isUserInfoClicked || props.isActiveClicked || props.changeStatus
+        }
+      >
         <AdminHandler />
         <S.ContentsContainer>
           <S.ContentsBlock>
@@ -50,7 +110,7 @@ export default function MemberManagementUI(props) {
                 <S.Status>권한</S.Status>
                 <S.Adopting>입양 진행중</S.Adopting>
                 <S.Adopted>입양 완료</S.Adopted>
-                <S.Active>활성화</S.Active>
+                <S.ActiveBlock>활성화</S.ActiveBlock>
               </S.UserInfoTitleBlock>
               <S.UserInfoBlock>
                 {props.memberInfos.map((infos, index) => (
@@ -63,7 +123,9 @@ export default function MemberManagementUI(props) {
                       <S.Status>{infos.role}</S.Status>
                       <S.Adopting>{infos.applicationsSubmitted}</S.Adopting>
                       <S.Adopted>{infos.applicationsCompleted}</S.Adopted>
-                      <S.Active>{infos.isActive ? "O" : "X"}</S.Active>
+                      <S.ActiveBlock onClick={props.isActive}>
+                        <S.Active>{infos.isActive ? "O" : "X"}</S.Active>
+                      </S.ActiveBlock>
                     </S.UserInfoItem>
                     <S.ChangeBtnBlock>
                       <S.ChangeBtn onClick={props.openUserInfo}>
