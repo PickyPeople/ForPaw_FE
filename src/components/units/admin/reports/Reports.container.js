@@ -4,18 +4,23 @@ import ReportsUI from "./Reports.presenter";
 import useFetchReports from "./hooks/useFetchReports";
 
 export default function Reports() {
-  const [isClicked, setIsClicked] = useState(false);
+  const [isUserInfoClicked, setIsUserInfoClicked] = useState(false);
 
-  const changeStatus = () => {
-    setIsClicked(true);
+  const openUserInfo = () => {
+    setIsUserInfoClicked(true);
   };
 
+  const closeUserInfo = () => {
+    setIsUserInfoClicked(false);
+  };
   const { reportInfos } = useFetchReports();
   return (
     <>
-      <AdminHeaderUI />
-      <ReportsUI 
-        changeStatus={changeStatus}
+      <AdminHeaderUI isUserInfoClicked={isUserInfoClicked} />
+      <ReportsUI
+        isUserInfoClicked={isUserInfoClicked}
+        openUserInfo={openUserInfo}
+        closeUserInfo={closeUserInfo}
         reportInfos={reportInfos}
       />
     </>

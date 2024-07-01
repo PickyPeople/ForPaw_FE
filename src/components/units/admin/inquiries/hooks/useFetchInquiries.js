@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { fetchInquiries } from "../Inquiries.queries";
 
 const example = {
@@ -27,10 +27,30 @@ const example = {
   },
 };
 
+function formatDate(isoString) {
+  const date = new Date(isoString);
+  const yyyy = date.getFullYear();
+  const mm = String(date.getMonth() + 1).padStart(2, "0"); // Months start at 0!
+  const dd = String(date.getDate()).padStart(2, "0");
+  const hh = String(date.getHours()).padStart(2, "0");
+  const min = String(date.getMinutes()).padStart(2, "0");
+  const ss = String(date.getSeconds()).padStart(2, "0");
+
+  return `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`;
+}
+
 export default function useFetchInquiries() {
   const [inquiriesInfos, setInquiriesInfos] = useState(
     example.result.inquiries
   );
+
+  useEffect(() => {
+    const formattedInquiries = example.result.inquiries.map((inquiry) => ({
+      ...inquiry,
+      inquiryDate: formatDate(inquiry.inquiryDate),
+    }));
+    setInquiriesInfos(formattedInquiries);
+  }, []);
 
   return {
     inquiriesInfos,

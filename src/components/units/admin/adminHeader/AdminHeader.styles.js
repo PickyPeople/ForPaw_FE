@@ -9,6 +9,8 @@ export const WrapperContainer = styled.div`
   align-items: flex-start;
   background-color: White;
   border-bottom: 0.062vw solid #717478;
+
+  filter: ${(props) => (props.active ? "brightness(0.5)" : "brightness(1.0)")};
 `;
 
 export const HeaderContainer = styled.div`

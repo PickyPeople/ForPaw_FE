@@ -1,10 +1,123 @@
 import styled from "@emotion/styled";
 
+export const UserInfoDetailContainer = styled.div`
+  background-color: white;
+  width: 761px;
+  height: 438px;
+  border-radius: 20px;
+  z-index: 999;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+`;
+
+export const CloseBtnBlock = styled.div`
+  width: 656px;
+  height: 28px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: self-end;
+`;
+
+export const CloseBtn = styled.div`
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+`;
+
+export const BigTitle = styled.div`
+  width: 656px;
+  height: 30px;
+  font-size: 30px;
+  font-weight: bold;
+
+  margin-bottom: 30px;
+`;
+
+export const UserInfo = styled.span`
+  width: auto;
+  height: 100%;
+`;
+
+export const UserInfoDetailBlock = styled.div`
+  width: 656px;
+  height: 222px;
+`;
+
+export const UserItem = styled.div`
+  width: 100%;
+  height: 40px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 15px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const UserInfosTitle = styled.div`
+  width: 120px;
+  height: 100%;
+  margin-right: 50px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const UserInfosContent = styled.div`
+  width: 450px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+`;
+
+export const UserInfoDetailBtnContainer = styled.div`
+  width: 100%;
+  height: 40px;
+  margin-top: 30px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const Btn = styled.div`
+  width: 60px;
+  height: 40px;
+  border-radius: 6px;
+  background-color: #464646;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const WrapperContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
+
+  filter: ${(props) => (props.active ? "brightness(0.5)" : "brightness(1.0)")};
 `;
 
 export const ContentsContainer = styled.div`
@@ -55,7 +168,7 @@ export const RequestNum = styled.div`
 `;
 
 export const RequestDate = styled.div`
-  width: 132px;
+  width: 150px;
   height: 100%;
 
   display: flex;
